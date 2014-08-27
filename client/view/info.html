@@ -1,0 +1,16 @@
+<div class="modal-body">
+	<span class="label label-success">上传成功</span>
+	<span>共{{data.info.total}}条</span>
+	<span>新建{{data.info.create}}条</span>
+	<span>覆盖{{data.info.update}}条</span>
+	<span>失败{{data.errors.length}}条</span>
+    <a ng-href="{{data.href}}" ng-show="data.href" class="btn btn-primary">下载错误数据</a>
+	<hr>
+	<ul ng-repeat="error in data.errors">
+		<li>第{{error.index+2}}行: {{error.msg}}</li>
+	</ul>
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="cancel()">确定</button>    
+</div>

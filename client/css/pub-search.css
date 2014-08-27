@@ -1,0 +1,25 @@
+.header {
+	background: url(../img/header.jpg) no-repeat;
+	margin: 0 auto;
+	width: 956px;
+	height: 253px;
+}
+
+.main{
+	
+	margin: 0 auto;
+	width: 956px;	
+	text-align: center;
+}
+.table-wrapper{
+	
+}
+
+.my-table {
+	width: 300px;
+	margin: 0 auto;
+}
+
+.pagination {
+	
+}

@@ -1,0 +1,81 @@
+<div class="modal-body">
+    
+
+        <form class="form-horizontal" role="form">
+            <div class="form-group">
+                <label class="col-sm-1 col-sm-offset-1 control-label">姓名</label>
+                <div class="col-sm-2">
+                    <input class="form-control" ng-model="criteria.name">                
+                </div>
+            
+                <label class="col-sm-2 control-label">身份证号</label>
+                <div class="col-sm-5">
+                    <input class="form-control" ng-model="criteria.idnumber">                
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">性别</label>
+                <div class="col-sm-2">
+                    <input class="form-control" ng-model="criteria.sex">
+                </div>
+                <label class="col-sm-2 control-label">证书号</label>
+                <div class="col-sm-5">
+                    <input class="form-control" ng-model="criteria.certnumber">                
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">文化程度</label>
+                <div class="col-sm-2">
+                    <input class="form-control" ng-model="criteria.edu">
+                </div>
+                <label class="col-sm-2 control-label">申报工种</label>
+                <div class="col-sm-5">
+                    <input class="form-control" ng-model="criteria.worktype">                
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">鉴定级别</label>
+                <div class="col-sm-2">
+                    <input class="form-control" ng-model="criteria.certlevel">
+                </div>
+                <label class="col-sm-2 control-label">鉴定机构</label>
+                <div class="col-sm-5">
+                    <input class="form-control" ng-model="criteria.certfacility">                
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">单位名称</label>
+                <div class="col-sm-3">
+                    <input class="form-control" ng-model="criteria.danwei">
+                </div>
+                
+            </div>
+
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">证书类别</label>
+                <div class="col-sm-3">
+                    <input class="form-control" ng-model="criteria.certcat">
+                </div>
+            </div>
+        </form>
+
+   
+
+    
+
+    
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="ok()" ng-disabled="certForm.$invalid">查找</button>
+    <button class="btn btn-warning" ng-click="cancel()">取消</button>
+</div>

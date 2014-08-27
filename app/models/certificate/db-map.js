@@ -1,0 +1,18 @@
+module.exports = {
+    'idnumber': "身份证号",
+    "name": "考生姓名",
+    "worktype": "申报工种",
+    "certlevel": "鉴定级别",
+    "certnumber": "证书号",
+    "birth": "出生日期",
+    "sex": "性别",
+    "edu": "文化程度",
+    'tscore': "理论成绩",
+    'pscore': "实操成绩",
+    'record': "评定成绩",
+    "certdate": "颁证日期",
+    "expire": "有效至",
+    "danwei": "单位名称",
+    "certfacility": "鉴定机构",
+    "certcat": "证书类别",
+};

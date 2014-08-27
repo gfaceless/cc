@@ -1,0 +1,1804 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"else",
+				"else"
+			],
+			[
+				"if",
+				"if	if(handlebars)"
+			],
+			[
+				"angula",
+				"angular.min.js"
+			],
+			[
+				"mon",
+				"mongoose-error-msg.js"
+			],
+			[
+				"res",
+				"result"
+			],
+			[
+				"chin",
+				"chineseKeyMap"
+			],
+			[
+				"keys",
+				"chineseKeys"
+			],
+			[
+				"getE",
+				"getErrorMsg"
+			],
+			[
+				"csv",
+				"2.csv"
+			],
+			[
+				"last",
+				"lastCriteria"
+			],
+			[
+				"exce",
+				"defaultException"
+			],
+			[
+				"handle",
+				"handleException"
+			],
+			[
+				"htt",
+				"httpProvider"
+			],
+			[
+				"inl",
+				"inline-block"
+			],
+			[
+				"te",
+				"template"
+			],
+			[
+				"cop",
+				"copiedCriteria"
+			],
+			[
+				"save",
+				"saveAsFile"
+			],
+			[
+				"for",
+				"for	for (…) {…}"
+			],
+			[
+				"wid",
+				"width"
+			],
+			[
+				"no",
+				"nowrap"
+			],
+			[
+				"whi",
+				"white-space"
+			],
+			[
+				"item",
+				"itemsPerPage"
+			],
+			[
+				"total",
+				"totalItems"
+			],
+			[
+				"totl",
+				"totalItems"
+			],
+			[
+				"list-style",
+				"list-style-position"
+			],
+			[
+				"marg",
+				"margin-bottom"
+			],
+			[
+				"link",
+				"links-tabs-bg.png	w:1 h:34"
+			],
+			[
+				"slider",
+				"jssor.slider.js"
+			],
+			[
+				"slder",
+				"jssor.slider.js"
+			],
+			[
+				"liss",
+				"list-style"
+			],
+			[
+				"bco",
+				"border-color"
+			],
+			[
+				"mix",
+				"mixins.less"
+			],
+			[
+				"bg",
+				"panel_header_bg.jpg	w:1 h:31"
+			],
+			[
+				"mar",
+				"margin"
+			],
+			[
+				"ba",
+				"background"
+			],
+			[
+				"line",
+				"line-height"
+			],
+			[
+				"mbo",
+				"margin-bottom"
+			],
+			[
+				"list",
+				"list-n	list-style-type: none;"
+			],
+			[
+				"cont",
+				"container"
+			],
+			[
+				"resu",
+				"result2"
+			],
+			[
+				"cal",
+				"calcParams"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"resul",
+				"results"
+			],
+			[
+				"certS",
+				"certificateSchema"
+			],
+			[
+				"select",
+				"selected"
+			],
+			[
+				"cert",
+				"certificates"
+			],
+			[
+				"se",
+				"selected	Attr"
+			],
+			[
+				"C",
+				"Certificate"
+			],
+			[
+				"test",
+				"test.xls"
+			],
+			[
+				"xls",
+				"a.xlsx"
+			],
+			[
+				"pe",
+				"propertyExpression"
+			],
+			[
+				"angular-",
+				"angular-locale_zh-cn.js"
+			],
+			[
+				"selec",
+				"selectedPage"
+			],
+			[
+				"getPagC",
+				"getPageClass"
+			],
+			[
+				"sec",
+				"selectedCategory"
+			],
+			[
+				"categor",
+				"categoryFilterFn"
+			],
+			[
+				"page",
+				"pageSize"
+			],
+			[
+				"f",
+				"f	Anonymous Function"
+			],
+			[
+				"pro",
+				"property"
+			],
+			[
+				"ng-",
+				"ng-template	AngularJS"
+			],
+			[
+				"can",
+				"canvasWidth"
+			],
+			[
+				"open",
+				"openBottom"
+			],
+			[
+				"op",
+				"openTop"
+			],
+			[
+				"cyl",
+				"cylinder"
+			],
+			[
+				"cy",
+				"cylinder2"
+			],
+			[
+				"ro",
+				"rotation"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "app/controllers/cert.controller.js",
+			"settings":
+			{
+				"buffer_size": 11814,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "var user = {};\n\nmodule.exports = user;\n\n\nuser.auth = function(req, res, next) {    \n\n        \n    req.session.num = req.session.num || 0;\n    console.log(++req.session.num)\n    next();\n\n}",
+			"file": "app/controllers/user.controller.js",
+			"file_size": 189,
+			"file_write_time": 130535886121163691,
+			"settings":
+			{
+				"buffer_size": 187,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app/routes/cert.router.js",
+			"settings":
+			{
+				"buffer_size": 1179,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "client/view/login.html",
+			"settings":
+			{
+				"buffer_size": 785,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "client/app.html",
+			"settings":
+			{
+				"buffer_size": 1652,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": ".meta {\n    position: absolute;\n  right: 35px;\n  top: 27px;\n}\n\n\n.btn-file {\n    position: relative;\n    overflow: hidden;\n}\n.btn-file input[type=file] {\n    position: absolute;\n    top: 0;\n    right: 0;\n    min-width: 100%;\n    min-height: 100%;\n    font-size: 100px;\n    text-align: right;\n    filter: alpha(opacity=0);\n    opacity: 0;\n    outline: none;\n    background: white;\n    cursor: inherit;\n    display: block;\n}\n\nth, td {\n    vertical-align: middle !IMPORTANT;\n    white-space: nowrap;\n}\n.table-responsive{\n    overflow-y: hidden;\n    overflow-x: auto;\n    width: 100%;\n}\n\n.indicator{\n    display: inline-block;\n    margin-left: 20px;\n}\n\n.pager-info {\n    margin: 25px 0 0 10px;\n    font-size: 13px;\n}",
+			"file": "client/css/main.css",
+			"file_size": 760,
+			"file_write_time": 130535908010665699,
+			"settings":
+			{
+				"buffer_size": 711,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "client/js/main.js",
+			"settings":
+			{
+				"buffer_size": 12199,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 73.0,
+		"selected_items":
+		[
+			[
+				"setsy:handl",
+				"Set Syntax: Handlebars"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"ssjavs",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"ssjava",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"package",
+				"Preferences: Browse Packages"
+			],
+			[
+				"ssap",
+				"Set Syntax: Apache Conf"
+			],
+			[
+				"prv",
+				"PackageResourceViewer: Open Resource"
+			],
+			[
+				"Package Control: rem",
+				"Package Control: Remove Package"
+			],
+			[
+				"pacrv",
+				"PackageResourceViewer: Extract Package"
+			],
+			[
+				"parv",
+				"PackageResourceViewer: Open Resource"
+			],
+			[
+				"packageremove",
+				"Package Control: Remove Package"
+			],
+			[
+				"Package Control: remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"pac",
+				"Package Control: List Packages"
+			],
+			[
+				"review",
+				"PackageResourceViewer: Open Resource"
+			],
+			[
+				"packrv",
+				"PackageResourceViewer: Open Resource"
+			],
+			[
+				"anony",
+				"Snippet: Anonymous Function"
+			],
+			[
+				"anonymous",
+				"Snippet: Anonymous Function"
+			],
+			[
+				"ssjav",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"ss",
+				"Set Syntax: HTML5"
+			],
+			[
+				"snippet:html",
+				"Snippet: Simple HTML5 Boilerplate"
+			],
+			[
+				"sni",
+				"Snippet: bs3-navbar-inverse"
+			],
+			[
+				"snippet: html",
+				"Snippet: html"
+			],
+			[
+				"html5",
+				"Set Syntax: HTML5"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"ang",
+				"AngularJS: Look Up Definition"
+			]
+		],
+		"width": 703.0
+	},
+	"console":
+	{
+		"height": 176.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)",
+			"wtf?",
+			"z",
+			"a",
+			"oo",
+			"c:",
+			"hi",
+			"cwd()"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": false,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/E/codes/cc/app/models/certificate/db-map.js",
+		"/E/codes/cc/client/login.html",
+		"/E/codes/cc/app.js",
+		"/E/codes/cc/app/controllers/cert.to-xls.js",
+		"/E/tmp/try.csv",
+		"/E/tmp/go-final.csv",
+		"/E/tmp/go1.csv",
+		"/E/tmp/go2.csv",
+		"/E/tmp/go.csv",
+		"/E/tmp/desc.csv",
+		"/E/tmp/orig.csv",
+		"/E/tmp/1.csv",
+		"/E/tmp/input.csv",
+		"/E/codes/cc/app/controllers/cert.controller.js",
+		"/E/codes/cc/app/routes/cert.router.js",
+		"/E/codes/cc/app/controllers/err.controller.js",
+		"/C/Users/gfl/Downloads/1.csv",
+		"/C/Users/gfl/Downloads/id-desc.csv",
+		"/E/codes/cc/client/js/main.js",
+		"/E/codes/cc/app/models/certificate.js",
+		"/E/codes/cc/test/.idea/modules.xml",
+		"/E/tmp/t1.csv",
+		"/E/errors.xls",
+		"/E/codes/cc/client/bower_components/bootstrap/less/mixins/text-overflow.less",
+		"/E/codes/cc/test/test.xls",
+		"/E/c/1.csv",
+		"/E/c/t1",
+		"/E/c/log-sample.txt",
+		"/E/log.txt",
+		"/E/codes/cc/client/view/info.html",
+		"/E/codes/cc/lib/mongoose-error-msg.js",
+		"/E/codes/cc/client/bower_components/angular-strap/dist/modules/modal.min.js",
+		"/E/codes/cc/client/bower_components/angular-motion/src/fade-and-scale/docs/fade-and-scale.demo.html",
+		"/E/codes/cc/client/bower_components/angular-motion/src/fade-and-scale/fade-and-scale.less",
+		"/E/codes/cc/client/bower_components/angular-motion/dist/modules/fade-and-scale.css",
+		"/C/Users/gfl/Downloads/error-report (1).xls",
+		"/C/Users/gfl/Downloads/error-report (2).xls",
+		"/E/codes/cc/app/controllers/xls.template",
+		"/C/Users/gfl/Downloads/error-report (3).xls",
+		"/C/Users/gfl/Downloads/report (2).xls",
+		"/C/Users/gfl/Downloads/error-report.xls",
+		"/C/Users/gfl/Downloads/report (16).xls",
+		"/E/codes/cc/app/routes/index.router.js",
+		"/E/codes/cc/app/views/index.jade",
+		"/C/Users/gfl/AppData/Roaming/Sublime Text 3/Packages/Default/Default (Windows).sublime-keymap",
+		"/C/Users/gfl/AppData/Roaming/Sublime Text 3/Packages/User/Default (Windows).sublime-keymap",
+		"/E/codes/cc/client/app.html",
+		"/C/Users/gfl/AppData/Roaming/Sublime Text 3/Packages/User/.sublime-mousemap",
+		"/E/codes/cc/client/bower_components/bootstrap/less/variables.less",
+		"/E/codes/cc/app/views/error.jade",
+		"/E/codes/cc/client/bower_components/angular/angular.js",
+		"/E/codes/cc/client/bower_components/angular-strap/src/affix/affix.js",
+		"/C/Users/gfl/AppData/Roaming/Sublime Text 3/Packages/Open-Include/Open-Include.sublime-settings",
+		"/C/Users/gfl/AppData/Roaming/Sublime Text 3/Packages/Emmet/Emmet.sublime-settings",
+		"/E/codes/cc/client/js/angular.min.js",
+		"/C/Users/gfl/AppData/Roaming/Sublime Text 3/Packages/Open-Include/Default (Windows).sublime-keymap",
+		"/C/Users/gfl/AppData/Roaming/Sublime Text 3/Packages/User/Emmet.sublime-settings",
+		"/E/codes/cc/client/js/angular.js",
+		"/E/codes/cc/client/js/angular-file-upload.min.js",
+		"/E/codes/cc/client/js/ui-bootstrap-tpls-0.11.0.min.js",
+		"/E/codes/cc/node_modules/moment/moment.js",
+		"/C/Users/gfl/AppData/Roaming/Sublime Text 3/Packages/Emmet/Default (Windows).sublime-keymap",
+		"/C/ImbaMallLog.txt",
+		"/E/codes/cc/client/js/filters/filters.js",
+		"/E/codes/cc/client/css/pub-search.css",
+		"/E/codes/cc/client/pub.html",
+		"/E/codes/cc/client/js/pub-search.js",
+		"/E/codes/cc/client/bower_components/jquery/src/serialize.js",
+		"/E/codes/cc/node_modules/csv/node_modules/csv-parse/test/skip_empty_lines.coffee",
+		"/E/codes/cc/node_modules/.bin/swig",
+		"/E/codes/cc/lib/custom-error-msg.js",
+		"/E/codes/cc/node_modules/mongoose/lib/error.js",
+		"/E/c/log.txt",
+		"/E/codes/cc/client/bower_components/bootstrap/less/modals.less",
+		"/E/codes/cc/node_modules/mongoose/lib/model.js",
+		"/E/c/124926300.csv",
+		"/E/c/2.csv",
+		"/E/c/124926300",
+		"/E/codes/cc/client/view/tableView.html",
+		"/E/codes/cc/node_modules/mongoose/node_modules/mpromise/.idea/codeStyleSettings.xml",
+		"/E/codes/cc/node_modules/validator/test/client-side.js",
+		"/E/codes/cc/node_modules/swig/node_modules/uglify-js/node_modules/source-map/build/prefix-utils.jsm",
+		"/E/codes/cc/package.json",
+		"/E/codes/cc/node_modules/moment/CONTRIBUTING.md",
+		"/E/codes/cc/node_modules/excel-parser/convert.py",
+		"/E/codes/cc/node_modules/swig/node_modules/optimist/example/line_count_options.js",
+		"/E/codes/cc/node_modules/csv/node_modules/csv-parse/test/counter.coffee",
+		"/E/codes/cc/node_modules/moment/locale/ro.js",
+		"/E/codes/cc/node_modules/async/README.md",
+		"/E/codes/cc/node_modules/mongoose/contRun.sh",
+		"/E/codes/cc/node_modules/excel-parser/node_modules/grunt/node_modules/glob/test/cwd-test.js",
+		"/E/codes/cc/node_modules/express/lib/router/route.js",
+		"/E/codes/cc/node_modules/excel-parser/node_modules/grunt-contrib-internal/node_modules/read-package-json/node_modules/normalize-package-data/node_modules/github-url-from-username-repo/LICENSE",
+		"/E/codes/cc/node_modules/excel-parser/node_modules/grunt-contrib-internal/node_modules/read-package-json/node_modules/glob/test/bash-results.json",
+		"/E/codes/cc/node_modules/excel-parser/node_modules/grunt-contrib-internal/node_modules/read-package-json/node_modules/normalize-package-data/test/github-urls.js",
+		"/E/codes/cc/node_modules/excel-parser/node_modules/grunt-contrib-nodeunit/node_modules/nodeunit/examples/nested/nested_reporter_test.unit.js",
+		"/E/codes/cc/node_modules/excel-parser/node_modules/grunt-contrib-jshint/node_modules/jshint/examples/reporter.js",
+		"/E/codes/cc/node_modules/excel-parser/node_modules/grunt/node_modules/glob/test/pause-resume.js",
+		"/E/codes/cc/app/views/public-search.html",
+		"/C/Users/gfl/Desktop/mongodb.bat",
+		"/E/codes/php/FineCMSv1.8.1/views/default/page.html",
+		"/E/codes/php/FineCMSv1.8.1/views/default/index.html",
+		"/E/codes/php/FineCMSv1.8.1/views/default/less/main.less",
+		"/E/codes/php/FineCMSv1.8.1/views/default/js/site.js",
+		"/E/2.csv",
+		"/E/1.csv",
+		"/E/3.csv",
+		"/C/Users/gfl/Downloads/2.csv",
+		"/E/1 - 副本.csv",
+		"/E/third.csv",
+		"/E/thi.csv",
+		"/E/second.csv",
+		"/E/first.csv",
+		"/E/try.csv",
+		"/C/Users/gfl/AppData/Roaming/Sublime Text 3/Packages/JsFormat/JsFormat.sublime-settings",
+		"/C/Users/gfl/AppData/Roaming/Sublime Text 3/Packages/JsFormat/Default (Windows).sublime-keymap",
+		"/E/codes/cc/client/css/main.css",
+		"/E/codes/cc/test/fs.js",
+		"/E/codes/cc/node_modules/jade/LICENSE",
+		"/E/codes/cc/node_modules/express/node_modules/escape-html/.npmignore",
+		"/E/codes/cc/client/view/advancedSearchView.html",
+		"/E/codes/cc/client/view/findView.html",
+		"/C/Users/gfl/Downloads/angular.js",
+		"/C/Users/gfl/AppData/Roaming/Sublime Text 3/Packages/HTML-CSS-JS Prettify/.jsbeautifyrc",
+		"/C/Users/gfl/AppData/Roaming/Sublime Text 3/Packages/HTML-CSS-JS Prettify/HTMLPrettify.sublime-settings",
+		"/C/Users/gfl/AppData/Roaming/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/E/codes/cc/node_modules/pyspreadsheet/python/excel_reader.py",
+		"/E/codes/cc/bin/www"
+	],
+	"find":
+	{
+		"height": 43.0
+	},
+	"find_in_files":
+	{
+		"height": 117.0,
+		"where_history":
+		[
+			"",
+			"E:\\codes\\php\\FineCMSv1.8.1\\views\\admin",
+			"E:\\codes\\php\\FineCMSv1.8.1,-*.js",
+			"<open files>",
+			"",
+			"E:\\codes\\php\\FineCMSv1.8.1\\views\\default,*.html",
+			"E:\\codes\\php\\FineCMSv1.8.1\\views\\default",
+			"",
+			"E:\\codes\\php\\FineCMSv1.8.1\\",
+			"E:\\codes\\php\\FineCMSv1.8.1\\**\\*.php",
+			"E:\\codes\\php\\FineCMSv1.8.1\\*.php",
+			"E:\\codes\\php\\FineCMSv1.8.1\\",
+			"E:\\codes\\php\\FineCMSv1.8.1\\views\\default\\bootstrap-3.2.0\\less",
+			"less,E:\\codes\\php\\FineCMSv1.8.1\\views\\default\\bootstrap-3.2.0\\less",
+			"less"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"用户名",
+			"</",
+			"Email",
+			"退出",
+			"criteria",
+			"name",
+			"text",
+			"cancel",
+			"auth",
+			"cert",
+			"未知错误",
+			"existed",
+			"conso",
+			"count",
+			"path",
+			"null",
+			"here",
+			"nameSetter",
+			"name",
+			"error",
+			"total",
+			"></",
+			"primary",
+			"span",
+			"String",
+			"s63",
+			"StyleID=\"s63\"",
+			"data",
+			"DOWNLOAD_URL",
+			"msg",
+			"upload",
+			"download",
+			"tmp",
+			"download",
+			"transform",
+			"index",
+			"if",
+			"dbkey",
+			"context",
+			"name",
+			"getName",
+			"idnumber",
+			"this",
+			"showHidden",
+			"chineseKeys",
+			"c2dbMap",
+			"chineseNames",
+			"data",
+			"toXls",
+			"ctrl+e",
+			"criteria",
+			"send",
+			"error",
+			"angular",
+			"alt+d",
+			"ctrl+b",
+			"go",
+			"f12",
+			");}",
+			")}",
+			"error",
+			"false",
+			"error",
+			"req",
+			"Error",
+			"err",
+			"new",
+			"err",
+			"message",
+			"err",
+			"ValidationError",
+			"name",
+			"code",
+			"err",
+			"MongoError",
+			"push",
+			"function",
+			"index",
+			"message",
+			"res",
+			"errors",
+			"file",
+			"get",
+			"set",
+			"Set",
+			"set",
+			"Set",
+			"set",
+			"Set",
+			"set",
+			"Set",
+			"set",
+			"Set",
+			"set",
+			"Set",
+			"set",
+			"Set",
+			"set",
+			"Set",
+			"set",
+			"Set",
+			"set",
+			"nameSetter",
+			"(nameSetter)",
+			"m",
+			"date",
+			"\"disabled_keymap_actions\"",
+			"extensions_path",
+			"ctrl+shift+z",
+			"ctrl+u",
+			"ctrl+y",
+			"update",
+			"create",
+			"+=",
+			"+=1",
+			"+1",
+			"type",
+			"123",
+			"extra",
+			"recordError",
+			"create",
+			"error",
+			"data",
+			"map",
+			"forEach",
+			"dbMap",
+			"cKey2dbKey",
+			"ckey2dbkey"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"li",
+			"@body-w"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "app/controllers/cert.controller.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 11814,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								11736,
+								11736
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content"
+							],
+							"encoding_helper_encoding": "UTF-8",
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 8500.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "app/controllers/user.controller.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 187,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								93,
+								93
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content"
+							],
+							"encoding_helper_encoding": "UTF-8",
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "app/routes/cert.router.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1179,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1173,
+								1173
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content"
+							],
+							"encoding_helper_encoding": "UTF-8",
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 73.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "client/view/login.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 785,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								709,
+								709
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content"
+							],
+							"encoding_helper_encoding": "UTF-8",
+							"open_with_edit": true,
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "client/app.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1652,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								679,
+								679
+							],
+							[
+								774,
+								774
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content"
+							],
+							"encoding_helper_encoding": "UTF-8",
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 132.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "client/css/main.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 711,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								59,
+								59
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content"
+							],
+							"encoding_helper_encoding": "UTF-8",
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "client/js/main.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 12199,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								9935,
+								9935
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content"
+							],
+							"encoding_helper_encoding": "UTF-8",
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 3929.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 40.0
+	},
+	"input":
+	{
+		"height": 40.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": false,
+	"output.find_results":
+	{
+		"height": 142.0
+	},
+	"project": "cc.sublime-project",
+	"replace":
+	{
+		"height": 80.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"main",
+				"client\\js\\main.js"
+			],
+			[
+				"app",
+				"app.js"
+			],
+			[
+				"map",
+				"app\\models\\certificate\\db-map.js"
+			],
+			[
+				"models/c",
+				"app\\models\\certificate.js"
+			],
+			[
+				"err.con",
+				"app\\controllers\\err.controller.js"
+			],
+			[
+				"toxl",
+				"app\\controllers\\cert.to-xls.js"
+			],
+			[
+				"route",
+				"app\\routes\\cert.router.js"
+			],
+			[
+				"models/",
+				"app\\models\\certificate.js"
+			],
+			[
+				"router",
+				"app\\routes\\cert.router.js"
+			],
+			[
+				"err.c",
+				"app\\controllers\\err.controller.js"
+			],
+			[
+				"err",
+				"app\\controllers\\err.controller.js"
+			],
+			[
+				"index",
+				"app\\routes\\index.router.js"
+			],
+			[
+				"err.",
+				"app\\controllers\\err.controller.js"
+			],
+			[
+				"models/cer",
+				"app\\models\\certificate.js"
+			],
+			[
+				"certi",
+				"app\\models\\certificate.js"
+			],
+			[
+				"serachcss",
+				"client\\css\\pub-search.css"
+			],
+			[
+				"modles/",
+				"app\\models\\certificate.js"
+			],
+			[
+				"pub.css",
+				"client\\css\\pub-search.css"
+			],
+			[
+				"contrl",
+				"app\\controllers\\cert.controller.js"
+			],
+			[
+				"cert.con",
+				"app\\controllers\\cert.controller.js"
+			],
+			[
+				"cer.con",
+				"app\\controllers\\err.controller.js"
+			],
+			[
+				"contro",
+				"app\\controllers\\err.controller.js"
+			],
+			[
+				"controller",
+				"app\\controllers\\cert.controller.js"
+			],
+			[
+				".css",
+				"client\\css\\main.css"
+			],
+			[
+				"ap",
+				"app.js"
+			],
+			[
+				"routes/",
+				"app\\routes\\index.js"
+			],
+			[
+				"cert",
+				"app\\controllers\\cert.controller.js"
+			],
+			[
+				"",
+				"routes\\index.js"
+			],
+			[
+				"app.html",
+				"client\\app.html"
+			],
+			[
+				"header",
+				"header.html"
+			],
+			[
+				"foot",
+				"footer.html"
+			],
+			[
+				"mainless",
+				"less\\main.less"
+			],
+			[
+				"hea",
+				"header.html"
+			],
+			[
+				"site.js",
+				"js\\site.js"
+			],
+			[
+				"inde",
+				"index.html"
+			],
+			[
+				"main.le",
+				"less\\main.less"
+			],
+			[
+				"footer",
+				"footer.html"
+			],
+			[
+				"site",
+				"js\\site.js"
+			],
+			[
+				"he",
+				"header.html"
+			],
+			[
+				"show_i",
+				"show_image.html"
+			],
+			[
+				"image",
+				"list_image.html"
+			],
+			[
+				"cate",
+				"category_news.html"
+			],
+			[
+				"page",
+				"page.html"
+			],
+			[
+				"show_n",
+				"show_news.html"
+			],
+			[
+				"list",
+				"list_news.html"
+			],
+			[
+				"head",
+				"header.html"
+			],
+			[
+				"fo",
+				"footer.html"
+			],
+			[
+				"sit",
+				"js\\site.js"
+			],
+			[
+				"in",
+				"index.html"
+			],
+			[
+				"ma",
+				"less\\main.less"
+			],
+			[
+				"ind",
+				"index.html"
+			],
+			[
+				"my",
+				"bootstrap-3.2.0\\mybootstrap.less"
+			],
+			[
+				"myb",
+				"bootstrap-3.2.0\\mybootstrap.less"
+			],
+			[
+				"show",
+				"show_news.html"
+			],
+			[
+				"show_",
+				"show_image.html"
+			],
+			[
+				"header.js",
+				"js\\header.js"
+			],
+			[
+				"list_news",
+				"list_news.html"
+			],
+			[
+				"f",
+				"footer.html"
+			],
+			[
+				"grunt",
+				"bootstrap-3.2.0\\Gruntfile.js"
+			],
+			[
+				"less/gri",
+				"bootstrap-3.2.0\\less\\grid.less"
+			],
+			[
+				"mixin",
+				"bootstrap-3.2.0\\less\\mixins.less"
+			],
+			[
+				"ctrl",
+				"chap8 prac\\controllers\\productListCtrl.js"
+			],
+			[
+				"filter",
+				"chap8 prac\\filters\\customFilters.js"
+			],
+			[
+				"prod",
+				"Chapter 08\\views\\productList.html"
+			],
+			[
+				"proctrl",
+				"chap8 prac\\controllers\\productListCtrl.js"
+			],
+			[
+				"html",
+				"chap8 prac\\views\\productList.html"
+			],
+			[
+				"filte",
+				"chap8 prac\\filters\\customFilters.js"
+			],
+			[
+				"produc",
+				"Chapter 08\\controllers\\productListControllers.js"
+			],
+			[
+				"productlisc",
+				"chap8 prac\\controllers\\productListCtrl.js"
+			],
+			[
+				"a",
+				"chap8 prac\\app.html"
+			],
+			[
+				"success",
+				"controllers\\checkoutControllers.js"
+			],
+			[
+				"carts",
+				"E:\\codes\\angularJS\\pro ng code\\_Supplemental_Deployd_Chapters_and_Code\\Chapter 08\\components\\cart\\cartSummary.html"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 625.0,
+		"selected_items":
+		[
+		],
+		"width": 475.0
+	},
+	"select_symbol":
+	{
+		"height": 490.0,
+		"selected_items":
+		[
+			[
+				"@pager",
+				"@pager-bg"
+			],
+			[
+				"main-content",
+				"main-content"
+			]
+		],
+		"width": 626.0
+	},
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 166.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

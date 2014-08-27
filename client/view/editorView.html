@@ -1,0 +1,154 @@
+<!-- <div class="modal-header">
+    <h3 class="modal-title">Im a modal!</h3>
+</div> -->
+<div class="modal-body">
+    <form name="certForm" class="form-horizontal" novalidate>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">身份证号:</label>
+            <div class="col-sm-8">
+                <input class="form-control" ng-model="cert.idnumber" name="idnumber" required/>
+            </div>
+            <div class="text-danger col-sm-2 form-control-static" ng-show="certForm.idnumber.$invalid && certForm.idnumber.$dirty">
+                {{getError(certForm.idnumber.$error)}}
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">考生姓名:</label>
+            <div class="col-sm-8">
+                <input class="form-control" ng-model="cert.name" required name="name" />
+            </div>
+            <div class="text-danger col-sm-2 form-control-static" ng-show="certForm.name.$invalid && certForm.name.$dirty">
+                {{getError(certForm.name.$error)}}
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">申报工种:</label>
+            <div class="col-sm-8">
+                <input class="form-control" ng-model="cert.worktype" required name="worktype" />
+            </div>
+            <div class="text-danger col-sm-2 form-control-static" ng-show="certForm.worktype.$invalid && certForm.worktype.$dirty">
+                {{getError(certForm.worktype.$error)}}
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">鉴定级别:</label>
+            <div class="col-sm-8">
+                <select class="form-control" ng-model="cert.certlevel" required name="certlevel">
+                    <option>初级</option>
+                    <option>中级</option>
+                    <option>高级</option>
+                    <option>技师</option>
+                    <option>高级技师</option>
+                </select>
+            </div>
+            <div class="text-danger col-sm-2 form-control-static" ng-show="certForm.certlevel.$invalid && certForm.certlevel.$dirty">
+                {{getError(certForm.certlevel.$error)}}
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">证书号:</label>
+            <div class="col-sm-8">
+                <input class="form-control" ng-model="cert.certnumber" required name="certnumber" />
+            </div>
+            <div class="text-danger col-sm-2 form-control-static" ng-show="certForm.certnumber.$invalid && certForm.certnumber.$dirty">
+                {{getError(certForm.certnumber.$error)}}
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">出生日期:</label>
+            <div class="col-sm-8">
+                <input class="form-control" ng-model="cert.birth" name="birth" />
+            </div>
+            <div class="text-danger col-sm-2 form-control-static" ng-show="certForm.birth.$invalid && certForm.birth.$dirty">
+                {{getError(certForm.birth.$error)}}
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">性别:</label>
+            <div class="col-sm-8">
+                <select class="form-control" ng-model="cert.sex" name="sex">
+                    <option>男</option>
+                    <option>女</option>
+                </select>
+            </div>
+            <div class="text-danger col-sm-2 form-control-static" ng-show="certForm.sex.$invalid && certForm.sex.$dirty">
+                {{getError(certForm.sex.$error)}}
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">文化程度:</label>
+            <div class="col-sm-8">
+                <input class="form-control" ng-model="cert.edu" required name="edu" />
+            </div>
+            <div class="text-danger col-sm-2 form-control-static" ng-show="certForm.edu.$invalid && certForm.edu.$dirty">
+                {{getError(certForm.edu.$error)}}
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">理论成绩:</label>
+            <div class="col-sm-8">
+                <input class="form-control" ng-model="cert.tscore" required type="number" name="tscore" />
+            </div>
+            <div class="text-danger col-sm-2 form-control-static" ng-show="certForm.tscore.$invalid && certForm.tscore.$dirty">
+                {{getError(certForm.tscore.$error)}}
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">实操成绩:</label>
+            <div class="col-sm-8">
+                <input class="form-control" ng-model="cert.pscore" required type="number" name="pscore" />
+            </div>
+            <div class="text-danger col-sm-2 form-control-static" ng-show="certForm.pscore.$invalid && certForm.pscore.$dirty">
+                {{getError(certForm.pscore.$error)}}
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">评定成绩:</label>
+            <div class="col-sm-8">
+                <select class="form-control" ng-model="cert.record" required name="record">
+                    <option>合格</option>
+                    <option>良好</option>
+                    <option>优秀</option>
+                </select>
+            </div>
+            <div class="text-danger col-sm-2 form-control-static" ng-show="certForm.record.$invalid && certForm.record.$dirty">
+                {{getError(certForm.record.$error)}}
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">颁证日期:</label>
+            <div class="col-sm-8">
+                <input class="form-control" ng-model="cert.certdate" name="certdate" />
+            </div>
+            <div class="text-danger col-sm-2 form-control-static" ng-show="certForm.certdate.$invalid && certForm.certdate.$dirty">
+                {{getError(certForm.certdate.$error)}}
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">有效至:</label>
+            <div class="col-sm-8">
+                <input class="form-control" ng-model="cert.expire" name="expire" />
+            </div>
+            <div class="text-danger col-sm-2 form-control-static" ng-show="certForm.expire.$invalid && certForm.expire.$dirty">
+                {{getError(certForm.expire.$error)}}
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">鉴定机构:</label>
+            <div class="col-sm-8">
+                <input class="form-control" ng-model="cert.certfacility" required name="certfacility" />
+            </div>
+            <div class="text-danger col-sm-2 form-control-static" ng-show="certForm.certfacility.$invalid && certForm.certfacility.$dirty">
+                {{getError(certForm.certfacility.$error)}}
+            </div>
+        </div>
+
+
+    </form>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="ok()" ng-disabled="certForm.$invalid">确定</button>
+    <button class="btn btn-warning" ng-click="cancel()">取消</button>
+</div>
