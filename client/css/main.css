@@ -47,3 +47,8 @@ th, td {
     margin: 25px 0 0 10px;
     font-size: 13px;
 }
+
+/*#https://github.com/tests-always-included/angular-placeholder*/
+.placeholder {
+    color: #aaa;
+}

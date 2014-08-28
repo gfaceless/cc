@@ -1,4 +1,13 @@
-var app = angular.module('myApp', ['ui.bootstrap', 'angularFileUpload', "customFilters"])
+var app = angular.module('myApp', ['ui.bootstrap', 'angularFileUpload', "customFilters", 'taiPlaceholder'])
+    .config(function($httpProvider) {
+        // see #http://stackoverflow.com/questions/16098430/angular-ie-caching-issue-for-http
+        //initialize get if not there
+        if (!$httpProvider.defaults.headers.get) {
+            $httpProvider.defaults.headers.get = {};
+        }
+        //disable IE ajax request caching
+        $httpProvider.defaults.headers.get['If-Modified-Since'] = '0';
+    })
     /*.config(function($httpProvider) {
 
         $httpProvider.interceptors.push(function(indicator) {
@@ -36,7 +45,7 @@ var app = angular.module('myApp', ['ui.bootstrap', 'angularFileUpload', "customF
                 params: calcParams(criteria, page, limit)
             })
                 .success(function(data, status) {
-                    if (!data.success) return handleFailure(data, status);                    
+                    if (!data.success) return handleFailure(data, status);
 
                     $scope.certs = data.results;
                     $scope.pagination.total = data.total;
@@ -52,40 +61,40 @@ var app = angular.module('myApp', ['ui.bootstrap', 'angularFileUpload', "customF
                 var o = {
                     page: page || 1
                 };
-                
+
                 for (var k in criteria) {
                     if (criteria[k] === "") delete criteria[k];
                 }
                 return angular.extend({
                     cert: criteria
                 }, o);
-                
+
             }
         };
 
-        $scope.export = function(e) {
+        $scope.exports = function(e) {
             if ($scope.pagination.total > 60000) {
                 e.preventDefault();
                 alert('数量超过60000，无法导出低版本excel')
             }
 
-        }
+        };
 
         $scope.pageChanged = function() {
             $scope.find(lastCriteria, $scope.pagination.currentPage);
         };
 
         /**
-         * makeshift , I don't really understand the underlying system        
-         * see #http://stackoverflow.com/questions/15079779/how-to-clear-a-file-input-from-angular-js         
+         * makeshift , I don't really understand the underlying system
+         * see #http://stackoverflow.com/questions/15079779/how-to-clear-a-file-input-from-angular-js
          */
         $scope.resetInputFile = function(e) {
-            angular.element(e.srcElement).val(null);            
-        }
+            angular.element(e.srcElement).val(null);
+        };
 
         $scope.onFileSelect = function($files) {
             //$files: an array of files selected, each file has name, size, and type.
-            
+
             for (var i = 0; i < $files.length; i++) {
                 var file = $files[i];
                 $scope.upload = $upload.upload({
@@ -111,16 +120,20 @@ var app = angular.module('myApp', ['ui.bootstrap', 'angularFileUpload', "customF
                         backdrop: 'static',
                         controller: InfoCtrl,
                         resolve: {
-                            data: function (){return data}, 
-                            DOWNLOAD_URL: function() {return DOWNLOAD_URL}
+                            data: function() {
+                                return data
+                            },
+                            DOWNLOAD_URL: function() {
+                                return DOWNLOAD_URL
+                            }
                         }
                     });
-                    
+
                 })
-                .error(handleFailure)
+                    .error(handleFailure)
 
                 showInfo("上传处理中...", 0);
-                
+
                 //.then(success, error, progress); 
                 // access or attach event listeners to the underlying XMLHttpRequest.
                 //.xhr(function(xhr){xhr.upload.addEventListener(...)})
@@ -132,17 +145,18 @@ var app = angular.module('myApp', ['ui.bootstrap', 'angularFileUpload', "customF
         };
 
 
-        $scope.delete = function(cert) {
+        $scope.remove = function(cert) {
             if (!confirm('确定要删除么')) return;
-            $http.delete(url + '/' + cert._id)
+            //using $http.delete() throws a parse error in IE8
+            $http['delete'](url + '/' + cert._id)
                 .success(function(data, status) {
                     if (!data.success) return handleFailure(data, status);
 
                     $scope.certs.splice($scope.certs.indexOf(cert), 1);
                     showInfo();
-                    
+
                 }).error(handleFailure)
-        }
+        };
 
         $scope.open = function(cert) {
             var copy, index;
@@ -206,7 +220,7 @@ var app = angular.module('myApp', ['ui.bootstrap', 'angularFileUpload', "customF
                 size: 'sm',
 
                 resolve: {
-                    
+
                 }
             });
             modalInstance.result.then(function(isLogged) {
@@ -219,35 +233,36 @@ var app = angular.module('myApp', ['ui.bootstrap', 'angularFileUpload', "customF
 
         $scope.logout = function() {
             $http.post('admin9/logout')
-            .success(function(data) {
-                if(data.success) {
-                    $scope.isLogged = false;
-                    showInfo('成功退出');
-                }
-            })
+                .success(function(data) {
+                    if (data.success) {
+                        $scope.isLogged = false;
+                        showInfo('成功退出');
+                    }
+                })
         }
 
         $scope.$watch('isLogged', function(val) {
-            if(val)$scope.find({});
+            if (val) $scope.find({});
         });
         checkLogged();
+
         function checkLogged() {
             $http.post('admin9/isLogged')
-            .success(function(data) {
-                if(data.isLogged) $scope.isLogged = true;
-            })
+                .success(function(data) {
+                    if (data.isLogged) $scope.isLogged = true;
+                })
         }
 
         function showInfo(msg, time) {
             $scope.msg = msg || "操作成功";
             $scope.msgVisible = true;
-            
-            if(time===0) return; // time equals 0 means eternal.
+
+            if (time === 0) return; // time equals 0 means eternal.
             time = time || 1500;
 
             $timeout(function() {
                 $scope.msgVisible = false;
-            }, time);            
+            }, time);
         }
 
 
@@ -317,11 +332,11 @@ var ModalInstanceCtrl = function($scope, $modalInstance, cert, $http) {
 
 
 var SearchCtrl = function($scope, $modalInstance, $http, criteria) {
-    
+
     $scope.criteria = criteria || {};
 
     $scope.ok = function() {
-        
+
         $modalInstance.close($scope.criteria);
 
     }
@@ -333,7 +348,7 @@ var SearchCtrl = function($scope, $modalInstance, $http, criteria) {
 
 var InfoCtrl = function($scope, $modalInstance, data, DOWNLOAD_URL) {
     $scope.data = data;
-    if(data.href) data.href = DOWNLOAD_URL + '/' + data.href;
+    if (data.href) data.href = DOWNLOAD_URL + '/' + data.href;
 
     $scope.cancel = function() {
         $modalInstance.dismiss();
@@ -341,21 +356,23 @@ var InfoCtrl = function($scope, $modalInstance, data, DOWNLOAD_URL) {
 };
 
 var LoginCtrl = function($scope, $modalInstance, $http) {
-    var url = "admin9"    
+    var url = "admin9"
     $scope.user = {};
-    $scope.ok = function() {        
-        $http.post(url, {user:$scope.user})
+    $scope.ok = function() {
+        $http.post(url, {
+            user: $scope.user
+        })
             .success(function(data) {
-                
-                
-                if(data.success)  $modalInstance.close(true);
+
+
+                if (data.success) $modalInstance.close(true);
                 else alert('登录失败')
             })
             .error(function(data) {
                 // $modalInstance.dismiss();
                 alert('登录失败')
             })
-        
+
     };
     $scope.cancel = function() {
         $modalInstance.dismiss();
@@ -380,9 +397,9 @@ app.controller('mytestCtrl', function($http) {
     return {
         restrict: 'E',
         replace: true,
-        template: '<div class="indicator"><img ng-show="spinnerVisible" src="img/ajax-loader.gif" width="20" height="20" />' + 
-        '<span class="label label-success" ng-show="msgVisible">{{msg}}</span>' +
-        '</div>',
+        template: '<div class="indicator"><img ng-show="spinnerVisible" src="img/ajax-loader.gif" width="20" height="20" />' +
+            '<span class="label label-success" ng-show="msgVisible">{{msg}}</span>' +
+            '</div>',
         link: function(scope, element, attr) {
             var img = element.children('img');
 
@@ -391,8 +408,7 @@ app.controller('mytestCtrl', function($http) {
             }, function(hasPending) {
                 if (hasPending) {
                     scope.spinnerVisible = true;
-                }
-                else  {
+                } else {
                     scope.spinnerVisible = false;
                 }
             });
@@ -410,16 +426,14 @@ function handleFailure(data, status, newMsg) {
     var exception = !/^2/.test(status);
 
     // for easy use like .error(handleFailure):
-    if(typeof newMsg==='function') newMsg = '';
-    
-    var msg = newMsg ? 
-        newMsg : 
-        (data && data.message) ? 
-            data.message : 
-            exception ? defaultException : defaultFailure;        
-    
+    if (typeof newMsg === 'function') newMsg = '';
+
+    var msg = newMsg ?
+        newMsg :
+        (data && data.message) ?
+        data.message :
+        exception ? defaultException : defaultFailure;
+
     alert(msg);
     //$modalInstance.dismiss();
 }
-
-
