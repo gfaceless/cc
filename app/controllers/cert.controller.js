@@ -58,35 +58,39 @@ cert.create = function(req, res, next) {
 }
 
 
-cert.read = [preSearch, function(req, res, next) {
-    var query = req.query;
+cert.read = [preSearch,
+    function(req, res, next) {
+        var query = req.query;
 
-    //defaults:
-    var page = query.page || 1;
-    var limit = query.limit || 10;
+        //defaults:
+        var page = query.page || 1;
+        var limit = query.limit || 10;
 
 
-    Certificate.find(query.cert || {})
-        .skip((page - 1) * limit)
-        .limit(limit)
-        .exec(function(err, data) {
-            if (err) return next(err);
-            if (!data || !data.length) return res.send({
-                    success: false,
-                    message: "查无结果"
-                })
-                // TODO: we can skip count if only a few items returned
-            Certificate.count(query.cert, function(err, total) {
+        Certificate.find(query.cert || {})
+            .skip((page - 1) * limit)
+            .limit(limit)
+            .exec(function(err, data) {
                 if (err) return next(err);
-                res.send({
-                    success: true,
-                    results: data,
-                    total: total
-                });
+                if (!data || !data.length) {
+                    return res.send({
+                        success: false,
+                        message: "查无结果"
+                    })
+                }
+                // TODO: we can skip count if only a few items returned
+                Certificate.count(query.cert, function(err, total) {
+                    if (err) return next(err);
+                    res.send({
+                        success: true,
+                        results: data,
+                        total: total
+                    });
 
-            })
-        });
-}];
+                })
+            });
+    }
+];
 
 cert.update = function(req, res, next) {
     var data = req.body.cert;
@@ -207,7 +211,7 @@ cert.upload = [error.record,
                     })
                 })
             }
-            try{
+            try {
                 x2j({
                     input: path,
                     output: null
@@ -285,8 +289,10 @@ cert.upload = [error.record,
                     });
                 });
 
-            }catch(e) {return next(e)}
-            
+            } catch (e) {
+                return next(e)
+            }
+
 
         });
 
@@ -320,7 +326,7 @@ cert.csv = [error.record,
             4: '中级',
             5: '初级'
         }
-        
+
 
         var transformer = csv.transform(function(row, callback) {
 
@@ -340,10 +346,12 @@ cert.csv = [error.record,
 
 
                 if (err) return next(err);
-                if (doc) {existed++}
-                
+                if (doc) {
+                    existed++
+                }
+
                 doc = new Certificate(cert);
-                
+
                 doc.save(function(err) {
 
                     if (err) req.recordError(err, cert);
@@ -360,7 +368,7 @@ cert.csv = [error.record,
                     log.write(arr.join('; ') + EOL + EOL);
                     }*/
                     ++count;
-                    if(!(count%500)) console.log(count);
+                    if (!(count % 500)) console.log(count);
                     callback();
                 });
 
@@ -372,12 +380,12 @@ cert.csv = [error.record,
 
 
         fs.createReadStream(csvPath)
-            .pipe(csv.parse())            
+            .pipe(csv.parse())
             .pipe(transformer)
             .on('end', function() {
                 console.log('Number of lines: ' + count);
                 console.log('existed docs: ', existed);
-                if(!req.errors.length) return;
+                if (!req.errors.length) return;
                 var certsWithErr = _.reduce(req.errors, function(result, error) {
                     var o = error.data;
                     o.errMsg = error.msg;
@@ -393,7 +401,7 @@ cert.csv = [error.record,
                 })
             })
             .on('error', function(error) {
-                
+
             })
             .pipe(process.stdout)
 
@@ -401,23 +409,41 @@ cert.csv = [error.record,
 ]
 
 
-function preSearch(req, res, next) {    
+function preSearch(req, res, next) {
     var cert = req.query.cert;
-    if (!_.isObject(cert))return next(error.attack('cert should be an object'));
+    if (!_.isObject(cert)) return next(error.attack('cert should be an object'));
 
-    if(_.isString(cert.idnumber)) cert.idnumber = cert.idnumber.toLowerCase();
+    if (_.isString(cert.idnumber)) cert.idnumber = cert.idnumber.toLowerCase();
     next();
 
 }
 
-cert.prePublicSearch = [preSearch, function (req, res, next) {
-    // cert is already guaranteed to be an object
-    var cert = req.query.cert;
-    if(!(cert.idnumber && cert.name)) return next('not enough info')
-    next();
-}]
+cert.prePublicSearch = [preSearch,
+    function(req, res, next) {
+        // cert is already guaranteed to be an object
+        var cert = req.query.cert;
+        if (!(cert.idnumber && cert.name)) return next('not enough info')
+        next();
+    }
+]
 
 
+cert.removeNameSpace = function(req, res, next) {
+    var errors = [];
 
-
-
+    Certificate.find({name: /\s/}, function(err, arr) {
+        console.log(arr.length);
+        async.each(arr, function(row, callback) {
+            row.name = row.name.replace(/\s/g, '');
+            row.save(function(err) {
+                if(err) errors.push(err);
+                callback();                
+            });
+            
+        }, function(err) {
+            console.log(errors);
+            Certificate.count({name: /\s/}, function(err, total) {console.log(total)});
+        })
+        
+    })
+}

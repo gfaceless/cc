@@ -79,7 +79,7 @@ function dateSetter(val) {
 }
 
 function nameSetter(name) {
-    return name.replace(' ', '');
+    return name.replace(/\s/g, '');
 }
 
 
