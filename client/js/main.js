@@ -75,9 +75,17 @@ var app = angular.module('myApp', ['ui.bootstrap', 'angularFileUpload', "customF
             $scope.find(lastCriteria, $scope.pagination.currentPage);
         };
 
-        
+        /**
+         * makeshift , I don't really understand the underlying system        
+         * see #http://stackoverflow.com/questions/15079779/how-to-clear-a-file-input-from-angular-js         
+         */
+        $scope.resetInputFile = function(e) {
+            angular.element(e.srcElement).val(null);            
+        }
+
         $scope.onFileSelect = function($files) {
             //$files: an array of files selected, each file has name, size, and type.
+            
             for (var i = 0; i < $files.length; i++) {
                 var file = $files[i];
                 $scope.upload = $upload.upload({
@@ -313,7 +321,7 @@ var SearchCtrl = function($scope, $modalInstance, $http, criteria) {
     $scope.criteria = criteria || {};
 
     $scope.ok = function() {
-        console.log($scope.criteria);
+        
         $modalInstance.close($scope.criteria);
 
     }
@@ -339,7 +347,7 @@ var LoginCtrl = function($scope, $modalInstance, $http) {
         $http.post(url, {user:$scope.user})
             .success(function(data) {
                 
-                console.log(data);
+                
                 if(data.success)  $modalInstance.close(true);
                 else alert('登录失败')
             })
@@ -408,9 +416,10 @@ function handleFailure(data, status, newMsg) {
         newMsg : 
         (data && data.message) ? 
             data.message : 
-            exception ? defaultException : defaultFailure;    
+            exception ? defaultException : defaultFailure;        
     
-    console.log(data, status, newMsg);
     alert(msg);
     //$modalInstance.dismiss();
 }
+
+

@@ -272,64 +272,26 @@
 	"buffers":
 	[
 		{
-			"file": "app/controllers/cert.controller.js",
+			"file": "client/pub.html",
 			"settings":
 			{
-				"buffer_size": 11814,
+				"buffer_size": 1683,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"contents": "var user = {};\n\nmodule.exports = user;\n\n\nuser.auth = function(req, res, next) {    \n\n        \n    req.session.num = req.session.num || 0;\n    console.log(++req.session.num)\n    next();\n\n}",
-			"file": "app/controllers/user.controller.js",
-			"file_size": 189,
-			"file_write_time": 130535886121163691,
+			"file": "client/js/pub-search.js",
 			"settings":
 			{
-				"buffer_size": 187,
+				"buffer_size": 3415,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "app/routes/cert.router.js",
+			"file": "client/css/pub-search.css",
 			"settings":
 			{
-				"buffer_size": 1179,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "client/view/login.html",
-			"settings":
-			{
-				"buffer_size": 785,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "client/app.html",
-			"settings":
-			{
-				"buffer_size": 1652,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"contents": ".meta {\n    position: absolute;\n  right: 35px;\n  top: 27px;\n}\n\n\n.btn-file {\n    position: relative;\n    overflow: hidden;\n}\n.btn-file input[type=file] {\n    position: absolute;\n    top: 0;\n    right: 0;\n    min-width: 100%;\n    min-height: 100%;\n    font-size: 100px;\n    text-align: right;\n    filter: alpha(opacity=0);\n    opacity: 0;\n    outline: none;\n    background: white;\n    cursor: inherit;\n    display: block;\n}\n\nth, td {\n    vertical-align: middle !IMPORTANT;\n    white-space: nowrap;\n}\n.table-responsive{\n    overflow-y: hidden;\n    overflow-x: auto;\n    width: 100%;\n}\n\n.indicator{\n    display: inline-block;\n    margin-left: 20px;\n}\n\n.pager-info {\n    margin: 25px 0 0 10px;\n    font-size: 13px;\n}",
-			"file": "client/css/main.css",
-			"file_size": 760,
-			"file_write_time": 130535908010665699,
-			"settings":
-			{
-				"buffer_size": 711,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "client/js/main.js",
-			"settings":
-			{
-				"buffer_size": 12199,
+				"buffer_size": 312,
 				"line_ending": "Windows"
 			}
 		}
@@ -481,9 +443,24 @@
 	},
 	"file_history":
 	[
-		"/E/codes/cc/app/models/certificate/db-map.js",
-		"/E/codes/cc/client/login.html",
+		"/E/codes/cc/package.json",
+		"/E/codes/cc/app/controllers/cert.controller.js",
+		"/E/codes/cc/.gitignore",
+		"/E/codes/cc/public/stylesheets/style.css",
+		"/E/codes/cc/app/routes/index.router.js",
 		"/E/codes/cc/app.js",
+		"/E/codes/cc/client/view/login.html",
+		"/E/codes/cc/client/css/main.css",
+		"/E/codes/cc/client/js/main.js",
+		"/E/codes/cc/client/app.html",
+		"/E/codes/cc/app/routes/cert.router.js",
+		"/E/codes/cc/app/models/certificate/db-map.js",
+		"/E/codes/cc/app/views/layout.jade",
+		"/E/codes/cc/app/controllers/user.controller.js",
+		"/E/codes/cc/client/bower_components/angular-animate/angular-animate.js",
+		"/E/codes/cc/client/bower_components/angular-animate/angular-animate.min.js.map",
+		"/E/codes/cc/app/middlewares/url-parser.js",
+		"/E/codes/cc/client/login.html",
 		"/E/codes/cc/app/controllers/cert.to-xls.js",
 		"/E/tmp/try.csv",
 		"/E/tmp/go-final.csv",
@@ -494,12 +471,9 @@
 		"/E/tmp/orig.csv",
 		"/E/tmp/1.csv",
 		"/E/tmp/input.csv",
-		"/E/codes/cc/app/controllers/cert.controller.js",
-		"/E/codes/cc/app/routes/cert.router.js",
 		"/E/codes/cc/app/controllers/err.controller.js",
 		"/C/Users/gfl/Downloads/1.csv",
 		"/C/Users/gfl/Downloads/id-desc.csv",
-		"/E/codes/cc/client/js/main.js",
 		"/E/codes/cc/app/models/certificate.js",
 		"/E/codes/cc/test/.idea/modules.xml",
 		"/E/tmp/t1.csv",
@@ -523,11 +497,9 @@
 		"/C/Users/gfl/Downloads/report (2).xls",
 		"/C/Users/gfl/Downloads/error-report.xls",
 		"/C/Users/gfl/Downloads/report (16).xls",
-		"/E/codes/cc/app/routes/index.router.js",
 		"/E/codes/cc/app/views/index.jade",
 		"/C/Users/gfl/AppData/Roaming/Sublime Text 3/Packages/Default/Default (Windows).sublime-keymap",
 		"/C/Users/gfl/AppData/Roaming/Sublime Text 3/Packages/User/Default (Windows).sublime-keymap",
-		"/E/codes/cc/client/app.html",
 		"/C/Users/gfl/AppData/Roaming/Sublime Text 3/Packages/User/.sublime-mousemap",
 		"/E/codes/cc/client/bower_components/bootstrap/less/variables.less",
 		"/E/codes/cc/app/views/error.jade",
@@ -563,7 +535,6 @@
 		"/E/codes/cc/node_modules/mongoose/node_modules/mpromise/.idea/codeStyleSettings.xml",
 		"/E/codes/cc/node_modules/validator/test/client-side.js",
 		"/E/codes/cc/node_modules/swig/node_modules/uglify-js/node_modules/source-map/build/prefix-utils.jsm",
-		"/E/codes/cc/package.json",
 		"/E/codes/cc/node_modules/moment/CONTRIBUTING.md",
 		"/E/codes/cc/node_modules/excel-parser/convert.py",
 		"/E/codes/cc/node_modules/swig/node_modules/optimist/example/line_count_options.js",
@@ -597,18 +568,9 @@
 		"/E/try.csv",
 		"/C/Users/gfl/AppData/Roaming/Sublime Text 3/Packages/JsFormat/JsFormat.sublime-settings",
 		"/C/Users/gfl/AppData/Roaming/Sublime Text 3/Packages/JsFormat/Default (Windows).sublime-keymap",
-		"/E/codes/cc/client/css/main.css",
 		"/E/codes/cc/test/fs.js",
 		"/E/codes/cc/node_modules/jade/LICENSE",
-		"/E/codes/cc/node_modules/express/node_modules/escape-html/.npmignore",
-		"/E/codes/cc/client/view/advancedSearchView.html",
-		"/E/codes/cc/client/view/findView.html",
-		"/C/Users/gfl/Downloads/angular.js",
-		"/C/Users/gfl/AppData/Roaming/Sublime Text 3/Packages/HTML-CSS-JS Prettify/.jsbeautifyrc",
-		"/C/Users/gfl/AppData/Roaming/Sublime Text 3/Packages/HTML-CSS-JS Prettify/HTMLPrettify.sublime-settings",
-		"/C/Users/gfl/AppData/Roaming/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
-		"/E/codes/cc/node_modules/pyspreadsheet/python/excel_reader.py",
-		"/E/codes/cc/bin/www"
+		"/E/codes/cc/node_modules/express/node_modules/escape-html/.npmignore"
 	],
 	"find":
 	{
@@ -641,6 +603,13 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"consol",
+			"isQueried",
+			"hidden",
+			"show",
+			"true",
+			"req.",
+			"** ",
 			"用户名",
 			"</",
 			"Email",
@@ -761,14 +730,7 @@
 			"123",
 			"extra",
 			"recordError",
-			"create",
-			"error",
-			"data",
-			"map",
-			"forEach",
-			"dbMap",
-			"cKey2dbKey",
-			"ckey2dbkey"
+			"create"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -788,24 +750,24 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "app/controllers/cert.controller.js",
+					"file": "client/pub.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 11814,
+						"buffer_size": 1683,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								11736,
-								11736
+								938,
+								938
 							]
 						],
 						"settings":
@@ -813,51 +775,46 @@
 							"BracketHighlighterBusy": false,
 							"bh_regions":
 							[
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
 								"bh_curly",
 								"bh_curly_center",
 								"bh_curly_open",
 								"bh_curly_close",
 								"bh_curly_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
 								"bh_single_quote",
 								"bh_single_quote_center",
 								"bh_single_quote_open",
 								"bh_single_quote_close",
 								"bh_single_quote_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
 								"bh_tag",
 								"bh_tag_center",
 								"bh_tag_open",
 								"bh_tag_close",
 								"bh_tag_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
 								"bh_angle",
 								"bh_angle_center",
 								"bh_angle_open",
@@ -867,125 +824,41 @@
 								"bh_square_center",
 								"bh_square_open",
 								"bh_square_close",
-								"bh_square_content"
-							],
-							"encoding_helper_encoding": "UTF-8",
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 8500.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "app/controllers/user.controller.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 187,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								93,
-								93
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"bh_regions":
-							[
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
+								"bh_square_content",
 								"bh_default",
 								"bh_default_center",
 								"bh_default_open",
 								"bh_default_close",
-								"bh_default_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content"
+								"bh_default_content"
 							],
 							"encoding_helper_encoding": "UTF-8",
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"spell_check": false,
+							"syntax": "Packages/HTML/HTML.tmLanguage",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 198.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "app/routes/cert.router.js",
+					"buffer": 1,
+					"file": "client/js/pub-search.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1179,
+						"buffer_size": 3415,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1173,
-								1173
+								3071,
+								3071
 							]
 						],
 						"settings":
@@ -993,51 +866,46 @@
 							"BracketHighlighterBusy": false,
 							"bh_regions":
 							[
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
 								"bh_curly",
 								"bh_curly_center",
 								"bh_curly_open",
 								"bh_curly_close",
 								"bh_curly_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
 								"bh_single_quote",
 								"bh_single_quote_center",
 								"bh_single_quote_open",
 								"bh_single_quote_close",
 								"bh_single_quote_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
 								"bh_tag",
 								"bh_tag_center",
 								"bh_tag_open",
 								"bh_tag_close",
 								"bh_tag_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
 								"bh_angle",
 								"bh_angle_center",
 								"bh_angle_open",
@@ -1047,7 +915,12 @@
 								"bh_square_center",
 								"bh_square_open",
 								"bh_square_close",
-								"bh_square_content"
+								"bh_square_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content"
 							],
 							"encoding_helper_encoding": "UTF-8",
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
@@ -1055,27 +928,27 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 73.0,
+						"translation.y": 2156.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "client/view/login.html",
+					"buffer": 2,
+					"file": "client/css/pub-search.css",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 785,
+						"buffer_size": 312,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								709,
-								709
+								288,
+								288
 							]
 						],
 						"settings":
@@ -1083,51 +956,46 @@
 							"BracketHighlighterBusy": false,
 							"bh_regions":
 							[
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
 								"bh_curly",
 								"bh_curly_center",
 								"bh_curly_open",
 								"bh_curly_close",
 								"bh_curly_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
 								"bh_single_quote",
 								"bh_single_quote_center",
 								"bh_single_quote_open",
 								"bh_single_quote_close",
 								"bh_single_quote_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
 								"bh_tag",
 								"bh_tag_center",
 								"bh_tag_open",
 								"bh_tag_close",
 								"bh_tag_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
 								"bh_angle",
 								"bh_angle_center",
 								"bh_angle_open",
@@ -1137,292 +1005,22 @@
 								"bh_square_center",
 								"bh_square_open",
 								"bh_square_close",
-								"bh_square_content"
+								"bh_square_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content"
 							],
 							"encoding_helper_encoding": "UTF-8",
-							"open_with_edit": true,
-							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"syntax": "Packages/CSS/CSS.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "client/app.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1652,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								679,
-								679
-							],
-							[
-								774,
-								774
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"bh_regions":
-							[
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content"
-							],
-							"encoding_helper_encoding": "UTF-8",
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 132.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "client/css/main.css",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 711,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								59,
-								59
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"bh_regions":
-							[
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content"
-							],
-							"encoding_helper_encoding": "UTF-8",
-							"syntax": "Packages/CSS/CSS.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
 					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "client/js/main.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 12199,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								9935,
-								9935
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"bh_regions":
-							[
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content"
-							],
-							"encoding_helper_encoding": "UTF-8",
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 3929.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
 					"type": "text"
 				}
 			]
@@ -1479,8 +1077,28 @@
 				"client\\js\\main.js"
 			],
 			[
+				"lon",
+				"client\\view\\login.html"
+			],
+			[
+				"app.html",
+				"client\\app.html"
+			],
+			[
 				"app",
 				"app.js"
+			],
+			[
+				"router",
+				"app\\routes\\index.router.js"
+			],
+			[
+				"user",
+				"app\\controllers\\user.controller.js"
+			],
+			[
+				"url",
+				"app\\middlewares\\url-parser.js"
 			],
 			[
 				"map",
@@ -1505,10 +1123,6 @@
 			[
 				"models/",
 				"app\\models\\certificate.js"
-			],
-			[
-				"router",
-				"app\\routes\\cert.router.js"
 			],
 			[
 				"err.c",
@@ -1585,10 +1199,6 @@
 			[
 				"",
 				"routes\\index.js"
-			],
-			[
-				"app.html",
-				"client\\app.html"
 			],
 			[
 				"header",

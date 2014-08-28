@@ -101,15 +101,15 @@ var app = angular.module('myApp', ['ui.bootstrap', "customFilters"])
                 if (!data.success) return handleError(data, status);
                 $scope.certs = data.results;
                 $scope.pagination.total = data.total;
-                
+                $scope.isQueried = true;                
             })
-            .error(function(data) {
-                console.log(data)
+            .error(function(data) {                
+                $scope.isQueried = true;
             })
 
 
         function handleError(data, status) {
-            // body...
+            $scope.isQueried = true;
         }
 
 

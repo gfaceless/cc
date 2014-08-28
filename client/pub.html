@@ -17,12 +17,12 @@
 
 </head>
 
-<body ng-controller="appCtrl">
+<body ng-controller="appCtrl" ng-cloak>
     <div class="header">
 
     </div>
     <div class="main">
-
+        <div ng-hide="certs.length" class="no-results" ng-class="isQueried ? 's' : 'hidden'">查无结果</div>
         <div class="table-wrapper" ng-repeat="cert in certs | range: pagination.currentPage: pagination.itemsPerPage">
             <table class="table table-bordered table-hover text-center my-table"  >                
 
@@ -33,7 +33,7 @@
             </table>
         </div>
 
-        <pagination total-items="pagination.total" ng-model="pagination.currentPage" items-per-page="pagination.itemsPerPage" class="pagination-sm" boundary-links="true" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;" ng-change="pageChanged()" max-size="pagination.maxSize" num-pages="pagination.numPages">
+        <pagination ng-show="certs.length" total-items="pagination.total" ng-model="pagination.currentPage" items-per-page="pagination.itemsPerPage" class="pagination-sm" boundary-links="true" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;" ng-change="pageChanged()" max-size="pagination.maxSize" num-pages="pagination.numPages">
         </pagination>
 
     </div>

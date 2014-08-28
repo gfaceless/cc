@@ -58,7 +58,7 @@ cert.create = function(req, res, next) {
 }
 
 
-cert.read = function(req, res, next) {
+cert.read = [preSearch, function(req, res, next) {
     var query = req.query;
 
     //defaults:
@@ -86,7 +86,7 @@ cert.read = function(req, res, next) {
 
             })
         });
-};
+}];
 
 cert.update = function(req, res, next) {
     var data = req.body.cert;
@@ -207,83 +207,86 @@ cert.upload = [error.record,
                     })
                 })
             }
+            try{
+                x2j({
+                    input: path,
+                    output: null
+                }, function(err, results) {
+                    if (err) return next(err);
 
-            x2j({
-                input: path,
-                output: null
-            }, function(err, results) {
-                if (err) return next(err);
+                    var certs = transform(results);
 
-                var certs = transform(results);
+                    var info = {
+                        total: certs.length,
+                        create: 0,
+                        update: 0
+                    };
 
-                var info = {
-                    total: certs.length,
-                    create: 0,
-                    update: 0
-                };
+                    async.eachSeries(certs, function(cert, callback) {
 
-                async.eachSeries(certs, function(cert, callback) {
-
-                    Certificate.findOne({
-                        certnumber: cert.certnumber
-                    }, function(err, doc) {
-                        var index = certs.indexOf(cert);
-                        var isNew;
-                        if (err) {
-                            req.recordError(err, cert);
-                            return callback();
-                        }
-                        if (!doc) {
-                            doc = new Certificate(cert);
-                            ifNew = true;
-                        } else {
-                            _.assign(doc, cert);
-                            isNew = false;
-                        }
-                        doc.save(function(err, doc) {
+                        Certificate.findOne({
+                            certnumber: cert.certnumber
+                        }, function(err, doc) {
+                            var index = certs.indexOf(cert);
+                            var isNew;
                             if (err) {
                                 req.recordError(err, cert);
-                            } else {
-                                info[isNew ? 'create' : 'update'] += 1;
+                                return callback();
                             }
-                            callback();
+                            if (!doc) {
+                                doc = new Certificate(cert);
+                                ifNew = true;
+                            } else {
+                                _.assign(doc, cert);
+                                isNew = false;
+                            }
+                            doc.save(function(err, doc) {
+                                if (err) {
+                                    req.recordError(err, cert);
+                                } else {
+                                    info[isNew ? 'create' : 'update'] += 1;
+                                }
+                                callback();
+                            });
+
                         });
 
-                    });
-
-                }, function(err) {
-                    if (err) return next(err);
-                    // res.header("Content-Type", "application/json; charset=utf-8");
-
-                    var send = {
-                        // always true, even no record is saved
-                        success: true /*info.total > req.errors.length*/ ,
-                        info: info,
-                        errors: req.errors
-                    }
-
-                    _.each(req.errors, function(error) {
-                        error.index = _.indexOf(certs, error.data);
-                    });
-                    // consider delete error.data here:
-                    if (!req.errors.length) return res.send(send);
-
-                    var certsWithErr = _.reduce(req.errors, function(result, error) {
-                        var o = error.data;
-                        o.errMsg = error.msg;
-                        result.push(o)
-                        return result;
-                    }, []);
-
-
-
-                    toXls(certsWithErr, function(err, path) {
+                    }, function(err) {
                         if (err) return next(err);
-                        send.href = require('path').basename(path);
-                        res.send(send);
-                    })
+                        // res.header("Content-Type", "application/json; charset=utf-8");
+
+                        var send = {
+                            // always true, even no record is saved
+                            success: true /*info.total > req.errors.length*/ ,
+                            info: info,
+                            errors: req.errors
+                        }
+
+                        _.each(req.errors, function(error) {
+                            error.index = _.indexOf(certs, error.data);
+                        });
+                        // consider delete error.data here:
+                        if (!req.errors.length) return res.send(send);
+
+                        var certsWithErr = _.reduce(req.errors, function(result, error) {
+                            var o = error.data;
+                            o.errMsg = error.msg;
+                            result.push(o)
+                            return result;
+                        }, []);
+
+
+
+                        toXls(certsWithErr, function(err, path) {
+                            if (err) return next(err);
+                            send.href = require('path').basename(path);
+                            res.send(send);
+                        })
+                    });
                 });
-            });
+
+            }catch(e) {return next(e)}
+            
 
         });
 
@@ -398,10 +401,23 @@ cert.csv = [error.record,
 ]
 
 
-cert.prePublicSearch = function(req, res, next) {
+function preSearch(req, res, next) {    
     var cert = req.query.cert;
-    if (!_.isObject(cert) || !cert.idnumber || !cert.name)
-        return next(error.attack('cert should be an object'));
+    if (!_.isObject(cert))return next(error.attack('cert should be an object'));
+
+    if(_.isString(cert.idnumber)) cert.idnumber = cert.idnumber.toLowerCase();
     next();
 
 }
+
+cert.prePublicSearch = [preSearch, function (req, res, next) {
+    // cert is already guaranteed to be an object
+    var cert = req.query.cert;
+    if(!(cert.idnumber && cert.name)) return next('not enough info')
+    next();
+}]
+
+
+
+
+
