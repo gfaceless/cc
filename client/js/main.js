@@ -1,4 +1,4 @@
-var app = angular.module('myApp', ['ui.bootstrap', 'angularFileUpload', "customFilters", 'taiPlaceholder'])
+var app = angular.module('myApp', ['ui.bootstrap',  "customFilters", 'taiPlaceholder'])
     .config(function($httpProvider) {
         // see #http://stackoverflow.com/questions/16098430/angular-ie-caching-issue-for-http
         //initialize get if not there
@@ -21,7 +21,7 @@ var app = angular.module('myApp', ['ui.bootstrap', 'angularFileUpload', "customF
             }
         });
     })*/
-    .controller('appCtrl', function($scope, $modal, $http, $log, $timeout, $upload, $filter) {
+    .controller('appCtrl', function($scope, $modal, $http, $log, $timeout, $filter) {
         var url = 'certs';
         var EXPORT_URL = 'certs/export';
         var UPLOAD_URL = 'certs/upload';
@@ -92,57 +92,32 @@ var app = angular.module('myApp', ['ui.bootstrap', 'angularFileUpload', "customF
             angular.element(e.srcElement).val(null);
         };
 
-        $scope.onFileSelect = function($files) {
-            //$files: an array of files selected, each file has name, size, and type.
+        /* temp: USE directive instead:*/
+        $('#file-upload').fileupload({
+            url: UPLOAD_URL,
+            dataType: 'json',
+            done: function (e, data) {
+                if(!(data.result && data.result.success)) return handleFailure(data.result);
+                $scope.find(lastCriteria);
+                showInfo();
 
-            for (var i = 0; i < $files.length; i++) {
-                var file = $files[i];
-                $scope.upload = $upload.upload({
-                    url: UPLOAD_URL, //upload.php script, node.js route, or servlet url
-                    //method: 'POST' or 'PUT',
-                    //headers: {'header-key': 'header-value'},
-                    //withCredentials: true,
-
-                    file: file, // or list of files ($files) for html5 only
-                    //fileName: 'doc.jpg' or ['1.jpg', '2.jpg', ...] // to modify the name of the file(s)
-                    // customize file formData name ('Content-Desposition'), server side file variable name. 
-                    //fileFormDataName: myFile, //or a list of names for multiple files (html5). Default is 'file' 
-                    // customize how data is added to formData. See #40#issuecomment-28612000 for sample code
-                    //formDataAppender: function(formData, key, val){}
-                })
-
-                .success(function(data, status, headers, config) {
-                    $scope.find(lastCriteria);
-                    showInfo();
-
-                    $modal.open({
-                        templateUrl: 'view/info.html',
-                        backdrop: 'static',
-                        controller: InfoCtrl,
-                        resolve: {
-                            data: function() {
-                                return data
-                            },
-                            DOWNLOAD_URL: function() {
-                                return DOWNLOAD_URL
-                            }
+                $modal.open({
+                    templateUrl: 'view/info.html',
+                    backdrop: 'static',
+                    controller: InfoCtrl,
+                    resolve: {
+                        data: function() {
+                            return data.result
+                        },
+                        DOWNLOAD_URL: function() {
+                            return DOWNLOAD_URL
                         }
-                    });
-
-                })
-                    .error(handleFailure)
-
-                showInfo("上传处理中...", 0);
-
-                //.then(success, error, progress); 
-                // access or attach event listeners to the underlying XMLHttpRequest.
-                //.xhr(function(xhr){xhr.upload.addEventListener(...)})
-            }
-            /* alternative way of uploading, send the file binary with the file's content-type.
-               Could be used to upload files to CouchDB, imgur, etc... html5 FileReader is needed. 
-               It could also be used to monitor the progress of a normal http post/put request with large data*/
-            // $scope.upload = $upload.http({...})  see 88#issuecomment-31366487 for sample code.
-        };
+                    }
+                });
+                
+            },
+            fail: function(e, data) {handleFailure()}
+        });        
 
 
         $scope.remove = function(cert) {

@@ -28,7 +28,7 @@ router.get('/p', urlParser, certController.prePublicSearch, certController.read)
 
 
 
-router.get('/rns', certController.removeNameSpace);
+/*router.get('/rns', certController.removeNameSpace);*/
 
 
 

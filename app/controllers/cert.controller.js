@@ -191,10 +191,11 @@ cert.upload = [error.record,
 
         form.parse(req, function(err, fields, files) {
             if (err) return next(err);
+            
             try {
-                var path = files.file[0].path;
+                var path = files['files[]'][0].path;
             } catch (e) {
-                return next(e)
+                return next('上传错误')
             }
             if (!path) return next('上传失败');
 
@@ -265,7 +266,7 @@ cert.upload = [error.record,
                             info: info,
                             errors: req.errors
                         }
-
+                        res.type("text/html");
                         _.each(req.errors, function(error) {
                             error.index = _.indexOf(certs, error.data);
                         });
@@ -428,7 +429,7 @@ cert.prePublicSearch = [preSearch,
 ]
 
 
-cert.removeNameSpace = function(req, res, next) {
+/*cert.removeNameSpace = function(req, res, next) {
     var errors = [];
 
     Certificate.find({name: /\s/}, function(err, arr) {
@@ -446,4 +447,4 @@ cert.removeNameSpace = function(req, res, next) {
         })
         
     })
-}
+}*/

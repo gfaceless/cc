@@ -23,6 +23,23 @@ exports.handleError = function(app) {
 
     /// error handlers
     app.use(function(err, req, res, next) {
+        // we could put the following block in earlier middleware
+        res.format({
+          text: function(){
+            res.type('text/plain');
+          },
+          
+          html: function(){
+            res.type('text/html');
+          },
+          
+          json: function(){
+            res.type('json');
+          }
+        });
+
+
+
         console.log('in error controller..error is: ', util.inspect(err, {showHidden: true, depth: null, colors: true}));
         if(err.status !== 404) {
 
