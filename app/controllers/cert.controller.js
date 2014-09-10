@@ -58,6 +58,12 @@ cert.create = function(req, res, next) {
 }
 
 
+var defaultRange = {
+    score: [0, 100],
+    date: [new Date('1970-10-19'), new Date()]
+}
+
+
 cert.read = [preSearch,
     function(req, res, next) {
         var query = req.query;
@@ -66,8 +72,20 @@ cert.read = [preSearch,
         var page = query.page || 1;
         var limit = query.limit || 10;
 
+        if(! query.cert )return;
 
-        Certificate.find(query.cert || {})
+        query.cert = _.mapValues (query.cert, function(value, key) {
+            if(!_.isArray(value) || value.length > 2) return value;
+            
+            var result = key.match(/score|date/)
+            if(!result) return value;
+            key = result[0];            
+            
+            return {$gte: value[0] || defaultRange[key][0] , $lte: value[1] || defaultRange[key][1]}
+            
+        })
+        console.log('query.cert is: ', query.cert);
+        Certificate.find(query.cert)
             .skip((page - 1) * limit)
             .limit(limit)
             .exec(function(err, data) {

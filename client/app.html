@@ -5,9 +5,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>cc</title>
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/bootstrap-theme.css">
-    <link rel="stylesheet" href="css/main.css">    
+    <link rel="stylesheet" href="vendors/bootstrap-3.2.0-dist/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="vendors/bootstrap-3.2.0-dist/css/bootstrap-theme.min.css"> -->
+    
+    <link rel="stylesheet" href="css/main.css">
     <!--[if lt IE 9]>          
       <script type="text/javascript" src="js/respond.min.js"></script>
     <![endif]-->
@@ -27,8 +28,9 @@
       <script src="js/ie-polyfill.js"></script>
     <![endif]-->
     <script src="js/angular.min.js"></script>
+    <script src="js/angular-locale_zh-cn.js"></script>
     <script src="js/tai-placeholder.js"></script>
-      
+
     <script src="js/angular-file-upload.min.js"></script>
     <script src="js/ui-bootstrap-tpls-0.11.0.min.js"></script>
 
@@ -44,9 +46,9 @@
         <a href="#" class="btn btn-default" ng-show="isLogged" ng-click="logout()">退出</a>
     </div>
     <div class="panel panel-primary">
-        <h3 class="panel-heading">鉴定中心证书管理系统            
+        <h3 class="panel-heading">鉴定中心证书管理系统
         </h3>
-        
+
 
         <div class="panel-body">
             <button class="btn btn-primary" ng-click="open()">新建</button>
@@ -61,8 +63,9 @@
         <ng-include src="'view/findView.html'"></ng-include>
         <ng-include src="'view/tableView.html'"></ng-include>
     </div>
-    <div ng-controller="mytestCtrl"></div>    
-    
+    <div ng-controller="mytestCtrl"></div>
+
+   
 </body>
 
 </html>

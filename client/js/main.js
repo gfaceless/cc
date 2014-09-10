@@ -1,5 +1,5 @@
 var app = angular.module('myApp', ['ui.bootstrap', 'angularFileUpload', "customFilters", 'taiPlaceholder'])
-    .config(function($httpProvider) {
+    .config(function($httpProvider, datepickerPopupConfig) {
         // see #http://stackoverflow.com/questions/16098430/angular-ie-caching-issue-for-http
         //initialize get if not there
         if (!$httpProvider.defaults.headers.get) {
@@ -7,6 +7,13 @@ var app = angular.module('myApp', ['ui.bootstrap', 'angularFileUpload', "customF
         }
         //disable IE ajax request caching
         $httpProvider.defaults.headers.get['If-Modified-Since'] = '0';
+
+
+        angular.extend(datepickerPopupConfig , {
+            currentText: '今天', 
+            clearText: '清除',
+            closeText: '关闭'
+        })
     })
     /*.config(function($httpProvider) {
 
@@ -22,6 +29,9 @@ var app = angular.module('myApp', ['ui.bootstrap', 'angularFileUpload', "customF
         });
     })*/
     .controller('appCtrl', function($scope, $modal, $http, $log, $timeout, $upload, $filter) {
+
+
+
         var url = 'certs';
         var EXPORT_URL = 'certs/export';
         var UPLOAD_URL = 'certs/upload';
@@ -35,7 +45,7 @@ var app = angular.module('myApp', ['ui.bootstrap', 'angularFileUpload', "customF
 
         $scope.criteria = {};
         var lastCriteria;
-        var moreCriteria;
+        var lastScope;
 
 
         $scope.find = function(criteria, page, limit) {
@@ -198,14 +208,13 @@ var app = angular.module('myApp', ['ui.bootstrap', 'angularFileUpload', "customF
                 size: 'lg',
                 backdrop: 'static',
                 resolve: {
-                    criteria: function() {
-                        return moreCriteria;
-                    }
+                    lastScope: function() {return lastScope}
                 }
             });
-            modalInstance.result.then(function(criteria) {
-                moreCriteria = criteria;
-                $scope.find(criteria);
+            modalInstance.result.then(function(scope) {
+                console.log('scope is: ', scope);
+                $scope.find(scope.criteria);
+                lastScope = scope;
             }, function() {
 
             })
@@ -331,18 +340,36 @@ var ModalInstanceCtrl = function($scope, $modalInstance, cert, $http) {
 
 
 
-var SearchCtrl = function($scope, $modalInstance, $http, criteria) {
+var SearchCtrl = function($scope, $modalInstance, $http, lastScope) {       
 
-    $scope.criteria = criteria || {};
+    $scope.criteria = $scope.criteria || {
+        certdate : []
+    };
+    angular.extend($scope.criteria, lastScope && lastScope.criteria);
+
+    $scope.datepicker = $scope.datepicker || {}
+
+    $scope.datepicker = angular.extend($scope.datepicker, {        
+        formats : ['yyyy-MM-dd', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'],
+        options: {
+            startingDay: 1,            
+            showWeeks: false
+        }
+    });
 
     $scope.ok = function() {
-
-        $modalInstance.close($scope.criteria);
-
+        $modalInstance.close($scope);
     }
     $scope.cancel = function() {
         $modalInstance.dismiss();
     };
+    $scope.openDatepicker = function($event, dir) {        
+        $event.preventDefault();
+        $event.stopPropagation();
+        $scope.datepicker[dir] = $scope.datepicker[dir] || {};
+        $scope.datepicker[dir].opened = true;
+    }
+     
 
 };
 
@@ -437,3 +464,72 @@ function handleFailure(data, status, newMsg) {
     alert(msg);
     //$modalInstance.dismiss();
 }
+
+
+
+app.directive('rangeToggler', function($compile) {
+
+    function createUniqName() {
+        createUniqName.counter = createUniqName.counter || 0;
+        return 'm' + createUniqName.counter++;
+    }
+
+    return {
+        scope: {modelName: "="},
+        template: '<div class="col-sm-1"><input class="form-control" ng-model="modelName" ng-disabled="checked"></div>' +
+        '<div class="col-sm-2 checkbox"><label><input type="checkbox" ng-model="checked">指定范围</label><div>',
+        compile: function(tElement, tAttr) {
+
+            return function(scope, element, attr, ctrl, transcludeFn) {
+                element.addClass('input-indent');
+
+
+                var clone1 = element.children().eq(0).clone();
+                var clone2 = clone1.clone();
+
+                var arrModel, singleModel;
+
+                modelNames = [createUniqName(), createUniqName()];
+                
+                clone1.find('input').attr('ng-model', modelNames[0]).attr('ng-disabled', '!checked')
+                clone2.find('input').attr('ng-model', modelNames[1]).attr('ng-disabled', '!checked')
+
+                element.append($compile(clone1)(scope));
+                element.append($compile(clone2)(scope));                                
+                
+                scope.$watch('checked', function(newValue, oldValue) {
+
+                    if(newValue === oldValue) return;                    
+
+                    if(newValue) {
+                        singleModel = scope.modelName;
+                        scope.modelName = arrModel || [];
+                    } else {
+                        arrModel = scope.modelName;
+                        scope.modelName = singleModel;
+                    }
+                    
+                    
+                })
+
+                angular.forEach(modelNames, function(name, i) {
+                    
+                    scope.$watch(name, function(newValue, oldValue) {
+                        if(angular.isUndefined(scope.modelName)) return;
+
+                        // maybe init: 
+                        if(newValue===oldValue) return;
+                        if(!angular.isArray(scope.modelName)) return; // we ensured it would be an array in `checked` watch
+                        scope.modelName[i] = newValue;
+
+                        // force update:
+                        scope.modelName = scope.modelName.concat();                        
+                        
+                    })                    
+                })
+                
+
+            }
+        }
+    }
+})

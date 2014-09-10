@@ -1,79 +1,120 @@
 <div class="modal-body">
-    
 
-        <form class="form-horizontal" role="form">
-            <div class="form-group">
-                <label class="col-sm-1 col-sm-offset-1 control-label">姓名</label>
-                <div class="col-sm-2">
-                    <input class="form-control" ng-model="criteria.name">                
-                </div>
-            
-                <label class="col-sm-2 control-label">身份证号</label>
-                <div class="col-sm-5">
-                    <input class="form-control" ng-model="criteria.idnumber">                
-                </div>
+
+    <form class="form-horizontal" role="form">
+        <div class="form-group">
+            <label class="col-sm-1 col-sm-offset-1 control-label">姓名</label>
+            <div class="col-sm-2">
+                <input class="form-control" ng-model="criteria.name">
             </div>
 
+            <label class="col-sm-2 control-label">身份证号</label>
+            <div class="col-sm-5">
+                <input class="form-control" ng-model="criteria.idnumber">
+            </div>
+        </div>
 
-            <div class="form-group">
-                <label class="col-sm-2 control-label">性别</label>
-                <div class="col-sm-2">
-                    <input class="form-control" ng-model="criteria.sex">
-                </div>
-                <label class="col-sm-2 control-label">证书号</label>
-                <div class="col-sm-5">
-                    <input class="form-control" ng-model="criteria.certnumber">                
-                </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">性别</label>
+            <div class="col-sm-2">
+                <input class="form-control" ng-model="criteria.sex">
+            </div>
+            <label class="col-sm-2 control-label">证书号</label>
+            <div class="col-sm-5">
+                <input class="form-control" ng-model="criteria.certnumber">
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">文化程度</label>
+            <div class="col-sm-2">
+                <input class="form-control" ng-model="criteria.edu">
+            </div>
+            <label class="col-sm-2 control-label">申报工种</label>
+            <div class="col-sm-5">
+                <input class="form-control" ng-model="criteria.worktype">
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">鉴定级别</label>
+            <div class="col-sm-2">
+                <input class="form-control" ng-model="criteria.certlevel">
+            </div>
+            <label class="col-sm-2 control-label">鉴定机构</label>
+            <div class="col-sm-5">
+                <input class="form-control" ng-model="criteria.certfacility">
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">单位名称</label>
+            <div class="col-sm-3">
+                <input class="form-control" ng-model="criteria.danwei">
             </div>
 
+        </div>
 
-            <div class="form-group">
-                <label class="col-sm-2 control-label">文化程度</label>
-                <div class="col-sm-2">
-                    <input class="form-control" ng-model="criteria.edu">
-                </div>
-                <label class="col-sm-2 control-label">申报工种</label>
-                <div class="col-sm-5">
-                    <input class="form-control" ng-model="criteria.worktype">                
-                </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">证书类别</label>
+            <div class="col-sm-3">
+                <input class="form-control" ng-model="criteria.certcat">
             </div>
+        </div>
 
 
+        <div class="form-group">
+            <label class="col-sm-2 control-label">理论成绩</label>
+            <div range-toggler model-name="criteria.tscore"></div>
+        </div>
 
-            <div class="form-group">
-                <label class="col-sm-2 control-label">鉴定级别</label>
-                <div class="col-sm-2">
-                    <input class="form-control" ng-model="criteria.certlevel">
-                </div>
-                <label class="col-sm-2 control-label">鉴定机构</label>
-                <div class="col-sm-5">
-                    <input class="form-control" ng-model="criteria.certfacility">                
-                </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">实际成绩</label>
+            <div range-toggler model-name="criteria.pscore"></div>
+        </div>
+        <!-- 
+        <div style="display:inline-block; min-height:290px;">
+            <datepicker ng-model="dt" is-open="opened" class="well well-sm"></datepicker>
+        </div> -->
+
+        <div class="form-group">
+            <label class="control-label col-sm-2">颁证日期</label>
+            <div class="input-group col-sm-3">
+                <input type="text" class="form-control" ng-model="criteria.certdate[0]" datepicker-popup is-open="datepicker.from.opened" datepicker-options="datepicker.options" placeholder="默认1970-10-10" />
+                <span class="input-group-btn">
+                    <button class="btn btn-default" ng-click="openDatepicker($event, 'from')"><i class="glyphicon glyphicon-calendar"></i>
+                    </button>
+                </span>
             </div>
+            <span class="control-label col-sm-1">至</span>
 
-
-            <div class="form-group">
-                <label class="col-sm-2 control-label">单位名称</label>
-                <div class="col-sm-3">
-                    <input class="form-control" ng-model="criteria.danwei">
-                </div>
-                
+            <div class="col-sm-3 input-group ">
+                <input type="text" class="form-control" ng-model="criteria.certdate[1]" datepicker-popup is-open="datepicker.to.opened" datepicker-options="datepicker.options" placeholder="默认今天" />
+                <span class="input-group-btn">
+                    <button class="btn btn-default" ng-click="openDatepicker($event, 'to')"><i class="glyphicon glyphicon-calendar"></i>
+                    </button>
+                </span>
             </div>
+        </div>
 
 
-            <div class="form-group">
-                <label class="col-sm-2 control-label">证书类别</label>
-                <div class="col-sm-3">
-                    <input class="form-control" ng-model="criteria.certcat">
-                </div>
-            </div>
-        </form>
 
-   
 
-    
 
-    
+
+    </form>
+
+
+
+
+
+
 </div>
 <div class="modal-footer">
     <button class="btn btn-primary" ng-click="ok()" ng-disabled="certForm.$invalid">查找</button>

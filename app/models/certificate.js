@@ -36,12 +36,12 @@ var certificateSchema = new Schema({
     sex: _.defaults({enum: ['男', '女']}, opt),
 
     edu: _.defaults({index: true}, opt),
-    tscore: {type: Number, min: 0, max: 100},
-    pscore: {type: Number, min: 0, max: 100},
+    tscore: {type: Number, min: 0, max: 100, index: true},
+    pscore: {type: Number, min: 0, max: 100, index: true},
 
     record: _.defaults({enum: "合格 良好 优秀".split(' ')}, opt),
 
-    certdate: {type: Date /*makeshift*/},
+    certdate: {type: Date, index: true /*makeshift*/},
     expire: {type: Date},
 
     danwei: opt,

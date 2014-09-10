@@ -1,3 +1,10 @@
+/*bootstrap*/
+.input-group[class*="col-"] {
+    float: left;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
 .meta {
     position: absolute;
   right: 35px;
@@ -51,4 +58,8 @@ th, td {
 /*#https://github.com/tests-always-included/angular-placeholder*/
 .placeholder {
     color: #aaa;
+}
+
+.input-indent [disabled]{
+    text-indent: -9999px;
 }

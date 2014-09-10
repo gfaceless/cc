@@ -64,3 +64,10 @@ if (!Array.prototype.indexOf) {
     return -1;
   };
 }
+
+
+
+
+
+
+if (!Date.now) { Date.now = function() { return new Date().valueOf(); } }
