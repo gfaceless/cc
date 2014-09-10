@@ -71,17 +71,18 @@
 
         <div class="form-group">
             <label class="col-sm-2 control-label">理论成绩</label>
-            <div range-toggler model-name="criteria.tscore"></div>
+            <div class="col-sm-1"><input class="form-control" ng-model="criteria.tscore[0]"></div>
+            <span class="control-label col-sm-1 to">至</span>            
+            <div class="col-sm-1"><input class="form-control" ng-model="criteria.tscore[1]"></div>            
+        </div>
+        
+        <div class="form-group">
+            <label class="col-sm-2 control-label">实操成绩</label>
+            <div class="col-sm-1"><input class="form-control" ng-model="criteria.pscore[0]"></div>
+            <span class="control-label col-sm-1 to">至</span>            
+            <div class="col-sm-1"><input class="form-control" ng-model="criteria.pscore[1]"></div>            
         </div>
 
-        <div class="form-group">
-            <label class="col-sm-2 control-label">实际成绩</label>
-            <div range-toggler model-name="criteria.pscore"></div>
-        </div>
-        <!-- 
-        <div style="display:inline-block; min-height:290px;">
-            <datepicker ng-model="dt" is-open="opened" class="well well-sm"></datepicker>
-        </div> -->
 
         <div class="form-group">
             <label class="control-label col-sm-2">颁证日期</label>
@@ -92,7 +93,7 @@
                     </button>
                 </span>
             </div>
-            <span class="control-label col-sm-1">至</span>
+            <span class="control-label col-sm-1 to">至</span>
 
             <div class="col-sm-3 input-group ">
                 <input type="text" class="form-control" ng-model="criteria.certdate[1]" datepicker-popup is-open="datepicker.to.opened" datepicker-options="datepicker.options" placeholder="默认今天" />

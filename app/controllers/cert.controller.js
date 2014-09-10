@@ -74,14 +74,14 @@ cert.read = [preSearch,
 
         if(! query.cert )return;
 
-        query.cert = _.mapValues (query.cert, function(value, key) {
-            if(!_.isArray(value) || value.length > 2) return value;
+        query.cert = _.transform (query.cert, function(result, value, key) {
+            if(!_.isArray(value)) {result[key] = value;return;}
+            if( value.length > 2 || (_.isEmpty(value[0])&& _.isEmpty(value[1]) ) ) return;
+            var regMatch = key.match(/score|date/);
+            if(!regMatch) return;
+            var regKey = regMatch[0];
             
-            var result = key.match(/score|date/)
-            if(!result) return value;
-            key = result[0];            
-            
-            return {$gte: value[0] || defaultRange[key][0] , $lte: value[1] || defaultRange[key][1]}
+            result[key] = {$gte: value[0] || defaultRange[regKey][0] , $lte: value[1] || defaultRange[regKey][1]}
             
         })
         console.log('query.cert is: ', query.cert);

@@ -60,6 +60,10 @@ th, td {
     color: #aaa;
 }
 
-.input-indent [disabled]{
+/*.input-indent [disabled]{
     text-indent: -9999px;
+}*/
+
+span.to {
+    margin-left: -30px;
 }

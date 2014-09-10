@@ -343,7 +343,7 @@ var ModalInstanceCtrl = function($scope, $modalInstance, cert, $http) {
 var SearchCtrl = function($scope, $modalInstance, $http, lastScope) {       
 
     $scope.criteria = $scope.criteria || {
-        certdate : []
+        certdate : [], tscore: [], pscore: []
     };
     angular.extend($scope.criteria, lastScope && lastScope.criteria);
 
