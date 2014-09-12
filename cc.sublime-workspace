@@ -4,6 +4,22 @@
 		"selected_items":
 		[
 			[
+				"M",
+				"MessageModule"
+			],
+			[
+				"modu",
+				"modules/"
+			],
+			[
+				"bootstrap",
+				"bootstrap-theme.min.css"
+			],
+			[
+				"place",
+				"placeholder"
+			],
+			[
 				"las",
 				"lastSearch"
 			],
@@ -296,21 +312,10 @@
 	"buffers":
 	[
 		{
-			"contents": "<div class=\"modal-body\">\n\n\n    <form class=\"form-horizontal\" role=\"form\">\n        <div class=\"form-group\">\n            <label class=\"col-sm-1 col-sm-offset-1 control-label\">姓名</label>\n            <div class=\"col-sm-2\">\n                <input class=\"form-control\" ng-model=\"criteria.name\">\n            </div>\n\n            <label class=\"col-sm-2 control-label\">身份证号</label>\n            <div class=\"col-sm-5\">\n                <input class=\"form-control\" ng-model=\"criteria.idnumber\">\n            </div>\n        </div>\n\n\n        <div class=\"form-group\">\n            <label class=\"col-sm-2 control-label\">性别</label>\n            <div class=\"col-sm-2\">\n                <input class=\"form-control\" ng-model=\"criteria.sex\">\n            </div>\n            <label class=\"col-sm-2 control-label\">证书号</label>\n            <div class=\"col-sm-5\">\n                <input class=\"form-control\" ng-model=\"criteria.certnumber\">\n            </div>\n        </div>\n\n\n        <div class=\"form-group\">\n            <label class=\"col-sm-2 control-label\">文化程度</label>\n            <div class=\"col-sm-2\">\n                <input class=\"form-control\" ng-model=\"criteria.edu\">\n            </div>\n            <label class=\"col-sm-2 control-label\">申报工种</label>\n            <div class=\"col-sm-5\">\n                <input class=\"form-control\" ng-model=\"criteria.worktype\">\n            </div>\n        </div>\n\n\n\n        <div class=\"form-group\">\n            <label class=\"col-sm-2 control-label\">鉴定级别</label>\n            <div class=\"col-sm-2\">\n                <input class=\"form-control\" ng-model=\"criteria.certlevel\">\n            </div>\n            <label class=\"col-sm-2 control-label\">鉴定机构</label>\n            <div class=\"col-sm-5\">\n                <input class=\"form-control\" ng-model=\"criteria.certfacility\">\n            </div>\n        </div>\n\n\n        <div class=\"form-group\">\n            <label class=\"col-sm-2 control-label\">单位名称</label>\n            <div class=\"col-sm-3\">\n                <input class=\"form-control\" ng-model=\"criteria.danwei\">\n            </div>\n\n        </div>\n\n\n        <div class=\"form-group\">\n            <label class=\"col-sm-2 control-label\">证书类别</label>\n            <div class=\"col-sm-3\">\n                <input class=\"form-control\" ng-model=\"criteria.certcat\">\n            </div>\n        </div>\n\n\n        <div class=\"form-group\">\n            <label class=\"col-sm-2 control-label\">理论成绩</label>\n            <div range-toggler model-name=\"criteria.tscore\"></div>\n        </div>\n\n        <div class=\"form-group\">\n            <label class=\"col-sm-2 control-label\">实际成绩</label>\n            <div range-toggler model-name=\"criteria.pscore\"></div>\n        </div>\n        <!-- \n        <div style=\"display:inline-block; min-height:290px;\">\n            <datepicker ng-model=\"dt\" is-open=\"opened\" class=\"well well-sm\"></datepicker>\n        </div> -->\n        <div class=\"form-group\">\n            <label class=\"col-sm-2 control-label\">颁证日期</label>\n            <div class=\"input-group col-sm-2\">\n                <input type=\"text\" class=\"form-control\" ng-model=\"criteria.certdate\" datepicker-popup is-open=\"datepicker.opened\" datepicker-options=\"datepicker.options\" max-date=\"'2015-06-22'\" />\n                <span class=\"input-group-btn\">\n                    <button class=\"btn btn-default\" ng-click=\"openDatepicker($event)\"><i class=\"glyphicon glyphicon-calendar\"></i>\n                    </button>\n                </span>\n            </div>\n            \n            <span>  </span>    \n\n\n\n\n        </div>\n\n\n    </form>\n\n\n\n\n\n\n</div>\n<div class=\"modal-footer\">\n    <button class=\"btn btn-primary\" ng-click=\"ok()\" ng-disabled=\"certForm.$invalid\">查找</button>\n    <button class=\"btn btn-warning\" ng-click=\"cancel()\">取消</button>\n</div>\n",
-			"file": "client/view/advancedSearchView.html",
-			"file_size": 3871,
-			"file_write_time": 130547843986259337,
+			"file": "client/js/controllers/popup.controller.js",
 			"settings":
 			{
-				"buffer_size": 3710,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "client/js/main.js",
-			"settings":
-			{
-				"buffer_size": 16806,
+				"buffer_size": 3492,
 				"line_ending": "Windows"
 			}
 		},
@@ -318,15 +323,15 @@
 			"file": "client/app.html",
 			"settings":
 			{
-				"buffer_size": 2459,
+				"buffer_size": 2647,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "client/css/main.css",
+			"file": "client/js/modules/message.module.js",
 			"settings":
 			{
-				"buffer_size": 900,
+				"buffer_size": 3340,
 				"line_ending": "Windows"
 			}
 		}
@@ -334,7 +339,7 @@
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 73.0,
+		"height": 490.0,
 		"selected_items":
 		[
 			[
@@ -450,7 +455,7 @@
 				"AngularJS: Look Up Definition"
 			]
 		],
-		"width": 703.0
+		"width": 637.0
 	},
 	"console":
 	{
@@ -482,39 +487,67 @@
 		"/E/codes/cc/app",
 		"/E/codes/cc/client",
 		"/E/codes/cc/client/css",
+		"/E/codes/cc/client/js",
+		"/E/codes/cc/client/js/controllers",
+		"/E/codes/cc/client/js/modules",
 		"/E/codes/cc/client/view"
 	],
 	"file_history":
 	[
-		"/E/codes/cc/client/view/tableView.html",
+		"/E/codes/cc/lib/mongoose-error-msg.js",
+		"/E/codes/cc/app/models/certificate/db-map.js",
+		"/E/codes/cc/client/js/main.js",
+		"/E/codes/cc/client/js/modules/message.module.js",
+		"/E/codes/cc/client/bower_components/angular-motion/dist/modules/fade-and-scale.css",
+		"/E/codes/cc/test/.idea/modules.xml",
+		"/E/codes/cc/app/models/certificate.js",
+		"/E/codes/cc/client/js/filters/filters.js",
+		"/E/codes/cc/client/js/controllers/popup.controller.js",
+		"/E/codes/cc/client/view/advancedSearchView.html",
+		"/E/codes/nodejs/app.js",
+		"/E/codes/angularJS/pro ng code/_Supplemental_Deployd_Chapters_and_Code/Chapter 23/products.html",
+		"/E/codes/cc/client/css/main.css",
+		"/E/codes/angularJS/pro ng code/_Supplemental_Deployd_Chapters_and_Code/Chapter 23/products.js",
+		"/E/codes/cc/client/app.html",
+		"/E/codes/angularJS/pro ng code/_Supplemental_Deployd_Chapters_and_Code/Chapter 23/increment.js",
+		"/E/codes/cc/client/bower_components/angular-strap/dist/modules/parse-options.js",
+		"/E/codes/cc/client/css/pub-search.css",
+		"/E/codes/cc/app/controllers/cert.controller.js",
+		"/C/Windows/System32/drivers/etc/hosts",
 		"/E/codes/cc/client/js/tai-placeholder.js",
+		"/E/codes/cc/client/bower_components/bootstrap/less/mixins/text-overflow.less",
+		"/E/codes/cc/client/bower_components/jquery/src/selector-native.js",
+		"/E/codes/cc/client/view/editorView.html",
+		"/E/codes/cc/client/view/findView.html",
+		"/E/codes/cc/test/.idea/vcs.xml",
+		"/E/codes/cc/client/pub.html",
+		"/E/codes/cc/client/bower_components/bootstrap/less/modals.less",
+		"/E/codes/cc/client/bower_components/bootstrap/less/responsive-embed.less",
+		"/E/codes/cc/client/bower_components/bootstrap/less/jumbotron.less",
+		"/E/codes/cc/client/bower_components/bootstrap/less/bootstrap.less",
+		"/E/codes/cc/client/bower_components/angular-strap/.travis.yml",
+		"/E/codes/cc/client/bower_components/angular-motion/.travis.yml",
+		"/E/codes/cc/client/bower_components/bootstrap/less/mixins/table-row.less",
+		"/E/codes/cc/client/view/tableView.html",
 		"/E/codes/cc/test/test.xls",
 		"/E/codes/cc/app.js",
-		"/E/codes/cc/app/controllers/cert.controller.js",
 		"/C/Users/gfl/AppData/Roaming/Sublime Text 3/Packages/User/Default (Windows).sublime-keymap",
 		"/C/Users/gfl/AppData/Roaming/Sublime Text 3/Packages/Default/Default (Windows).sublime-keymap",
-		"/E/codes/cc/client/app.html",
 		"/E/codes/cc/client/js/ie-polyfill.js",
-		"/E/codes/cc/app/models/certificate/db-map.js",
 		"/E/codes/php/FineCMSv1.8.1/views/default/header.html",
 		"/E/codes/cc/app/controllers/err.controller.js",
-		"/E/codes/cc/client/js/main.js",
 		"/E/codes/angularJS/pro ng code/Chapter 17/Listing 03.html",
 		"/E/codes/cc/app/routes/index.router.js",
 		"/E/codes/cc/client/bower_components/angular-animate/angular-animate.js",
 		"/E/codes/test/ie8-upload/js/main.js",
 		"/C/Users/gfl/Desktop/upload",
 		"/E/codes/cc/cc.sublime-project",
-		"/E/codes/cc/app/models/certificate.js",
 		"/E/codes/cc/app/routes/cert.router.js",
 		"/E/codes/cc/client/bower_components/angular/README.md",
 		"/E/codes/cc/client/js/angular.min.js",
-		"/E/codes/cc/client/css/main.css",
 		"/E/codes/cc/client/bower_components/jquery/src/core/parseHTML.js",
 		"/E/codes/cc/client/bower_components/bootstrap/less/mixins/hide-text.less",
 		"/E/codes/php/FineCMSv1.8.1/views/default/index.html",
-		"/E/codes/cc/client/css/pub-search.css",
-		"/E/codes/cc/client/pub.html",
 		"/E/codes/cc/client/js/pub-search.js",
 		"/E/codes/cc/package.json",
 		"/E/codes/cc/.gitignore",
@@ -537,20 +570,16 @@
 		"/E/tmp/input.csv",
 		"/C/Users/gfl/Downloads/1.csv",
 		"/C/Users/gfl/Downloads/id-desc.csv",
-		"/E/codes/cc/test/.idea/modules.xml",
 		"/E/tmp/t1.csv",
 		"/E/errors.xls",
-		"/E/codes/cc/client/bower_components/bootstrap/less/mixins/text-overflow.less",
 		"/E/c/1.csv",
 		"/E/c/t1",
 		"/E/c/log-sample.txt",
 		"/E/log.txt",
 		"/E/codes/cc/client/view/info.html",
-		"/E/codes/cc/lib/mongoose-error-msg.js",
 		"/E/codes/cc/client/bower_components/angular-strap/dist/modules/modal.min.js",
 		"/E/codes/cc/client/bower_components/angular-motion/src/fade-and-scale/docs/fade-and-scale.demo.html",
 		"/E/codes/cc/client/bower_components/angular-motion/src/fade-and-scale/fade-and-scale.less",
-		"/E/codes/cc/client/bower_components/angular-motion/dist/modules/fade-and-scale.css",
 		"/C/Users/gfl/Downloads/error-report (1).xls",
 		"/C/Users/gfl/Downloads/error-report (2).xls",
 		"/E/codes/cc/app/controllers/xls.template",
@@ -574,14 +603,12 @@
 		"/E/codes/cc/node_modules/moment/moment.js",
 		"/C/Users/gfl/AppData/Roaming/Sublime Text 3/Packages/Emmet/Default (Windows).sublime-keymap",
 		"/C/ImbaMallLog.txt",
-		"/E/codes/cc/client/js/filters/filters.js",
 		"/E/codes/cc/client/bower_components/jquery/src/serialize.js",
 		"/E/codes/cc/node_modules/csv/node_modules/csv-parse/test/skip_empty_lines.coffee",
 		"/E/codes/cc/node_modules/.bin/swig",
 		"/E/codes/cc/lib/custom-error-msg.js",
 		"/E/codes/cc/node_modules/mongoose/lib/error.js",
 		"/E/c/log.txt",
-		"/E/codes/cc/client/bower_components/bootstrap/less/modals.less",
 		"/E/codes/cc/node_modules/mongoose/lib/model.js",
 		"/E/c/124926300.csv",
 		"/E/c/2.csv",
@@ -594,26 +621,7 @@
 		"/E/codes/cc/node_modules/swig/node_modules/optimist/example/line_count_options.js",
 		"/E/codes/cc/node_modules/csv/node_modules/csv-parse/test/counter.coffee",
 		"/E/codes/cc/node_modules/moment/locale/ro.js",
-		"/E/codes/cc/node_modules/async/README.md",
-		"/E/codes/cc/node_modules/mongoose/contRun.sh",
-		"/E/codes/cc/node_modules/excel-parser/node_modules/grunt/node_modules/glob/test/cwd-test.js",
-		"/E/codes/cc/node_modules/express/lib/router/route.js",
-		"/E/codes/cc/node_modules/excel-parser/node_modules/grunt-contrib-internal/node_modules/read-package-json/node_modules/normalize-package-data/node_modules/github-url-from-username-repo/LICENSE",
-		"/E/codes/cc/node_modules/excel-parser/node_modules/grunt-contrib-internal/node_modules/read-package-json/node_modules/glob/test/bash-results.json",
-		"/E/codes/cc/node_modules/excel-parser/node_modules/grunt-contrib-internal/node_modules/read-package-json/node_modules/normalize-package-data/test/github-urls.js",
-		"/E/codes/cc/node_modules/excel-parser/node_modules/grunt-contrib-nodeunit/node_modules/nodeunit/examples/nested/nested_reporter_test.unit.js",
-		"/E/codes/cc/node_modules/excel-parser/node_modules/grunt-contrib-jshint/node_modules/jshint/examples/reporter.js",
-		"/E/codes/cc/node_modules/excel-parser/node_modules/grunt/node_modules/glob/test/pause-resume.js",
-		"/E/codes/cc/app/views/public-search.html",
-		"/C/Users/gfl/Desktop/mongodb.bat",
-		"/E/codes/php/FineCMSv1.8.1/views/default/page.html",
-		"/E/codes/php/FineCMSv1.8.1/views/default/less/main.less",
-		"/E/codes/php/FineCMSv1.8.1/views/default/js/site.js",
-		"/E/2.csv",
-		"/E/1.csv",
-		"/E/3.csv",
-		"/C/Users/gfl/Downloads/2.csv",
-		"/E/1 - 副本.csv"
+		"/E/codes/cc/node_modules/async/README.md"
 	],
 	"find":
 	{
@@ -647,6 +655,57 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"2000",
+			"console",
+			"conso",
+			"$apply",
+			"();",
+			"whentoClear",
+			"whentoCleartoShow",
+			"time",
+			"api",
+			"this",
+			"success",
+			"clear",
+			"hide",
+			"1500",
+			"timeoutt",
+			"handleF",
+			"spinnerVisible",
+			"indicator",
+			"msgVisible",
+			"div",
+			"showInfo",
+			"indicat",
+			"message",
+			"Message",
+			"PopdownAPI",
+			"Popdown",
+			"popdown",
+			"Popdown",
+			"PopdownModule",
+			"provider",
+			"provid(",
+			"showInfo",
+			"anim",
+			"$ani",
+			"searchCtrl",
+			"Ctrl",
+			"infoCtrl",
+			"Ctrl",
+			"loginCtrl",
+			"Ctrl",
+			"View",
+			"ModalInstanceCtrl",
+			"conso",
+			"regkey",
+			"key",
+			"result",
+			"conso",
+			"cons",
+			"1970",
+			"100",
+			"0",
 			"= ",
 			"dateOptions",
 			"scope.open",
@@ -723,58 +782,7 @@
 			"path",
 			"null",
 			"here",
-			"nameSetter",
-			"name",
-			"error",
-			"total",
-			"></",
-			"primary",
-			"span",
-			"String",
-			"s63",
-			"StyleID=\"s63\"",
-			"data",
-			"DOWNLOAD_URL",
-			"msg",
-			"upload",
-			"download",
-			"tmp",
-			"download",
-			"transform",
-			"index",
-			"if",
-			"dbkey",
-			"context",
-			"name",
-			"getName",
-			"idnumber",
-			"this",
-			"showHidden",
-			"chineseKeys",
-			"c2dbMap",
-			"chineseNames",
-			"data",
-			"toXls",
-			"ctrl+e",
-			"criteria",
-			"send",
-			"error",
-			"angular",
-			"alt+d",
-			"ctrl+b",
-			"go",
-			"f12",
-			");}",
-			")}",
-			"error",
-			"false",
-			"error",
-			"req",
-			"Error",
-			"err",
-			"new",
-			"err",
-			"message"
+			"nameSetter"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -790,30 +798,30 @@
 		"reverse": false,
 		"show_context": true,
 		"use_buffer2": true,
-		"whole_word": true,
+		"whole_word": false,
 		"wrap": true
 	},
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 2,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "client/view/advancedSearchView.html",
+					"file": "client/js/controllers/popup.controller.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3710,
+						"buffer_size": 3492,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3454,
-								3454
+								1714,
+								1714
 							]
 						],
 						"settings":
@@ -821,16 +829,16 @@
 							"BracketHighlighterBusy": false,
 							"bh_regions":
 							[
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
 								"bh_double_quote",
 								"bh_double_quote_center",
 								"bh_double_quote_open",
@@ -841,126 +849,36 @@
 								"bh_unmatched_open",
 								"bh_unmatched_close",
 								"bh_unmatched_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content"
-							],
-							"encoding_helper_encoding": "UTF-8",
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1467.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "client/js/main.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 16806,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								11260,
-								11260
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"bh_regions":
-							[
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
 								"bh_tag",
 								"bh_tag_center",
 								"bh_tag_open",
 								"bh_tag_close",
 								"bh_tag_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
 								"bh_curly",
 								"bh_curly_center",
 								"bh_curly_open",
 								"bh_curly_close",
 								"bh_curly_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
 								"bh_single_quote",
 								"bh_single_quote_center",
 								"bh_single_quote_open",
 								"bh_single_quote_close",
 								"bh_single_quote_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
 								"bh_default",
 								"bh_default_center",
 								"bh_default_open",
@@ -973,27 +891,27 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 7387.0,
+						"translation.y": 924.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
+					"buffer": 1,
 					"file": "client/app.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2459,
+						"buffer_size": 2647,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2441,
-								2441
+								2621,
+								2621
 							]
 						],
 						"settings":
@@ -1001,16 +919,16 @@
 							"BracketHighlighterBusy": false,
 							"bh_regions":
 							[
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
 								"bh_double_quote",
 								"bh_double_quote_center",
 								"bh_double_quote_open",
@@ -1021,36 +939,36 @@
 								"bh_unmatched_open",
 								"bh_unmatched_close",
 								"bh_unmatched_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
 								"bh_curly",
 								"bh_curly_center",
 								"bh_curly_open",
 								"bh_curly_close",
 								"bh_curly_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
 								"bh_single_quote",
 								"bh_single_quote_center",
 								"bh_single_quote_open",
 								"bh_single_quote_close",
 								"bh_single_quote_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
 								"bh_default",
 								"bh_default_center",
 								"bh_default_open",
@@ -1063,27 +981,27 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1027.0,
+						"translation.y": 242.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "client/css/main.css",
+					"buffer": 2,
+					"file": "client/js/modules/message.module.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 900,
+						"buffer_size": 3340,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								898,
-								898
+								418,
+								418
 							]
 						],
 						"settings":
@@ -1091,16 +1009,16 @@
 							"BracketHighlighterBusy": false,
 							"bh_regions":
 							[
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
 								"bh_double_quote",
 								"bh_double_quote_center",
 								"bh_double_quote_open",
@@ -1111,36 +1029,36 @@
 								"bh_unmatched_open",
 								"bh_unmatched_close",
 								"bh_unmatched_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
 								"bh_curly",
 								"bh_curly_center",
 								"bh_curly_open",
 								"bh_curly_close",
 								"bh_curly_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
 								"bh_single_quote",
 								"bh_single_quote_center",
 								"bh_single_quote_open",
 								"bh_single_quote_close",
 								"bh_single_quote_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
 								"bh_default",
 								"bh_default_center",
 								"bh_default_open",
@@ -1148,15 +1066,15 @@
 								"bh_default_content"
 							],
 							"encoding_helper_encoding": "UTF-8",
-							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
-						"translation.x": 0.0,
-						"translation.y": 455.0,
+						"translation.x": -0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 0,
 					"type": "text"
 				}
 			]
@@ -1209,16 +1127,44 @@
 		"selected_items":
 		[
 			[
+				"mess",
+				"client\\js\\modules\\message.module.js"
+			],
+			[
+				"moduels/",
+				"client\\js\\modules\\message.module.js"
+			],
+			[
+				"main",
+				"client\\js\\main.js"
+			],
+			[
+				"popu",
+				"client\\js\\controllers\\popup.controller.js"
+			],
+			[
+				"contro",
+				"app\\controllers\\cert.controller.js"
+			],
+			[
+				"view/",
+				"client\\view\\advancedSearchView.html"
+			],
+			[
+				"model",
+				"app\\models\\certificate.js"
+			],
+			[
+				"ctrl",
+				"app\\controllers\\cert.controller.js"
+			],
+			[
 				"table",
 				"client\\view\\tableView.html"
 			],
 			[
 				"ap",
 				"client\\app.html"
-			],
-			[
-				"main",
-				"client\\js\\main.js"
 			],
 			[
 				"err",
@@ -1242,10 +1188,6 @@
 			],
 			[
 				"cert",
-				"app\\controllers\\cert.controller.js"
-			],
-			[
-				"contro",
 				"app\\controllers\\cert.controller.js"
 			],
 			[
@@ -1479,10 +1421,6 @@
 			[
 				"mixin",
 				"bootstrap-3.2.0\\less\\mixins.less"
-			],
-			[
-				"ctrl",
-				"chap8 prac\\controllers\\productListCtrl.js"
 			],
 			[
 				"filter",

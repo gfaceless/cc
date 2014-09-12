@@ -35,7 +35,9 @@
     <script src="js/ui-bootstrap-tpls-0.11.0.min.js"></script>
 
     <script src="js/filters/filters.js"></script>
+    <script src="js/modules/message.module.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/controllers/popup.controller.js"></script>
 
 </head>
 
@@ -58,12 +60,12 @@
             </span>
             <a class="btn btn-primary" ng-href="{{exportUrl}}" ng-click="exports($event)">导出</a>
             <button class="btn btn-primary" ng-click="find({})">刷新</button>
-            <indicator></indicator>
+            <div spinner></div>
+            <div message></div>
         </div>
         <ng-include src="'view/findView.html'"></ng-include>
         <ng-include src="'view/tableView.html'"></ng-include>
-    </div>
-    <div ng-controller="mytestCtrl"></div>
+    </div>   
 
    
 </body>
