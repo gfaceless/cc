@@ -5,6 +5,8 @@ var MessageModule = angular.module('message', []);
 
 MessageModule.factory('MessageApi', function($timeout, $rootScope) {
 
+    // TODO: add animation for improved messaging.
+    // move timetoClear logic to directive for possible DOM handling (and for animation-CSS add and removal)
     var DISPLAY_TIME = 2000;
 
     return {
