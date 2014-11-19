@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html ng-app="myApp" id="ng-app">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>credit application</title>
+    <link rel="stylesheet" href="../../vendors/bootstrap-3.2.0-dist/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="../vendors/bootstrap-3.2.0-dist/css/bootstrap-theme.min.css"> -->
+    
+    <link rel="stylesheet" href="css/ca.admin.css">
+    <!--[if lt IE 9]>
+      <script type="text/javascript" src="../../js/respond.min.js"></script>
+    <![endif]-->
+    <!--[if lte IE 8]>
+      <script>
+        document.createElement('ng-include');
+        document.createElement('ng-pluralize');
+        document.createElement('ng-view');
+        document.createElement('indicator');
+        document.createElement('pagination');
+
+        // Optionally these for CSS
+        document.createElement('ng:include');
+        document.createElement('ng:pluralize');
+        document.createElement('ng:view');
+      </script>
+      <script src="../../js/ie-polyfill.js"></script>
+    <![endif]-->
+    <script src="../../js/angular.js"></script>
+    <script src="../../js/modules/message.module.js"></script>
+    <script src="js/ca.admin.js"></script>
+
+</head>
+
+<body ng-controller="appCtrl">
+    <div class="main-title">学分置换管理</div>
+    
+    <div class="main">
+
+        <ul class="sidebar">
+            <li ng-repeat="tab in tabs" ng-class="{active:isActive(tab)}" ng-click="onClickTab(tab)">{{tab.title}}</li>
+        </ul>
+
+        <div class="main-view">
+            <div ng-include="currentTab.url"></div>
+        </div>
+    </div>
+</body>
+
+</html>

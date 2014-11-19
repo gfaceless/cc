@@ -1,0 +1,18 @@
+<div ng-controller="mwCtrl">
+    <div class="control-panel">
+        <button type="button" class="btn btn-primary" ng-click="addMajor()" ng-disabled="!hasListed">添加专业</button>
+        <div spinner></div>
+        <div message></div>
+    </div>
+    <div class="main-panel">
+        <div class="major-container">
+            <div ng-repeat="major in majors">
+                <div live-create my-model="major" upsert-fn="upsertMajor(major)" remove-fn="removeMajor($index)" add-child-fn="addWT(major)" has-child my-placeholder="输入专业名称">
+					<div ng-repeat="workType in major.workTypes" class="wt-container">
+						<div live-create my-model="workType" create-fn="createWT(major._id, workType)" remove-fn="removeWT($index)"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,16 @@
+<div class="major">
+    <input type="text" ng-model="myModel.name" ng-show="myModel._isNew" placeholder={{myPlaceholder||'输入名称'}}>
+    
+
+    <button class="btn btn-primary" ng-click="someFn()" ng-show="myModel._isNew">ok</button>
+    <button class="btn btn-primary" ng-click="" ng-show="myModel._isNew">cancel</button>
+
+    <div ng-hide="myModel._isNew">{{myModel.name}}</div>
+
+    <button class="btn btn-primary" ng-click="edit()" ng-hide="myModel._isNew">edit</button>
+    <button class="btn btn-primary" ng-click="" ng-hide="myModel._isNew">delete</button>
+    <button class="btn btn-primary" ng-click="addChild(myModel)" ng-hide="myModel._isNew|| !hasChild">添加工种</button>
+    
+</div>
+
+<div ng-transclude></div>

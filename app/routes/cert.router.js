@@ -8,6 +8,13 @@ module.exports = router;
 
 var urlParser = require('../middlewares/url-parser.js');
 
+
+
+router.all('/*', require('cookie-parser')(), function(req, res, next) {
+	console.log('the cookie is: ', req.cookies);
+	next();
+})
+
 var auth = userController.auth
 
 

@@ -96,7 +96,8 @@ MessageModule.directive('message', function() {
         restrict: 'EA',
         scope: {},
         replace: true,
-        template: '<span class="spinner"><img ng-show="spinnerVisible" src="img/ajax-loader.gif" width="20" height="20" />' +
+        // should be absoulte path
+        template: '<span class="spinner"><img ng-show="spinnerVisible" src="/img/ajax-loader.gif" width="20" height="20" />' +
             
             '</span>',
         link: function(scope, element, attr) {

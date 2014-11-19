@@ -85,6 +85,7 @@ cert.read = [preSearch,
             
         })
         console.log('query.cert is: ', query.cert);
+        console.log('query time is: ', new Date());
         Certificate.find(query.cert)
             .skip((page - 1) * limit)
             .limit(limit)
@@ -99,6 +100,8 @@ cert.read = [preSearch,
                 // TODO: we can skip count if only a few items returned
                 Certificate.count(query.cert, function(err, total) {
                     if (err) return next(err);
+                    // here is where that weird bug happens
+                    // maybe I can try, catch
                     res.send({
                         success: true,
                         results: data,
@@ -141,7 +144,7 @@ cert.update = function(req, res, next) {
 
 cert.delete = function(req, res, next) {
     var id = req.params.id;
-    if (!id) return next(err.attack('no id in delete function'));
+    if (!id) return next(error.attack('no id in delete function'));
 
     Certificate.findById(id, function(err, cert) {
         if (err) return next(err);
@@ -428,7 +431,8 @@ cert.csv = [error.record,
 
 
 function preSearch(req, res, next) {
-    var cert = req.query.cert;
+    var cert = req.query.cert || req.body.cert;
+
     if (!_.isObject(cert)) return next(error.attack('cert should be an object'));
 
     if (_.isString(cert.idnumber)) cert.idnumber = cert.idnumber.toLowerCase();
@@ -444,6 +448,8 @@ cert.prePublicSearch = [preSearch,
         next();
     }
 ]
+
+
 
 
 cert.removeNameSpace = function(req, res, next) {
