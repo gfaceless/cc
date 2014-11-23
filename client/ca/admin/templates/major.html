@@ -1,15 +1,27 @@
-<div class="major">
+<div class="{{myClass}} live-create-item">
     <input type="text" ng-model="myModel.name" ng-show="myModel._isNew" placeholder={{myPlaceholder||'输入名称'}}>
-    
+    <div class="btn-group" ng-show="myModel._isNew">
+	    <button type="button" class="btn btn-primary" ng-click="someFn()">
+	      	<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>      	
+	    </button>
+	    <button type="button" class="btn btn-primary">
+	      	<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>      	
+	    </button>
+    </div>
 
-    <button class="btn btn-primary" ng-click="someFn()" ng-show="myModel._isNew">ok</button>
-    <button class="btn btn-primary" ng-click="" ng-show="myModel._isNew">cancel</button>
 
-    <div ng-hide="myModel._isNew">{{myModel.name}}</div>
-
-    <button class="btn btn-primary" ng-click="edit()" ng-hide="myModel._isNew">edit</button>
-    <button class="btn btn-primary" ng-click="" ng-hide="myModel._isNew">delete</button>
-    <button class="btn btn-primary" ng-click="addChild(myModel)" ng-hide="myModel._isNew|| !hasChild">添加工种</button>
+    <span ng-hide="myModel._isNew" class="name">{{myModel.name}}</span>
+	
+	<div class="btn-toolbar">
+		
+	    <div class="btn-group" ng-hide="myModel._isNew">
+			<button type="button" class="btn btn-default btn-sm" ng-click="edit()">编辑</button>
+			<button type="button" class="btn btn-default btn-sm" ng-click="remove()">删除</button>
+		</div>
+		<div class="btn-group"> 
+	    	<button class="btn btn-primary btn-sm" ng-click="addChild(myModel)" ng-hide="myModel._isNew|| !hasChild">添加工种</button>
+    	</div>
+	</div>
     
 </div>
 

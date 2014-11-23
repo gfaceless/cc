@@ -18,10 +18,18 @@ router.post('/credit-apply', caCtrl.creditApply);
 router.post('/admin/major', majorCtrl.create);
 router.put('/admin/major/:id', majorCtrl.update);
 
+
 router.post('/admin/work-type', workTypeCtrl.create);
+// actually it is an deletion, I'll find a better way
+router.post('/admin/work-type/:id', workTypeCtrl.removeFromMajor);
+router.put('/admin/work-type/:id', workTypeCtrl.update);
+
 
 router.get('/admin/major', majorCtrl.list);
+router.get('/major', majorCtrl.list);
 
 router.get('/work-type', workTypeCtrl.list);
 
+
+// test:
 

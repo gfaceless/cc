@@ -13,9 +13,9 @@ var app = angular.module('myApp', [])
         $scope.template = templates[currentTemplate];
         $scope.ca = {cert: {}};
         
-        $http.get('work-type')
+        $http.get('major')
         .success(function(data) {
-            $scope.workTypes = data.workTypes;
+            $scope.workTypes = data.majors;
         })
         .error(function() {
 
@@ -26,11 +26,23 @@ var app = angular.module('myApp', [])
                 .success(function(data) {
                     if(data.success) {
                         $scope.template = templates[2];
+                        $scope.report = {
+                            idnumber:"654324199104120035",
+                            name:  "张志伟" ,
+                            worktype:"装备钳工",
+                            certnumber: "1449003012300160",
+                            applidDate: "2014-11-20",
+                            sex: '男',
+                            major: "电工电子专业",
+                            edu: "大专"
+                        }
                     } else {
                         $scope.template = templates[3];
                     }
                 })
-                .error(function(a, b) {console.log(a,b)})
+                .error(function(a, b) {
+                    $scope.template = templates[3];
+                })
         }
 
         $scope.start = function() {

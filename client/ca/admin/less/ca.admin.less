@@ -1,22 +1,89 @@
 @import (reference) "bootstrap.less";
 
-hello {
-	color: white;
-	padding: 0;
-	.make-row();
+
+@header-h : 70px;
+@sidebar-w : 150px;
+
+.app-header{
+	
+	height: @header-h;
+	padding-left: 100px;
+	.bg-primary;
+	&:extend(.clearfix all);
 }
 
-.major-container {
-	padding-left:  100px;
-	.major{
-		border: 1px solid red;
+.app-body{
+	margin-top: 5px;
+	padding-top: 5px;
+	border-top: 1px @gray-lighter solid;
+	position: relative;
+	&:extend(.clearfix all);
+}
+
+.app-sidebar{
+	width: @sidebar-w;
+	list-style: none;
+	padding: 0;
+	margin: 0 -@sidebar-w 0 0;
+	float: left;
+	li {
+		height: 30px;
+		border-bottom: 1px solid @gray-lighter;
+		line-height: 30px;
+		text-align: center;
+		cursor: pointer;
+
+		&.active{
+			.bg-primary;
+		}
 	}
 }
 
-.wt-container{
+.app-main{
+	
+	border-left: 1px @gray-lighter solid;
+	margin-left: @sidebar-w;
+}
+
+
+.control-panel{
+	border-bottom: 1px @gray-lighter solid;
+	padding: 20px 100px;
+}
+
+.live-create-item {
+	
+	width: 400px;
+	.make-row();
+	padding: 15px;
+	margin: 5px;
+	
+	.bg-info;
+	&:extend(.well all);
+	.name{
+		.make-xs-column(5);
+		.text-info;
+	}
+	.btn-toolbar{
+		.make-xs-column(7);
+	}
+}
+
+.work-type {
+	width: 400px - 100px;
+	
+	padding: 10px;
+	
+	.bg-success;
+	
+}
+
+
+.major-container {
 	padding-left:  100px;
-	.work-type{
-		border: 1px solid blue;
-		padding: 10px;
-	}	
+	
+}
+
+.wt-container{
+	padding-left:  100px;	
 }

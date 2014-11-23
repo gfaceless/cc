@@ -57,12 +57,11 @@ exports.remove = function(req, res, next) {
 	if (!data || !data.name || id===undefined) return next(new Error('not enough info'));
 	Major.findById(id, function(err, major) {
 		if(err) return next(err);
-		if(!major) return next(new Error('no major found'));		
+		if(!major) return next(new Error('no major found'));
 		
 		major.remove(function(err, major) {
 			if(err) return next(err);
-			
-			
+
 			res.send({success: true, major: major});
 		})
 	});

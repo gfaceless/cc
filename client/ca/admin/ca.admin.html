@@ -29,20 +29,21 @@
     <![endif]-->
     <script src="../../js/angular.js"></script>
     <script src="../../js/modules/message.module.js"></script>
+    <script src="js/live-create.module.js"></script>
     <script src="js/ca.admin.js"></script>
 
 </head>
 
 <body ng-controller="appCtrl">
-    <div class="main-title">学分置换管理</div>
+    <div class="app-header "><h1 class="app-title">学分置换管理</h1></div>
     
-    <div class="main">
+    <div class="app-body">
 
-        <ul class="sidebar">
+        <ul class="app-sidebar">
             <li ng-repeat="tab in tabs" ng-class="{active:isActive(tab)}" ng-click="onClickTab(tab)">{{tab.title}}</li>
         </ul>
 
-        <div class="main-view">
+        <div class="app-main">
             <div ng-include="currentTab.url"></div>
         </div>
     </div>

@@ -1,17 +1,24 @@
-var app = angular.module('myApp', ['message'])
+var app = angular.module('myApp', ['message', 'liveCreate'])
     .controller('appCtrl', function($scope, $http) {
         var tabs;
 
+        // TODO: use a better tab system. shouldn't write it here
+        // maybe use ng-bootstrap
         $scope.tabs = tabs = [{
-            title: 'One',
-            url: 'views/major-and-work-type.html'
-        }, {
-            title: 'Two',
-            url: 'views/we.html'
-        }, {
-            title: 'Three',
-            url: 'three.tpl.html'
-        }];
+                title: '专业和工种管理',
+                url: 'views/major-and-work-type.html'
+            }, {
+                title: '申请结果查询',
+                url: 'views/we.html'
+            }, {
+                title: '系统帐号管理',
+                url: 'three.tpl.html'
+            }
+            /*,{
+            			title: 'maybe thy agreement',
+            			url: 'three.tpl.html'
+            		}*/
+        ];
 
         $scope.currentTab = tabs[0];
 
@@ -24,156 +31,106 @@ var app = angular.module('myApp', ['message'])
         }
 
 
-
-        $scope.submit = function() {
-            $http.post(urlCa, {
-                    cert: $scope.cert
-                })
-                .success(function(data) {
-                    if (data.success) {
-                        $scope.template = templates[2];
-                    } else {
-                        $scope.template = templates[3];
-                    }
-                })
-                .error(function(a, b) {
-                    console.log(a, b)
-                })
-        }
-
-        $scope.start = function() {
-            $scope.template = templates[++currentTemplate];
-        }
-
     });
 
 // mw : major and workType
-app.controller('mwCtrl', function($scope, $http) {
-        var majors;
+app.controller('mwCtrl', function($scope, $http, MessageApi, LiveCreate) {
+    var majors;
 
-        $http.get('major')
-        	.success(function(data) {
-        		majors = $scope.majors = data.majors;
-        		$scope.hasListed = true;
-        		
-        	})
-        	.error(function(data) {
-        		console.log(data);
-        	})
+    $http.get('major')
+        .success(function(data) {
+            majors = $scope.majors = data.majors;
+            $scope.hasListed = true;
 
-
-        $scope.addMajor = function() {
-            majors.push({
-                name: '',
-                _isNew: true
-            })
-        };
-
-        $scope.addWT = function(major) {
-        	
-            major.workTypes.push({
-                name: '输入工种',
-                _isNew: true
-            })
-            
-        };
-
-
-        $scope.upsertMajor = function(major) {
-        	// relative to ca/admin/ca.admin.html
-        	if(!major._id){
-        	   return $http.post('major', {major: major});
-            }
-            return $http.put('major/'+major._id, {major: major});
-        }
-
-    
+        })
+        .error(function(data) {
+            console.log(data);
+        })
 
 
 
-        $scope.removeMajor = function(index) {
-        	// relative to ca/admin/ca.admin.html
-    		console.log('in removeMjaor, index is ', index);
-        	majors.splice(index,1);
-        }
 
+    $scope.addMajor = function() {
+        majors.push({
+            name: '',
+            _isNew: true
+        })
+    };
 
-        
-
-        $scope.createWT = function(majorId, workType) {
-        	// relative to ca/admin/ca.admin.html
-        	
-        	return $http.post('work-type', {majorId: majorId, workType: workType });
-        }
-       
+    LiveCreate.register('major', {
+    	create: function(cb) {
+    		console.log('first')
+    		cb();
+    	}
 
     })
-    .directive('liveCreate', function() {
-        return {
 
-            restrict: 'EA',
-            transclude: true,
-            link: function(scope, el, attrs) {
+    $scope.addWT = function(major) {
 
-            	var input = el.find('input')[0];
-            	input.focus();
+        major.workTypes.push({
+            name: '输入工种',
+            _isNew: true
+        })
 
-            	// looking for a better way:
-            	scope.hasChild = angular.isDefined(attrs.hasChild);
-            	
-                scope.someFn = function() {
-                    // we are passing a map, which override existing params
-                    // (note that even we pass nothing, function would still succeed, because of scope would
-                    // find the right 'major')
-                    scope.upsert({model: scope.myModel})
-                        .success(function(data, status, headers, config) {
-                            // this callback will be called asynchronously
-                            // when the response is available
-                            // after res from the sever, we will:
-                            console.log(data, status, headers, config);
+    };
+    $scope.removeWT = function(major, workType, index) {
+        // relative to ca/admin/ca.admin.html
+        console.log('here');
+        $http['post']('work-type/' + workType._id, {
+                majorId: major._id,
+                workType: workType
+            })
+            .success(function(data) {
+                console.log(data);
+                major.workTypes.splice(index, 1);
+            })
+            .error(function() {})
+    }
 
-                            // attrs.myModel is a string
-                            // TODO: consider use extend, not such full replacing.
-                            scope.myModel = data[scope.modelName || attrs.myModel];
 
-                            // we don't need it, but run it for clarification
-                            delete scope.myModel._isNew;
-                    		
-                        })
-                        .error(function(data, status, headers, config) {
-                        	console.log(data, status, headers, config);
-                            // called asynchronously if an error occurs
-                            // or server returns response with an error status.
-                            scope.remove()
-                        });
-                }
-
-                
-                scope.edit = function() {
-
-                    scope.myModel._isNew = true;
-
-                }
-
-            },
-            scope: {
-                myModel: "=",
-                // modelName is for data retrieval
-                modelName: "@",
-                upsert: "&upsertFn",
-                remove: "&removeFn",
-                addChild: "&addChildFn",
-                myPlaceholder: "@"
-                
-            },
-            templateUrl: "templates/major.html"
+    $scope.upsertMajor = function(major) {
+        // relative to ca/admin/ca.admin.html
+        if (!major._id) {
+            return $http.post('major', {
+                major: major
+            });
         }
-    })
+        return $http.put('major/' + major._id, {
+            major: major
+        });
+    }
+
+
+
+
+
+    $scope.removeMajor = function(index) {
+        // relative to ca/admin/ca.admin.html
+        console.log('in removeMjaor, index is ', index);
+        majors.splice(index, 1);
+    }
+
+
+
+
+    $scope.createWT = function(majorId, workType) {
+        // relative to ca/admin/ca.admin.html
+
+        return $http.post('work-type', {
+            majorId: majorId,
+            workType: workType
+        });
+    }
+
+
+})
+
 
 
 function selectElementText(el, win) {
     win = win || window;
-    var doc = win.document, sel, range;
+    var doc = win.document,
+        sel, range;
     if (win.getSelection && doc.createRange) {
         sel = win.getSelection();
         range = doc.createRange();

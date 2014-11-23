@@ -58,7 +58,13 @@ exports.creditApply = [ preApply, function(req, res, next) {
     		if(err) return next(err);
     		console.log(ca);
     		// TODO: we should query Major here, and return it with ca
-    		res.send({
+    		
+            /*var report ={};
+            _.assign(report, ca.cert);
+            report.major = ca.major;
+            report.appliedDate = ca.appliedDate*/
+            
+            res.send({
     			success: true,
     			ca: ca
     		})

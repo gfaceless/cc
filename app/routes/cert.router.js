@@ -47,7 +47,7 @@ router.get('/rns', certController.removeNameSpace);
 });*/
 
 
-
+router.get('/heythere', certController.heythere);
 
 
 

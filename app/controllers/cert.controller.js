@@ -471,3 +471,28 @@ cert.removeNameSpace = function(req, res, next) {
         
     })
 }
+
+
+cert.heythere = function(req, res, next) {
+
+
+    Certificate.find({}).distinct('worktype')
+    .exec(function(err, we) {
+        if(err) return next(err);        
+        
+        res.send({hi: we});
+    })
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,7 +1,30 @@
-@import (reference) "bootstrap.less";
+@import (reference)"bootstrap.less";
+body {
+    width: 700px;
+    margin: 0 auto;
+}
+.app-title{
+	.bg-primary;
+	text-align: center;
+	padding: 10px 20px;
+}
 
-hello {
-	color: white;
-	padding: 0;
-	.make-row();
+.app-main {
+
+	.intro{
+		&:extend(.well all);
+		background: white;
+		margin: 0 auto 30px;
+		width: 400px;
+		padding: 10px 20px;
+		text-align: left;
+		
+	}
+	text-align: center;
+	&:extend(.well all, .well-lg all);
+}
+
+.credit-apply {
+	width: 500px;
+	margin: 0 auto;
 }
