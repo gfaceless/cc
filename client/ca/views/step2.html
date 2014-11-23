@@ -21,9 +21,9 @@
 
 
     <div class="form-group">
-        <label for="work-type" class="col-sm-3 control-label">选择申报专业</label>
+        <label for="major" class="col-sm-3 control-label">选择申报专业</label>
         <div class="col-sm-9">
-            <select id="work-type" class="form-control" ng-model="ca.workTypeId" ng-options="workType._id as workType.name for workType in workTypes">
+            <select id="major" class="form-control" ng-model="ca.majorId" ng-options="major._id as major.name for major in majors">
                 <option value="">请选择专业</option>
             </select>
 
@@ -38,5 +38,5 @@
         </div>
     </div>
 
-    <div>{{workType}}</div>
+    
 </form>

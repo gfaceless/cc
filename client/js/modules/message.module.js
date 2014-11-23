@@ -34,7 +34,7 @@ MessageModule.factory('MessageApi', function($timeout, $rootScope) {
             var defaultMsg = '操作失败';
             /*var defaultException = '若不是网络问题，此为bug，请联系王希';
             var exception = !/^2/.test(status);*/
-            alert(msg && msg.message || defaultMsg);
+            alert(msg || defaultMsg);
 
         },
         clear: function(timetoClear) {

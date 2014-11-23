@@ -75,11 +75,16 @@ exports.removeFromMajor = function(req, res, next) {
 
 	var workTypeId = req.params.id;
 	
-	if (!data || !id || !req.body.majorId) return next(new Error());
-
-	Major.findById(req.body.majorId, function(err, major) {
+	if (!data || !isObjectId(workTypeId) || !req.body.majorId) return next(new Error('something went wrong'));
+    
+    // we can use findById too
+	Major.findOne({_id: req.body.majorId}, function(err, major) {
 		if(err) return next(err);
-
+        if(!major) {
+            return next(new Error('no major found'));
+        }
+        // here happens type cast. string -> ObjectId.
+        // if not sure, we should wrap it in try/catch, or else the app would fail due to a throwed error.
 		major.workTypes.pull(workTypeId);
 
 		major.save(function(err, major) {
@@ -106,4 +111,8 @@ exports.list = function(req, res, next) {
             });
         })
 
+}
+
+function isObjectId(n) {
+  return mongoose.Types.ObjectId.isValid(n);
 }

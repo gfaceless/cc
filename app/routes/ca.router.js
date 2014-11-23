@@ -16,6 +16,7 @@ router.post('/credit-apply', caCtrl.creditApply);
 
 
 router.post('/admin/major', majorCtrl.create);
+router.post('/admin/major/:id', majorCtrl.remove);
 router.put('/admin/major/:id', majorCtrl.update);
 
 

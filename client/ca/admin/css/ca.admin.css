@@ -39,7 +39,8 @@
   line-height: 1.5;
   border-radius: 3px;
 }
-.live-create-item {
+.major,
+.work-type {
   min-height: 20px;
   padding: 19px;
   margin-bottom: 20px;
@@ -49,7 +50,8 @@
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
 }
-.live-create-item blockquote {
+.major blockquote,
+.work-type blockquote {
   border-color: #ddd;
   border-color: rgba(0, 0, 0, 0.15);
 }
@@ -85,8 +87,12 @@
 .app-header:after,
 .app-body:before,
 .app-body:after,
-.live-create-item:before,
-.live-create-item:after {
+.app-footer:before,
+.app-footer:after,
+.major:before,
+.major:after,
+.wt-container:before,
+.wt-container:after {
   content: " ";
   display: table;
 }
@@ -106,7 +112,9 @@
 .modal-footer:after,
 .app-header:after,
 .app-body:after,
-.live-create-item:after {
+.app-footer:after,
+.major:after,
+.wt-container:after {
   clear: both;
 }
 .app-header {
@@ -119,10 +127,20 @@ a.app-header:hover {
   background-color: #3071a9;
 }
 .app-body {
+  min-height: 600px;
   margin-top: 5px;
   padding-top: 5px;
   border-top: 1px #eeeeee solid;
   position: relative;
+}
+.app-footer {
+  color: #fff;
+  background-color: #428bca;
+  height: 30px;
+  margin-top: 40px;
+}
+a.app-footer:hover {
+  background-color: #3071a9;
 }
 .app-sidebar {
   width: 150px;
@@ -153,7 +171,7 @@ a.app-sidebar li.active:hover {
   border-bottom: 1px #eeeeee solid;
   padding: 20px 100px;
 }
-.live-create-item {
+.major {
   width: 400px;
   margin-left: -15px;
   margin-right: -15px;
@@ -161,10 +179,10 @@ a.app-sidebar li.active:hover {
   margin: 5px;
   background-color: #d9edf7;
 }
-a.live-create-item:hover {
+a.major:hover {
   background-color: #afd9ee;
 }
-.live-create-item .name {
+.major .name {
   position: relative;
   float: left;
   width: 41.66666667%;
@@ -173,10 +191,10 @@ a.live-create-item:hover {
   padding-right: 15px;
   color: #31708f;
 }
-a.live-create-item .name:hover {
+a.major .name:hover {
   color: #245269;
 }
-.live-create-item .btn-toolbar {
+.major .btn-toolbar {
   position: relative;
   float: left;
   width: 58.33333333%;
@@ -185,16 +203,38 @@ a.live-create-item .name:hover {
   padding-right: 15px;
 }
 .work-type {
-  width: 300px;
-  padding: 10px;
+  height: 50px;
+  padding: 10px 25px;
+  float: left;
+  margin: 8px 8px;
   background-color: #dff0d8;
+  position: relative;
 }
 a.work-type:hover {
   background-color: #c1e2b3;
+}
+.work-type .name {
+  line-height: 30px;
 }
 .major-container {
   padding-left: 100px;
 }
 .wt-container {
   padding-left: 100px;
+  width: 900px;
+}
+.btn-remove {
+  position: absolute;
+  background-color: white;
+  right: 4px;
+  top: 4px;
+  height: 15px;
+  width: 15px;
+  cursor: pointer;
+  font-size: 14px;
+  text-align: center;
+  line-height: 15px;
+}
+.btn-remove:hover {
+  background-color: #eeeeee;
 }

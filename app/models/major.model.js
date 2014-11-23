@@ -6,7 +6,7 @@ var mongoose = require('mongoose'),
 
 var majorSchema = new Schema({
 
-	name: {type: String, required: true, trim: true},
+	name: {type: String, unique: true, required: true, trim: true},
 
 	workTypes: [{ type: Schema.Types.ObjectId, ref: 'WorkType' }]
 });

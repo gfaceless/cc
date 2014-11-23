@@ -8,7 +8,7 @@ var caSchema = new Schema({
 
 	cert: { type: Schema.Types.ObjectId, ref: 'Certificate', required: true },
 
-	workType: { type: Schema.Types.ObjectId, ref: 'WorkType', required: true },
+	major: { type: Schema.Types.ObjectId, ref: 'Major', required: true },
 
 	appliedDate: { type: Date, default: function() {return new Date()}}
 });

@@ -7,12 +7,16 @@
     <div class="main-panel">
         <div class="major-container">
             <div ng-repeat="major in majors">
-                <div live-create my-model="major" upsert-fn="upsertMajor(major)" remove-fn="removeMajor($index)" add-child-fn="addWT(major)" has-child my-placeholder="输入专业名称" my-class="major">
-					<div ng-repeat="workType in major.workTypes" class="wt-container">
-						<div live-create my-model="workType" upsert-fn="createWT(major._id, workType)" remove-fn="removeWT(major, workType, $index)" my-class="work-type"></div>
+                <div live-create my-model="major" upsert="upsertMajor(major, cb)" remove-fn="removeMajor(major, $index, cb)" remove-from-dom="rmFromCollection(majors, $index)" add-child="addWT(major)" has-child my-placeholder="输入专业名称" my-class="major">
+                    <div class="wt-container">
+
+                        <div ng-repeat="workType in major.workTypes">
+                            <div live-create mode="simple" my-model="workType" upsert="createWT(major._id, workType, cb)" remove-from-dom="rmFromCollection(major.workTypes, $index)" remove-fn="removeWT(major, workType, $index)" my-placeholder="输入工种名称" my-class="work-type"></div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
-        </div>
 
+        </div>
     </div>
-</div>

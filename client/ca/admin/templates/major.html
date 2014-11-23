@@ -1,18 +1,22 @@
-<div class="{{myClass}} live-create-item">
-    <input type="text" ng-model="myModel.name" ng-show="myModel._isNew" placeholder={{myPlaceholder||'输入名称'}}>
+<div class="{{myClass}}">
+    <input type="text" ng-model="myModel.name" ng-show="myModel._isNew" placeholder={{myPlaceholder||'输入名称'}} ng-keypress="pressEnter($event)">
     <div class="btn-group" ng-show="myModel._isNew">
-	    <button type="button" class="btn btn-primary" ng-click="someFn()">
-	      	<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>      	
+	    <button type="button" class="btn btn-primary" ng-click="someFn()" ng-disabled="!myModel.name">
+	      	<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
 	    </button>
-	    <button type="button" class="btn btn-primary">
-	      	<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>      	
+	    <button type="button" class="btn btn-primary"  ng-click="cancel()">
+	      	<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 	    </button>
     </div>
 
 
     <span ng-hide="myModel._isNew" class="name">{{myModel.name}}</span>
-	
-	<div class="btn-toolbar">
+
+	<div ng-click="remove()" ng-show="mode=='simple'&&!myModel._isNew" class="btn-remove">
+		<span>&times</span>
+	</div>
+
+	<div class="btn-toolbar" ng-show="mode!='simple'">
 		
 	    <div class="btn-group" ng-hide="myModel._isNew">
 			<button type="button" class="btn btn-default btn-sm" ng-click="edit()">编辑</button>

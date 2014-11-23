@@ -34,7 +34,7 @@ var app = angular.module('myApp', ['message', 'liveCreate'])
     });
 
 // mw : major and workType
-app.controller('mwCtrl', function($scope, $http, MessageApi, LiveCreate) {
+app.controller('mwCtrl', function($scope, $http, MessageApi, $log) {
     var majors;
 
     $http.get('major')
@@ -44,82 +44,143 @@ app.controller('mwCtrl', function($scope, $http, MessageApi, LiveCreate) {
 
         })
         .error(function(data) {
-            console.log(data);
+            
         })
 
 
 
 
     $scope.addMajor = function() {
-        majors.push({
+        majors.unshift({
             name: '',
             _isNew: true
         })
+        
     };
 
-    LiveCreate.register('major', {
-    	create: function(cb) {
-    		console.log('first')
-    		cb();
-    	}
-
-    })
 
     $scope.addWT = function(major) {
 
         major.workTypes.push({
-            name: '输入工种',
             _isNew: true
         })
 
     };
+    
+
+
+    $scope.upsertMajor = function(major, cb) {
+        // relative to ca/admin/ca.admin.html
+        var promise;
+        if (!major._id) {
+            promise = $http.post('major', {
+                major: major
+            })
+        } else {
+            promise = $http.put('major/' + major._id, {
+                major: major
+            })
+        }
+
+        promise.success(function(data) {
+                if (data.success) {
+                    MessageApi.success('操作成功');
+                } else {
+                    fail(data);
+                }
+                cb(null, data);
+            })
+            .error(function(data, status) {
+                fail(data);
+                cb('fail', data);
+            })
+    }
+
+
+    function fail(data, cb) {
+        var msg = '操作失败';
+        
+        if (data.message) msg += (" " + data.message);
+        MessageApi.error(msg);
+
+    }
+
+    $scope.removeMajor = function(major, index) {
+
+        $http
+            .post('major' + '/' + major._id, {
+                major: major
+            })
+            .success(function(data) {
+                if (data.success) {
+                    MessageApi.success('操作成功');
+                } else {
+                    fail(data);
+                }
+                $scope.rmFromCollection(majors, index);
+            })
+            .error(function(data, status) {
+                fail(data);
+
+            })
+    }
+
     $scope.removeWT = function(major, workType, index) {
         // relative to ca/admin/ca.admin.html
-        console.log('here');
+        
         $http['post']('work-type/' + workType._id, {
                 majorId: major._id,
                 workType: workType
             })
             .success(function(data) {
-                console.log(data);
-                major.workTypes.splice(index, 1);
+                if (data.success) {
+                    MessageApi.success('操作成功');
+                } else {
+                    fail(data);
+                }
+                $scope.rmFromCollection(major.workTypes, index);
             })
-            .error(function() {})
+            .error(function(data, status) {
+                fail(data);
+
+            })
     }
 
 
-    $scope.upsertMajor = function(major) {
-        // relative to ca/admin/ca.admin.html
-        if (!major._id) {
-            return $http.post('major', {
-                major: major
-            });
-        }
-        return $http.put('major/' + major._id, {
-            major: major
-        });
-    }
-
-
-
-
-
-    $scope.removeMajor = function(index) {
-        // relative to ca/admin/ca.admin.html
-        console.log('in removeMjaor, index is ', index);
-        majors.splice(index, 1);
+    // We should definitely make live-create a component
+    // doing so many interweaving things is tiresome:
+    $scope.rmFromCollection = function(collection, index) {
+        collection.splice(index, 1);
     }
 
 
 
 
-    $scope.createWT = function(majorId, workType) {
+    $scope.createWT = function(majorId, workType, cb) {
         // relative to ca/admin/ca.admin.html
 
-        return $http.post('work-type', {
-            majorId: majorId,
-            workType: workType
-        });
+        $http.post('work-type', {
+                majorId: majorId,
+                workType: workType
+            })
+            .success(function(data) {
+            	var err = null;
+                if (data.success) {
+                    MessageApi.success('操作成功');
+
+                } else {
+                    fail(data);
+                    // I should have a clearer definition of 500 error and 200 but success: false
+                    err = 'fail (success: false)'
+                }
+
+                cb(err, data);
+                
+            })
+            .error(function(data, status) {
+                fail(data);
+                cb('fail', data);
+            })
     }
 
 

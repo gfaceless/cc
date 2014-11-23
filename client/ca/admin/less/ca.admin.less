@@ -13,11 +13,18 @@
 }
 
 .app-body{
+	min-height: 600px;
 	margin-top: 5px;
 	padding-top: 5px;
 	border-top: 1px @gray-lighter solid;
 	position: relative;
 	&:extend(.clearfix all);
+}
+.app-footer{
+	.bg-primary;
+	&:extend(.clearfix all);
+	height: 30px;
+	margin-top: 40px;
 }
 
 .app-sidebar{
@@ -51,15 +58,17 @@
 	padding: 20px 100px;
 }
 
-.live-create-item {
+.major, .work-type{
+	&:extend(.well all);
+}
+
+.major {
 	
 	width: 400px;
 	.make-row();
 	padding: 15px;
-	margin: 5px;
-	
-	.bg-info;
-	&:extend(.well all);
+	margin: 5px;	
+	.bg-info;	
 	.name{
 		.make-xs-column(5);
 		.text-info;
@@ -69,13 +78,22 @@
 	}
 }
 
+
 .work-type {
-	width: 400px - 100px;
 	
-	padding: 10px;
+	height: 50px;
+	
+	padding: 10px 25px;
+
+	float: left;
+	margin: 8px 8px;	
 	
 	.bg-success;
-	
+	position: relative;
+
+	.name {
+		line-height: 30px;
+	}
 }
 
 
@@ -85,5 +103,23 @@
 }
 
 .wt-container{
-	padding-left:  100px;	
+	padding-left:  100px;
+	width: 900px;
+	&:extend(.clearfix all);
+}
+
+.btn-remove {
+	position: absolute;
+	background-color: white;
+	right: 4px;
+	top: 4px;
+	height: 15px;
+	width: 15px;
+	cursor: pointer;
+	font-size: 14px;
+	text-align: center;
+	line-height: 15px;
+	&:hover{
+		background-color: @gray-lighter;
+	}
 }
