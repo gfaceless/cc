@@ -36,6 +36,8 @@ exports.creditApply = [preApply, function(req, res, next) {
     // req.body is already guaranteed to be appropriate   
     var majorId = req.body.majorId;
 
+
+    // TODO: use async
     Certificate.findOne(req.body.cert, function(err, cert) {
         if (err) return next(err);
 
@@ -65,28 +67,83 @@ exports.creditApply = [preApply, function(req, res, next) {
                     })
                 }
 
-                var ca = new CA({
-                    cert: cert,
-                    major: majorId
+                CA.findOne({
+                    cert: cert._id
                 })
+                .populate('major cert')
+                .exec( function(err, ca) {
+                    function makeReport(ca) {
+                        
+                        var report = {};
+                        _.assign(report, ca.cert.toObject());
+                        report.appliedDate = moment(ca.appliedDate).format('YYYY-MM-DD');
+                        report.major = ca.major && ca.major.name;
+                        return report;
+                    }
 
-                ca.save(function(err, ca) {
                     if (err) return next(err);
-                    var report = {};
-                    _.assign(report, cert.toObject());
-                    
-                    report.appliedDate = moment(ca.appliedDate).format('YYYY-MM-DD');
-                    report.major = major.name;
-                    res.send({
-                        success: true,
-                        report: report
+                    if (ca) {
+                        var report = makeReport(ca);
+
+                        // try using async, to sement res.send logic together
+                        res.send({
+                            success: true,
+                            report: report,
+                            appliedTime: moment(ca.appliedDate).format('YYYY-MM-DD HH:mm'),
+                            hasApplied: true
+                        })
+                        return;
+                    }
+                    // when there is no ca in db:
+                    ca = new CA({
+                        cert: cert,
+                        major: majorId
+                    })
+
+                    ca.save(function(err, ca) {
+                        if (err) return next(err);
+                        CA.populate(ca, {path:"major cert"}, function(err, ca) {
+                            console.log(ca);
+                            res.send({
+                                success: true,
+                                report: makeReport(ca)
+                            })                            
+                        })
+
                     })
                 })
 
             })
-
-
-
     })
 
 }]
+
+
+exports.list = function(req, res, next) {
+    var query = req.query;
+
+    //defaults:
+    var page = query.page || 1;
+    var limit = query.limit || 10;
+
+    CA.find()
+        .skip((page - 1) * limit)
+        .limit(limit)
+        .populate('cert major')
+        .lean()
+        .exec(function(err, arr) {
+            if (err) return next(err);
+            
+
+            var ret = _.transform(arr, function(result, val, key) {
+                
+                _.defaults(val, val.cert);
+                delete val.cert;
+                val.major = val.major && val.major.name;
+                val.appliedDate = moment(val.appliedDate).format('YYYY-MM-DD HH:mm')
+                result[key] = val;
+            })
+            
+            res.send({success: true, results: ret});
+        })
+}

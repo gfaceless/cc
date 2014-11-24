@@ -1,7 +1,12 @@
-<div>对不起，审核未通过。未通过原因：</div>
+<div class="appl-result">
+    <div class="alert alert-danger">对不起，审核未通过。未通过原因：</div>
 
-<div ng-show="reason=='0'">若不是您的网络问题，请联系我们</div>
+    <div ng-show="reason=='0'">请检查你的填写信息以及网络，若不是您的问题，请联系我们</div>
 
-<div ng-show="reason=='1'">您未取得机械行业职业资格证书，请获取证书后再进行申报</div>
+    <div ng-show="reason=='1'">您未取得机械行业职业资格证书，请获取证书后再进行申报</div>
 
-<div ng-show="reason=='2'">您申报的职业工种与所置换的远程教育专业不匹配，请核对后再申报</div>
+    <div ng-show="reason=='2'">您申报的职业工种与所置换的远程教育专业不匹配，请核对后再申报</div>
+</div>
+
+
+<button ng-click="restart()" class="btn btn-lg btn-primary">重新申请</button>

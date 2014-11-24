@@ -1,0 +1,32 @@
+<div>分页、过滤、搜索、删除等功能制作中</div>
+<div ng-controller="resultCtrl">
+    <table class="table table-bordered table-hover text-center">
+        <thead>
+            <tr>
+                <th class="text-center">认证编号</th>
+                <th class="text-center">姓名</th>
+                <th class="text-center">身份证号</th>
+
+                <th class="text-center">证书号</th>
+                <th class="text-center">工种</th>
+
+                <th class="text-center">文化程度</th>
+                <th class="text-center">申报专业</th>
+                <th class="text-center">申报日期</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="result in results">
+                <td>{{result._id}}</td>
+                <td>{{result.name}}</td>
+                <td>{{result.idnumber}}</td>
+                <td>{{result.certnumber}}</td>
+                <td>{{result.worktype}}</td>
+                <td>{{result.edu}}</td>
+                <td>{{result.major}}</td>
+                <td>{{result.appliedDate}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>

@@ -13,6 +13,7 @@ var _ = require('lodash');
 module.exports = router;
 
 router.post('/credit-apply', caCtrl.creditApply);
+router.get('/admin/ca-results', caCtrl.list);
 
 
 router.post('/admin/major', majorCtrl.create);
@@ -28,6 +29,8 @@ router.put('/admin/work-type/:id', workTypeCtrl.update);
 
 router.get('/admin/major', majorCtrl.list);
 router.get('/major', majorCtrl.list);
+
+
 
 router.get('/work-type', workTypeCtrl.list);
 

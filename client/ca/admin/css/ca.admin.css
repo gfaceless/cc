@@ -224,17 +224,27 @@ a.work-type:hover {
   width: 900px;
 }
 .btn-remove {
+  display: none;
   position: absolute;
   background-color: white;
   right: 4px;
-  top: 4px;
-  height: 15px;
-  width: 15px;
-  cursor: pointer;
-  font-size: 14px;
-  text-align: center;
-  line-height: 15px;
+  top: 0px;
 }
-.btn-remove:hover {
-  background-color: #eeeeee;
+.work-type:hover .btn-remove {
+  display: block;
 }
+/*.btn-remove {
+	position: absolute;
+	background-color: white;
+	right: 4px;
+	top: 4px;
+	height: 15px;
+	width: 15px;
+	cursor: pointer;
+	font-size: 14px;
+	text-align: center;
+	line-height: 15px;
+	&:hover{
+		background-color: @gray-lighter;
+	}
+}*/

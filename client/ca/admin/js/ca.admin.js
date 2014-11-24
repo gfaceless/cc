@@ -9,15 +9,12 @@ var app = angular.module('myApp', ['message', 'liveCreate'])
                 url: 'views/major-and-work-type.html'
             }, {
                 title: '申请结果查询',
-                url: 'views/we.html'
+                url: 'views/ca-results.html',
+
             }, {
                 title: '系统帐号管理',
-                url: 'three.tpl.html'
+                url: 'views/sys-account.html'
             }
-            /*,{
-            			title: 'maybe thy agreement',
-            			url: 'three.tpl.html'
-            		}*/
         ];
 
         $scope.currentTab = tabs[0];

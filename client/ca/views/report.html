@@ -1,0 +1,41 @@
+<div class="report">
+    <span>认证报告编号:</span> <span>{{report._id}}</span>
+    <table class="table table-bordered table-hover text-center">
+        <tr>
+            <td>身份证号</td>
+            <td>{{report.idnumber}}</td>
+        </tr>
+        <tr>
+            <td>姓名</td>
+            <td>{{report.name}}</td>
+        </tr>
+        <tr>
+            <td>性别</td>
+            <td>{{report.sex}}</td>
+        </tr>
+        <tr>
+            <td>证书号</td>
+            <td>{{report.certnumber}}</td>
+        </tr>
+        <tr>
+            <td>工种名称</td>
+            <td>{{report.worktype}}</td>
+        </tr>
+        <tr>
+            <td>申报置换远程教育专业</td>
+            <td>{{report.major}}</td>
+        </tr>
+        <tr>
+            <td>申报置换专业层次</td>
+            <td>{{report.edu}}</td>
+        </tr>
+        <tr>
+            <td>申请时间</td>
+            <td>{{report.appliedDate}}</td>
+        </tr>
+
+    </table>
+
+    <button class="btn btn-lg btn-primary" ng-click="alert('制作中')">打印报告</button>
+
+</div>

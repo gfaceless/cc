@@ -40,7 +40,8 @@
   border-radius: 3px;
 }
 .app-main,
-.app-main .intro {
+.app-main .intro,
+.app-main .appl-result {
   min-height: 20px;
   padding: 19px;
   margin-bottom: 20px;
@@ -51,7 +52,8 @@
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
 }
 .app-main blockquote,
-.app-main .intro blockquote {
+.app-main .intro blockquote,
+.app-main .appl-result blockquote {
   border-color: #ddd;
   border-color: rgba(0, 0, 0, 0.15);
 }
@@ -107,29 +109,52 @@
   clear: both;
 }
 body {
-  width: 700px;
+  width: 850px;
   margin: 0 auto;
 }
 .app-title {
   color: #fff;
   background-color: #428bca;
   text-align: center;
-  padding: 10px 20px;
+  padding: 10px 80px;
 }
 a.app-title:hover {
   background-color: #3071a9;
 }
+.step-indicator {
+  position: absolute;
+  padding: 15px;
+}
 .app-main {
+  margin-top: 5px;
   text-align: center;
 }
-.app-main .intro {
+.app-main .intro,
+.app-main .appl-result {
   background: white;
   margin: 0 auto 30px;
-  width: 400px;
-  padding: 10px 20px;
+  width: 650px;
+  padding: 25px 40px;
   text-align: left;
+}
+.app-main .intro {
+  font-size: 18px;
+}
+.app-main .extra-info {
+  font-size: 20px;
+  margin: 20px 0;
 }
 .credit-apply {
   width: 500px;
   margin: 0 auto;
+}
+.report {
+  text-align: center;
+}
+.report table {
+  margin: 20px auto;
+  width: 400px;
+}
+.test-tmp {
+  position: absolute;
 }

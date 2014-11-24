@@ -1,46 +1,13 @@
-<div>申请成功</div>
-<div>
-    您已经通过机械工业职业技能鉴定指导中心针对机械行业 职业资格证书置换北京理工大学远程教育专业学分资质认证审核，请打印认证书并携带至北京理工大学远程教育各学习中心报名。
-</div>
+<div class="appl-result">
 
-<div class="report">
+    <div class="alert alert-success" ng-show="!hasApplied">申请成功</div>
 
-    <table class="table table-bordered table-hover text-center">
-        <tr>
-            <td>身份证号</td>
-            <td>{{report.idnumber}}</td>
-        </tr>
-        <tr>
-            <td>姓名</td>
-            <td>{{report.name}}</td>
-        </tr>
-        <tr>
-            <td>性别</td>
-            <td>{{report.sex}}</td>
-        </tr>
-        <tr>
-            <td>证书号</td>
-            <td>{{report.certnumber}}</td>
-        </tr>
-        <tr>
-            <td>工种名称</td>
-            <td>{{report.worktype}}</td>
-        </tr>
-        <tr>
-            <td>申报置换远程教育专业</td>
-            <td>{{report.major}}</td>
-        </tr>
-        <tr>
-            <td>申报置换专业层次</td>
-            <td>{{report.edu}}</td>
-        </tr>
-        <tr>
-            <td>申请时间</td>
-            <td>{{report.appliedDate}}</td>
-        </tr>
+	<div ng-show="hasApplied" class="alert alert-warning">您已于{{appliedTime}}申请成功，请不要再次申请。您之前的申请记录为：
+	</div>
 
-    </table>
+    <p>
+        您已经通过机械工业职业技能鉴定指导中心针对机械行业 职业资格证书置换北京理工大学远程教育专业学分资质认证审核，请打印认证书并携带至北京理工大学远程教育各学习中心报名。
+    </p>
 
-    <button class="btn btn-lg btn-primary">打印报告</button>
-
+    <div ng-include="'views/report.html'"></div>
 </div>

@@ -12,9 +12,10 @@
 
     <span ng-hide="myModel._isNew" class="name">{{myModel.name}}</span>
 
-	<div ng-click="remove()" ng-show="mode=='simple'&&!myModel._isNew" class="btn-remove">
-		<span>&times</span>
-	</div>
+
+	<button type="button" ng-click="remove()" ng-show="mode=='simple'&&!myModel._isNew" class="close btn-remove">
+	    <span>&times</span>
+	</button>
 
 	<div class="btn-toolbar" ng-show="mode!='simple'">
 		

@@ -107,8 +107,17 @@
 	width: 900px;
 	&:extend(.clearfix all);
 }
-
 .btn-remove {
+	display: none;
+	position: absolute;
+	background-color: white;
+	right: 4px;
+	top: 0px;
+	.work-type:hover &{
+		display: block;
+	}
+}
+/*.btn-remove {
 	position: absolute;
 	background-color: white;
 	right: 4px;
@@ -122,4 +131,4 @@
 	&:hover{
 		background-color: @gray-lighter;
 	}
-}
+}*/
