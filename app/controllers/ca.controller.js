@@ -83,6 +83,7 @@ exports.creditApply = [preApply, function(req, res, next) {
                         
                         var report = {};
                         _.assign(report, ca.cert.toObject());
+                        report.applEduLvl = toApplEduLvl(report.certnumber);
                         report.appliedDate = moment(ca.appliedDate).format('YYYY-MM-DD');
                         report.major = ca.major && ca.major.name;
                         return report;
