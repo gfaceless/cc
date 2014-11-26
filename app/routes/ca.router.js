@@ -10,6 +10,8 @@ var workTypeCtrl = require('../controllers/work-type.controller.js');
 
 var _ = require('lodash');
 
+//var perm = require('../permissions.js');
+
 module.exports = router;
 
 router.post('/credit-apply', caCtrl.creditApply);

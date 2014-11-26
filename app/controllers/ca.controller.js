@@ -49,6 +49,13 @@ exports.creditApply = [preApply, function(req, res, next) {
             });
         }
 
+        if( ! isApplicable(cert.certnumber) ) {
+            return res.send({
+                success: false,
+                reason: 3
+            });
+        }
+
         Major
             .findById(majorId)
             .populate('workTypes')
@@ -134,6 +141,7 @@ exports.list = function(req, res, next) {
         .exec(function(err, arr) {
             if (err) return next(err);
             
+            
 
             var ret = _.transform(arr, function(result, val, key) {
                 
@@ -141,9 +149,30 @@ exports.list = function(req, res, next) {
                 delete val.cert;
                 val.major = val.major && val.major.name;
                 val.appliedDate = moment(val.appliedDate).format('YYYY-MM-DD HH:mm')
+                /*maybe we should put the following logic into model*/
+                // applicable education level:
+                val.applEduLvl = toApplEduLvl (val.certnumber);
+
                 result[key] = val;
             })
+
+            
+
+
+
+
             
             res.send({success: true, results: ret});
         })
+}
+
+function isApplicable(certnumber) {
+    var digit = parseInt(certnumber[10], 10);
+    return digit <=3;
+}
+function toApplEduLvl(certnumber) {
+    var digit = parseInt(certnumber[10], 10);
+    if(digit <= 2) return "本科";
+    if(digit == 3) return "专科、本科";
+    return "错误"
 }

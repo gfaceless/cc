@@ -140,7 +140,8 @@ a.app-title:hover {
 .app-main .intro {
   font-size: 18px;
 }
-.app-main .extra-info {
+.app-main .link-extra-info {
+  cursor: pointer;
   font-size: 20px;
   margin: 20px 0;
 }
@@ -157,4 +158,29 @@ a.app-title:hover {
 }
 .test-tmp {
   position: absolute;
+}
+.modal-extra-info {
+  padding: 0 50px;
+  height: 650px;
+  overflow-y: scroll;
+}
+.modal-extra-info h1,
+.modal-extra-info h2 {
+  font-weight: bold;
+}
+.modal-extra-info table {
+  margin-top: 40px;
+}
+.modal-extra-info table th {
+  text-align: center;
+}
+.modal-extra-info table td {
+  font-size: 13px;
+}
+.modal-extra-info table caption {
+  font-size: 20px;
+  font-weight: bold;
+}
+.modal-extra-info li {
+  margin: 10px;
 }

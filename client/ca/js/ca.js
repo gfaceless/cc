@@ -69,7 +69,8 @@ var app = angular.module('myApp', ['message', 'ui.bootstrap'])
 
             var modalInstance = $modal.open({
                 templateUrl: 'views/extra-info.html',
-                controller: 'ModalInstanceCtrl'
+                controller: 'ModalInstanceCtrl',
+                size: size
             });
 
             modalInstance.result.then(function(param) {
