@@ -1,10 +1,46 @@
-var app = angular.module('myApp', ['message', 'liveCreate'])
-    .controller('appCtrl', function($scope, $http) {
-        var tabs;
+var app = angular.module('myApp', ['message', 'misc', 'liveCreate', 'ui.bootstrap'])
+    .controller('appCtrl', function($scope, $http, $modal, MessageApi, $timeout) {
+               
 
-        // TODO: use a better tab system. shouldn't write it here
-        // maybe use ng-bootstrap
-        $scope.tabs = tabs = [{
+
+        $scope.onClickTab = function(tab) {
+            $scope.currentTab = tab;
+        }
+
+        $scope.isActive = function(tab) {
+            if (!$scope.currentTab) return false;
+            return tab.url == $scope.currentTab.url;
+        }
+        $scope.openLogin = function() {
+            $modal.open({
+                templateUrl: 'views/login.html',
+                controller: 'loginCtrl',
+                size: 'sm',
+                backdrop: false
+            }).result.then(function(data) {
+                $scope.logged = true;
+                MessageApi.success('登录成功');
+            }, function(data) {
+
+            })
+        }
+        $scope.logout = function() {
+            // yes, we should use a global error handler to handle every $http.error
+            $http.post('logout')
+                .success(function(data) {
+                    if (data.success) {
+                        $scope.logged = false;
+                        MessageApi.success('成功退出');
+                        $timeout(clearScope, 3000);
+                        
+                    }
+                })
+        }
+
+        function startApp() {
+            // TODO: use a better tab system. shouldn't write it here
+            // maybe use ng-bootstrap
+            $scope.tabs  = [{
                 title: '专业和工种管理',
                 url: 'views/major-and-work-type.html'
             }, {
@@ -14,21 +50,60 @@ var app = angular.module('myApp', ['message', 'liveCreate'])
             }, {
                 title: '系统帐号管理',
                 url: 'views/sys-account.html'
+            }];
+            $scope.currentTab = $scope.tabs[0];
+        }
+        function clearScope() {
+            $scope.tabs = null;
+            delete $scope.currentTab;
+        }
+
+        function checkLogged() {
+            $http.post('isLogged')
+                .success(function(data) {
+                    if (data.logged) {
+                        $scope.logged = data.logged
+                    } else {
+                        $scope.openLogin();
+                    }
+                })
+        }
+
+        $scope.$watch('logged', function(val) {
+            if (val) {
+                startApp();
             }
-        ];
-
-        $scope.currentTab = tabs[0];
-
-        $scope.onClickTab = function(tab) {
-            $scope.currentTab = tab;
-        }
-
-        $scope.isActive = function(tab) {
-            return tab.url == $scope.currentTab.url;
-        }
-
+        });
+        checkLogged();
 
     });
+
+
+app.controller('loginCtrl', function($scope, $modalInstance, $http, MessageApi) {
+    var url = "login"
+    $scope.user = {};
+    /*$scope.focus = true;*/
+    $scope.ok = function() {
+        $http.post(url, {
+                user: $scope.user
+            })
+            .success(function(data) {
+                if (data.success) $modalInstance.close(data);
+                else fail(data.message);
+            })
+            .error(function(data) {
+                fail(data.message);
+            })
+
+    };
+    $scope.cancel = function() {
+        $modalInstance.dismiss();
+    };
+
+    function fail(msg) {
+        MessageApi.error(msg || "登录失败");
+    }
+})
 
 // mw : major and workType
 app.controller('mwCtrl', function($scope, $http, MessageApi, $log) {
@@ -41,7 +116,7 @@ app.controller('mwCtrl', function($scope, $http, MessageApi, $log) {
 
         })
         .error(function(data) {
-            
+
         })
 
 
@@ -52,7 +127,7 @@ app.controller('mwCtrl', function($scope, $http, MessageApi, $log) {
             name: '',
             _isNew: true
         })
-        
+
     };
 
 
@@ -63,7 +138,7 @@ app.controller('mwCtrl', function($scope, $http, MessageApi, $log) {
         })
 
     };
-    
+
 
 
     $scope.upsertMajor = function(major, cb) {
@@ -96,7 +171,7 @@ app.controller('mwCtrl', function($scope, $http, MessageApi, $log) {
 
     function fail(data, cb) {
         var msg = '操作失败';
-        
+
         if (data.message) msg += (" " + data.message);
         MessageApi.error(msg);
 
@@ -124,7 +199,7 @@ app.controller('mwCtrl', function($scope, $http, MessageApi, $log) {
 
     $scope.removeWT = function(major, workType, index) {
         // relative to ca/admin/ca.admin.html
-        
+
         $http['post']('work-type/' + workType._id, {
                 majorId: major._id,
                 workType: workType
@@ -161,7 +236,7 @@ app.controller('mwCtrl', function($scope, $http, MessageApi, $log) {
                 workType: workType
             })
             .success(function(data) {
-            	var err = null;
+                var err = null;
                 if (data.success) {
                     MessageApi.success('操作成功');
 
@@ -172,7 +247,7 @@ app.controller('mwCtrl', function($scope, $http, MessageApi, $log) {
                 }
 
                 cb(err, data);
-                
+
             })
             .error(function(data, status) {
                 fail(data);

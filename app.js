@@ -41,6 +41,8 @@ app.set('views', path.join(__dirname, 'app/views'));
 app.set('view engine', 'jade');
 
 app.use(favicon());
+app.use(express.static(path.join(__dirname, 'client')));
+
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
@@ -49,7 +51,6 @@ app.use(session({
     secret: 'some secret word',
     maxAge: 7 * 24 * 60 * 60 * 1000
 }))
-app.use(express.static(path.join(__dirname, 'client')));
 
 app.use('/', indexRouter);
 app.use('/certs', certRouter);

@@ -126,6 +126,13 @@
 a.app-header:hover {
   background-color: #3071a9;
 }
+.app-header h1 {
+  float: left;
+}
+.app-header .controls {
+  float: right;
+  margin: 20px 40px 0 0;
+}
 .app-body {
   min-height: 600px;
   margin-top: 5px;

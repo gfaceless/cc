@@ -1,5 +1,5 @@
 <div class="{{myClass}}">
-    <input type="text" ng-model="myModel.name" ng-show="myModel._isNew" placeholder={{myPlaceholder||'输入名称'}} ng-keypress="pressEnter($event)">
+    <input type="text" ng-model="myModel.name" ng-show="myModel._isNew" placeholder={{myPlaceholder||'输入名称'}} gf-enter="someFn()">
     <div class="btn-group" ng-show="myModel._isNew">
 	    <button type="button" class="btn btn-primary" ng-click="someFn()" ng-disabled="!myModel.name">
 	      	<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>

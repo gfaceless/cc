@@ -76,7 +76,10 @@ angular.module('liveCreate', [])
                 scope.oldModel = angular.copy (scope.myModel);                
             }
 
-            scope.pressEnter = function(event) {
+
+            // I use to do it like this: (deprecated)
+            // ng-keypress="pressEnter($event)"
+            /*scope.pressEnter = function(event) {
                 
                 if(event.keyCode == 13) {
                     event.preventDefault();
@@ -87,7 +90,7 @@ angular.module('liveCreate', [])
                     // so a makeshift:
                     if(scope.myModel.name) scope.someFn();
                 }
-            }
+            }*/
 
             function cancelEdit() {
                 
