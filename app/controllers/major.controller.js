@@ -46,10 +46,16 @@ exports.update = function(req, res, next) {
 
         major.save(function(err, major) {
             if (err) return next(err);
-            res.send({
-                success: true,
-                major: major
-            });
+            // should not do this, impact performance
+            // and no practical scenario fits
+            // exists only temporarily:
+            Major.populate(major, {path:'workTypes'}, function(err, major) {
+                if(err) return next(err);
+                res.send({
+                    success: true,
+                    major: major
+                });
+            })
         })
     });
 

@@ -117,6 +117,19 @@
 .wt-container:after {
   clear: both;
 }
+.placeholder {
+  color: #bbbbbb;
+}
+.form-control::-moz-placeholder {
+  color: #bbbbbb;
+  opacity: 1;
+}
+.form-control:-ms-input-placeholder {
+  color: #bbbbbb;
+}
+.form-control::-webkit-input-placeholder {
+  color: #bbbbbb;
+}
 .app-header {
   height: 70px;
   padding-left: 100px;
@@ -128,6 +141,10 @@ a.app-header:hover {
 }
 .app-header h1 {
   float: left;
+}
+.app-header .indicator {
+  float: left;
+  padding-left: 40px;
 }
 .app-header .controls {
   float: right;
@@ -173,6 +190,7 @@ a.app-sidebar li.active:hover {
 .app-main {
   border-left: 1px #eeeeee solid;
   margin-left: 150px;
+  padding: 5px 20px;
 }
 .control-panel {
   border-bottom: 1px #eeeeee solid;
@@ -255,3 +273,17 @@ a.work-type:hover {
 		background-color: @gray-lighter;
 	}
 }*/
+.pagin {
+  float: right;
+}
+.pagin .pagination {
+  float: left;
+}
+.pagin .pager-info {
+  float: left;
+  margin: 25px 0 0 10px;
+}
+.user-panel {
+  width: 400px;
+  margin: 20px 0;
+}

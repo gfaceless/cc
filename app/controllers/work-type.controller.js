@@ -39,15 +39,15 @@ module.exports.create = function(req, res, next) {
         })
     })
 
-    function addToMajor(major,workType) {
+    function addToMajor(major, workType) {
         // according to https://github.com/LearnBoost/mongoose/issues/1335,
         // I'm not worrying the ref array being empty
         var added = major.workTypes.addToSet(workType);
-        if(!added.length) {
-        	return res.send({
-        		success: false,
-        		message: "该专业已有该工种"
-        	})
+        if (!added.length) {
+            return res.send({
+                success: false,
+                message: "该专业已有该工种"
+            })
         }
 
         major.save(function(err, major) {
@@ -61,58 +61,81 @@ module.exports.create = function(req, res, next) {
 }
 
 exports.update = function(req, res, next) {
-	var data = req.body.workType;
-	var workTypeId = req.params.id;
-	if (!data || !id || !req.body.majorId) return next(new Error());
+    var data = req.body.workType;
+    var workTypeId = req.params.id;
+    if (!data || !id || !req.body.majorId) return next(new Error());
 
-	
+
 }
 
 // it seems expressjs won't fill req.body if the requested method is DELETE, so I use post instead.
 // this only remove it from major's workTypes array
 exports.removeFromMajor = function(req, res, next) {
-	var data = req.body.workType;
+    var data = req.body.workType;
 
-	var workTypeId = req.params.id;
-	
-	if (!data || !isObjectId(workTypeId) || !req.body.majorId) return next(new Error('something went wrong'));
-    
+    var workTypeId = req.params.id;
+
+    if (!data || !isObjectId(workTypeId) || !req.body.majorId) return next(new Error('something went wrong'));
+
     // we can use findById too
-	Major.findOne({_id: req.body.majorId}, function(err, major) {
-		if(err) return next(err);
-        if(!major) {
+    Major.findOne({
+        _id: req.body.majorId
+    }, function(err, major) {
+        if (err) return next(err);
+        if (!major) {
             return next(new Error('no major found'));
         }
         // here happens type cast. string -> ObjectId.
         // if not sure, we should wrap it in try/catch, or else the app would fail due to a throwed error.
-		major.workTypes.pull(workTypeId);
+        major.workTypes.pull(workTypeId);
 
-		major.save(function(err, major) {
-			if(err) return next(err);			
+        major.save(function(err, major) {
+            if (err) return next(err);
 
-			res.send({
-				success: true
+            res.send({
+                success: true
 
-			})
-		})
+            })
+        })
 
 
-	})
+    })
 }
 
 
 exports.list = function(req, res, next) {
-    WorkType.find()
-        .exec(function(err, workTypes) {
+    Major.find()
+        .populate('workTypes')
+        .exec(function(err, majors) {
             if (err) return next(err);
+            if (!majors.length) return res.send({
+                success: false
+            });
+            var ret = _(majors).map(function(major) {
+                    return major.workTypes
+
+                })
+                // I want to use _.union but it only works if I code like this:
+                // _.union.apply(null, results);
+                // so I choose to flatten and then uniq
+                .flatten()
+                // lodash uniq will compare using strict equal
+                // here the items are all object
+                // it works because `mongoose populate` creates object reference
+                // instead of copying.
+                .unique()
+                .value()
             res.send({
                 success: true,
-                workTypes: workTypes
+                workTypes: ret
             });
+            console.log(ret);
         })
+
+
 
 }
 
 function isObjectId(n) {
-  return mongoose.Types.ObjectId.isValid(n);
+    return mongoose.Types.ObjectId.isValid(n);
 }

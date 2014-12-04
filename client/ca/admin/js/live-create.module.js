@@ -28,7 +28,11 @@ angular.module('liveCreate', [])
 
         	var input = el.find('input')[0];
             var $btnOK;
-        	input.focus();
+            // IE9 will focus input even if it is hidden
+            // so I disable this code for now
+            // TODO: solve it in the future
+        	// input.focus();
+            
             
         	// looking for a better way:
         	scope.hasChild = angular.isDefined(attrs.hasChild);
@@ -39,8 +43,9 @@ angular.module('liveCreate', [])
                 // find the right 'major')
                 var params = {};
                 params[attrs.myModel] = scope.myModel;
-                params.cb = function(err, data) {
+                params.cb = function(err, data) {                    
                     if(err){
+                        
                         return scope.removeFromDom()
                     }
                     // TODO: consider using extend, not such full replacing.

@@ -31,22 +31,36 @@ var allMgr = perm.allow(['crapMgr', 'crapSubmgr']);
 
 adminRouter.get('/ca-results', allMgr, caCtrl.list);
 
+adminRouter.delete('/ca-results/:id', noSub, caCtrl.remove);
+
 
 adminRouter.post('/major', noSub, majorCtrl.create);
 adminRouter.post('/major/:id', noSub, majorCtrl.remove);
 adminRouter.put('/major/:id', noSub, majorCtrl.update);
 
 
+adminRouter.get('/work-types', allMgr, workTypeCtrl.list);
 adminRouter.post('/work-type', noSub, workTypeCtrl.create);
 // actually it is an deletion, I'll find a better way
 adminRouter.post('/work-type/:id', noSub, workTypeCtrl.removeFromMajor);
 adminRouter.put('/work-type/:id', noSub, workTypeCtrl.update);
 
-
-adminRouter.get('/major', allMgr, majorCtrl.list);
+// actually now it is the same as the one students can access.
+adminRouter.get('/majors', allMgr, majorCtrl.list);
 
 
 adminRouter.post('/login', userCtrl.login);
 adminRouter.post('/logout', userCtrl.logout);
 adminRouter.post('/isLogged', userCtrl.isLogged);
+
+
+
+// user:
+adminRouter.get('/users', noSub, userCtrl.list);
+adminRouter.post('/users', noSub, userCtrl.create);
+adminRouter.put('/users/:id', noSub, userCtrl.update);
+adminRouter.delete('/users/:id', noSub, userCtrl.remove);
+
+
+
 

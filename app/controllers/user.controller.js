@@ -1,62 +1,146 @@
-var user = {};
+var mongoose = require('mongoose');
+var _ = require('lodash');
+var User = mongoose.model('User');
 
-module.exports = user;
+var error = require('./err.controller.js');
 
 
-user.auth = function(req, res, next) {
+exports.auth = function(req, res, next) {
 
     if (!req.session.isAdmin) return next('没有权限');
     next();
 
 }
 
-user.login = function(req, res, next) {
-    var user = req.body.user;
-    if (!user) return next('no user specified');
+exports.login = function(req, res, next) {
+    var u = req.body.user;
+    if (!u) return next('no user specified');
     // do User.findByName
 
-    if (user.name == 'wang' && user.password == 'xi') {
+    if (u.name == 'sys' && u.password == 'zhou123456') {
 
         req.session.role = "crapMgr";
         res.send({
-            success: true,
-            name: "wang"
-        })
-
-        return;
-    }
-    if (user.name == 'wang2' && user.password == 'xi') {
-
-        req.session.role = "crapSubmgr";
-        res.send({
-            success: true,
-            name: "wang2"
+            success: true
         })
 
         return;
     }
 
-
-    res
-        .status(500)
-        .send({
-            message: "用户名或密码错误"
+    User.findOne({
+            name: u.name
         })
+        .exec(function(err, user) {
+            if (err) return next(err);
+            console.log(user, u);
+            
+            if (user && (user.password == User.hashPass(u.password))) {
+                req.session.role = user.role;
+                res.send({
+                    success: true
+                })
+
+            } else {
+                res
+                    .status(500)
+                    .send({
+                        message: "用户名或密码错误"
+                    })
+            }
+        })
+
 }
 
-user.logout = function(req, res, next) {
+exports.logout = function(req, res, next) {
     req.session = null;
     res.send({
         success: true
     })
 }
 
-user.isLogged = function(req, res, next) {
+exports.isLogged = function(req, res, next) {
     // tmp way:
     var logged = !!req.session.role;
 
     res.send({
-        
+
         logged: logged
+    })
+}
+
+exports.list = function(req, res, next) {
+    User.find({
+            role: "crapSubmgr"
+        })
+        // even if _id is omitted, still included
+        .select('name')
+        .sort({
+            "_id": -1
+        })
+        .exec(function(err, users) {
+            if (err) return next(err);
+            if (!users.length) return res.send({
+                success: false,
+                message: "查无结果"
+            })
+            res.send({
+                success: true,
+                users: users
+            });
+        })
+
+}
+
+exports.create = function(req, res, next) {
+    var u = req.body.user;
+    if (!_.isObject(u) || !u.name || !u.password) return next("wrong!");
+    var user = new User(req.body.user);
+
+    user.role = "crapSubmgr";
+
+    user.save(function(err, user) {
+        if (err) return next(err);
+        user = user.toObject();
+        delete user.password;
+        res.send({
+            success: true,
+            user: user
+        });
+    })
+
+}
+
+exports.update = function(req, res, next) {
+
+    var u = req.body.user;
+    if (!_.isObject(u)) return next(new Error('wtf!'));
+
+    User.findById(req.params.id, function(err, user) {
+        if (err) return next(err);
+        if (!user) return next(new Error('wtf!'));
+
+        user.name = u.name
+        // yes, setter will help us do the hash
+        user.password = u.password;
+        user.save(function(err, user) {
+            if (err) return next(err);
+
+            user = user.toObject();
+            delete user.password;
+            res.send({
+                success: true,
+                user: user
+            });
+        })
+    })
+}
+
+exports.remove = function(req, res, next) {
+    User.findByIdAndRemove(req.params.id, function(err, data) {
+        if (err) return next(err);
+        res.send({
+            success: true,
+            data: data
+        });
     })
 }

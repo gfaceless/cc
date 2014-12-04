@@ -3,6 +3,16 @@
 
 @header-h : 70px;
 @sidebar-w : 150px;
+@ph-color: #bbb;
+
+//tai-placeholder for ie8
+.placeholder {
+    color: @ph-color;
+}
+// higher priority
+.form-control{
+	.placeholder(@ph-color);
+}
 
 .app-header{
 	
@@ -13,6 +23,10 @@
 
 	h1 {
 		float: left;
+	}
+	.indicator{
+		float: left;
+		padding-left: 40px;
 	}
 	.controls {
 		float: right;
@@ -58,6 +72,8 @@
 	
 	border-left: 1px @gray-lighter solid;
 	margin-left: @sidebar-w;
+	padding: 5px 20px;
+	
 }
 
 
@@ -140,3 +156,20 @@
 		background-color: @gray-lighter;
 	}
 }*/
+
+.pagin {
+	float: right;
+	.pagination{
+		float: left;
+	}
+	.pager-info{
+		float: left;
+		margin: 25px 0 0 10px;
+	}
+}
+
+.user-panel{
+	width:400px;
+	margin: 20px 0;
+}
+

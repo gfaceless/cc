@@ -1,6 +1,66 @@
-var app = angular.module('myApp', ['message', 'misc', 'liveCreate', 'ui.bootstrap'])
+var app = angular.module('myApp', ['taiPlaceholder', 'message', 'misc', 'liveCreate', 'ui.bootstrap'])
+    .config(function($httpProvider) {
+        // $httpProvider.interceptors.push(b);
+        
+        $httpProvider.interceptors.push(function($q, MessageApi) {
+            function getMessage(res) {
+                var msg = res && res.data && res.data.message
+
+                // msg may be undefined, but that's ok.
+                // MessageApi will handle that
+                return msg;
+            }
+
+            return {
+                /*'request': function(config) {
+                    
+                    return config;
+                },*/
+                'response': function(res) {
+
+                    // thought status is 200, if success is false,
+                    // we redirect it as a responseError
+                    if (res.data && res.data.success === false) {
+                        var msg = getMessage(res);
+                        // if no msg, we suppress notification.
+                        // and only when not mute.
+                        if (msg && !res.config.mute) {
+                            MessageApi.error(msg);
+                        }
+                        return $q.reject(res);
+                    }
+                    return res;
+                },
+                responseError: function(res) {
+                    
+                    var msg = getMessage(res);
+                    // if no msg, we suppress notification.
+                    if (msg) {
+                        MessageApi.error(msg);
+                    }
+                    // if simply returning res, it is recovered, would be handled in success handler
+                    return $q.reject(res);
+                }
+            };
+        });
+
+        function b($q) {
+            return {
+                response: function(res) {
+                    console.log('here in response2')
+                    console.log(res);
+                    return res;
+                },
+                responseError: function(res) {
+                    console.log('here in responseError2');
+                    console.log(res);
+                    return $q.reject(res);
+                }
+            }
+        }
+    })
     .controller('appCtrl', function($scope, $http, $modal, MessageApi, $timeout) {
-               
+
 
 
         $scope.onClickTab = function(tab) {
@@ -31,8 +91,8 @@ var app = angular.module('myApp', ['message', 'misc', 'liveCreate', 'ui.bootstra
                     if (data.success) {
                         $scope.logged = false;
                         MessageApi.success('成功退出');
-                        $timeout(clearScope, 3000);
-                        
+                        $timeout(clearScope, 500);
+
                     }
                 })
         }
@@ -40,7 +100,7 @@ var app = angular.module('myApp', ['message', 'misc', 'liveCreate', 'ui.bootstra
         function startApp() {
             // TODO: use a better tab system. shouldn't write it here
             // maybe use ng-bootstrap
-            $scope.tabs  = [{
+            $scope.tabs = [{
                 title: '专业和工种管理',
                 url: 'views/major-and-work-type.html'
             }, {
@@ -53,6 +113,7 @@ var app = angular.module('myApp', ['message', 'misc', 'liveCreate', 'ui.bootstra
             }];
             $scope.currentTab = $scope.tabs[0];
         }
+
         function clearScope() {
             $scope.tabs = null;
             delete $scope.currentTab;
@@ -77,202 +138,3 @@ var app = angular.module('myApp', ['message', 'misc', 'liveCreate', 'ui.bootstra
         checkLogged();
 
     });
-
-
-app.controller('loginCtrl', function($scope, $modalInstance, $http, MessageApi) {
-    var url = "login"
-    $scope.user = {};
-    /*$scope.focus = true;*/
-    $scope.ok = function() {
-        $http.post(url, {
-                user: $scope.user
-            })
-            .success(function(data) {
-                if (data.success) $modalInstance.close(data);
-                else fail(data.message);
-            })
-            .error(function(data) {
-                fail(data.message);
-            })
-
-    };
-    $scope.cancel = function() {
-        $modalInstance.dismiss();
-    };
-
-    function fail(msg) {
-        MessageApi.error(msg || "登录失败");
-    }
-})
-
-// mw : major and workType
-app.controller('mwCtrl', function($scope, $http, MessageApi, $log) {
-    var majors;
-
-    $http.get('major')
-        .success(function(data) {
-            majors = $scope.majors = data.majors;
-            $scope.hasListed = true;
-
-        })
-        .error(function(data) {
-
-        })
-
-
-
-
-    $scope.addMajor = function() {
-        majors.unshift({
-            name: '',
-            _isNew: true
-        })
-
-    };
-
-
-    $scope.addWT = function(major) {
-
-        major.workTypes.push({
-            _isNew: true
-        })
-
-    };
-
-
-
-    $scope.upsertMajor = function(major, cb) {
-        // relative to ca/admin/ca.admin.html
-        var promise;
-        if (!major._id) {
-            promise = $http.post('major', {
-                major: major
-            })
-        } else {
-            promise = $http.put('major/' + major._id, {
-                major: major
-            })
-        }
-
-        promise.success(function(data) {
-                if (data.success) {
-                    MessageApi.success('操作成功');
-                } else {
-                    fail(data);
-                }
-                cb(null, data);
-            })
-            .error(function(data, status) {
-                fail(data);
-                cb('fail', data);
-            })
-    }
-
-
-    function fail(data, cb) {
-        var msg = '操作失败';
-
-        if (data.message) msg += (" " + data.message);
-        MessageApi.error(msg);
-
-    }
-
-    $scope.removeMajor = function(major, index) {
-
-        $http
-            .post('major' + '/' + major._id, {
-                major: major
-            })
-            .success(function(data) {
-                if (data.success) {
-                    MessageApi.success('操作成功');
-                } else {
-                    fail(data);
-                }
-                $scope.rmFromCollection(majors, index);
-            })
-            .error(function(data, status) {
-                fail(data);
-
-            })
-    }
-
-    $scope.removeWT = function(major, workType, index) {
-        // relative to ca/admin/ca.admin.html
-
-        $http['post']('work-type/' + workType._id, {
-                majorId: major._id,
-                workType: workType
-            })
-            .success(function(data) {
-                if (data.success) {
-                    MessageApi.success('操作成功');
-                } else {
-                    fail(data);
-                }
-                $scope.rmFromCollection(major.workTypes, index);
-            })
-            .error(function(data, status) {
-                fail(data);
-
-            })
-    }
-
-
-    // We should definitely make live-create a component
-    // doing so many interweaving things is tiresome:
-    $scope.rmFromCollection = function(collection, index) {
-        collection.splice(index, 1);
-    }
-
-
-
-
-    $scope.createWT = function(majorId, workType, cb) {
-        // relative to ca/admin/ca.admin.html
-
-        $http.post('work-type', {
-                majorId: majorId,
-                workType: workType
-            })
-            .success(function(data) {
-                var err = null;
-                if (data.success) {
-                    MessageApi.success('操作成功');
-
-                } else {
-                    fail(data);
-                    // I should have a clearer definition of 500 error and 200 but success: false
-                    err = 'fail (success: false)'
-                }
-
-                cb(err, data);
-
-            })
-            .error(function(data, status) {
-                fail(data);
-                cb('fail', data);
-            })
-    }
-
-
-})
-
-
-
-function selectElementText(el, win) {
-    win = win || window;
-    var doc = win.document,
-        sel, range;
-    if (win.getSelection && doc.createRange) {
-        sel = win.getSelection();
-        range = doc.createRange();
-        range.selectNodeContents(el);
-        sel.removeAllRanges();
-        sel.addRange(range);
-    } else if (doc.body.createTextRange) {
-        range = doc.body.createTextRange();
-        range.moveToElementText(el);
-        range.select();
-    }
-}

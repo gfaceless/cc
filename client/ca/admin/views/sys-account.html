@@ -1,1 +1,24 @@
-<div>制作中</div>
+<div ng-controller="userCtrl">
+    <button class="btn btn-primary" ng-click="upsert()">添加子管理员</button>
+    <span>子管理员无添加、编辑、删除功能，但可以查看、搜索</span>
+    <div class="user-panel">
+        <table class="table table-bordered table-hover text-center">
+            <thead>
+                <tr>
+                    <th class="text-center">帐号名</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="user in users">
+                    <td>{{user.name}}</td>
+                    <td>
+                        <button class="btn btn-xs" ng-click="upsert(user)">编辑</button>
+                        <button class="btn btn-xs" ng-click="remove(user)">删除</button>
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+</div>

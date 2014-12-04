@@ -123,7 +123,7 @@ function getErrorMsg(err) {
 
     if (_.isString(err)) msg = err;
 
-    if (err.name == "CastError" || err.name == "ValidationError") {
+    if (err.name == "ValidationError") {
 
         msg = "数据验证失败: ";
         var arr = [];
@@ -134,7 +134,10 @@ function getErrorMsg(err) {
         }
         msg += arr.join('; ');
 
-    } 
+    }else if(err.name == "CastError") {
+        // we should not show this in production env
+        msg = "cast err: " + err.message
+    }
     // 11001 happens when editing an existing one
     else if (err.name === "MongoError" && (err.code === 11000 || err.code === 11001) ) {
         msg = '有重复数据';        

@@ -26,6 +26,7 @@ require('./app/models/certificate.js');
 require('./app/models/credit-application.model.js');
 require('./app/models/major.model.js');
 require('./app/models/work-type.model.js');
+require('./app/models/user.model.js');
 
 var indexRouter = require('./app/routes/index.router.js');
 var certRouter = require('./app/routes/cert.router.js');

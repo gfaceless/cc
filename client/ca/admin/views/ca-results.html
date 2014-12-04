@@ -1,5 +1,36 @@
-<div>分页、过滤、搜索、删除等功能制作中</div>
 <div ng-controller="resultCtrl">
+    <div class="control-panel">
+        <form class="form-inline" ng-submit="find(criteria)">
+            <div class="form-group">
+                <label class="sr-only" for="certnumber">证书号</label>
+                <input class="form-control" id="certnumber" placeholder="证书号" ng-model="criteria.certnumber">
+            </div>
+
+            <div class="form-group">
+                <label class="sr-only" for="idnumber">身份证号</label>
+                <input class="form-control" id="idnumber" placeholder="身份证号" ng-model="criteria.idnumber">
+            </div>
+            <div class="form-group">
+                <label class="sr-only" for="name">姓名</label>
+                <input class="form-control" id="name" placeholder="姓名" ng-model="criteria.name">
+            </div>
+            <div class="form-group">
+                <select id="major" class="form-control" ng-model="criteria.major" ng-options="major._id as major.name for major in majors">
+                    <option value="">选择专业</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <!-- sometimes worktype not using camelCase is due to my poor db design-->
+                <select class="form-control" ng-model="criteria.worktype" ng-options="workType.name as workType.name for workType in workTypes">
+                    <option value="">选择工种</option>
+                </select>
+            </div>
+
+            <input type="submit" class="btn btn-primary" value="查找" ng-disabled="searching"></input>
+
+        </form>
+
+    </div>
     <table class="table table-bordered table-hover text-center">
         <thead>
             <tr>
@@ -13,6 +44,7 @@
                 <th class="text-center">可置换专业层次</th>
                 <th class="text-center">申报专业</th>
                 <th class="text-center">申报日期</th>
+                <th class="text-center"></th>
             </tr>
         </thead>
         <tbody>
@@ -25,8 +57,19 @@
                 <td>{{result.applEduLvl}}</td>
                 <td>{{result.major}}</td>
                 <td>{{result.appliedDate}}</td>
+                <td>
+                    <button class="btn btn-xs btn-primary" ng-click="remove(result)">删除</button>
+                </td>
             </tr>
         </tbody>
     </table>
+
+    <div class="pagin">
+        <pagination total-items="pagination.total" ng-model="pagination.currentPage" items-per-page="pagination.itemsPerPage" class="pagination-sm" boundary-links="true" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;" ng-change="pageChanged()" max-size="pagination.maxSize" num-pages="pagination.numPages">
+        </pagination>
+
+        <span class="pager-info label label-primary">共{{pagination.total}}条目，{{pagination.numPages}}页</span>
+    </div>
+
 
 </div>
