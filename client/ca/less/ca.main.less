@@ -20,7 +20,10 @@ body {
 		margin: 0 auto 30px;
 		width: 650px;
 		padding: 25px 40px;
-		text-align: left;		
+		text-align: left;
+		@media print {
+			width: 100%;
+		}
 	}
 	.intro {
 		font-size: 18px;
@@ -43,6 +46,9 @@ body {
 	table {
 		margin: 20px auto;
 		width: 400px;
+		@media print{
+			width: 100%;
+		}
 	}
 	text-align: center;
 }
@@ -75,5 +81,14 @@ body {
 	}
 	li {
 		margin: 10px;
+	}
+}
+
+.ca-btn-print, .success-info{
+	.hidden-print;
+}
+.app-main, .appl-result{
+	@media print {
+		border: none !important;		
 	}
 }

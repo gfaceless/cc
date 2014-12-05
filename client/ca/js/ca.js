@@ -1,5 +1,5 @@
 var app = angular.module('myApp', ['message', 'ui.bootstrap'])
-    .controller('appCtrl', function($scope, $http, $modal, $log) {
+    .controller('appCtrl', function($scope, $http, $modal, $log, $window, $timeout) {
         var urlCA = '/ca/credit-apply';
 
         var templates = [{
@@ -14,13 +14,20 @@ var app = angular.module('myApp', ['message', 'ui.bootstrap'])
 
         var currentTemplate = 0;
         $scope.template = templates[currentTemplate];
-        $scope.ca = {
-            cert: {
-                name: "张志伟",
-                idnumber: "654324199104120035",
-                certnumber: "1449003012300160"
-            }
-        };
+        $scope.ca = {};
+        // tmp:
+        test =  $window.test = function() {
+            $timeout(function() {
+                $scope.ca = {
+                    cert: {
+                        name: "张志伟",
+                        idnumber: "654324199104120035",
+                        certnumber: "1449003012300160"
+                    }
+                };
+            })
+        }        
+        
 
         $http
             .get('major')
@@ -81,6 +88,10 @@ var app = angular.module('myApp', ['message', 'ui.bootstrap'])
         };
         $scope.alert = function(msg) {
             alert(msg);
+        }
+
+        $scope.print = function() {
+            $window.print();
         }
     })
     .controller('ModalInstanceCtrl', function($scope, $modalInstance) {

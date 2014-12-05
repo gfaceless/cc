@@ -137,6 +137,12 @@ a.app-title:hover {
   padding: 25px 40px;
   text-align: left;
 }
+@media print {
+  .app-main .intro,
+  .app-main .appl-result {
+    width: 100%;
+  }
+}
 .app-main .intro {
   font-size: 18px;
 }
@@ -155,6 +161,11 @@ a.app-title:hover {
 .report table {
   margin: 20px auto;
   width: 400px;
+}
+@media print {
+  .report table {
+    width: 100%;
+  }
 }
 .test-tmp {
   position: absolute;
@@ -183,4 +194,16 @@ a.app-title:hover {
 }
 .modal-extra-info li {
   margin: 10px;
+}
+@media print {
+  .ca-btn-print,
+  .success-info {
+    display: none !important;
+  }
+}
+@media print {
+  .app-main,
+  .appl-result {
+    border: none !important;
+  }
 }
