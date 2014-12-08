@@ -84,11 +84,13 @@ cert.read = [preSearch,
             result[key] = {$gte: value[0] || defaultRange[regKey][0] , $lte: value[1] || defaultRange[regKey][1]}
             
         })
-        console.log('query.cert is: ', query.cert);
+        console.log('query is: ', query.cert, page);
         console.log('query time is: ', new Date());
         Certificate.find(query.cert)
             .skip((page - 1) * limit)
             .limit(limit)
+            // try to solve that weird bug(app exits when query too frequently)
+            .lean()
             .exec(function(err, data) {
                 if (err) return next(err);
                 if (!data || !data.length) {

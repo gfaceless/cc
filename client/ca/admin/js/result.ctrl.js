@@ -4,7 +4,7 @@ angular.module('myApp')
         $scope.criteria = {};
         $scope.pagination = {
             currentPage: 1,
-            itemsPerPage: 4,
+            itemsPerPage: 10,
             maxSize: 5
         }
 

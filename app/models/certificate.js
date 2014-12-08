@@ -59,7 +59,7 @@ function dateGetter(val) {
     return moment(val).format('YYYY-MM-DD');
 }
 
-function dateSetter(val) {    
+function dateSetter(val) {
         
     if(!val) {
         return ;

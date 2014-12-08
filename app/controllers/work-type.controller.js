@@ -128,8 +128,7 @@ exports.list = function(req, res, next) {
             res.send({
                 success: true,
                 workTypes: ret
-            });
-            console.log(ret);
+            });            
         })
 
 
