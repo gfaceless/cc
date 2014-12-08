@@ -30,6 +30,7 @@ var allMgr = perm.allow(['crapMgr', 'crapSubmgr']);
 
 
 adminRouter.get('/ca-results', allMgr, caCtrl.list);
+adminRouter.get('/ca-results/to-excel', allMgr, caCtrl.toExcel);
 
 adminRouter.delete('/ca-results/:id', noSub, caCtrl.remove);
 

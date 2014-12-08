@@ -129,8 +129,24 @@ exports.creditApply = [preApply, function(req, res, next) {
 
 }]
 
+exports.list = [search, function(req, res, next) {
+    if (!req.results || !req.results.length) {
+        res.send({
+            success: false,
+            message: "查无结果"
+        })
+    } else {
+        res.send({
+            success: true,
+            results: req.results,
+            total: req.total
+        })
+    }
+}]
 
-exports.list = function(req, res, next) {
+
+
+function search(req, res, next) {
     //defaults:
     var page = req.query.page || 1;
     var limit = req.query.limit || 10;
@@ -151,10 +167,8 @@ exports.list = function(req, res, next) {
             .exec(function(err, arr) {
                 if (err) return next(err);
                 if (!arr.length) {
-                    return res.send({
-                        success: false,
-                        message: "查无结果"
-                    })
+                    req.results = arr;
+                    return next();
                 }
                 certs = arr;
                 credApplFind();
@@ -166,25 +180,27 @@ exports.list = function(req, res, next) {
     }
 
     function credApplFind() {
-        console.log('criteria is ', criteria);
         var query = CA.find(criteria)
+        var queryCount = CA.find(criteria)
+        
         if (certs) {
             // TODO: this is fucking slow, esp when certs is large
             // go and find some clever trick to circumvent this
             // maybe mongodb mapReduce?
             query.where('cert').in(certs)
+            queryCount.where('cert').in(certs)
         }
-        query.skip((page - 1) * limit)
-            .limit(limit)
-            .populate('cert major')
+        if (!req.query.excel) {
+            query.skip((page - 1) * limit)
+                .limit(limit)
+        }
+        query.populate('cert major')
             .lean()
             .exec(function(err, arr) {
                 if (err) return next(err);
                 if (!arr.length) {
-                    return res.send({
-                        success: false,
-                        message: "查无结果"
-                    })
+                    req.results = arr;
+                    return next();
                 }
 
                 var ret = _.transform(arr, function(result, val, key) {
@@ -199,13 +215,12 @@ exports.list = function(req, res, next) {
 
                         result[key] = val;
                     })
-                    // How can we skip this round-trip?
-                CA.count(criteria, function(err, total) {
-                    res.send({
-                        success: true,
-                        results: ret,
-                        total: total
-                    });
+                // How can we skip this round-trip?
+                
+                queryCount.count(function(err, total) {
+                    req.results = ret;
+                    req.total = total;
+                    next();
                 })
 
             })
@@ -229,6 +244,9 @@ exports.remove = function(req, res, next) {
 
 }
 
+
+
+
 function isApplicable(certnumber) {
     var digit = parseInt(certnumber[10], 10);
     return digit <= 3;
@@ -240,3 +258,61 @@ function toApplEduLvl(certnumber) {
     if (digit == 3) return "专科、本科";
     return "错误"
 }
+
+
+
+exports.toExcel = [search, function(req, res, next) {
+    //TODO: optimize the initiation
+    var xlsx = require('node-xlsx');
+    // we should use stream here
+
+    var map = {
+        "_id": "认证编号",
+        "name": "姓名",
+        idnumber: "身份证号",
+        certnumber: "证书号",
+        worktype: "工种",
+        applEduLvl: "可置换专业层次",
+        major: "申报专业",
+        appliedDate: "申报日期"
+    }
+    var keys = _.keys(map);
+    // excel header name
+    var headerNames = _.values(map);
+
+    var data = _.map(req.results, function(item) {
+        var ret = [];
+        // the order is not guaranteed across different env,
+        // but it is consistent in one os.
+        _.forOwn(map, function(v, k) {
+            ret.push(item[k] || "");
+        })
+        return ret;
+    })
+
+    data.unshift(headerNames);
+
+
+    var buffer = xlsx.build([{
+        name: "申请结果",
+        data: data
+    }]);
+
+
+    // TODO: of course I should make it a stream, shouldn't create files
+    var tmp = require('tmp');
+    tmp.tmpName({
+        postfix: '.xlsx'
+    }, function(err, path) {
+        if (err) return next(err);
+        var fs = require('fs');
+        fs.writeFile(path, buffer, function(err) {
+            if (err) return next(err);
+            res.download(path, 'report.xlsx', function(err) {
+                if (err) return next(err);
+            });
+        });
+    });
+
+
+}]

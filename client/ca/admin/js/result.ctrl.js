@@ -4,30 +4,91 @@ angular.module('myApp')
         $scope.criteria = {};
         $scope.pagination = {
             currentPage: 1,
-            itemsPerPage: 10,
+            itemsPerPage: 4,
             maxSize: 5
         }
 
         $scope.$watch("searching", function(val, oldVal) {
-            
-            if(val){
+
+            if (val) {
                 MessageApi.progress('查找中..');
-            }else {
+            } else {
                 // pass 0 to clear progress info right away 
                 MessageApi.clear(0);
             }
         });
+
+        /**
+         * after field is touched, angular will add the related key to the model object
+         * so when we do some query, it would cause some misunderstanding
+         * (whether it is a query of items whose field is empty or a query of items that does not have that field)
+         * @param  {[type]} criteria [description]
+         * @param  {[type]} pagin    should be an object {page: .., limit:..} if not passed, it is an entire export
+         *                           most likely to be an excel output
+         * @return {[type]}          an object ready to be passed into buildUrl (a private function of $http, I implemented
+         *                           it here too)
+         */
+        function makeParams(criteria, pagin) {
+            // we don't want pagination info get into criteria obj, 
+            // so copy it
+            var ret = angular.extend({}, criteria);
+
+            if (pagin) {
+                ret.page = pagin.page || 1;
+                ret.limit = pagin.limit || $scope.pagination.itemsPerPage
+            }
+            // remove empty props:
+            angular.forEach(ret, function(val, key) {
+                // the following senarios:
+                // undefined, null, ''
+                if (!val && val !== 0) {
+                    delete this[key]
+                }
+            }, ret)
+            return ret;
+        }
+
+        $scope.download = function(e) {
+            
+            var urlPart = buildUrl(makeParams(lastCriteria));
+
+            $scope.dlUrl = "ca-results/to-excel" + urlPart;
+            
+            // TODO: we should have MessageApi.info()
+            MessageApi.success('即将开始下载..');
+
+            function buildUrl(obj) {
+                var arr = [];
+                var ret;
+                angular.forEach(obj, function(val, key) {
+                    arr.push(key + '=' + val)
+                })
+                if (!arr.length) {
+                    ret = "";
+                } else {
+                    ret = "?" + arr.join("&")
+                }
+                return ret;
+            }
+        }
+
         $scope.find = function(criteria, page, mute) {
+            // it may desync,
+            // so we make a copy of criteria
+            criteria = angular.copy(criteria);
 
             $http.get('ca-results', {
-                    params: makeParams(),
+                    params: makeParams(criteria, {
+                        page: page
+                    }),
                     mute: mute
                 })
                 .success(function(data) {
-                    
+
                     $scope.results = data.results;
                     $scope.pagination.total = data.total;
-                    lastCriteria = angular.copy(criteria);
+                    // criteria is already a copied version, so it's ok to just equal them
+                    lastCriteria = criteria;
                     $scope.searching = false;
                 }).error(function(data) {
                     $scope.searching = false;
@@ -35,23 +96,6 @@ angular.module('myApp')
 
             $scope.searching = true;
 
-            function makeParams() {
-                var ret = angular.extend({}, criteria);
-                ret.page = page;
-                ret.limit = $scope.pagination.itemsPerPage
-
-                // remove empty props:
-                angular.forEach(ret, function(val, key) {
-                    // the following senarios:
-                    // undefined, null, ''
-                    if (!val && val !== 0) {
-                        delete this[key]
-                    }
-
-                }, ret)
-                return ret;
-
-            }
         }
         $scope.remove = function(item, index) {
             var confirmed = confirm('确定要删除么');
@@ -80,8 +124,8 @@ angular.module('myApp')
                 .success(function(data) {
                     $scope.workTypes = data.workTypes;
                 })
-            // if first load, we mute the query.
-            // (if no result was found, we speak nothing)
+                // if first load, we mute the query.
+                // (if no result was found, we speak nothing)
             $scope.find($scope.criteria, 1, true);
         }
         init();
