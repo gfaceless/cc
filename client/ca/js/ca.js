@@ -15,6 +15,7 @@ var app = angular.module('myApp', ['message', 'ui.bootstrap'])
         var currentTemplate = 0;
         $scope.template = templates[currentTemplate];
         $scope.ca = {};
+        $scope.step = 1;
         // tmp:
         test =  $window.test = function() {
             $timeout(function() {
@@ -48,6 +49,7 @@ var app = angular.module('myApp', ['message', 'ui.bootstrap'])
                     } else {
                         $scope.template = templates[3];
                     }
+                    $scope.step = 3;
                     angular.extend($scope, data);
                 })
                 .error(function(data) {
@@ -59,6 +61,7 @@ var app = angular.module('myApp', ['message', 'ui.bootstrap'])
 
         $scope.restart = $scope.start = function() {
             $scope.template = templates[1];
+            $scope.step = 2;
         }
 
         $scope.getError = function(error) {            

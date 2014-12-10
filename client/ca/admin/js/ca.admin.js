@@ -1,4 +1,4 @@
-var app = angular.module('myApp', ['taiPlaceholder', 'message', 'misc', 'liveCreate', 'ui.bootstrap'])
+var app = angular.module('myApp', ['taiPlaceholder', 'message', 'misc', 'liveCreate', 'ui.bootstrap',"ngMessages"])
     .config(function($httpProvider) {
         // $httpProvider.interceptors.push(b);
         

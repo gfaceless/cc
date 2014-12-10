@@ -8,9 +8,38 @@ body {
 	text-align: center;
 	padding: 10px 80px;
 }
+
+@step-w: 195px;
+@step-h: 107px;
 .step-indicator{
-	position: absolute;
-	padding: 15px;
+	position: relative;
+	.spinner{
+		position: absolute;
+		top: 50px;
+	}
+	&:extend(.clearfix all);
+	padding: 25px 0 25px 65px;
+	.step {
+		float: left;
+		width: @step-w;
+		height: @step-h;
+		background-image: url('../img/steps.jpg');
+	}
+	.step.current-step{
+		background-image: url('../img/steps-highlight.jpg');
+	}
+	.step2 {
+		background-position: -@step-w 0;
+	}
+	.step3 {
+		background-position: -@step-w * 2 0;
+	}
+	.arrow{
+		float:left;
+		.size(69px, @step-h);
+		background: url("../img/arrow.jpg") 0 center no-repeat;
+		float: left;
+	}
 }
 .app-main {
 	margin-top: 5px;
@@ -19,7 +48,7 @@ body {
 		background: white;
 		margin: 0 auto 30px;
 		width: 650px;
-		padding: 25px 40px;
+		padding: 25px 40px 15px;
 		text-align: left;
 		@media print {
 			width: 100%;
@@ -51,7 +80,9 @@ body {
 		}
 	}
 	text-align: center;
+	margin-bottom: 40px;
 }
+
 
 .test-tmp{
 	position: absolute;
@@ -84,7 +115,7 @@ body {
 	}
 }
 
-.ca-btn-print, .success-info{
+.ca-btn-print, .success-info, .change-major{
 	.hidden-print;
 }
 .app-main, .appl-result{

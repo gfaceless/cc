@@ -1,3 +1,8 @@
+<script type="text/ng-template" id="my-custom-messages">
+    <div ng-message="required">必填</div>
+    <div ng-message="minlength">太短了</div>
+    <div ng-message="equals">两次输入不一样</div>
+</script>
 <div class="modal-header">
     <h2 ng-show="!editing">添加子管理员</h2>
     <h2 ng-show="editing">编辑子管理员</h2>
@@ -7,32 +12,33 @@
         <div class="form-group">
             <label class="col-sm-3 control-label">用户名</label>
             <div class="col-sm-6">
-                <input type="text" ng-model="user.name" class="form-control"  gf-enter="!userForm.$invalid && ok()" auto-focus required name="name">
+                <input type="text" ng-model="user.name" class="form-control" gf-enter="!userForm.$invalid && ok()" auto-focus required name="name">
             </div>
-            <div class="text-danger col-sm-3 form-control-static" ng-show="userForm.name.$invalid && userForm.name.$dirty">
+            <!-- <div class="text-danger col-sm-3 form-control-static" ng-show="userForm.name.$invalid && userForm.name.$dirty">
                 {{getError(userForm.name)}}
-            </div>
+            </div> -->
+            <!-- <div class="text-danger col-sm-3 form-control-static" gf-val="name" overwrite-msg="{required:" 真的得必填 "}"></div> -->
+            <div ng-messages="userForm.name.$touched && userForm.name.$error" ng-messages-include="views/err-msgs.html"></div>
         </div>
         <div class="form-group">
             <label class="col-sm-3 control-label">密码</label>
             <div class="col-sm-6">
-                <input type="password" ng-model="user.password" class="form-control"  gf-enter="!userForm.$invalid && ok()" equals="{{p2}}" name="password" required>
+                <input type="password" ng-model="user.password" class="form-control" gf-enter="!userForm.$invalid && ok()" equals="{{p2}}" name="password" required ng-minlength="6">
             </div>
-            <div class="text-danger col-sm-3 form-control-static" ng-show="userForm.password.$invalid && userForm.password.$dirty">
-                {{getError(userForm.password)}}
-            </div>
+            <!-- <div class="text-danger col-sm-3 form-control-static" gf-val="password">
+            </div> -->
+            <div ng-messages="userForm.password.$error" ng-messages-include="views/err-msgs.html"></div>
         </div>
         <div class="form-group">
             <label class="col-sm-3 control-label">确认密码</label>
             <div class="col-sm-6">
                 <input type="password" ng-model="p2" class="form-control" gf-enter="!userForm.$invalid && ok()" equals="{{user.password}}" name="p2" required>
             </div>
-            <div class="text-danger col-sm-3 form-control-static" ng-show="userForm.p2.$invalid && userForm.p2.$dirty">
-                {{getError(userForm.p2)}}
-            </div>
+            <!-- <div class="text-danger col-sm-3 form-control-static" gf-val="p2"></div> -->
+            
         </div>
-	</form>        
-        
+    </form>
+
 </div>
 
 <div class="modal-footer">

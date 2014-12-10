@@ -88,7 +88,9 @@
 .panel-body:before,
 .panel-body:after,
 .modal-footer:before,
-.modal-footer:after {
+.modal-footer:after,
+.step-indicator:before,
+.step-indicator:after {
   content: " ";
   display: table;
 }
@@ -105,7 +107,8 @@
 .navbar-collapse:after,
 .pager:after,
 .panel-body:after,
-.modal-footer:after {
+.modal-footer:after,
+.step-indicator:after {
   clear: both;
 }
 body {
@@ -122,8 +125,33 @@ a.app-title:hover {
   background-color: #3071a9;
 }
 .step-indicator {
+  position: relative;
+  padding: 25px 0 25px 65px;
+}
+.step-indicator .spinner {
   position: absolute;
-  padding: 15px;
+  top: 50px;
+}
+.step-indicator .step {
+  float: left;
+  width: 195px;
+  height: 107px;
+  background-image: url('../img/steps.jpg');
+}
+.step-indicator .step.current-step {
+  background-image: url('../img/steps-highlight.jpg');
+}
+.step-indicator .step2 {
+  background-position: -195px 0;
+}
+.step-indicator .step3 {
+  background-position: -390px 0;
+}
+.step-indicator .arrow {
+  width: 69px;
+  height: 107px;
+  background: url("../img/arrow.jpg") 0 center no-repeat;
+  float: left;
 }
 .app-main {
   margin-top: 5px;
@@ -134,7 +162,7 @@ a.app-title:hover {
   background: white;
   margin: 0 auto 30px;
   width: 650px;
-  padding: 25px 40px;
+  padding: 25px 40px 15px;
   text-align: left;
 }
 @media print {
@@ -157,6 +185,7 @@ a.app-title:hover {
 }
 .report {
   text-align: center;
+  margin-bottom: 40px;
 }
 .report table {
   margin: 20px auto;
@@ -197,7 +226,8 @@ a.app-title:hover {
 }
 @media print {
   .ca-btn-print,
-  .success-info {
+  .success-info,
+  .change-major {
     display: none !important;
   }
 }
