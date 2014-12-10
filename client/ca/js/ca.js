@@ -34,14 +34,17 @@ var app = angular.module('myApp', ['message', 'ui.bootstrap'])
             .get('major')
             .success(function(data) {
                 $scope.majors = data.majors;
-            })
-            .error(function() {
+            });
 
-            })
+        $scope.$watch("updating", function(val, oldVal) {
+            if(val === true){
+                $scope.hasApplied = false;
+            }
+        })
 
         $scope.submit = function() {
-
-            $http.post(urlCA, $scope.ca)
+            var data = angular.extend({}, $scope.ca, {updating: $scope.updating})
+            $http.post(urlCA, data)
                 .success(function(data) {
 
                     if (data.success) {
@@ -59,7 +62,10 @@ var app = angular.module('myApp', ['message', 'ui.bootstrap'])
                 })
         }
 
-        $scope.restart = $scope.start = function() {
+        $scope.restart = $scope.start = function(updating) {
+            // updating only happens when an already-applied student wants to change his choice of major
+            $scope.updating = updating;
+            
             $scope.template = templates[1];
             $scope.step = 2;
         }

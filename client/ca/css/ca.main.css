@@ -39,6 +39,46 @@
   line-height: 1.5;
   border-radius: 3px;
 }
+.test-tmp,
+.rechoose {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+.test-tmp h4,
+.rechoose h4 {
+  margin-top: 0;
+  color: inherit;
+}
+.test-tmp .alert-link,
+.rechoose .alert-link {
+  font-weight: bold;
+}
+.test-tmp > p,
+.test-tmp > ul,
+.rechoose > p,
+.rechoose > ul {
+  margin-bottom: 0;
+}
+.test-tmp > p + p,
+.rechoose > p + p {
+  margin-top: 5px;
+}
+.test-tmp,
+.rechoose {
+  background-color: #d9edf7;
+  border-color: #bce8f1;
+  color: #31708f;
+}
+.test-tmp hr,
+.rechoose hr {
+  border-top-color: #a6e1ec;
+}
+.test-tmp .alert-link,
+.rechoose .alert-link {
+  color: #245269;
+}
 .app-main,
 .app-main .intro,
 .app-main .appl-result {
@@ -196,8 +236,10 @@ a.app-title:hover {
     width: 100%;
   }
 }
-.test-tmp {
+.test-tmp,
+.rechoose {
   position: absolute;
+  margin-left: 30px;
 }
 .modal-extra-info {
   padding: 0 50px;

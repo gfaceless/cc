@@ -37,7 +37,6 @@ exports.creditApply = [preApply, function(req, res, next) {
     // req.body is already guaranteed to be appropriate   
     var majorId = req.body.majorId;
 
-
     // TODO: use async
     Certificate.findOne(req.body.cert, function(err, cert) {
         if (err) return next(err);
@@ -50,6 +49,7 @@ exports.creditApply = [preApply, function(req, res, next) {
             });
         }
 
+        // reason 3: not applicable
         if (!isApplicable(cert.certnumber)) {
             return res.send({
                 success: false,
@@ -67,6 +67,7 @@ exports.creditApply = [preApply, function(req, res, next) {
                     return next(new Error('no such major'))
                 }
 
+                // reason 2: specified major does not have specified worktype.
                 var inArray = _(major.workTypes).pluck('name').contains(cert.worktype);
                 if (!inArray) {
                     return res.send({
@@ -90,8 +91,21 @@ exports.creditApply = [preApply, function(req, res, next) {
                             return report;
                         }
 
+                        function onSaved(err, ca) {
+                            if (err) return next(err);
+                            CA.populate(ca, {
+                                path: "major cert"
+                            }, function(err, ca) {
+                                res.send({
+                                    success: true,
+                                    report: makeReport(ca)
+                                })
+                            })
+                        }
+
                         if (err) return next(err);
-                        if (ca) {
+                        
+                        if(ca && !req.body.updating){
                             var report = makeReport(ca);
 
                             // try using async, to sement res.send logic together
@@ -103,25 +117,22 @@ exports.creditApply = [preApply, function(req, res, next) {
                             })
                             return;
                         }
+
                         // when there is no ca in db:
-                        ca = new CA({
-                            cert: cert,
-                            major: majorId
-                        })
-
-                        ca.save(function(err, ca) {
-                            if (err) return next(err);
-                            CA.populate(ca, {
-                                path: "major cert"
-                            }, function(err, ca) {
-                                console.log(ca);
-                                res.send({
-                                    success: true,
-                                    report: makeReport(ca)
-                                })
+                        if (!ca) {
+                            ca = new CA({
+                                cert: cert,
+                                major: majorId
                             })
+                        }
 
-                        })
+                        if (req.body.updating) {
+                            // this is when student wants to change his major
+                            // we could alo change appliedDate here
+                            ca.major = majorId;
+                            ca.appliedDate = new Date();
+                        } 
+                        ca.save(onSaved);
                     })
 
             })
@@ -182,7 +193,7 @@ function search(req, res, next) {
     function credApplFind() {
         var query = CA.find(criteria)
         var queryCount = CA.find(criteria)
-        
+
         if (certs) {
             // TODO: this is fucking slow, esp when certs is large
             // go and find some clever trick to circumvent this
@@ -215,8 +226,8 @@ function search(req, res, next) {
 
                         result[key] = val;
                     })
-                // How can we skip this round-trip?
-                
+                    // How can we skip this round-trip?
+
                 queryCount.count(function(err, total) {
                     req.results = ret;
                     req.total = total;

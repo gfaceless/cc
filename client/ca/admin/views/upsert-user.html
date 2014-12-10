@@ -1,8 +1,4 @@
-<script type="text/ng-template" id="my-custom-messages">
-    <div ng-message="required">必填</div>
-    <div ng-message="minlength">太短了</div>
-    <div ng-message="equals">两次输入不一样</div>
-</script>
+
 <div class="modal-header">
     <h2 ng-show="!editing">添加子管理员</h2>
     <h2 ng-show="editing">编辑子管理员</h2>
@@ -18,7 +14,7 @@
                 {{getError(userForm.name)}}
             </div> -->
             <!-- <div class="text-danger col-sm-3 form-control-static" gf-val="name" overwrite-msg="{required:" 真的得必填 "}"></div> -->
-            <div ng-messages="userForm.name.$touched && userForm.name.$error" ng-messages-include="views/err-msgs.html"></div>
+            <div class="text-danger col-sm-3 form-control-static" ng-messages="userForm.name.$touched && userForm.name.$error" ng-messages-include="views/err-msgs.html"></div>
         </div>
         <div class="form-group">
             <label class="col-sm-3 control-label">密码</label>
@@ -27,7 +23,7 @@
             </div>
             <!-- <div class="text-danger col-sm-3 form-control-static" gf-val="password">
             </div> -->
-            <div ng-messages="userForm.password.$error" ng-messages-include="views/err-msgs.html"></div>
+            <div class="text-danger col-sm-3 form-control-static" ng-messages="userForm.password.$touched && userForm.password.$error" ng-messages-include="views/err-msgs.html"></div>
         </div>
         <div class="form-group">
             <label class="col-sm-3 control-label">确认密码</label>

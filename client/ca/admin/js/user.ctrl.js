@@ -73,7 +73,7 @@ app.controller('userCtrl', function($scope, $http, $modal, MessageApi) {
 
 })
 app.controller('userUpsertCtrl', function($scope, $modalInstance, $http, user) {
-	$scope.form = {};
+	
 
 	var editing = user ? true : false;
 	var method = user ? "put" : "post";
@@ -82,10 +82,6 @@ app.controller('userUpsertCtrl', function($scope, $modalInstance, $http, user) {
 
 	$scope.user = user || {};
 	$scope.editing = editing;
-	console.log($scope.userForm);
-	setTimeout(function() {
-		console.log($scope.userForm);
-	},2000)
 
 	$scope.ok = function() {
 

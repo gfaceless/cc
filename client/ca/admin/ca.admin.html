@@ -27,8 +27,7 @@
       </script>
       <script src="../../js/ie-polyfill.js"></script>
     <![endif]-->
-    <!-- <script type="text/javascript" src="http://code.angularjs.org/snapshot/angular.js"></script>
-    <script type="text/javascript" src="http://code.angularjs.org/snapshot/angular-messages.js"></script> -->
+    
     <script src="../../js/angular.js"></script>
     <script src="../../js/angular-messages.min.js"></script>
     <script src="../../js/ui-bootstrap-tpls-0.11.0.min.js"></script>
@@ -65,24 +64,7 @@
             <li ng-repeat="tab in tabs" ng-class="{active:isActive(tab)}" ng-click="onClickTab(tab)">{{tab.title}}</li>
         </ul>
 
-        <div class="app-main">
-            <form name="userForm">
-              <div class="field">
-                <label for="emailAddress">Enter your email address:</label>
-                <input type="email" name="emailAddress" ng-model="data.email" required />
-
-                <div ng-messages="userForm.emailAddress.$error">
-                  <div ng-message="required">
-                    You forgot to enter your email address...
-                  </div>
-                  <div ng-message="email">
-                    You did not enter your email address correctly...
-                  </div>
-                </div>
-              </div>
-
-              <input type="submit" />
-            </form>
+        <div class="app-main">           
 
             <div ng-include="currentTab.url"></div>
         </div>

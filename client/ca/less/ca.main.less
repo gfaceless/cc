@@ -84,9 +84,12 @@ body {
 }
 
 
-.test-tmp{
+.test-tmp, .rechoose{
+	// even if we don't give its parent position:relatvie,
+	// as long as we don't specify left:w/e; its position is fine
 	position: absolute;
-	
+	margin-left: 30px;
+	&:extend(.alert all, .alert-info all);
 }
 
 .modal-extra-info{
