@@ -155,12 +155,13 @@ exports.list = [search, function(req, res, next) {
     }
 }]
 
-
+var defDateRange = [new Date('2014-12-01'), new Date()];
 
 function search(req, res, next) {
     //defaults:
     var page = req.query.page || 1;
     var limit = req.query.limit || 10;
+
 
     // we'll add date filter later
     var criteria = _.pick(req.query, ['major']);
@@ -205,6 +206,24 @@ function search(req, res, next) {
             query.skip((page - 1) * limit)
                 .limit(limit)
         }
+
+        // handle date range query:
+        var from = req.query.from;
+        var to = req.query.to;
+        console.log(from, to);
+        if(from || to){
+            var from = from || defDateRange[0];
+            var to = to || defDateRange[1];            
+
+            query.where('appliedDate', {
+                $gte: from,
+                // add 1 day (to the 12 clock in the evening of that day)
+                // toDate() helps momentjs convert to native Date
+                // http://momentjs.com/docs/#/displaying/as-javascript-date/
+                $lte: moment(to).add(1, 'd').toDate(),
+            })
+        }
+
         query.populate('cert major')
             .lean()
             .exec(function(err, arr) {

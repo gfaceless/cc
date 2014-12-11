@@ -83,6 +83,7 @@ angular.module('misc', [])
         }
     })
 // I chose to use the official ngMessages module instead
+// but it only works under version 1.3+, so I back here
 .directive('gfVal', function() {
     return {
         restrict: "A",
@@ -92,17 +93,19 @@ angular.module('misc', [])
             //ng-show="userForm.name.$invalid && userForm.name.$dirty"
             var fieldName = attrs.gfVal;            
             var fieldCtrl = formCtrl[fieldName];
+            
             scope.$watchCollection(function() {
                 
                 return fieldCtrl.$error
             }, function(errors, oldErrors) {
                 
-                if(fieldCtrl.$touched){
+                // was $touched, but 1.2 does not support that attr yet
+                if(fieldCtrl.$dirty){
                     scope.message = getErrorMsg(errors);
                 }
             })
 
-            scope.$watch(function() {return fieldCtrl.$touched;}, function(val, oldVal) {
+            scope.$watch(function() {return fieldCtrl.$dirty;}, function(val, oldVal) {
                 
                 if(val) scope.message = getErrorMsg(fieldCtrl.$error);
             })

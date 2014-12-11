@@ -1,7 +1,11 @@
 angular.module('myApp')
     .controller('resultCtrl', function($scope, $http, $log, MessageApi) {
         var lastCriteria;
-        $scope.criteria = {};
+        // note: it is ok to remove the following code, angularjs would dynamically create an entire object
+        // even ng-model is a named string like "criteria.date"
+        
+        /*$scope.criteria = {};*/
+
         $scope.pagination = {
             currentPage: 1,
             itemsPerPage: 10,
@@ -61,7 +65,7 @@ angular.module('myApp')
                 var arr = [];
                 var ret;
                 angular.forEach(obj, function(val, key) {
-                    arr.push(key + '=' + val)
+                    arr.push(key + '=' + encodeURIComponent(val))
                 })
                 if (!arr.length) {
                     ret = "";
@@ -76,7 +80,7 @@ angular.module('myApp')
             // it may desync,
             // so we make a copy of criteria
             criteria = angular.copy(criteria);
-
+            
             $http.get('ca-results', {
                     params: makeParams(criteria, {
                         page: page
@@ -113,6 +117,21 @@ angular.module('myApp')
         $scope.pageChanged = function() {
             $scope.find(lastCriteria, $scope.pagination.currentPage);
         };
+
+        $scope.datepicker = {        
+            formats : ['yyyy-MM-dd'],
+            options: {
+                startingDay: 1,            
+                showWeeks: false
+            }
+        }
+        $scope.openDatepicker = function($event, dir) {        
+            $event.preventDefault();
+            $event.stopPropagation();
+            $scope.datepicker[dir] = $scope.datepicker[dir] || {};
+            $scope.datepicker[dir].opened = true;
+        }
+
 
         function init() {
             $http

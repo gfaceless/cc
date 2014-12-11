@@ -1,4 +1,4 @@
-var app = angular.module('myApp', ['taiPlaceholder', 'message', 'misc', 'liveCreate', 'ui.bootstrap',"ngMessages"])
+var app = angular.module('myApp', ['taiPlaceholder', 'message', 'misc', 'liveCreate', 'ui.bootstrap'])
     .config(function($httpProvider) {
         // $httpProvider.interceptors.push(b);
         
@@ -44,20 +44,6 @@ var app = angular.module('myApp', ['taiPlaceholder', 'message', 'misc', 'liveCre
             };
         });
 
-        function b($q) {
-            return {
-                response: function(res) {
-                    console.log('here in response2')
-                    console.log(res);
-                    return res;
-                },
-                responseError: function(res) {
-                    console.log('here in responseError2');
-                    console.log(res);
-                    return $q.reject(res);
-                }
-            }
-        }
     })
     .controller('appCtrl', function($scope, $http, $modal, MessageApi, $timeout) {
 

@@ -196,6 +196,11 @@ a.app-sidebar li.active:hover {
   border-bottom: 1px #eeeeee solid;
   padding: 20px 100px;
 }
+.control-panel .from,
+.control-panel .to,
+.control-panel .name {
+  width: 130px !important;
+}
 .major {
   width: 400px;
   margin-left: -15px;
@@ -286,4 +291,7 @@ a.work-type:hover {
 .user-panel {
   width: 400px;
   margin: 20px 0;
+}
+.form-inline .form-group {
+  margin-top: 10px;
 }
