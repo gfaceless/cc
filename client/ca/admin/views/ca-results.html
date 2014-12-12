@@ -54,6 +54,7 @@
         </form>
 
     </div>
+    <div class="table-responsive">
     <table class="table table-bordered table-hover text-center">
         <thead>
             <tr>
@@ -86,7 +87,7 @@
             </tr>
         </tbody>
     </table>
-
+    </div>
     <div class="pagin">
         <pagination total-items="pagination.total" ng-model="pagination.currentPage" items-per-page="pagination.itemsPerPage" class="pagination-sm" boundary-links="true" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;" ng-change="pageChanged()" max-size="pagination.maxSize" num-pages="pagination.numPages">
         </pagination>
