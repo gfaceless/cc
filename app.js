@@ -55,6 +55,7 @@ app.use(session({
 
 app.use('/', indexRouter);
 app.use('/certs', certRouter);
+app.use('/config', require('./app/routes/config.router.js'));
 
 // ca means `credit application`
 app.use('/ca', require('./app/routes/ca.router.js'));
@@ -70,3 +71,11 @@ handleError(app);
 
 
 module.exports = app;
+
+// #http://stackoverflow.com/questions/7310521/node-js-best-practice-exception-handling
+// they suggest using nodejs new feature 'domain', but I just can't grasp that concept
+// maybe later
+/*process.on('uncaughtException', function(err) {
+	console.log("something severe happens, we need to restart our program, the err is: ", err)
+})*/
+

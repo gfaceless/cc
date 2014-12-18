@@ -14,6 +14,24 @@ angular.module('misc', [])
                         });
                     });
                     event.preventDefault();
+                    element[0].blur();
+                }
+            });
+        };
+    })
+    .directive('gfEscape', function() {
+        return function(scope, element, attrs) {
+            // it is said that keypress is not consistent when press escape key
+            element.bind("keyup", function(event) {                
+                if (event.keyCode === 27) {
+
+                    scope.$apply(function() {
+                        scope.$eval(attrs.gfEscape, {
+                            'event': event
+                        });
+                    });
+                    event.preventDefault();
+                    element[0].blur();
                 }
             });
         };

@@ -246,18 +246,26 @@ a.app-title:hover {
   height: 650px;
   overflow-y: scroll;
 }
+.modal-extra-info .kaiti {
+  font-size: 18px;
+  font-family: KaiTi, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: black;
+}
 .modal-extra-info h1,
 .modal-extra-info h2 {
   font-weight: bold;
+  font-size: 25px;
 }
 .modal-extra-info table {
   margin-top: 40px;
 }
 .modal-extra-info table th {
   text-align: center;
+  white-space: nowrap;
 }
 .modal-extra-info table td {
-  font-size: 13px;
+  font-size: 15px;
+  vertical-align: middle !important;
 }
 .modal-extra-info table caption {
   font-size: 20px;

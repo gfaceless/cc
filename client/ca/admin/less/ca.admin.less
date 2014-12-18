@@ -86,7 +86,7 @@
 	}
 }
 
-.major, .work-type{
+.major/*, .work-type*/{
 	&:extend(.well all);
 }
 
@@ -109,18 +109,25 @@
 
 .work-type {
 	
-	height: 50px;
+	.size(150px, 30px + 2*10px);
+	border: 1px solid #bbb;
+	margin: -1px 0 0 -1px;
 	
-	padding: 10px 25px;
+	
+	padding: 10px;
+	text-align: center;
+	.text-overflow();
 
-	float: left;
-	margin: 8px 8px;	
+	float: left;	
 	
-	.bg-success;
+	// .bg-success;
 	position: relative;
 
 	.name {
 		line-height: 30px;
+	}
+	input {
+		width: 135px;
 	}
 }
 
@@ -189,4 +196,11 @@
 th, td {
     vertical-align: middle !IMPORTANT;
     white-space: nowrap;
+}
+
+
+
+// fuck Zhou
+.login-modal .modal-content{
+    top: 42px;
 }

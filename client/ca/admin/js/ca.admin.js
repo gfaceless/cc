@@ -62,7 +62,8 @@ var app = angular.module('myApp', ['taiPlaceholder', 'message', 'misc', 'liveCre
                 templateUrl: 'views/login.html',
                 controller: 'loginCtrl',
                 size: 'sm',
-                backdrop: false
+                backdrop: false,
+                windowClass: "login-modal"
             }).result.then(function(data) {
                 $scope.logged = true;
                 MessageApi.success('登录成功');

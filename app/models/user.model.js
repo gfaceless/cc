@@ -31,10 +31,10 @@ var userSchema = new Schema({
 });
 
 
-userSchema.path('name').validate(function(value) {
+/*userSchema.path('name').validate(function(value) {
     // makeshift:
     return value != 'sys'
-}, '此为高级管理员帐号，添加不能');
+}, '此为高级管理员帐号，添加不能');*/
 
 userSchema.path('password').set(function(val) {
     // makeshift

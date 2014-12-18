@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html ng-app="myApp" id="ng-app">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>cc</title>
+	<link rel="stylesheet" href="vendors/bootstrap-3.2.0-dist/css/bootstrap.min.css">
+	<!-- <link rel="stylesheet" href="vendors/bootstrap-3.2.0-dist/css/bootstrap-theme.min.css"> -->
+	
+	<link rel="stylesheet" href="css/main.css">
+	<!--[if lt IE 9]>          
+	  <script type="text/javascript" src="js/respond.min.js"></script>
+	<![endif]-->
+	<!--[if lte IE 8]>
+	  <script>
+		document.createElement('ng-include');
+		document.createElement('ng-pluralize');
+		document.createElement('ng-view');
+		document.createElement('indicator');
+		document.createElement('pagination');
+
+		// Optionally these for CSS
+		document.createElement('ng:include');
+		document.createElement('ng:pluralize');
+		document.createElement('ng:view');
+	  </script>
+	  <script src="js/ie-polyfill.js"></script>
+	<![endif]-->
+	<script src="js/angular-1.2.min.js"></script>
+	
+	<script src="js/tai-placeholder.js"></script>
+
+
+	<script src="js/ui-bootstrap-tpls-0.11.0.min.js"></script>
+
+	<script src="js/filters/filters.js"></script>
+	<script src="js/modules/message.module.js"></script>
+	<script src="js/config.client.js"></script>
+	
+
+</head>
+
+<body ng-controller="appCtrl">
+	<div message></div>
+
+	<form ng-submit="createSysAcct()">
+		<div>请牢记此处信息</div>
+		<div>supermgr here</div>
+		<input type="text" ng-model="sysMgr.name">
+		<input type="password" ng-model="sysMgr.password">
+		<input type="password" ng-model="p2" placeholder="确认密码">
+		<input type="submit" class="btn btn-primary" value="ok">
+	</form>
+
+	<form ng-submit="createCrapMgr()">
+		<div>请牢记此处信息</div>
+		<div>crapMgr here</div>
+		<input type="text" ng-model="crapMgr.name">
+		<input type="password" ng-model="crapMgr.password">
+		<input type="password" ng-model="p3" placeholder="确认密码">
+		<input type="submit" class="btn btn-primary" value="ok">
+	</form>
+   
+</body>
+
+</html>

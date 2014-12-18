@@ -39,8 +39,7 @@
   line-height: 1.5;
   border-radius: 3px;
 }
-.major,
-.work-type {
+.major {
   min-height: 20px;
   padding: 19px;
   margin-bottom: 20px;
@@ -50,8 +49,7 @@
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
 }
-.major blockquote,
-.work-type blockquote {
+.major blockquote {
   border-color: #ddd;
   border-color: rgba(0, 0, 0, 0.15);
 }
@@ -233,18 +231,23 @@ a.major .name:hover {
   padding-right: 15px;
 }
 .work-type {
+  width: 150px;
   height: 50px;
-  padding: 10px 25px;
+  border: 1px solid #bbb;
+  margin: -1px 0 0 -1px;
+  padding: 10px;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   float: left;
-  margin: 8px 8px;
-  background-color: #dff0d8;
   position: relative;
-}
-a.work-type:hover {
-  background-color: #c1e2b3;
 }
 .work-type .name {
   line-height: 30px;
+}
+.work-type input {
+  width: 135px;
 }
 .major-container {
   padding-left: 100px;
@@ -304,4 +307,7 @@ th,
 td {
   vertical-align: middle !IMPORTANT;
   white-space: nowrap;
+}
+.login-modal .modal-content {
+  top: 42px;
 }

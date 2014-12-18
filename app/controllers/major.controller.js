@@ -4,6 +4,7 @@ var async = require('async');
 
 
 var WorkType = mongoose.model('WorkType');
+var CA = mongoose.model('CreditApplication');
 var Major = mongoose.model('Major');
 
 
@@ -63,21 +64,35 @@ exports.update = function(req, res, next) {
 }
 
 exports.remove = function(req, res, next) {
-    var data = req.body.major;
+    
     var id = req.params.id;
 
-    if (!data || !data.name || id === undefined) return next(new Error('not enough info'));
+    if (id === undefined) return next(new Error('not enough info'));
     Major.findById(id, function(err, major) {
         if (err) return next(err);
         if (!major) return next(new Error('no major found'));
 
         major.remove(function(err, major) {
             if (err) return next(err);
+            // delete applicants:
+            if(!req.params.delAppl){
+                res.send({
+                    success: true,
+                    major: major
+                });
+            } else {
+                CA.remove({major: id})
+                .exec(function(err, data) {
+                    if(err) return next(err);
+                    console.log(data);
+                    res.send({
+                        success: true,
+                        major: major
+                    });
+                })
+            }
 
-            res.send({
-                success: true,
-                major: major
-            });
+
         })
     });
 

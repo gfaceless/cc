@@ -36,14 +36,16 @@ adminRouter.delete('/ca-results/:id', noSub, caCtrl.remove);
 
 
 adminRouter.post('/major', noSub, majorCtrl.create);
-adminRouter.post('/major/:id', noSub, majorCtrl.remove);
+
+// :delAppl delete applicants
+adminRouter.delete('/major/:id/:delAppl?', noSub, majorCtrl.remove);
 adminRouter.put('/major/:id', noSub, majorCtrl.update);
 
 
 adminRouter.get('/work-types', allMgr, workTypeCtrl.list);
 adminRouter.post('/work-type', noSub, workTypeCtrl.create);
 // actually it is an deletion, I'll find a better way
-adminRouter.post('/work-type/:id', noSub, workTypeCtrl.removeFromMajor);
+adminRouter.post('/work-type/delete', noSub, workTypeCtrl.removeFromMajor);
 adminRouter.put('/work-type/:id', noSub, workTypeCtrl.update);
 
 // actually now it is the same as the one students can access.

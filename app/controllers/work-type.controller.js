@@ -5,7 +5,8 @@ var async = require('async');
 
 var WorkType = mongoose.model('WorkType');
 var Major = mongoose.model('Major');
-
+var CA = mongoose.model('CreditApplication');
+var Certificate = mongoose.model('Certificate');
 
 var error = require('./err.controller.js');
 
@@ -71,31 +72,50 @@ exports.update = function(req, res, next) {
 // it seems expressjs won't fill req.body if the requested method is DELETE, so I use post instead.
 // this only remove it from major's workTypes array
 exports.removeFromMajor = function(req, res, next) {
-    var data = req.body.workType;
-
-    var workTypeId = req.params.id;
-
-    if (!data || !isObjectId(workTypeId) || !req.body.majorId) return next(new Error('something went wrong'));
+    var workType = req.body.workType;
+    // var workTypeId = req.params.id;
+    var majorId = req.body.majorId;
+    if (!_.isObject(workType) || !majorId) return next(new Error('something went wrong'));
 
     // we can use findById too
     Major.findOne({
-        _id: req.body.majorId
+        _id: majorId
     }, function(err, major) {
         if (err) return next(err);
         if (!major) {
             return next(new Error('no major found'));
         }
         // here happens type cast. string -> ObjectId.
-        // if not sure, we should wrap it in try/catch, or else the app would fail due to a throwed error.
-        major.workTypes.pull(workTypeId);
+        // if not sure, we should wrap it in try/catch, or else the app would fail due to a thrown error.
+        major.workTypes.pull(workType._id);
 
         major.save(function(err, major) {
             if (err) return next(err);
 
-            res.send({
-                success: true
+            // if delAppl is defined, e.g. "yes", we delete all the applicants
+            if(req.body.delAppl){
+                // TODO: make the finding generic
+                Certificate.find({worktype: workType.name})
+                .select("_id")
+                .exec(function(err, certs) {
+                    if(err) return next(err);
+                    var query = CA.remove({major: majorId})
+                    if(certs.length){
+                        query.where("cert")
+                        .in(certs)
+                    }
+                    query.exec(function(err, result) {
+                        if(err) return next(err);
+                        res.send({success: true})
+                        console.log('in wt-ctrl, delete result is:', result)
+                    })
+                })
 
-            })
+            } else {
+                res.send({
+                    success: true
+                })
+            }
         })
 
 

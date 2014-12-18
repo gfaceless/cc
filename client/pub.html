@@ -30,7 +30,7 @@
 
                 <tr ng-repeat="k in dbKeys" >
                     <td>{{toChineseKey(k)}}</td>
-                    <td>{{cert[k]}}</td>
+                    <td>{{ k=='certdate' ? (cert[k] | date:"yyyy-MM-dd") : cert[k]}}</td>
                 </tr>
             </table>
         </div>

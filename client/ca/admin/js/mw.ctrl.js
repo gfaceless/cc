@@ -1,9 +1,11 @@
 // mw : major and workType
 angular.module('myApp')
-    .controller('mwCtrl', function($scope, $http, MessageApi, $log) {
+    .controller('mwCtrl', function($scope, $http, MessageApi, $log, $modal) {
         var majors;
 
-        $http.get('majors',{mute: true})
+        $http.get('majors', {
+                mute: true
+            })
             .success(function(data) {
                 majors = $scope.majors = data.majors;
                 $scope.hasListed = true;
@@ -55,26 +57,34 @@ angular.module('myApp')
 
 
         $scope.removeMajor = function(major, index) {
-
-            $http
-                .post('major' + '/' + major._id, {
-                    major: major
+            $modal.open({
+                    templateUrl: 'views/delete-major.modal.html',
+                    controller: 'delMajorCtrl',
+                    backdrop: 'static',
+                    backdropClass: "try"
                 })
-                .success(function(data) {
-                    if (data.success) {
-                        MessageApi.success('操作成功');
-                    }
-                    $scope.rmFromCollection(majors, index);
-                })
-
+                .result
+                .then(function(delAppl) {
+                    var url = 'major' + '/' + major._id + (delAppl ? "/" + delAppl : "");
+                    $http["delete"](url)
+                        .success(function(data) {
+                            if (data.success) {
+                                MessageApi.success('操作成功');
+                            }
+                            $scope.rmFromCollection(majors, index);
+                        })
+                });
         }
 
         $scope.removeWT = function(major, workType, index) {
-            // relative to ca/admin/ca.admin.html
-
-            $http['post']('work-type/' + workType._id, {
+            var confirmed = confirm("符合该专业和该工种的所有申请者信息将被删除，是否继续？")
+            if(!confirmed) return;
+            // the url is relative to ca/admin/ca.admin.html
+            // remember it is actually a delete operation
+            $http['post']('work-type/delete', {
                     majorId: major._id,
-                    workType: workType
+                    workType: workType,
+                    delAppl: true
                 })
                 .success(function(data) {
                     if (data.success) {
@@ -101,7 +111,7 @@ angular.module('myApp')
                     majorId: majorId,
                     workType: workType
                 })
-                .success(function(data) {                  
+                .success(function(data) {
                     cb(null, data);
                     MessageApi.success('操作成功');
                 })
@@ -114,7 +124,17 @@ angular.module('myApp')
 
 
     })
+    .controller('delMajorCtrl', function($scope, $modalInstance) {
+        // default:
+        $scope.delAppl = "yes";
 
+        $scope.ok = function() {
+            $modalInstance.close($scope.delAppl);
+        }
+        $scope.cancel = function() {
+            $modalInstance.dismiss();
+        };
+    })
 
 
 function selectElementText(el, win) {

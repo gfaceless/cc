@@ -90,6 +90,7 @@ cert.read = [preSearch,
             .skip((page - 1) * limit)
             .limit(limit)
             // try to solve that weird bug(app exits when query too frequently)
+            // ATTENTION: it would ignore getter. I actually ended up using angularjs date filter doing the transform            
             .lean()
             .exec(function(err, data) {
                 if (err) return next(err);

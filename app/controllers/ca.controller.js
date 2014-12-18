@@ -9,6 +9,7 @@ var async = require('async');
 var Certificate = mongoose.model('Certificate');
 var WorkType = mongoose.model('WorkType');
 var Major = mongoose.model('Major');
+var Counter = mongoose.model('Counter');
 var CA = mongoose.model('CreditApplication');
 
 var error = require('./err.controller.js');
@@ -88,6 +89,8 @@ exports.creditApply = [preApply, function(req, res, next) {
                             report.applEduLvl = toApplEduLvl(report.certnumber);
                             report.appliedDate = moment(ca.appliedDate).format('YYYY-MM-DD');
                             report.major = ca.major && ca.major.name;
+                            // overwrite
+                            report._id = ca._id;
                             return report;
                         }
 
@@ -104,8 +107,8 @@ exports.creditApply = [preApply, function(req, res, next) {
                         }
 
                         if (err) return next(err);
-                        
-                        if(ca && !req.body.updating){
+
+                        if (ca && !req.body.updating) {
                             var report = makeReport(ca);
 
                             // try using async, to sement res.send logic together
@@ -120,19 +123,25 @@ exports.creditApply = [preApply, function(req, res, next) {
 
                         // when there is no ca in db:
                         if (!ca) {
-                            ca = new CA({
-                                cert: cert,
-                                major: majorId
-                            })
+                            // this function returns a promise
+                            Counter.getNextSequence('ca')
+                                .done(function(seq) {
+                                    ca = new CA({
+                                        cert: cert,
+                                        major: majorId,
+                                        _id: CA.generateId(seq)
+                                    })
+                                    ca.save(onSaved)
+                                })
+                            return;
                         }
 
+                        // this is when student wants to change his major                        
                         if (req.body.updating) {
-                            // this is when student wants to change his major
-                            // we could alo change appliedDate here
                             ca.major = majorId;
                             ca.appliedDate = new Date();
-                        } 
-                        ca.save(onSaved);
+                            ca.save(onSaved);
+                        }
                     })
 
             })
@@ -163,8 +172,8 @@ function search(req, res, next) {
     var limit = req.query.limit || 10;
 
 
-    // we'll add date filter later
-    var criteria = _.pick(req.query, ['major']);
+    // date is handled differently, see below
+    var criteria = _.pick(req.query, ['major', '_id']);
     var certs;
     // due to my poor data model design, I have to do such things:
     // in other places we should use workype instead of worktype, the latter is a debris
@@ -210,10 +219,10 @@ function search(req, res, next) {
         // handle date range query:
         var from = req.query.from;
         var to = req.query.to;
-        console.log(from, to);
-        if(from || to){
+        
+        if (from || to) {
             var from = from || defDateRange[0];
-            var to = to || defDateRange[1];            
+            var to = to || defDateRange[1];
 
             query.where('appliedDate', {
                 $gte: from,
@@ -238,9 +247,9 @@ function search(req, res, next) {
                         _.defaults(val, val.cert);
                         delete val.cert;
                         val.major = val.major && val.major.name;
-                        val.appliedDate = moment(val.appliedDate).format('YYYY-MM-DD HH:mm')
-                            /*maybe we should put the following logic into model*/
-                            // applicable education level:
+                        val.appliedDate = moment(val.appliedDate).format('YYYY-MM-DD HH:mm');
+                        /*maybe we should put the following logic into model*/
+                        // applicable education level:
                         val.applEduLvl = toApplEduLvl(val.certnumber);
 
                         result[key] = val;

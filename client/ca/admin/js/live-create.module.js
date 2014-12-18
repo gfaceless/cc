@@ -31,8 +31,11 @@ angular.module('liveCreate', [])
             // IE9 will focus input even if it is hidden
             // so I disable this code for now
             // TODO: solve it in the future
-        	// input.focus();
+            // input.focus();
             
+            if(scope.myModel._isNew) {
+        	   input.focus();
+            }
             
         	// looking for a better way:
         	scope.hasChild = angular.isDefined(attrs.hasChild);

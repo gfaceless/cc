@@ -274,8 +274,8 @@ var app = angular.module('myApp', ['ui.bootstrap', 'angularFileUpload', "customF
             MessageApi.success(msg);
         }
 
-        function handleFailure(msg) {
-            MessageApi.error(msg);
+        function handleFailure(err) {
+            MessageApi.error(err && err.message);
         }
 
     });
