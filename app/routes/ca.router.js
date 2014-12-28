@@ -7,6 +7,7 @@ var userCtrl = require('../controllers/user.controller.js');
 var majorCtrl = require('../controllers/major.controller.js');
 var caCtrl = require('../controllers/ca.controller.js');
 var workTypeCtrl = require('../controllers/work-type.controller.js');
+var articleCtrl = require('../controllers/article.controller.js');
 
 
 var _ = require('lodash');
@@ -18,6 +19,7 @@ module.exports = router;
 
 router.post('/credit-apply', caCtrl.creditApply);
 router.get('/major', majorCtrl.list);
+router.get('/articles/:slug', articleCtrl.read);
 
 
 var adminRouter = express.Router();
@@ -64,6 +66,14 @@ adminRouter.post('/users', noSub, userCtrl.create);
 adminRouter.put('/users/:id', noSub, userCtrl.update);
 adminRouter.delete('/users/:id', noSub, userCtrl.remove);
 
+
+// articles:
+
+adminRouter.post('/articles', noSub, articleCtrl.upsert)
+adminRouter.put('/articles/:slug', noSub, articleCtrl.upsert)
+
+// note that we also allow public access for GET request, see above
+adminRouter.get('/articles/:slug', articleCtrl.read);
 
 
 

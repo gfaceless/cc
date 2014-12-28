@@ -1,0 +1,10 @@
+<!-- <script src="vendors/tinymce/tinymce.min.js"></script> -->
+
+<div ng-controller="editorCtrl">
+    <form ng-submit="submit()">
+        <textarea name="content" style="width:100%;" id="oops"></textarea>
+        <input type="submit" class="btn btn-primary" ng-disabled="!requested" value="保存">
+        <button type="button" class="btn btn-primary" ng-click="preview()">预览</button>
+    </form>
+    
+</div>

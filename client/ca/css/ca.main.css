@@ -241,50 +241,48 @@ a.app-title:hover {
   position: absolute;
   margin-left: 30px;
 }
-.modal-extra-info {
+.modal-readme {
   padding: 0 50px;
   height: 650px;
   overflow-y: scroll;
+  /*
+	h1, h2{
+		font-weight: bold;
+		font-size: 25px;
+	}
+	table {
+
+		tr td:first-child{
+			font-weight: bold;
+		}
+		th {
+			text-align: center;
+			white-space: nowrap;
+			background-color: #e1e1e1;
+		}
+		td {
+			font-size: 15px;
+			vertical-align: middle !important;
+
+		}
+		&, th, td {
+			border: 1px solid #000 !important;
+		}
+		margin-top: 40px;
+		caption {
+			font-size: 20px;
+			font-weight: bold;
+		}
+
+	}*/
 }
-.modal-extra-info .kaiti {
+.modal-readme .kaiti {
   font-size: 18px;
   font-family: KaiTi_GB2312, KaiTi, "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: black;
 }
-.modal-extra-info h1,
-.modal-extra-info h2 {
-  font-weight: bold;
-  font-size: 25px;
-}
-.modal-extra-info .zhou-ugly {
+.modal-readme .zhou-ugly {
   margin-top: 0;
-}
-.modal-extra-info table {
-  margin-top: 40px;
-}
-.modal-extra-info table tr td:first-child {
-  font-weight: bold;
-}
-.modal-extra-info table th {
-  text-align: center;
-  white-space: nowrap;
-  background-color: #e1e1e1;
-}
-.modal-extra-info table td {
-  font-size: 15px;
-  vertical-align: middle !important;
-}
-.modal-extra-info table,
-.modal-extra-info table th,
-.modal-extra-info table td {
-  border: 1px solid #000 !important;
-}
-.modal-extra-info table caption {
-  font-size: 20px;
-  font-weight: bold;
-}
-.modal-extra-info li {
-  margin: 10px;
 }
 @media print {
   .ca-btn-print,

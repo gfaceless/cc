@@ -311,3 +311,13 @@ td {
 .login-modal .modal-content {
   top: 42px;
 }
+.modal-readme {
+  padding: 0 50px;
+  height: 650px;
+  overflow-y: scroll;
+}
+.modal-readme .kaiti {
+  font-size: 18px;
+  font-family: KaiTi_GB2312, KaiTi, "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: black;
+}

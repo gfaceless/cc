@@ -1,4 +1,4 @@
-var app = angular.module('myApp', ['message', 'ui.bootstrap'])
+var app = angular.module('myApp', ['message', 'ui.bootstrap', 'ngSanitize'])
     .controller('appCtrl', function($scope, $http, $modal, $log, $window, $timeout) {
         var urlCA = '/ca/credit-apply';
 
@@ -84,7 +84,7 @@ var app = angular.module('myApp', ['message', 'ui.bootstrap'])
         $scope.open = function(size) {
 
             var modalInstance = $modal.open({
-                templateUrl: 'views/extra-info.html',
+                templateUrl: 'views/modal-readme.html',
                 controller: 'ModalInstanceCtrl',
                 size: size
             });
@@ -103,8 +103,12 @@ var app = angular.module('myApp', ['message', 'ui.bootstrap'])
             $window.print();
         }
     })
-    .controller('ModalInstanceCtrl', function($scope, $modalInstance) {
-
+    .controller('ModalInstanceCtrl', function($scope, $modalInstance, $http, $sce) {
+        $http.get('articles/readme')
+        .success(function(data) {
+            var content = data.article && data.article.content;
+            $scope.content = $sce.trustAsHtml(content);
+        })
         $scope.ok = function() {
             $modalInstance.close('has read');
         };

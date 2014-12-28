@@ -91,7 +91,7 @@ angular.module('liveCreate', [])
                 
                 if(event.keyCode == 13) {
                     event.preventDefault();
-                    console.log(event);
+                    
                     // $btnOK = $btnOK || el.find('button').eq(0);
                     //  TODO: I would love to code like this: $btnOK.triggerHandler('click');
                     // but '$apply already in progress' -- and I have no time.

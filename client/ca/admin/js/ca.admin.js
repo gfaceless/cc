@@ -1,4 +1,4 @@
-var app = angular.module('myApp', ['taiPlaceholder', 'message', 'misc', 'liveCreate', 'ui.bootstrap'])
+var app = angular.module('myApp', ['taiPlaceholder', 'message', 'misc', 'liveCreate', 'ui.bootstrap', 'angularLoad', 'ngSanitize'])
     .config(function($httpProvider) {
         // $httpProvider.interceptors.push(b);
         
@@ -97,6 +97,9 @@ var app = angular.module('myApp', ['taiPlaceholder', 'message', 'misc', 'liveCre
             }, {
                 title: '系统帐号管理',
                 url: 'views/sys-account.html'
+            }, {
+                title: "置换办法编辑",
+                url: 'views/readme-editor.html'
             }];
             $scope.currentTab = $scope.tabs[0];
         }

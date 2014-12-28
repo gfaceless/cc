@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>credit application</title>
+    <link rel="stylesheet" href="../../vendors/bootstrap-3.2.0-dist/css/bootstrap.min.css">
+
+    <script src="../../js/angular-1.2.js"></script>
+    <script src="../../vendors/wysishtml/wysihtml5x-toolbar.js"></script>
+    <script src="../../vendors/wysishtml/parser_rules/advanced.js"></script>
+
+
+</head>
+
+<body ng-controller="myCtrl">
+    <script type="text/javascript" src="../../vendors/tinymce/tinymce.min.js"></script>
+    <script type="text/javascript">
+    tinymce.init({
+        selector: "#oops",
+        theme: "modern",
+        content_css: "../../vendors/bootstrap-3.2.0-dist/css/bootstrap.min.css",
+        plugins: [
+            "advlist autolink lists link image preview hr",
+            "code",
+            "save table contextmenu",
+            "paste textcolor colorpicker"
+        ],
+
+        toolbar1: "insertfile save undo redo paste pastetext | styleselect removeformat | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | code preview",
+        toolbar2: "fontselect fontsizeselect bold italic | forecolor backcolor | table link image hr",
+
+        table_default_styles: {
+            // border: '1px solid #ddd'
+        },
+        contextmenu: "link image inserttable | tableprops cell row column deletetable",
+        image_advtab: true,
+        language: 'zh_CN',
+        menubar: false,
+        statusbar: false,
+        setup: function(editor) {
+            editor.on('init', function(e) {
+                editor.setContent('<span>hey</span><p>hello</p>')
+                console.log(e);
+            });
+        }
+
+    });
+    </script>
+
+    <form ng-submit="submit()">
+        <textarea name="content" style="width:100%" id="oops"></textarea>
+        <button>submit</button>
+    </form>
+    <form>
+        <textarea contentEditable=""><span>hi</span>
+            <script>
+            alert(1);
+            </script>
+        </textarea>
+
+    </form>
+</body>
+<script src="js/test3.js"></script>
+
+</html>
