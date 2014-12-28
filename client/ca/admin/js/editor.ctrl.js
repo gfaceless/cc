@@ -16,17 +16,16 @@ app.controller('editorCtrl', function($scope, $http, MessageApi, angularLoad, $t
     })
 
     $q.all([p1, p2]).then(function(results) {
-        console.log('ie8', 'here', results);
+        
 
         // article is possibly already set (e.g. by promise2's `then`)
         article = article || results[1].data.article;
         // makeshift
         // I'll see to router and ngView
         // 
-        // dont know why I should do this
-        $timeout(function() {
-        	shit();
-        })
+        // dont know why I should do this        
+    	shit();
+        
 
         function shit(arguments) {
             var inst = tinymce.get('oops');

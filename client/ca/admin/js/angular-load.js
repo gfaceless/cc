@@ -27,6 +27,8 @@
 
 				var script = $document[0].createElement('script');
 				script.onload = script.onreadystatechange = function (e) {
+					
+					if (script.readyState != 'loaded') return;
 					$timeout(function () {
 						deferred.resolve(e);
 					});
