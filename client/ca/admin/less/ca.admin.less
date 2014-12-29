@@ -1,5 +1,6 @@
 @import (reference) "bootstrap.less";
 
+// about layout of the app, i've kept some info in evernote (this layout induces some quirks)
 
 @header-h : 70px;
 @sidebar-w : 150px;
@@ -50,10 +51,12 @@
 }
 
 .app-sidebar{
-	width: @sidebar-w;
-	list-style: none;
-	padding: 0;
-	margin: 0 -@sidebar-w 0 0;
+	ul {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	width: @sidebar-w;	
 	float: left;
 	li {
 		height: 30px;
@@ -71,9 +74,27 @@
 .app-main{
 	
 	border-left: 1px @gray-lighter solid;
-	margin-left: @sidebar-w;
-	padding: 5px 20px;
 	
+	padding: 5px 20px;
+	overflow: hidden;
+		
+	.tab-content {
+		padding: 10px;
+	}
+
+	.tab-centers{
+		// should be the same as .app-result
+		width: 650px;
+		padding: 25px 40px 15px;
+	}
+
+	// margin-left: @sidebar-w;
+	/*float: left;
+	width: 100%;*/
+	// &:extend(.clearfix all);
+	/*.nav {		
+		overflow: hidden;
+	}*/
 }
 
 
@@ -216,15 +237,8 @@ th, td {
 		color: black;
 	}
 }
-		
 
 
-
-
-
-
-
-
-
-
-
+.centers-label{
+	font-size: 14px;
+}

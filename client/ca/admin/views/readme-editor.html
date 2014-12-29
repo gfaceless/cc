@@ -1,10 +1,40 @@
-<!-- <script src="vendors/tinymce/tinymce.min.js"></script> -->
-
 <div ng-controller="editorCtrl">
-    <form ng-submit="submit()">
-        <textarea name="content" style="width:100%;" id="oops"></textarea>
-        <input type="submit" class="btn btn-primary" ng-disabled="!requested" value="保存">
-        <button type="button" class="btn btn-primary" ng-click="preview()">预览</button>
-    </form>
-    
+
+    <div tabset>
+        <div tab heading="学分制换办法" select="selectTab('readme')">
+            <form ng-submit="submit('readme')">
+                <textarea name="content" style="width:100%;" id="readme"></textarea>
+                <input type="submit" class="btn btn-primary" ng-disabled="freezed" value="保存">
+                <button type="button" class="btn btn-primary" ng-click="preview('readme')">预览</button>
+            </form>
+
+        </div>
+
+        <div tab select="selectTab('help')">
+            <tab-heading>我要帮助</tab-heading>
+            <form ng-submit="submit('help')">
+                <textarea name="content" style="width:100%;" id="help"></textarea>
+                <input type="submit" class="btn btn-primary" ng-disabled="freezed" value="保存">
+                <button type="button" class="btn btn-primary" ng-click="preview('help')">预览</button>
+            </form>
+        </div>
+
+        <div tab heading="学习中心" select="selectTab('center')">
+            <div class="tab-centers">
+                <p>
+                    您已通过机械工业职业技能鉴定指导中心针对机械行业职业资格证书置换北理工大学远程教育专业学分资质认证审核，请打印认证书并携带至北京理工大学远程教育<span class="label label-primary centers-label" tooltip-html-unsafe="{{ttContent}}">各学习中心</span>报名。
+                </p>
+                <form ng-submit="submit('center')">
+                    <textarea name="content" id="center" style="width:100%;"></textarea>
+
+
+                    <input type="submit" class="btn btn-primary" ng-disabled="freezed" value="保存">
+                    <button type="button" class="btn btn-primary" ng-click="tmpPreview('center')">预览</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+
 </div>

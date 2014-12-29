@@ -195,7 +195,12 @@ a.app-title:hover {
 }
 .app-main {
   margin-top: 5px;
+  position: relative;
   text-align: center;
+}
+.app-main .ca-btn-help {
+  position: absolute;
+  right: 50px;
 }
 .app-main .intro,
 .app-main .appl-result {
@@ -297,4 +302,7 @@ a.app-title:hover {
   .appl-result {
     border: none !important;
   }
+}
+.centers-label {
+  font-size: 14px;
 }

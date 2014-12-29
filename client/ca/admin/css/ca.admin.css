@@ -166,10 +166,12 @@ a.app-footer:hover {
 }
 .app-sidebar {
   width: 150px;
-  list-style: none;
-  padding: 0;
-  margin: 0 -150px 0 0;
   float: left;
+}
+.app-sidebar ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 .app-sidebar li {
   height: 30px;
@@ -187,8 +189,20 @@ a.app-sidebar li.active:hover {
 }
 .app-main {
   border-left: 1px #eeeeee solid;
-  margin-left: 150px;
   padding: 5px 20px;
+  overflow: hidden;
+  /*float: left;
+	width: 100%;*/
+  /*.nav {		
+		overflow: hidden;
+	}*/
+}
+.app-main .tab-content {
+  padding: 10px;
+}
+.app-main .tab-centers {
+  width: 650px;
+  padding: 25px 40px 15px;
 }
 .control-panel {
   border-bottom: 1px #eeeeee solid;
@@ -320,4 +334,7 @@ td {
   font-size: 18px;
   font-family: KaiTi_GB2312, KaiTi, "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: black;
+}
+.centers-label {
+  font-size: 14px;
 }

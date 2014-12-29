@@ -43,6 +43,13 @@ body {
 }
 .app-main {
 	margin-top: 5px;
+	position:relative;
+
+
+	.ca-btn-help {
+		position: absolute;
+		right: 50px;
+	}
 	.intro, .appl-result{
 		&:extend(.well all);
 		background: white;
@@ -142,8 +149,14 @@ body {
 .ca-btn-print, .success-info, .change-major{
 	.hidden-print;
 }
+
+
 .app-main, .appl-result{
 	@media print {
 		border: none !important;		
 	}
+}
+
+.centers-label{
+	font-size: 14px;
 }

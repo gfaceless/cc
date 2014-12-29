@@ -19,6 +19,9 @@
         document.createElement('ng-view');
         document.createElement('indicator');
         document.createElement('pagination');
+        document.createElement('tabset');
+        document.createElement('tab');
+        document.createElement('tab-heading');
 
         // Optionally these for CSS
         document.createElement('ng:include');
@@ -27,8 +30,8 @@
       </script>
       <script src="../../js/ie-polyfill.js"></script>
     <![endif]-->
-    
-    <script src="../../js/angular-1.2.min.js"></script>    
+
+    <script src="../../js/angular-1.2.min.js"></script>
     <script src="../../js/ui-bootstrap-tpls-0.12.0.min.js"></script>
     <script src="../../js/angular-locale_zh-cn.js"></script>
     <script src="../../js/modules/message.module.js"></script>
@@ -57,17 +60,20 @@
             <a class="btn btn-default" href="../ca.html" target="_blank">访问前台</a>
             <button class="btn btn-default" ng-click="openLogin()" ng-show="!logged">登录</button>
             <button class="btn btn-default" ng-click="logout()" ng-show="logged">退出</button>
-            
+
         </div>
     </div>
 
     <div class="app-body" ng-cloak>
 
-        <ul class="app-sidebar">
-            <li ng-repeat="tab in tabs" ng-class="{active:isActive(tab)}" ng-click="!freezed && onClickTab(tab)">{{tab.title}}</li>
-        </ul>
+        <div class="app-sidebar">
+            <ul>
+                <li ng-repeat="tab in tabs" ng-class="{active:isActive(tab)}" ng-click="!freezed && onClickTab(tab)">{{tab.title}}</li>
+            </ul>
+        </div>
 
-        <div class="app-main">           
+
+        <div class="app-main">
 
             <div ng-include="currentTab.url"></div>
         </div>
