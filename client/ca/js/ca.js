@@ -104,7 +104,7 @@ var app = angular.module('myApp', ['message', 'ui.bootstrap', 'ngSanitize'])
         }
     })
     .controller('ModalInstanceCtrl', function($scope, $modalInstance, $http, $sce) {
-        $http.get('articles/readme')
+        $http.get('articles/readme' + '?ts=' + (+new Date) )
         .success(function(data) {
             var content = data.article && data.article.content;
             $scope.content = $sce.trustAsHtml(content);
