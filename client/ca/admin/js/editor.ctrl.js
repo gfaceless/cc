@@ -165,13 +165,6 @@ app.controller('editorCtrl', function($scope, $http, MessageApi, angularLoad, $t
 		});
 	}
 
-	$scope.tmpPreview = function(id, e) {
-		
-		var content = tinymce.get(id).getContent();
-
-		$scope.ttContent = $sce.trustAsHtml(content)
-		
-
-	}
+	
 
 })

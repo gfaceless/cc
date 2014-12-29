@@ -8,7 +8,9 @@ var app = angular.module('myApp', ['message', 'ui.bootstrap', 'ngSanitize'])
         cache.put('help', {
             slug: "help"
         })
-
+        cache.put('center', {
+            slug: "center"
+        })
         return cache;
     })
     .controller('appCtrl', function($scope, $http, $modal, $log, $window, $timeout, ArticleMgr, $sce) {
@@ -123,14 +125,7 @@ var app = angular.module('myApp', ['message', 'ui.bootstrap', 'ngSanitize'])
             $window.print();
         }
 
-        // temp:
-        function getCenters(arguments) {
-            $http.get('articles/center' + '?ts=' + (+new Date))
-                .success(function(data) {
-                    $scope.ttContent = $sce.trustAsHtml(data.article.content);
-                })
-        }
-        getCenters();
+        
     })
     .controller('ModalInstanceCtrl', function($scope, $modalInstance, $http, $sce, article) {
 
