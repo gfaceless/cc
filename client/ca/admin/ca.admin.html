@@ -64,7 +64,7 @@
     <div class="app-body" ng-cloak>
 
         <ul class="app-sidebar">
-            <li ng-repeat="tab in tabs" ng-class="{active:isActive(tab)}" ng-click="onClickTab(tab)">{{tab.title}}</li>
+            <li ng-repeat="tab in tabs" ng-class="{active:isActive(tab)}" ng-click="!freezed && onClickTab(tab)">{{tab.title}}</li>
         </ul>
 
         <div class="app-main">           

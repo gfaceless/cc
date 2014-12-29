@@ -22,12 +22,13 @@ exports.login = function(req, res, next) {
         })
         .exec(function(err, user) {
             if (err) return next(err);
-            console.log(user, u);
+            
             
             if (user && (user.password == User.hashPass(u.password))) {
                 req.session.role = user.role;
                 res.send({
-                    success: true
+                    success: true,
+                    user: {role: user.role, name: user.name}
                 })
 
             } else {
@@ -48,19 +49,20 @@ exports.logout = function(req, res, next) {
     })
 }
 
+// TODO: rename it to getUserInfo, and return username as well
 exports.isLogged = function(req, res, next) {
     // tmp way:
     var logged = !!req.session.role;
 
-    res.send({
-
+    res.send({        
+        role: req.session.role,
         logged: logged
     })
 }
 
 exports.list = function(req, res, next) {
     User.find({
-            role: "crapSubmgr"
+            role: "crapSubMgr"
         })
         // even if _id is omitted, still included
         .select('name')
@@ -86,7 +88,7 @@ exports.create = function(req, res, next) {
     if (!_.isObject(u) || !u.name || !u.password) return next("wrong!");
     var user = new User(req.body.user);
 
-    user.role = "crapSubmgr";
+    user.role = "crapSubMgr";
 
     user.save(function(err, user) {
         if (err) return next(err);

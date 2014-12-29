@@ -25,7 +25,7 @@ var userSchema = new Schema({
         required: true,
         trim: true,
         default: function() {
-            return "crapSubmgr"
+            return "crapSubMgr"
         }
     }
 });

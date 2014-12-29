@@ -2,8 +2,10 @@ var app = angular.module('myApp')
 
 app.controller('editorCtrl', function($scope, $http, MessageApi, angularLoad, $timeout, $q, $modal) {
 
-    // Script loaded succesfully.
-    // We can now start using the functions from someplugin.js
+	// freeze tab navigation
+	$scope.$emit('freeze', true);
+
+
     var p1 = angularLoad.loadScript("vendors/tinymce/tinymce.min.js");
     var p2 = $http.get('../articles/readme');
     var article;
@@ -22,10 +24,10 @@ app.controller('editorCtrl', function($scope, $http, MessageApi, angularLoad, $t
         article = article || results[1].data.article;
         // makeshift
         // I'll see to router and ngView
-        // 
-        // dont know why I should do this        
-    	shit();
         
+        
+    	shit();
+                
 
         function shit(arguments) {
             var inst = tinymce.get('oops');
@@ -60,7 +62,8 @@ app.controller('editorCtrl', function($scope, $http, MessageApi, angularLoad, $t
                     if (!article) return;
 
                     editor.on('init', function(e) {
-                        editor.setContent(article.content)
+                        editor.setContent(article.content);
+                        $scope.$emit('freeze', false);
                     });
                 },
                 font_formats: '楷体=KaiTi,KaiTi_GB2312;' +

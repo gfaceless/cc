@@ -47,9 +47,12 @@ var app = angular.module('myApp', ['taiPlaceholder', 'message', 'misc', 'liveCre
     })
     .controller('appCtrl', function($scope, $http, $modal, MessageApi, $timeout) {
 
+        $scope.$on('freeze', function(e, freezed) {
+            $scope.freezed = freezed;
+        })
 
-
-        $scope.onClickTab = function(tab) {
+        $scope.onClickTab = function(tab) {            
+            
             $scope.currentTab = tab;
         }
 
@@ -64,8 +67,10 @@ var app = angular.module('myApp', ['taiPlaceholder', 'message', 'misc', 'liveCre
                 size: 'sm',
                 backdrop: false,
                 windowClass: "login-modal"
-            }).result.then(function(data) {
+            }).result.then(function(user) {
                 $scope.logged = true;
+                // temp, I'll recode user part
+                $scope.role = user.role;
                 MessageApi.success('登录成功');
             }, function(data) {
 
@@ -77,6 +82,7 @@ var app = angular.module('myApp', ['taiPlaceholder', 'message', 'misc', 'liveCre
                 .success(function(data) {
                     if (data.success) {
                         $scope.logged = false;
+                        delete $scope.role;
                         MessageApi.success('成功退出');
                         $timeout(clearScope, 500);
 
@@ -101,6 +107,9 @@ var app = angular.module('myApp', ['taiPlaceholder', 'message', 'misc', 'liveCre
                 title: "置换办法编辑",
                 url: 'views/readme-editor.html'
             }];
+            if($scope.role == "crapSubMgr"){
+                $scope.tabs = [$scope.tabs[1]]
+            }
             $scope.currentTab = $scope.tabs[0];
         }
 
@@ -114,6 +123,7 @@ var app = angular.module('myApp', ['taiPlaceholder', 'message', 'misc', 'liveCre
                 .success(function(data) {
                     if (data.logged) {
                         $scope.logged = data.logged
+                        $scope.role = data.role;
                     } else {
                         $scope.openLogin();
                     }
@@ -122,6 +132,7 @@ var app = angular.module('myApp', ['taiPlaceholder', 'message', 'misc', 'liveCre
 
         $scope.$watch('logged', function(val) {
             if (val) {
+                
                 startApp();
             }
         });

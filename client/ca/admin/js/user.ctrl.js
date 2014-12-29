@@ -9,7 +9,7 @@ app.controller('loginCtrl', function($scope, $modalInstance, $http, MessageApi) 
 				user: $scope.user
 			})
 			.success(function(data) {
-				if (data.success) $modalInstance.close(data);
+				if (data.success) $modalInstance.close(data.user);
 
 			})
 

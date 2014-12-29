@@ -28,7 +28,7 @@ var adminRouter = express.Router();
 router.use('/admin', adminRouter);
 
 var noSub = perm.allow('crapMgr');
-var allMgr = perm.allow(['crapMgr', 'crapSubmgr']);
+var allMgr = perm.allow(['crapMgr', 'crapSubMgr']);
 
 
 adminRouter.get('/ca-results', allMgr, caCtrl.list);
