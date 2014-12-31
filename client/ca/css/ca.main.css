@@ -303,6 +303,11 @@ a.app-title:hover {
     border: none !important;
   }
 }
-.centers-label {
-  font-size: 14px;
+@media print {
+  .link-centers {
+    padding: 0;
+    border: 0;
+    vertical-align: inherit;
+    margin: 0;
+  }
 }
