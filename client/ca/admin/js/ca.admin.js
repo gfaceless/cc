@@ -104,8 +104,8 @@ var app = angular.module('myApp', ['taiPlaceholder', 'message', 'misc', 'liveCre
                 title: '系统帐号管理',
                 url: 'views/sys-account.html'
             }, {
-                title: "置换办法编辑",
-                url: 'views/readme-editor.html'
+                title: "展示信息编辑",
+                url: 'views/editor.html'
             }];
             if($scope.role == "crapSubMgr"){
                 $scope.tabs = [$scope.tabs[1]]
@@ -131,8 +131,7 @@ var app = angular.module('myApp', ['taiPlaceholder', 'message', 'misc', 'liveCre
         }
 
         $scope.$watch('logged', function(val) {
-            if (val) {
-                
+            if (val) {                
                 startApp();
             }
         });

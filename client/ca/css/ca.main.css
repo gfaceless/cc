@@ -220,13 +220,17 @@ a.app-title:hover {
   font-size: 18px;
 }
 .app-main .link-extra-info {
-  cursor: pointer;
-  font-size: 20px;
-  margin: 20px 0;
+  margin-bottom: 20px;
+}
+.app-main .link-extra-info .btn {
+  margin: 5px;
 }
 .credit-apply {
   width: 500px;
   margin: 0 auto;
+}
+.credit-apply .btn-container {
+  text-align: right;
 }
 .report {
   text-align: center;
@@ -310,4 +314,7 @@ a.app-title:hover {
     vertical-align: inherit;
     margin: 0;
   }
+}
+.no-wrap {
+  white-space: nowrap;
 }

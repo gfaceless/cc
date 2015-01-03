@@ -65,9 +65,10 @@ body {
 		font-size: 18px;
 	}
 	.link-extra-info{
-		cursor: pointer;
-		font-size: 20px;
-		margin: 20px 0;
+		margin-bottom: 20px;
+		.btn {
+			margin: 5px;
+		}
 	}
 	text-align: center;
 	&:extend(.well all, .well-lg all);
@@ -76,6 +77,9 @@ body {
 .credit-apply {
 	width: 500px;
 	margin: 0 auto;
+	.btn-container{
+		text-align: right;
+	}
 }
 
 .report {
@@ -166,3 +170,7 @@ body {
 	}
 }
 
+// fix strange behavior:
+.no-wrap{
+	white-space: nowrap;
+}

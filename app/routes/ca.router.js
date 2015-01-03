@@ -20,6 +20,7 @@ module.exports = router;
 router.post('/credit-apply', caCtrl.creditApply);
 router.get('/major', majorCtrl.list);
 router.get('/articles/:slug', articleCtrl.read);
+router.get('/articles-meta', articleCtrl.getMetadata);
 
 
 var adminRouter = express.Router();

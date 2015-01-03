@@ -1,53 +1,53 @@
 <div class="rechoose" ng-show="updating">请重选你的专业</div>
 
 <!-- TODO: use some kind of custom directive, instead of these junk -->
-<form class="form-horizontal credit-apply" role="form" name="caForm">
+<form class="form-horizontal credit-apply" role="form" name="caForm" ng-submit="submit()" novalidate>
     <div class="form-group">
         <label for="name" class="col-sm-3 control-label">姓名</label>
         <div class="col-sm-7">
             <input type="text" class="form-control" id="name" ng-model="ca.cert.name" name="name" required>
         </div>
-        <div class="text-danger col-sm-2 form-control-static" ng-show="caForm.name.$invalid && caForm.name.$dirty">
-            {{getError(caForm.name.$error)}}
-        </div>
+        <div class="text-danger col-sm-2 form-control-static" gf-form-error="name"></div>
     </div>
     <div class="form-group">
         <label for="idnumber" class="col-sm-3 control-label">身份证号</label>
         <div class="col-sm-7">
             <input type="text" class="form-control" id="idnumber" ng-model="ca.cert.idnumber" name="idnumber" required>
         </div>
-        <div class="text-danger col-sm-2 form-control-static" ng-show="caForm.idnumber.$invalid && caForm.idnumber.$dirty">
-            {{getError(caForm.idnumber.$error)}}
-        </div>
+        <div class="text-danger col-sm-2 form-control-static" gf-form-error="idnumber"></div>
     </div>
 
     <div class="form-group">
-        <label for="certnumber" class="col-sm-3 control-label">证书号</label>
+        <label for="certnumber" class="col-sm-3 control-label">职业资格证书号</label>
         <div class="col-sm-7">
             <input type="text" class="form-control" id="certnumber" ng-model="ca.cert.certnumber" name="certnumber" required>
         </div>
-        <div class="text-danger col-sm-2 form-control-static" ng-show="caForm.certnumber.$invalid && caForm.certnumber.$dirty">
-            {{getError(caForm.certnumber.$error)}}
+        <div class="text-danger col-sm-2 form-control-static" gf-form-error="certnumber"></div>
+    </div>
+    
+    <div class="form-group">
+        <label for="studNumber" class="col-sm-3 control-label">北理工入学学号</label>
+        <div class="col-sm-7">
+            <input type="text" class="form-control" id="studNumber" ng-model="ca.studNumber" name="studNumber" required stud-number>
         </div>
+        <div class="text-danger col-sm-2 form-control-static" gf-form-error="studNumber"></div>
     </div>
 
-
     <div class="form-group">
-        <label for="major" class="col-sm-3 control-label">选择申报专业</label>
+        <label for="major" class="col-sm-3 control-label no-wrap">选择申报专业</label>
         <div class="col-sm-7">
             <select id="major" class="form-control" ng-model="ca.majorId" ng-options="major._id as major.name for major in majors" required name="majorId">
                 <option value="">请选择专业</option>
             </select>
         </div>
-        <div class="text-danger col-sm-2 form-control-static" ng-show="caForm.majorId.$invalid && caForm.majorId.$dirty">
-            {{getError(caForm.majorId.$error)}}
-        </div>
+        <div class="text-danger col-sm-2 form-control-static" gf-form-error="majorId"></div>
 
     </div>
 
     <div class="form-group">
-        <div class="col-sm-offset-3 col-sm-7">
-            <button type="submit" class="btn btn-default" ng-click="submit()" ng-disabled="caForm.$invalid">提交</button>
+        <div class="col-sm-offset-3 col-sm-7 btn-container">
+            <button type="submit" class="btn btn-primary">提交</button>
+            <button type="button" class="btn btn-default" ng-click="back()">返回</button>
         </div>
     </div>
 

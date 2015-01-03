@@ -213,6 +213,9 @@ a.app-sidebar li.active:hover {
 .control-panel .name {
   width: 130px !important;
 }
+.control-panel .fuzzy {
+  margin-left: 30px;
+}
 .major {
   width: 400px;
   margin-left: -15px;

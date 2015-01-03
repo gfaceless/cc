@@ -1,7 +1,7 @@
-angular.module('app',["ngSanitize"])
-	.config(function($compileProvider) {
+angular.module('app', ["ngSanitize"])
+	.config(function($compileProvider, $sceDelegateProvider) {
 		console.log($compileProvider.aHrefSanitizationWhitelist());
-
+		console.log($sceDelegateProvider.resourceUrlWhitelist());
 	})
 	.controller('myCtrl', function($scope, $http) {
 		$scope.v = "<span>hi</span>";
@@ -14,4 +14,13 @@ angular.module('app',["ngSanitize"])
 		$scope.url = "javascript:alert(1);";
 	})
 
-
+	.directive('try', function() {
+		return function(scope,el,attrs) {
+			console.log('here');
+		}
+	})
+	.directive('try', function($rootScope) {
+		return function(scope,el,attrs) {
+			console.log(scope.$parent === $rootScope)
+		}
+	})	

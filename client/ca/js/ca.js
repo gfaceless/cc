@@ -1,9 +1,8 @@
-var app = angular.module('myApp', ['message', 'ui.bootstrap', 'ngSanitize'])
+var app = angular.module('myApp', ['message', 'ui.bootstrap', 'ngSanitize', 'gfForm'])
     .factory("ArticleMgr", function($cacheFactory) {
         var cache = $cacheFactory("articles");
         cache.put("readme", {
-            slug: "readme",
-            title: "学分置换范围及置换办法"
+            slug: "readme"
         });
         cache.put('help', {
             slug: "help"
@@ -42,7 +41,10 @@ var app = angular.module('myApp', ['message', 'ui.bootstrap', 'ngSanitize'])
                 };
             })
         }
-
+        $http.get("articles-meta")
+            .success(function(data) {
+                $scope.articlesMetaData = data.results;
+            })
 
         $http
             .get('major')
@@ -56,7 +58,15 @@ var app = angular.module('myApp', ['message', 'ui.bootstrap', 'ngSanitize'])
             }
         })
 
-        $scope.submit = function() {
+        $scope.submit = function() {            
+            
+            // form creates a new scope
+            // here 'this' is the new scope, its $parent is $scope
+            // I can remove this logic if I put some stopPropagation in my custom form directive            
+            if(this.caForm.$invalid){
+                return;
+            }
+
             var data = angular.extend({}, $scope.ca, {
                 updating: $scope.updating
             })
@@ -78,6 +88,11 @@ var app = angular.module('myApp', ['message', 'ui.bootstrap', 'ngSanitize'])
                 })
         }
 
+        $scope.back = function() {
+            $scope.step = 1;
+            $scope.template = templates[0];
+        }
+
         $scope.restart = $scope.start = function(updating) {
             // updating only happens when an already-applied student wants to change his choice of major
             $scope.updating = updating;
@@ -93,15 +108,17 @@ var app = angular.module('myApp', ['message', 'ui.bootstrap', 'ngSanitize'])
                     return "必填";
                 } else if (error.email) {
                     return "Please enter a valid email address";
+                } else if (error.studNumber) {
+                    return "学号无效";
                 }
             }
         }
 
         $scope.open = function(id) {
-            var article = ArticleMgr.get(id);            
+            var article = ArticleMgr.get(id);
 
             var modalInstance = $modal.open({
-                templateUrl: 'views/modal-readme.html',
+                templateUrl: 'views/article.modal.html',
                 controller: 'ModalInstanceCtrl',
                 size: article.size || "lg",
                 resolve: {
@@ -125,17 +142,16 @@ var app = angular.module('myApp', ['message', 'ui.bootstrap', 'ngSanitize'])
             $window.print();
         }
 
-        
+
     })
     .controller('ModalInstanceCtrl', function($scope, $modalInstance, $http, $sce, article) {
 
         $http.get('articles/' + article.slug + '?ts=' + (+new Date))
             .success(function(data) {
                 $scope.article = data.article;
-
-                var content = data.article && data.article.content;
-
-                $scope.content = $sce.trustAsHtml(content);
+                if(data.article && data.article.content) {
+                    $scope.article.content = $sce.trustAsHtml(data.article.content);
+                }
             })
         $scope.ok = function() {
             $modalInstance.close('has read');
@@ -144,4 +160,27 @@ var app = angular.module('myApp', ['message', 'ui.bootstrap', 'ngSanitize'])
         $scope.cancel = function() {
             $modalInstance.dismiss('cancel');
         };
-    });
+    })
+// for validation
+.directive('studNumber', function(FormError) {
+    FormError.put("studNumber", "学号无效", 1);
+    return {
+        require: "ngModel",
+        link: function(scope, el, attrs, ctrl) {
+            
+            
+            ctrl.$parsers.push(function(value) {
+                
+                var re = /^20\d{2}\d{3}[1-3]\d{7}$/;
+                if (ctrl.$isEmpty(value) || re.test(value)) {
+                    ctrl.$setValidity('studNumber', true);
+                    return value;
+                }
+                ctrl.$setValidity('studNumber', false);
+                return undefined;
+
+            })
+        }
+    }
+})
+

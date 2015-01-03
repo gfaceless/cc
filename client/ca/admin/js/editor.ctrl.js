@@ -3,55 +3,70 @@ app.factory("ArticleMgr", function($cacheFactory) {
 	var cache = $cacheFactory("articles");
 	cache.put("readme", {
 		slug: "readme",
-		title: "学分置换范围及置换办法"
+		url: '../articles/readme'
 	});
 	cache.put('help', {
-		slug: "help"
+		slug: "help",
+		url: "../articles/help"
 	})
 	cache.put('center', {
-		slug: "center"
+		slug: "center",
+		url: '../articles/center'
 	})
 	return cache;
 })
-app.controller('editorCtrl', function($scope, $http, MessageApi, angularLoad, $timeout, $q, $modal, ArticleMgr, $sce) {
+app.controller('editorCtrl', function($scope, $http, MessageApi, angularLoad, $timeout, $q, $modal, $sce) {
 	// freeze tab upon navigation
 	var p1 = angularLoad.loadScript("vendors/tinymce/tinymce.min.js");
-	var article;
+
+	$scope.articles = {};
+	
+	var slugMap = {
+		"readme": 'readme',
+		"help": 'help',
+		"center": 'center'
+	}
+
 	$scope.$on('freeze', function(e, freezed) {
 		$scope.freezed = freezed;
 	})
 
 	$scope.selectTab = function(id) {
-		article = null;
+
 		$scope.$emit('freeze', true);
+
 		startTinymce(id);
+		
 	}
 
-	var urlMap = {
-		"readme": '../articles/readme',
-		"help": '../articles/help',
-		"center": '../articles/center'
-	}
-
+	// it also destroy the last instance
+	// don't want to dive deep into tinymce. for now this is good enough
 	function startTinymce(id) {
-		var articlePromise = $http.get(urlMap[id] + "?ts=" + (+new Date));
+
+		var articlePromise = $http.get("articles/" + slugMap[id] + "?ts=" + (+new Date));
 
 		$q.all([p1, articlePromise]).then(function(results) {
 
-			article = results[1].data.article;
-			// makeshift
-			// I'll see to router and ngView		    
+			// if returned value is null, this article has not been created
+			// we give it created: false flag.
+			$scope.articles[id] = results[1].data.article
+			if(!results[1].data.article) {
+				$scope.articles[id] = {
+					_new: true
+				}				
+			} /*else {
+				var order = $scope.articles[id].order;
+				if(order) $scope.articles[id].order = $scope.orderArr[order-1]
+				console.log($scope.articles[id].order);
+			}*/
+
 
 			var inst = tinymce.get(id);
 			inst && inst.destroy();
 
-			// temp:
-			var height;
-			if(id=="center"){height=300}
-
 			tinymce.init({
 				selector: "#" + id,
-				height: height||500,
+				height: 400,
 				theme: "modern",
 				content_css: "../../vendors/bootstrap-3.2.0-dist/css/bootstrap.min.css",
 				plugins: [
@@ -68,7 +83,7 @@ app.controller('editorCtrl', function($scope, $http, MessageApi, angularLoad, $t
 					// border: '1px solid #ddd'
 				},
 				contextmenu: "link image inserttable | tableprops cell row column deletetable",
-				image_advtab: true,
+				// image_advtab: true,
 				language: 'zh_CN',
 				menubar: false,
 				statusbar: false,
@@ -76,11 +91,11 @@ app.controller('editorCtrl', function($scope, $http, MessageApi, angularLoad, $t
 				setup: function(editor) {
 					editor.on('init', function(e) {
 						$timeout(function() {
-							$scope.$emit('freeze', false);
-						})
-
-						if (article) {
-							editor.setContent(article.content);
+								$scope.$emit('freeze', false);
+							})
+							// article returned from server is possibly null
+						if ($scope.articles[id]) {
+							editor.setContent($scope.articles[id].content || "");
 						}
 					});
 				},
@@ -107,44 +122,30 @@ app.controller('editorCtrl', function($scope, $http, MessageApi, angularLoad, $t
 
 	}
 
-
-
-
-
-	// this function only exec after article
-
 	$scope.submit = function(id) {
-		var content = tinymce.get(id).getContent();
-		var art = ArticleMgr.get(id);
-		var p;
-		if (!article) {
-			p = $http.post('articles', {
-				content: content,
-				slug: art.slug
-			})
-		} else {
-			// if article is truthy, it is surely an object
-			p = $http.put('articles/' + article.slug, {
-				content: content
-			})
-		}
 
+		var article = $scope.articles[id];
+		article.content = tinymce.get(id).getContent();
+		var p;
+		if (article._new) {
+			article.slug = slugMap[id];
+			p = $http.post("articles", article);
+		} else {
+			p = $http.put("articles/" + slugMap[id], article);
+		}
 		p.success(function(r) {
 			MessageApi.success('保存成功');
-			article = r.article;
+			$scope.articles[id] = r.article;
 		})
 	}
 
 	$scope.preview = function(id) {
-		var content = tinymce.get(id).getContent();
-		var art = ArticleMgr.get(id);
 
 		var modalInstance = $modal.open({
-			templateUrl: art.templateUrl || '../views/modal-readme.html',
-			controller: function($scope, content, $modalInstance, $sce, art) {
-				$scope.article = art;
+			templateUrl: '../views/article.modal.html',
+			controller: function($scope, $modalInstance, article) {
+				$scope.article = article;
 
-				$scope.content = $sce.trustAsHtml(content);
 				$scope.ok = function() {
 					$modalInstance.close();
 				};
@@ -155,16 +156,16 @@ app.controller('editorCtrl', function($scope, $http, MessageApi, angularLoad, $t
 			},
 			size: 'lg',
 			resolve: {
-				content: function() {
-					return content;
-				},
-				art: function() {
-					return art
+				article: function() {
+					var article = $scope.articles[id];
+					var content = tinymce.get(id).getContent();
+					article.content = $sce.trustAsHtml(content);
+					return article
 				}
 			}
 		});
 	}
 
-	
+
 
 })

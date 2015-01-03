@@ -9,15 +9,22 @@ var moment = require('moment');
 
 var caSchema = new Schema({
 
-	cert: { type: Schema.Types.ObjectId, ref: 'Certificate', required: true },
+	cert: { type: Schema.Types.ObjectId, ref: 'Certificate', required: true, unique: true},
 
 	major: { type: Schema.Types.ObjectId, ref: 'Major', required: true },
 
 	// if 'default' supports async function, I would love to use it here
 	_id: { type: String, required: true, unique: true},
-
+	// http://en.wikipedia.org/wiki/Student_number
+	studNumber: {type: String, required: true},
 	appliedDate: { type: Date, default: function() {return new Date()}}
 });
+
+
+caSchema.path('studNumber').validate(function (value) {
+  	var re = /^20\d{2}\d{3}[1-3]\d{7}$/;
+  	if(!re.test(value)) return false;
+}, '({PATH})  数据`{VALUE}`未验证通过: 不是合理的学号');
 
 caSchema.static('generateId', function(seed) {
 	var prefix = moment().format('YYYYMMDD');

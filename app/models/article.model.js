@@ -7,7 +7,9 @@ var mongoose = require('mongoose'),
 var articleSchema = new Schema({
 	title: {type: String},
 	content: {type: String},
-	slug: {type: String, unique: true}
+	order: {type: Number},
+	slug: {type: String, unique: true},
+	hey: {type: String}
 });
 
 // maybe do some slug transfromation here

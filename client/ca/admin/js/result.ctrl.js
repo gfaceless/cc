@@ -102,6 +102,7 @@ angular.module('myApp')
 
         }
         $scope.remove = function(item, index) {
+            
             var confirmed = confirm('确定要删除么');
             if (!confirmed) return;
             $http["delete"]('ca-results/' + item._id)

@@ -2,7 +2,18 @@
 
     <div tabset>
         <div tab heading="学分制换办法" select="selectTab('readme')">
+
             <form ng-submit="submit('readme')">
+                <div class="form-group">
+                    <label>标题(按钮):</label>
+                    <input type="text" ng-model="articles.readme.title">
+                </div>
+                <div class="form-group">
+                    <label>次序</label>
+                    <select ng-options="o for o in [1,2,3]" ng-model="articles.readme.order">                   
+                        
+                    </select>
+                </div>
                 <textarea name="content" style="width:100%;" id="readme"></textarea>
                 <input type="submit" class="btn btn-primary" ng-disabled="freezed" value="保存">
                 <button type="button" class="btn btn-primary" ng-click="preview('readme')">预览</button>
@@ -13,6 +24,16 @@
         <div tab select="selectTab('help')">
             <tab-heading>我要帮助</tab-heading>
             <form ng-submit="submit('help')">
+                <div class="form-group">
+                    <label>标题(按钮):</label>
+                    <input type="text" ng-model="articles.help.title">
+                </div>
+                <div class="form-group">
+                    <label>次序</label>
+                    <select ng-options="o for o in [1,2,3]" ng-model="articles.help.order">
+                        
+                    </select>
+                </div>
                 <textarea name="content" style="width:100%;" id="help"></textarea>
                 <input type="submit" class="btn btn-primary" ng-disabled="freezed" value="保存">
                 <button type="button" class="btn btn-primary" ng-click="preview('help')">预览</button>
@@ -22,6 +43,16 @@
         <div tab heading="学习中心" select="selectTab('center')">
 
             <form ng-submit="submit('center')">
+                <div class="form-group">
+                    <label>标题(按钮):</label>
+                    <input type="text" ng-model="articles.center.title">
+                </div>
+                <div class="form-group">
+                    <select ng-options="o for o in [1,2,3]" ng-model="articles.center.order">
+                        
+                    </select>
+                </div>
+                
                 <textarea name="content" id="center" style="width:100%;"></textarea>
 
                 <input type="submit" class="btn btn-primary" ng-disabled="freezed" value="保存">
