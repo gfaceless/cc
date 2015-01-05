@@ -60,6 +60,8 @@ var app = angular.module('myApp', ['message', 'ui.bootstrap', 'ngSanitize', 'gfF
 
         $scope.submit = function() {            
             
+            
+
             // form creates a new scope
             // here 'this' is the new scope, its $parent is $scope
             // I can remove this logic if I put some stopPropagation in my custom form directive            
@@ -70,6 +72,11 @@ var app = angular.module('myApp', ['message', 'ui.bootstrap', 'ngSanitize', 'gfF
             var data = angular.extend({}, $scope.ca, {
                 updating: $scope.updating
             })
+
+            // disable button to prevent double submit
+            // consider making it a directive
+            $scope.submitting = true;
+
             $http.post(urlCA, data)
                 .success(function(data) {
 
@@ -85,6 +92,9 @@ var app = angular.module('myApp', ['message', 'ui.bootstrap', 'ngSanitize', 'gfF
                     $scope.template = templates[3];
                     // network failure
                     $scope.reason = 0
+                })
+                ["finally"](function() {                    
+                    $scope.submitting = false;
                 })
         }
 

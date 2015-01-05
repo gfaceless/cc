@@ -318,3 +318,11 @@ a.app-title:hover {
 .no-wrap {
   white-space: nowrap;
 }
+.mce-table-style-padding td,
+.mce-table-style-padding th {
+  padding: 2px;
+}
+.mce-table-style-center th,
+.mce-table-style-center td {
+  text-align: center;
+}
