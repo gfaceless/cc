@@ -346,3 +346,11 @@ a.major .name:hover {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
 }
+.mce-table-style-padding td,
+.mce-table-style-padding th {
+  padding: 2px;
+}
+.mce-table-style-center th,
+.mce-table-style-center td {
+  text-align: center;
+}

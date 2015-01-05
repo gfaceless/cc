@@ -20,7 +20,7 @@ app.controller('editorCtrl', function($scope, $http, MessageApi, angularLoad, $t
 	var p1 = angularLoad.loadScript("vendors/tinymce/tinymce.min.js");
 
 	$scope.articles = {};
-	
+
 	var slugMap = {
 		"readme": 'readme',
 		"help": 'help',
@@ -36,7 +36,7 @@ app.controller('editorCtrl', function($scope, $http, MessageApi, angularLoad, $t
 		$scope.$emit('freeze', true);
 
 		startTinymce(id);
-		
+
 	}
 
 	// it also destroy the last instance
@@ -50,15 +50,16 @@ app.controller('editorCtrl', function($scope, $http, MessageApi, angularLoad, $t
 			// if returned value is null, this article has not been created
 			// we give it created: false flag.
 			$scope.articles[id] = results[1].data.article
-			if(!results[1].data.article) {
+			if (!results[1].data.article) {
 				$scope.articles[id] = {
 					_new: true
-				}				
-			} /*else {
-				var order = $scope.articles[id].order;
-				if(order) $scope.articles[id].order = $scope.orderArr[order-1]
-				console.log($scope.articles[id].order);
-			}*/
+				}
+			}
+			/*else {
+							var order = $scope.articles[id].order;
+							if(order) $scope.articles[id].order = $scope.orderArr[order-1]
+							console.log($scope.articles[id].order);
+						}*/
 
 
 			var inst = tinymce.get(id);
@@ -68,7 +69,7 @@ app.controller('editorCtrl', function($scope, $http, MessageApi, angularLoad, $t
 				selector: "#" + id,
 				height: 400,
 				theme: "modern",
-				content_css: ["../../vendors/bootstrap-3.2.0-dist/css/bootstrap.min.css","css/ca.admin.css"],
+				content_css: ["../../vendors/bootstrap-3.2.0-dist/css/bootstrap.min.css", "css/ca.admin.css"],
 				plugins: [
 					"advlist autolink lists link image hr",
 					"code",
@@ -85,6 +86,13 @@ app.controller('editorCtrl', function($scope, $http, MessageApi, angularLoad, $t
 					/*fontFamily: '"Helvetica Neue",Helvetica,Arial,sans-serif',
 					fontSize: '14px'*/
 				},
+				table_class_list: [{title:"无",value:""},{
+					title: '内间距',
+					value: 'mce-table-style-padding'
+				}, {
+					title: '居中',
+					value: 'mce-table-style-center'
+				}],
 				contextmenu: "link image inserttable | tableprops cell row column deletetable",
 				// image_advtab: true,
 				language: 'zh_CN',
