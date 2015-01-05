@@ -315,7 +315,7 @@ a.major .name:hover {
 .form-inline .form-group {
   margin-top: 10px;
 }
-.ca-results .table-responsive {
+.ca-results {
   overflow-y: hidden;
   overflow-x: auto;
   width: 100%;

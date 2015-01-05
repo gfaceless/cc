@@ -1,181 +1,151 @@
 @import (reference) "bootstrap.less";
-
 // about layout of the app, i've kept some info in evernote (this layout induces some quirks)
-
-@header-h : 70px;
-@sidebar-w : 150px;
+@header-h: 70px;
+@sidebar-w: 150px;
 @ph-color: #bbb;
-
 //tai-placeholder for ie8
 .placeholder {
     color: @ph-color;
 }
 // higher priority
-.form-control{
-	.placeholder(@ph-color);
+.form-control {
+    .placeholder(@ph-color);
 }
-
-.app-header{
-	
-	height: @header-h;
-	padding-left: 100px;
-	.bg-primary;
-	&:extend(.clearfix all);
-
-	h1 {
-		float: left;
-	}
-	.indicator{
-		float: left;
-		padding-left: 40px;
-	}
-	.controls {
-		float: right;
-		margin: 20px 40px 0 0;
-	}
+.app-header {
+    height: @header-h;
+    padding-left: 100px;
+    .bg-primary;
+    &:extend(.clearfix all);
+    h1 {
+        float: left;
+    }
+    .indicator {
+        float: left;
+        padding-left: 40px;
+    }
+    .controls {
+        float: right;
+        margin: 20px 40px 0 0;
+    }
 }
-
-.app-body{
-	min-height: 600px;
-	margin-top: 5px;
-	padding-top: 5px;
-	border-top: 1px @gray-lighter solid;
-	position: relative;
-	&:extend(.clearfix all);
+.app-body {
+    min-height: 600px;
+    margin-top: 5px;
+    padding-top: 5px;
+    border-top: 1px @gray-lighter solid;
+    position: relative;
+    &:extend(.clearfix all);
 }
-.app-footer{
-	.bg-primary;
-	&:extend(.clearfix all);
-	height: 30px;
-	margin-top: 40px;
+.app-footer {
+    .bg-primary;
+    &:extend(.clearfix all);
+    height: 30px;
+    margin-top: 40px;
 }
-
-.app-sidebar{
-	ul {
-		margin: 0;
-		padding: 0;
-		list-style: none;
-	}
-	width: @sidebar-w;	
-	float: left;
-	li {
-		height: 30px;
-		border-bottom: 1px solid @gray-lighter;
-		line-height: 30px;
-		text-align: center;
-		cursor: pointer;
-
-		&.active{
-			.bg-primary;
-		}
-	}
+.app-sidebar {
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    width: @sidebar-w;
+    float: left;
+    li {
+        height: 30px;
+        border-bottom: 1px solid @gray-lighter;
+        line-height: 30px;
+        text-align: center;
+        cursor: pointer;
+        &.active {
+            .bg-primary;
+        }
+    }
 }
-
-.app-main{
-	
-	border-left: 1px @gray-lighter solid;
-	
-	padding: 5px 20px;
-	overflow: hidden;
-		
-	.tab-content {
-		padding: 10px;
-	}
-
-	.tab-centers{
-		// should be the same as .app-result
-		width: 650px;
-		padding: 25px 40px 15px;
-	}
-
-	// margin-left: @sidebar-w;
-	/*float: left;
+.app-main {
+    border-left: 1px @gray-lighter solid;
+    padding: 5px 20px;
+    overflow: hidden;
+    .tab-content {
+        padding: 10px;
+    }
+    .tab-centers {
+        // should be the same as .app-result
+        width: 650px;
+        padding: 25px 40px 15px;
+    }
+    // margin-left: @sidebar-w;
+    /*float: left;
 	width: 100%;*/
-	// &:extend(.clearfix all);
-	/*.nav {		
+    
+    // &:extend(.clearfix all);
+    /*.nav {		
 		overflow: hidden;
 	}*/
 }
-
-
-.control-panel{
-	border-bottom: 1px @gray-lighter solid;
-	padding: 20px 100px;
-
-	.from, .to, .name {
-		width: 130px !important;
-	}
-	.fuzzy{
-		margin-left: 30px;
-	}
+.control-panel {
+    border-bottom: 1px @gray-lighter solid;
+    padding: 20px 100px;
+    .from, .to, .name {
+        width: 130px !important;
+    }
+    .fuzzy {
+        margin-left: 30px;
+    }
 }
+.major
+/*, .work-type*/
 
-
-.major/*, .work-type*/{
-	&:extend(.well all);
+{
+    &:extend(.well all);
 }
-
 .major {
-	
-	width: 400px;
-	.make-row();
-	padding: 15px;
-	margin: 5px;	
-	.bg-info;	
-	.name{
-		.make-xs-column(5);
-		.text-info;
-	}
-	.btn-toolbar{
-		.make-xs-column(7);
-	}
+    width: 400px;
+    .make-row();
+    padding: 15px;
+    margin: 5px;
+    .bg-info;
+    .name {
+        .make-xs-column(5);
+        .text-info;
+    }
+    .btn-toolbar {
+        .make-xs-column(7);
+    }
 }
-
-
 .work-type {
-	
-	.size(150px, 30px + 2*10px);
-	border: 1px solid #bbb;
-	margin: -1px 0 0 -1px;
-	
-	
-	padding: 10px;
-	text-align: center;
-	.text-overflow();
-
-	float: left;	
-	
-	// .bg-success;
-	position: relative;
-
-	.name {
-		line-height: 30px;
-	}
-	input {
-		width: 135px;
-	}
+    .size(150px, 30px + 2*10px);
+    border: 1px solid #bbb;
+    margin: -1px 0 0 -1px;
+    padding: 10px;
+    text-align: center;
+    .text-overflow();
+    float: left;
+    // .bg-success;
+    position: relative;
+    .name {
+        line-height: 30px;
+    }
+    input {
+        width: 135px;
+    }
 }
-
-
 .major-container {
-	padding-left:  100px;
-	
+    padding-left: 100px;
 }
-
-.wt-container{
-	padding-left:  100px;
-	width: 900px;
-	&:extend(.clearfix all);
+.wt-container {
+    padding-left: 100px;
+    width: 900px;
+    &:extend(.clearfix all);
 }
 .btn-remove {
-	display: none;
-	position: absolute;
-	background-color: white;
-	right: 4px;
-	top: 0px;
-	.work-type:hover &{
-		display: block;
-	}
+    display: none;
+    position: absolute;
+    background-color: white;
+    right: 4px;
+    top: 0px;
+    .work-type:hover & {
+        display: block;
+    }
 }
 /*.btn-remove {
 	position: absolute;
@@ -194,66 +164,53 @@
 }*/
 
 .pagin {
-	float: right;
-	.pagination{
-		float: left;
-	}
-	.pager-info{
-		float: left;
-		margin: 25px 0 0 10px;
-	}
+    float: right;
+    .pagination {
+        float: left;
+    }
+    .pager-info {
+        float: left;
+        margin: 25px 0 0 10px;
+    }
 }
-
-.user-panel{
-	width:400px;
-	margin: 20px 0;
+.user-panel {
+    width: 400px;
+    margin: 20px 0;
 }
-
-.form-inline .form-group{
-	margin-top: 10px;
+.form-inline .form-group {
+    margin-top: 10px;
 }
-
 .ca-results {
-	.table-responsive{
-	    overflow-y: hidden;
-	    overflow-x: auto;
-	    width: 100%;
-	}
-	th, td {
-	    vertical-align: middle !IMPORTANT;
-	    white-space: nowrap;
-	}	
+    overflow-y: hidden;
+    overflow-x: auto;
+    width: 100%;
+    th, td {
+        vertical-align: middle !IMPORTANT;
+        white-space: nowrap;
+    }
 }
-
-
-
 // fuck Zhou
-.login-modal .modal-content{
+.login-modal .modal-content {
     top: 42px;
 }
-
-
-.modal-readme{
-	padding: 0 50px;
-	height: 650px;
-	overflow-y: scroll;
-	.kaiti {
-		font-size: 18px;
-		font-family: KaiTi_GB2312, KaiTi, "Microsoft YaHei", "Helvetica Neue",Helvetica,Arial,sans-serif;
-		color: black;
-	}
+.modal-readme {
+    padding: 0 50px;
+    height: 650px;
+    overflow-y: scroll;
+    .kaiti {
+        font-size: 18px;
+        font-family: KaiTi_GB2312, KaiTi, "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        color: black;
+    }
 }
-
-
-.centers-label{
-	font-size: 14px;
+.centers-label {
+    font-size: 14px;
 }
-
 // for tinymce iframe
 .mce-content-body {
-	// overwrite what tinycme provides, to congrute with bootstrap default body style
-	td, th {
-    	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    	font-size: 14px;		
-	}
+    // overwrite what tinycme provides, to congrute with bootstrap default body style
+    td, th {
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 14px;
+    }
 }
