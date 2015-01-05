@@ -1,0 +1,1226 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Example - example-$route-service-production</title>
+    <link rel="stylesheet" href="../../../vendors/bootstrap-3.2.0-dist/css/bootstrap.min.css">
+		
+
+    <script src="../../../js/angular-1.2.js"></script>
+    <script src="../../../js/angular-route-1.2.js"></script>
+    <!-- <script src="../../../js/angular-route.js"></script> -->
+    <script src="script.js"></script>
+    <base href="/ca/admin/test/index.html" />
+
+    <script type="text/javascript">
+    /*angular.element(document.getElementsByTagName('head')).append(angular.element('<base href="' + window.location.pathname + '" />'));*/
+    </script>
+</head>
+
+<body ng-app="ngRouteExample">
+
+    <div>
+        <table border="1" width="833">
+            <tbody>
+                <tr style="border-color: #e03636; background-color: #cfcaca;">
+                    <td style="font-weight: 400;" width="28"><span style="font-size: 11pt;"><strong>&nbsp;序</strong></span>
+                    </td>
+                    <td style="font-weight: 400;" width="207"><span style="font-size: 11pt;"><strong>校外学习中心（站号）</strong></span>
+                    </td>
+                    <td style="font-weight: 400;" width="265"><span style="font-size: 11pt;"><strong>&nbsp;地址</strong></span>
+                    </td>
+                    <td style="font-weight: 400;" width="113"><span style="font-size: 11pt;"><strong>咨询电话&nbsp;</strong></span>
+                    </td>
+                    <td style="font-weight: 400;" width="66"><span style="font-size: 11pt;"><strong>联系人&nbsp;</strong></span>
+                    </td>
+                    <td style="font-weight: 400; width: 90px;" width="118">
+                        <p><span style="font-size: 11pt;"><strong>收费标准<br /></strong></span><strong>（元/学分）&nbsp;</strong>
+                        </p>
+                    </td>
+                    <td style="font-weight: 400;" width="36"><span style="font-size: 11pt;"><strong>&nbsp;状态</strong></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 400;" width="28"><span style="font-size: 11pt;">1</span>
+                    </td>
+                    <td style="font-weight: 400;" width="207"><span style="font-size: 11pt;"><a href="http://learn.bit.edu.cn/station/000/index.jsp">北京理工大学校本部(000)</a></span>
+                    </td>
+                    <td style="font-weight: 400;" width="265"><span style="font-size: 11pt;">北京理工大学继续教育楼301室</span>
+                    </td>
+                    <td style="font-weight: 400;" width="113"><span style="font-size: 11pt;">010-68918925</span>
+                    </td>
+                    <td style="font-weight: 400;" width="66"><span style="font-size: 11pt;">辛占礼</span>
+                    </td>
+                    <td style="font-weight: 400; width: 80px;" width="118"><span style="font-size: 11pt;">130</span>
+                    </td>
+                    <td style="font-weight: 400;" width="36"><span style="font-size: 11pt;">正常</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 400;" width="28"><span style="font-size: 11pt;">2</span>
+                    </td>
+                    <td style="font-weight: 400;" width="207"><span style="font-size: 11pt;"><a href="http://learn.bit.edu.cn/station/002/index.jsp">北京船舶管理干部学院(002)</a></span>
+                    </td>
+                    <td style="font-weight: 400;" width="265"><span style="font-size: 11pt;">北京市海淀区学院南路72号</span>
+                    </td>
+                    <td style="font-weight: 400;" width="113"><span style="font-size: 11pt;">010-62173135</span>
+                    </td>
+                    <td style="font-weight: 400;" width="66"><span style="font-size: 11pt;">李乃超</span>
+                    </td>
+                    <td style="font-weight: 400; width: 80px;" width="118"><span style="font-size: 11pt;">130</span>
+                    </td>
+                    <td style="font-weight: 400;" width="36"><span style="font-size: 11pt;">正常</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 400;" width="28"><span style="font-size: 11pt;">3</span>
+                    </td>
+                    <td style="font-weight: 400;" width="207"><span style="font-size: 11pt;"><a href="http://learn.bit.edu.cn/station/003/index.jsp">北京广播电视大学继续教育学院(003)</a></span>
+                    </td>
+                    <td style="font-weight: 400;" width="265"><span style="font-size: 11pt;">北京东城区崇文门外天坛路57号</span>
+                    </td>
+                    <td style="font-weight: 400;" width="113"><span style="font-size: 11pt;">010-67028717</span>
+                    </td>
+                    <td style="font-weight: 400;" width="66"><span style="font-size: 11pt;">王利</span>
+                    </td>
+                    <td style="font-weight: 400; width: 80px;" width="118"><span style="font-size: 11pt;">130</span>
+                    </td>
+                    <td style="font-weight: 400;" width="36"><span style="font-size: 11pt;">正常</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 400;" width="28"><span style="font-size: 11pt;">4</span>
+                    </td>
+                    <td style="font-weight: 400;" width="207"><span style="font-size: 11pt;"><a href="http://learn.bit.edu.cn/station/004/index.jsp">洛阳理工学院(004)</a></span>
+                    </td>
+                    <td style="font-weight: 400;" width="265"><span style="font-size: 11pt;">河南省洛阳市长江东路51号洛阳理工学院北校区成人教育学院</span>
+                    </td>
+                    <td style="font-weight: 400;" width="113"><span style="font-size: 11pt;">0379-64882668</span>
+                    </td>
+                    <td style="font-weight: 400;" width="66"><span style="font-size: 11pt;">任宏涛</span>
+                    </td>
+                    <td style="font-weight: 400; width: 80px;" width="118"><span style="font-size: 11pt;">70</span>
+                    </td>
+                    <td style="font-weight: 400;" width="36"><span style="font-size: 11pt;">正常</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 400;" width="28"><span style="font-size: 11pt;">5</span>
+                    </td>
+                    <td style="font-weight: 400;" width="207"><span style="font-size: 11pt;"><a href="http://learn.bit.edu.cn/station/006/index.jsp">河南工业职业技术学院(006)</a></span>
+                    </td>
+                    <td style="font-weight: 400;" width="265"><span style="font-size: 11pt;">河南省南阳市工农路291号</span>
+                    </td>
+                    <td style="font-weight: 400;" width="113"><span style="font-size: 11pt;">0377-63250322</span>
+                    </td>
+                    <td style="font-weight: 400;" width="66"><span style="font-size: 11pt;">王飞</span>
+                    </td>
+                    <td style="font-weight: 400; width: 80px;" width="118"><span style="font-size: 11pt;">70</span>
+                    </td>
+                    <td style="font-weight: 400;" width="36"><span style="font-size: 11pt;">正常</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 400;" width="28"><span style="font-size: 11pt;">6</span>
+                    </td>
+                    <td style="font-weight: 400;" width="207"><span style="font-size: 11pt;"><a href="http://learn.bit.edu.cn/station/007/index.jsp">郑州工业贸易学校(007)</a></span>
+                    </td>
+                    <td style="font-weight: 400;" width="265"><span style="font-size: 11pt;">河南省郑州市中原西路31号</span>
+                    </td>
+                    <td style="font-weight: 400;" width="113"><span style="font-size: 11pt;">0371-67948944</span>
+                    </td>
+                    <td style="font-weight: 400;" width="66"><span style="font-size: 11pt;">王长林</span>
+                    </td>
+                    <td style="font-weight: 400; width: 80px;" width="118"><span style="font-size: 11pt;">70</span>
+                    </td>
+                    <td style="font-weight: 400;" width="36"><span style="font-size: 11pt;">正常</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 400;" width="28"><span style="font-size: 11pt;">7</span>
+                    </td>
+                    <td style="font-weight: 400;" width="207"><span style="font-size: 11pt;"><a href="http://learn.bit.edu.cn/station/008/index.jsp">山西兵器工业职工大学(008)</a></span>
+                    </td>
+                    <td style="font-weight: 400;" width="265"><span style="font-size: 11pt;">山西省太原市胜利街114号</span>
+                    </td>
+                    <td style="font-weight: 400;" width="113"><span style="font-size: 11pt;">0351-3970002</span>
+                    </td>
+                    <td style="font-weight: 400;" width="66"><span style="font-size: 11pt;">王亦明</span>
+                    </td>
+                    <td style="font-weight: 400; width: 80px;" width="118"><span style="font-size: 11pt;">70</span>
+                    </td>
+                    <td style="font-weight: 400;" width="36"><span style="font-size: 11pt;">正常</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 400;" width="28"><span style="font-size: 11pt;">8</span>
+                    </td>
+                    <td style="font-weight: 400;" width="207"><span style="font-size: 11pt;"><a href="http://learn.bit.edu.cn/station/009/index.jsp">广东技术师范学院(009)</a></span>
+                    </td>
+                    <td style="font-weight: 400;" width="265"><span style="font-size: 11pt;">广东技术师范学院南校区本科部014信箱</span>
+                    </td>
+                    <td style="font-weight: 400;" width="113"><span style="font-size: 11pt;">020-34224824</span>
+                    </td>
+                    <td style="font-weight: 400;" width="66"><span style="font-size: 11pt;">陈伟文</span>
+                    </td>
+                    <td style="font-weight: 400; width: 80px;" width="118"><span style="font-size: 11pt;">120</span>
+                    </td>
+                    <td style="font-weight: 400;" width="36"><span style="font-size: 11pt;">正常</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 400;" width="28"><span style="font-size: 11pt;">9</span>
+                    </td>
+                    <td style="font-weight: 400;" width="207"><span style="font-size: 11pt;"><a href="http://learn.bit.edu.cn/station/011/index.jsp">北京理工大学深圳研究院(011)</a></span>
+                    </td>
+                    <td style="font-weight: 400;" width="265"><span style="font-size: 11pt;">深圳市南山区科技园南区虚拟大学园A207室</span>
+                    </td>
+                    <td style="font-weight: 400;" width="113"><span style="font-size: 11pt;">0755-26551548</span>
+                    </td>
+                    <td style="font-weight: 400;" width="66"><span style="font-size: 11pt;">艾访信</span>
+                    </td>
+                    <td style="font-weight: 400; width: 80px;" width="118"><span style="font-size: 11pt;">120</span>
+                    </td>
+                    <td style="font-weight: 400;" width="36"><span style="font-size: 11pt;">正常</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 400;" width="28"><span style="font-size: 11pt;">10</span>
+                    </td>
+                    <td style="font-weight: 400;" width="207"><span style="font-size: 11pt;"><a href="http://learn.bit.edu.cn/station/016/index.jsp">宁德技师学院(016)</a></span>
+                    </td>
+                    <td style="font-weight: 400;" width="265"><span style="font-size: 11pt;">福建省宁德市蕉城南路56号</span>
+                    </td>
+                    <td style="font-weight: 400;" width="113"><span style="font-size: 11pt;">0593-2966917</span>
+                    </td>
+                    <td style="font-weight: 400;" width="66"><span style="font-size: 11pt;">张学书</span>
+                    </td>
+                    <td style="font-weight: 400; width: 80px;" width="118"><span style="font-size: 11pt;">70</span>
+                    </td>
+                    <td style="font-weight: 400;" width="36"><span style="font-size: 11pt;">正常</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 400;" width="28"><span style="font-size: 11pt;">11</span>
+                    </td>
+                    <td style="font-weight: 400;" width="207"><span style="font-size: 11pt;"><a href="http://learn.bit.edu.cn/station/022/index.jsp">华北机电学校(022)</a></span>
+                    </td>
+                    <td style="font-weight: 400;" width="265"><span style="font-size: 11pt;">山西省长治市延安中路</span>
+                    </td>
+                    <td style="font-weight: 400;" width="113"><span style="font-size: 11pt;">0355-2171511</span>
+                    </td>
+                    <td style="font-weight: 400;" width="66"><span style="font-size: 11pt;">李忠秀</span>
+                    </td>
+                    <td style="font-weight: 400; width: 80px;" width="118"><span style="font-size: 11pt;">80</span>
+                    </td>
+                    <td style="font-weight: 400;" width="36"><span style="font-size: 11pt;">正常</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 400;" width="28"><span style="font-size: 11pt;">12</span>
+                    </td>
+                    <td style="font-weight: 400;" width="207"><span style="font-size: 11pt;"><a href="http://learn.bit.edu.cn/station/023/index.jsp">山东房地产教育培训中心(023)</a></span>
+                    </td>
+                    <td style="font-weight: 400;" width="265"><span style="font-size: 11pt;">济南市历山路137号4楼</span>
+                    </td>
+                    <td style="font-weight: 400;" width="113"><span style="font-size: 11pt;">0531-86418865</span>
+                    </td>
+                    <td style="font-weight: 400;" width="66"><span style="font-size: 11pt;">李晓娥</span>
+                    </td>
+                    <td style="font-weight: 400; width: 80px;" width="118"><span style="font-size: 11pt;">70</span>
+                    </td>
+                    <td style="font-weight: 400;" width="36"><span style="font-size: 11pt;">正常</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 400;" width="28"><span style="font-size: 11pt;">13</span>
+                    </td>
+                    <td style="font-weight: 400;" width="207"><span style="font-size: 11pt;"><a href="http://learn.bit.edu.cn/station/024/index.jsp">沈阳工贸学校(024)</a></span>
+                    </td>
+                    <td style="font-weight: 400;" width="265"><span style="font-size: 11pt;">辽宁省沈阳市大东市区东站街50-1号</span>
+                    </td>
+                    <td style="font-weight: 400;" width="113"><span style="font-size: 11pt;">024-88900079</span>
+                    </td>
+                    <td style="font-weight: 400;" width="66"><span style="font-size: 11pt;">衣庆栋</span>
+                    </td>
+                    <td style="font-weight: 400; width: 80px;" width="118"><span style="font-size: 11pt;">70</span>
+                    </td>
+                    <td style="font-weight: 400;" width="36"><span style="font-size: 11pt;">正常</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 400;" width="28"><span style="font-size: 11pt;">14</span>
+                    </td>
+                    <td style="font-weight: 400;" width="207"><span style="font-size: 11pt;"><a href="http://learn.bit.edu.cn/station/026/index.jsp">湖南信息职业技术学院(026)</a></span>
+                    </td>
+                    <td style="font-weight: 400;" width="265"><span style="font-size: 11pt;">湖南省长沙市人民中路杨家山职院街169号湖南信息职业技术学院长沙校区</span>
+                    </td>
+                    <td style="font-weight: 400;" width="113"><span style="font-size: 11pt;">0731-2785092</span>
+                    </td>
+                    <td style="font-weight: 400;" width="66"><span style="font-size: 11pt;">刘楷华</span>
+                    </td>
+                    <td style="font-weight: 400; width: 80px;" width="118"><span style="font-size: 11pt;">70</span>
+                    </td>
+                    <td style="font-weight: 400;" width="36"><span style="font-size: 11pt;">正常</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 400;" width="28"><span style="font-size: 11pt;">15</span>
+                    </td>
+                    <td style="font-weight: 400;" width="207"><span style="font-size: 11pt;"><a href="http://learn.bit.edu.cn/station/027/index.jsp">温州科技职业学院(027)</a></span>
+                    </td>
+                    <td style="font-weight: 400;" width="265"><span style="font-size: 11pt;">浙江省温州市新桥六虹桥路1000号</span>
+                    </td>
+                    <td style="font-weight: 400;" width="113"><span style="font-size: 11pt;">0577-88412050</span>
+                    </td>
+                    <td style="font-weight: 400;" width="66"><span style="font-size: 11pt;">林利迈</span>
+                    </td>
+                    <td style="font-weight: 400; width: 80px;" width="118"><span style="font-size: 11pt;">100</span>
+                    </td>
+                    <td style="font-weight: 400;" width="36"><span style="font-size: 11pt;">正常</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 400;" width="28"><span style="font-size: 11pt;">16</span>
+                    </td>
+                    <td style="font-weight: 400;" width="207"><span style="font-size: 11pt;"><a href="http://learn.bit.edu.cn/station/029/index.jsp">北京宣武红旗业余大学(029)</a></span>
+                    </td>
+                    <td style="font-weight: 400;" width="265"><span style="font-size: 11pt;">北京市宣武区右安门内大街79号</span>
+                    </td>
+                    <td style="font-weight: 400;" width="113"><span style="font-size: 11pt;">010-83548190</span>
+                    </td>
+                    <td style="font-weight: 400;" width="66"><span style="font-size: 11pt;">王微</span>
+                    </td>
+                    <td style="font-weight: 400; width: 80px;" width="118"><span style="font-size: 11pt;">130</span>
+                    </td>
+                    <td style="font-weight: 400;" width="36"><span style="font-size: 11pt;">正常</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 400;" width="28"><span style="font-size: 11pt;">17</span>
+                    </td>
+                    <td style="font-weight: 400;" width="207"><span style="font-size: 11pt;"><a href="http://learn.bit.edu.cn/station/033/index.jsp">合肥信息技术职业学院(033)</a></span>
+                    </td>
+                    <td style="font-weight: 400;" width="265"><span style="font-size: 11pt;">合肥市大学城九龙路与汤口路交叉口</span>
+                    </td>
+                    <td style="font-weight: 400;" width="113"><span style="font-size: 11pt;">0551-3619118</span>
+                    </td>
+                    <td style="font-weight: 400;" width="66"><span style="font-size: 11pt;">王世杰</span>
+                    </td>
+                    <td style="font-weight: 400; width: 80px;" width="118"><span style="font-size: 11pt;">80</span>
+                    </td>
+                    <td style="font-weight: 400;" width="36"><span style="font-size: 11pt;">正常</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 400;" width="28"><span style="font-size: 11pt;">18</span>
+                    </td>
+                    <td style="font-weight: 400;" width="207"><span style="font-size: 11pt;"><a href="http://learn.bit.edu.cn/station/034/index.jsp">山东汽车摩托车专修学院(034)</a></span>
+                    </td>
+                    <td style="font-weight: 400;" width="265"><span style="font-size: 11pt;">山东省德州市经济开发区山东省</span>
+                    </td>
+                    <td style="font-weight: 400;" width="113"><span style="font-size: 11pt;">0534-8972955</span>
+                    </td>
+                    <td style="font-weight: 400;" width="66"><span style="font-size: 11pt;">高纯华</span>
+                    </td>
+                    <td style="font-weight: 400; width: 80px;" width="118"><span style="font-size: 11pt;">70</span>
+                    </td>
+                    <td style="font-weight: 400;" width="36"><span style="font-size: 11pt;">正常</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 400;" width="28"><span style="font-size: 11pt;">19</span>
+                    </td>
+                    <td style="font-weight: 400;" width="207"><span style="font-size: 11pt;"><a href="http://learn.bit.edu.cn/station/035/index.jsp">青海广播电视大学(035)</a></span>
+                    </td>
+                    <td style="font-weight: 400;" width="265"><span style="font-size: 11pt;">青海省西宁市五四西路七号</span>
+                    </td>
+                    <td style="font-weight: 400;" width="113"><span style="font-size: 11pt;">0971-7327652</span>
+                    </td>
+                    <td style="font-weight: 400;" width="66"><span style="font-size: 11pt;">陈鹏武</span>
+                    </td>
+                    <td style="font-weight: 400; width: 80px;" width="118"><span style="font-size: 11pt;">70</span>
+                    </td>
+                    <td style="font-weight: 400;" width="36"><span style="font-size: 11pt;">正常</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 400;" width="28"><span style="font-size: 11pt;">20</span>
+                    </td>
+                    <td style="font-weight: 400;" width="207"><span style="font-size: 11pt;"><a href="http://learn.bit.edu.cn/station/036/index.jsp">云南国防工业职业技术学院(036)</a></span>
+                    </td>
+                    <td style="font-weight: 400;" width="265"><span style="font-size: 11pt;">昆明市五华区龙泉路沙坝营23号</span>
+                    </td>
+                    <td style="font-weight: 400;" width="113"><span style="font-size: 11pt;">0871-5813917</span>
+                    </td>
+                    <td style="font-weight: 400;" width="66"><span style="font-size: 11pt;">吴荣华</span>
+                    </td>
+                    <td style="font-weight: 400; width: 80px;" width="118"><span style="font-size: 11pt;">&nbsp;</span>
+                    </td>
+                    <td style="font-weight: 400;" width="36"><span style="font-size: 11pt;">正常</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 400;" width="28"><span style="font-size: 11pt;">21</span>
+                    </td>
+                    <td style="font-weight: 400;" width="207"><span style="font-size: 11pt;"><a href="http://learn.bit.edu.cn/station/038/index.jsp">新疆兵团广播电视大学继续教育学院(038)</a></span>
+                    </td>
+                    <td style="font-weight: 400;" width="265"><span style="font-size: 11pt;">新疆乌鲁木齐市二道湾路一巷100号</span>
+                    </td>
+                    <td style="font-weight: 400;" width="113"><span style="font-size: 11pt;">0991-8686959</span>
+                    </td>
+                    <td style="font-weight: 400;" width="66"><span style="font-size: 11pt;">白晓杨</span>
+                    </td>
+                    <td style="font-weight: 400; width: 80px;" width="118"><span style="font-size: 11pt;">60</span>
+                    </td>
+                    <td style="font-weight: 400;" width="36"><span style="font-size: 11pt;">正常</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 400;" width="28"><span style="font-size: 11pt;">22</span>
+                    </td>
+                    <td style="font-weight: 400;" width="207"><span style="font-size: 11pt;"><a href="http://learn.bit.edu.cn/station/039/index.jsp">柳州市交通学校(039)</a></span>
+                    </td>
+                    <td style="font-weight: 400;" width="265"><span style="font-size: 11pt;">柳州市河西路25号</span>
+                    </td>
+                    <td style="font-weight: 400;" width="113"><span style="font-size: 11pt;">0772-3997737</span>
+                    </td>
+                    <td style="font-weight: 400;" width="66"><span style="font-size: 11pt;">韦捷</span>
+                    </td>
+                    <td style="font-weight: 400; width: 80px;" width="118"><span style="font-size: 11pt;">70</span>
+                    </td>
+                    <td style="font-weight: 400;" width="36"><span style="font-size: 11pt;">正常</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 400;" width="28"><span style="font-size: 11pt;">23</span>
+                    </td>
+                    <td style="font-weight: 400;" width="207"><span style="font-size: 11pt;"><a href="http://learn.bit.edu.cn/station/040/index.jsp">云南省现代远程教育服务体系数字化连锁中心(040)</a></span>
+                    </td>
+                    <td style="font-weight: 400;" width="265"><span style="font-size: 11pt;">云南省昆明市凤翥街168号未来新城凤翥园2栋1105室</span>
+                    </td>
+                    <td style="font-weight: 400;" width="113"><span style="font-size: 11pt;">0871-5350281</span>
+                    </td>
+                    <td style="font-weight: 400;" width="66"><span style="font-size: 11pt;">殷婷</span>
+                    </td>
+                    <td style="font-weight: 400; width: 80px;" width="118"><span style="font-size: 11pt;">60</span>
+                    </td>
+                    <td style="font-weight: 400;" width="36"><span style="font-size: 11pt;">正常</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 400;" width="28"><span style="font-size: 11pt;">24</span>
+                    </td>
+                    <td style="font-weight: 400;" width="207"><span style="font-size: 11pt;"><a href="http://learn.bit.edu.cn/station/041/index.jsp">长春理工大学继续教育学院(041)</a></span>
+                    </td>
+                    <td style="font-weight: 400;" width="265"><span style="font-size: 11pt;">长春卫星路7089号</span>
+                    </td>
+                    <td style="font-weight: 400;" width="113"><span style="font-size: 11pt;">0491-85582632</span>
+                    </td>
+                    <td style="font-weight: 400;" width="66"><span style="font-size: 11pt;">李秀莉</span>
+                    </td>
+                    <td style="font-weight: 400; width: 80px;" width="118"><span style="font-size: 11pt;">60</span>
+                    </td>
+                    <td style="font-weight: 400;" width="36"><span style="font-size: 11pt;">正常</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 400;" width="28"><span style="font-size: 11pt;">25</span>
+                    </td>
+                    <td style="font-weight: 400;" width="207"><span style="font-size: 11pt;"><a href="http://learn.bit.edu.cn/station/042/index.jsp">思茅财经学校(042)</a></span>
+                    </td>
+                    <td style="font-weight: 400;" width="265"><span style="font-size: 11pt;">云南省思茅市翠云区边城东路30号</span>
+                    </td>
+                    <td style="font-weight: 400;" width="113"><span style="font-size: 11pt;">0871-7477319</span>
+                    </td>
+                    <td style="font-weight: 400;" width="66"><span style="font-size: 11pt;">廖海燕</span>
+                    </td>
+                    <td style="font-weight: 400; width: 80px;" width="118"><span style="font-size: 11pt;">60</span>
+                    </td>
+                    <td style="font-weight: 400;" width="36"><span style="font-size: 11pt;">正常</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 400;" width="28"><span style="font-size: 11pt;">26</span>
+                    </td>
+                    <td style="font-weight: 400;" width="207"><span style="font-size: 11pt;"><a href="http://learn.bit.edu.cn/station/043/index.jsp">红河州财经学校(043)</a></span>
+                    </td>
+                    <td style="font-weight: 400;" width="265"><span style="font-size: 11pt;">云南个旧市个金路19号</span>
+                    </td>
+                    <td style="font-weight: 400;" width="113"><span style="font-size: 11pt;">0873-2229196</span>
+                    </td>
+                    <td style="font-weight: 400;" width="66"><span style="font-size: 11pt;">郭建纲</span>
+                    </td>
+                    <td style="font-weight: 400; width: 80px;" width="118"><span style="font-size: 11pt;">60</span>
+                    </td>
+                    <td style="font-weight: 400;" width="36"><span style="font-size: 11pt;">正常</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 400;" width="28"><span style="font-size: 11pt;">27</span>
+                    </td>
+                    <td style="font-weight: 400;" width="207"><span style="font-size: 11pt;"><a href="http://learn.bit.edu.cn/station/045/index.jsp">云南大理州农广校(045)</a></span>
+                    </td>
+                    <td style="font-weight: 400;" width="265"><span style="font-size: 11pt;">云南省大理州下关人民街153号大理农广校</span>
+                    </td>
+                    <td style="font-weight: 400;" width="113"><span style="font-size: 11pt;">0872-2133907</span>
+                    </td>
+                    <td style="font-weight: 400;" width="66"><span style="font-size: 11pt;">鲁大东</span>
+                    </td>
+                    <td style="font-weight: 400; width: 80px;" width="118"><span style="font-size: 11pt;">60</span>
+                    </td>
+                    <td style="font-weight: 400;" width="36"><span style="font-size: 11pt;">正常</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 400;" width="28"><span style="font-size: 11pt;">28</span>
+                    </td>
+                    <td style="font-weight: 400;" width="207"><span style="font-size: 11pt;"><a href="http://learn.bit.edu.cn/station/046/index.jsp">南京理工大学继续教育学院(046)</a></span>
+                    </td>
+                    <td style="font-weight: 400;" width="265"><span style="font-size: 11pt;">南京市小卫街联合村1号南京理工大学继续教育学院</span>
+                    </td>
+                    <td style="font-weight: 400;" width="113"><span style="font-size: 11pt;">025-84303277</span>
+                    </td>
+                    <td style="font-weight: 400;" width="66"><span style="font-size: 11pt;">张虹</span>
+                    </td>
+                    <td style="font-weight: 400; width: 80px;" width="118"><span style="font-size: 11pt;">100</span>
+                    </td>
+                    <td style="font-weight: 400;" width="36"><span style="font-size: 11pt;">正常</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 400;" width="28"><span style="font-size: 11pt;">29</span>
+                    </td>
+                    <td style="font-weight: 400;" width="207"><span style="font-size: 11pt;"><a href="http://learn.bit.edu.cn/station/047/index.jsp">昆明数字化连锁中心(047)</a></span>
+                    </td>
+                    <td style="font-weight: 400;" width="265"><span style="font-size: 11pt;">云南省昆明市凤翥街168号未来新城凤翥园2栋1105室</span>
+                    </td>
+                    <td style="font-weight: 400;" width="113"><span style="font-size: 11pt;">0871-5336026</span>
+                    </td>
+                    <td style="font-weight: 400;" width="66"><span style="font-size: 11pt;">殷婷</span>
+                    </td>
+                    <td style="font-weight: 400; width: 80px;" width="118"><span style="font-size: 11pt;">60</span>
+                    </td>
+                    <td style="font-weight: 400;" width="36"><span style="font-size: 11pt;">正常</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 400;" width="28"><span style="font-size: 11pt;">30</span>
+                    </td>
+                    <td style="font-weight: 400;" width="207"><span style="font-size: 11pt;"><a href="http://learn.bit.edu.cn/station/048/index.jsp">唐山学院(048)</a></span>
+                    </td>
+                    <td style="font-weight: 400;" width="265"><span style="font-size: 11pt;">唐山市路北区华岩北路38号</span>
+                    </td>
+                    <td style="font-weight: 400;" width="113"><span style="font-size: 11pt;">0315-2010644</span>
+                    </td>
+                    <td style="font-weight: 400;" width="66"><span style="font-size: 11pt;">张春梅</span>
+                    </td>
+                    <td style="font-weight: 400; width: 80px;" width="118"><span style="font-size: 11pt;">75</span>
+                    </td>
+                    <td style="font-weight: 400;" width="36"><span style="font-size: 11pt;">正常</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 400;" width="28"><span style="font-size: 11pt;">31</span>
+                    </td>
+                    <td style="font-weight: 400;" width="207"><span style="font-size: 11pt;"><a href="http://learn.bit.edu.cn/station/049/index.jsp">徐州生物工程高等职业学校(049)</a></span>
+                    </td>
+                    <td style="font-weight: 400;" width="265"><span style="font-size: 11pt;">徐州市矿山西路徐州生物工程高等职业学校成人教育处</span>
+                    </td>
+                    <td style="font-weight: 400;" width="113"><span style="font-size: 11pt;">0516-83628102</span>
+                    </td>
+                    <td style="font-weight: 400;" width="66"><span style="font-size: 11pt;">周奎生</span>
+                    </td>
+                    <td style="font-weight: 400; width: 80px;" width="118"><span style="font-size: 11pt;">70</span>
+                    </td>
+                    <td style="font-weight: 400;" width="36"><span style="font-size: 11pt;">正常</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 400;" width="28"><span style="font-size: 11pt;">32</span>
+                    </td>
+                    <td style="font-weight: 400;" width="207"><span style="font-size: 11pt;"><a href="http://learn.bit.edu.cn/station/050/index.jsp">河北师范大学信息技术学院(050)</a></span>
+                    </td>
+                    <td style="font-weight: 400;" width="265"><span style="font-size: 11pt;">河北省石家庄市南二环东路20号河北师范大学理科群1号楼D区信息技术学院129室</span>
+                    </td>
+                    <td style="font-weight: 400;" width="113"><span style="font-size: 11pt;">0311-80787825</span>
+                    </td>
+                    <td style="font-weight: 400;" width="66"><span style="font-size: 11pt;">邵敬勇</span>
+                    </td>
+                    <td style="font-weight: 400; width: 80px;" width="118"><span style="font-size: 11pt;">70</span>
+                    </td>
+                    <td style="font-weight: 400;" width="36"><span style="font-size: 11pt;">正常</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 400;" width="28"><span style="font-size: 11pt;">33</span>
+                    </td>
+                    <td style="font-weight: 400;" width="207"><span style="font-size: 11pt;"><a href="http://learn.bit.edu.cn/station/051/index.jsp">新疆兵团农一师电大(051)</a></span>
+                    </td>
+                    <td style="font-weight: 400;" width="265"><span style="font-size: 11pt;">新疆阿克苏地区库车县文化路大家职业培训学校</span>
+                    </td>
+                    <td style="font-weight: 400;" width="113"><span style="font-size: 11pt;">0997-7150073</span>
+                    </td>
+                    <td style="font-weight: 400;" width="66"><span style="font-size: 11pt;">徐勇</span>
+                    </td>
+                    <td style="font-weight: 400; width: 80px;" width="118"><span style="font-size: 11pt;">60</span>
+                    </td>
+                    <td style="font-weight: 400;" width="36"><span style="font-size: 11pt;">正常</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 400;" width="28"><span style="font-size: 11pt;">34</span>
+                    </td>
+                    <td style="font-weight: 400;" width="207"><span style="font-size: 11pt;"><a href="http://learn.bit.edu.cn/station/053/index.jsp">新疆兵团农三师电大(053)</a></span>
+                    </td>
+                    <td style="font-weight: 400;" width="265"><span style="font-size: 11pt;">新疆喀什克孜都维路农三师教育学院</span>
+                    </td>
+                    <td style="font-weight: 400;" width="113"><span style="font-size: 11pt;">0998-2532247</span>
+                    </td>
+                    <td style="font-weight: 400;" width="66"><span style="font-size: 11pt;">范仲伯</span>
+                    </td>
+                    <td style="font-weight: 400; width: 80px;" width="118"><span style="font-size: 11pt;">60</span>
+                    </td>
+                    <td style="font-weight: 400;" width="36"><span style="font-size: 11pt;">正常</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 400;" width="28"><span style="font-size: 11pt;">35</span>
+                    </td>
+                    <td style="font-weight: 400;" width="207"><span style="font-size: 11pt;"><a href="http://learn.bit.edu.cn/station/054/index.jsp">新疆兵团农四师电大(054)</a></span>
+                    </td>
+                    <td style="font-weight: 400;" width="265"><span style="font-size: 11pt;">新疆维吾尔族自治区伊宁市飞机场路162号</span>
+                    </td>
+                    <td style="font-weight: 400;" width="113"><span style="font-size: 11pt;">0999-8210815</span>
+                    </td>
+                    <td style="font-weight: 400;" width="66"><span style="font-size: 11pt;">周先民</span>
+                    </td>
+                    <td style="font-weight: 400; width: 80px;" width="118"><span style="font-size: 11pt;">60</span>
+                    </td>
+                    <td style="font-weight: 400;" width="36"><span style="font-size: 11pt;">正常</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 400;" width="28"><span style="font-size: 11pt;">36</span>
+                    </td>
+                    <td style="font-weight: 400;" width="207"><span style="font-size: 11pt;"><a href="http://learn.bit.edu.cn/station/055/index.jsp">新疆兵团农五师电大(055)</a></span>
+                    </td>
+                    <td style="font-weight: 400;" width="265"><span style="font-size: 11pt;">博乐市北京路144号</span>
+                    </td>
+                    <td style="font-weight: 400;" width="113"><span style="font-size: 11pt;">0909-7670774</span>
+                    </td>
+                    <td style="font-weight: 400;" width="66"><span style="font-size: 11pt;">唐勇</span>
+                    </td>
+                    <td style="font-weight: 400; width: 80px;" width="118"><span style="font-size: 11pt;">60</span>
+                    </td>
+                    <td style="font-weight: 400;" width="36"><span style="font-size: 11pt;">正常</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 400;" width="28"><span style="font-size: 11pt;">37</span>
+                    </td>
+                    <td style="font-weight: 400;" width="207"><span style="font-size: 11pt;"><a href="http://learn.bit.edu.cn/station/057/index.jsp">新疆兵团农七师电大(057)</a></span>
+                    </td>
+                    <td style="font-weight: 400;" width="265"><span style="font-size: 11pt;">奎屯市青年街15号</span>
+                    </td>
+                    <td style="font-weight: 400;" width="113"><span style="font-size: 11pt;">0992-3223809</span>
+                    </td>
+                    <td style="font-weight: 400;" width="66"><span style="font-size: 11pt;">黎彩虹</span>
+                    </td>
+                    <td style="font-weight: 400; width: 80px;" width="118"><span style="font-size: 11pt;">60</span>
+                    </td>
+                    <td style="font-weight: 400;" width="36"><span style="font-size: 11pt;">正常</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 400;" width="28"><span style="font-size: 11pt;">38</span>
+                    </td>
+                    <td style="font-weight: 400;" width="207"><span style="font-size: 11pt;"><a href="http://learn.bit.edu.cn/station/060/index.jsp">新疆兵团农十师电大(060)</a></span>
+                    </td>
+                    <td style="font-weight: 400;" width="265"><span style="font-size: 11pt;">新疆农十师党校</span>
+                    </td>
+                    <td style="font-weight: 400;" width="113"><span style="font-size: 11pt;">0906-3184806</span>
+                    </td>
+                    <td style="font-weight: 400;" width="66"><span style="font-size: 11pt;">原宁</span>
+                    </td>
+                    <td style="font-weight: 400; width: 80px;" width="118"><span style="font-size: 11pt;">60</span>
+                    </td>
+                    <td style="font-weight: 400;" width="36"><span style="font-size: 11pt;">正常</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 400;" width="28"><span style="font-size: 11pt;">39</span>
+                    </td>
+                    <td style="font-weight: 400;" width="207"><span style="font-size: 11pt;"><a href="http://learn.bit.edu.cn/station/062/index.jsp">八一学院&nbsp;B-100003(062)</a></span>
+                    </td>
+                    <td style="font-weight: 400;" width="265"><span style="font-size: 11pt;">北京市中关村南大街5号继续教育楼416室</span>
+                    </td>
+                    <td style="font-weight: 400;" width="113"><span style="font-size: 11pt;">68918939</span>
+                    </td>
+                    <td style="font-weight: 400;" width="66"><span style="font-size: 11pt;">总参八一学院</span>
+                    </td>
+                    <td style="font-weight: 400; width: 80px;" width="118"><span style="font-size: 11pt;">0</span>
+                    </td>
+                    <td style="font-weight: 400;" width="36"><span style="font-size: 11pt;">正常</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 400;" width="28"><span style="font-size: 11pt;">40</span>
+                    </td>
+                    <td style="font-weight: 400;" width="207"><span style="font-size: 11pt;"><a href="http://learn.bit.edu.cn/station/063/index.jsp">八一学院&nbsp;B-KJ01A-KXY001(063)</a></span>
+                    </td>
+                    <td style="font-weight: 400;" width="265"><span style="font-size: 11pt;">北京市海淀区中关村南大街5号继续教育楼416室</span>
+                    </td>
+                    <td style="font-weight: 400;" width="113"><span style="font-size: 11pt;">68918939</span>
+                    </td>
+                    <td style="font-weight: 400;" width="66"><span style="font-size: 11pt;">总参八一学院</span>
+                    </td>
+                    <td style="font-weight: 400; width: 80px;" width="118"><span style="font-size: 11pt;">0</span>
+                    </td>
+                    <td style="font-weight: 400;" width="36"><span style="font-size: 11pt;">正常</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 400;" width="28"><span style="font-size: 11pt;">41</span>
+                    </td>
+                    <td style="font-weight: 400;" width="207"><span style="font-size: 11pt;"><a href="http://learn.bit.edu.cn/station/064/index.jsp">八一学院&nbsp;B-BJ03A-325008(064)</a></span>
+                    </td>
+                    <td style="font-weight: 400;" width="265"><span style="font-size: 11pt;">北京市海淀区中关村南大街5号继续教育楼416室</span>
+                    </td>
+                    <td style="font-weight: 400;" width="113"><span style="font-size: 11pt;">68918939</span>
+                    </td>
+                    <td style="font-weight: 400;" width="66"><span style="font-size: 11pt;">总参八一学院</span>
+                    </td>
+                    <td style="font-weight: 400; width: 80px;" width="118"><span style="font-size: 11pt;">0</span>
+                    </td>
+                    <td style="font-weight: 400;" width="36"><span style="font-size: 11pt;">正常</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 400;" width="28"><span style="font-size: 11pt;">42</span>
+                    </td>
+                    <td style="font-weight: 400;" width="207"><span style="font-size: 11pt;"><a href="http://learn.bit.edu.cn/station/065/index.jsp">新疆兵团精河电大(065)</a></span>
+                    </td>
+                    <td style="font-weight: 400;" width="265"><span style="font-size: 11pt;">新疆</span>
+                    </td>
+                    <td style="font-weight: 400;" width="113"><span style="font-size: 11pt;">0991-8826478</span>
+                    </td>
+                    <td style="font-weight: 400;" width="66"><span style="font-size: 11pt;">陈红云</span>
+                    </td>
+                    <td style="font-weight: 400; width: 80px;" width="118"><span style="font-size: 11pt;">60</span>
+                    </td>
+                    <td style="font-weight: 400;" width="36"><span style="font-size: 11pt;">正常</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 400;" width="28"><span style="font-size: 11pt;">43</span>
+                    </td>
+                    <td style="font-weight: 400;" width="207"><span style="font-size: 11pt;"><a href="http://learn.bit.edu.cn/station/066/index.jsp">八一学院&nbsp;B-BJ06B-114089(066)</a></span>
+                    </td>
+                    <td style="font-weight: 400;" width="265"><span style="font-size: 11pt;">北京市海淀区中关村南大街5号继续教育楼416室</span>
+                    </td>
+                    <td style="font-weight: 400;" width="113"><span style="font-size: 11pt;">68918939</span>
+                    </td>
+                    <td style="font-weight: 400;" width="66"><span style="font-size: 11pt;">总参八一学院</span>
+                    </td>
+                    <td style="font-weight: 400; width: 80px;" width="118"><span style="font-size: 11pt;">0</span>
+                    </td>
+                    <td style="font-weight: 400;" width="36"><span style="font-size: 11pt;">正常</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 400;" width="28"><span style="font-size: 11pt;">44</span>
+                    </td>
+                    <td style="font-weight: 400;" width="207"><span style="font-size: 11pt;"><a href="http://learn.bit.edu.cn/station/067/index.jsp">八一学院&nbsp;B-BJ06B-SLB091(067)</a></span>
+                    </td>
+                    <td style="font-weight: 400;" width="265"><span style="font-size: 11pt;">北京市海淀区中关村南大街5号继续教育楼416室</span>
+                    </td>
+                    <td style="font-weight: 400;" width="113"><span style="font-size: 11pt;">68918939</span>
+                    </td>
+                    <td style="font-weight: 400;" width="66"><span style="font-size: 11pt;">总参八一学院</span>
+                    </td>
+                    <td style="font-weight: 400; width: 80px;" width="118"><span style="font-size: 11pt;">0</span>
+                    </td>
+                    <td style="font-weight: 400;" width="36"><span style="font-size: 11pt;">正常</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 400;" width="28"><span style="font-size: 11pt;">45</span>
+                    </td>
+                    <td style="font-weight: 400;" width="207"><span style="font-size: 11pt;"><a href="http://learn.bit.edu.cn/station/069/index.jsp">杭州电子科技大学(069)</a></span>
+                    </td>
+                    <td style="font-weight: 400;" width="265"><span style="font-size: 11pt;">杭州市文一路115号</span>
+                    </td>
+                    <td style="font-weight: 400;" width="113"><span style="font-size: 11pt;">13705717456</span>
+                    </td>
+                    <td style="font-weight: 400;" width="66"><span style="font-size: 11pt;">邵海忠</span>
+                    </td>
+                    <td style="font-weight: 400; width: 80px;" width="118"><span style="font-size: 11pt;">100</span>
+                    </td>
+                    <td style="font-weight: 400;" width="36"><span style="font-size: 11pt;">正常</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 400;" width="28"><span style="font-size: 11pt;">46</span>
+                    </td>
+                    <td style="font-weight: 400;" width="207"><span style="font-size: 11pt;"><a href="http://learn.bit.edu.cn/station/070/index.jsp">江西工业贸易职业技术学院(070)</a></span>
+                    </td>
+                    <td style="font-weight: 400;" width="265"><span style="font-size: 11pt;">江西省南昌市红谷新区嘉言路699号</span>
+                    </td>
+                    <td style="font-weight: 400;" width="113"><span style="font-size: 11pt;">0791-3777943</span>
+                    </td>
+                    <td style="font-weight: 400;" width="66"><span style="font-size: 11pt;">胡勇波</span>
+                    </td>
+                    <td style="font-weight: 400; width: 80px;" width="118"><span style="font-size: 11pt;">80</span>
+                    </td>
+                    <td style="font-weight: 400;" width="36"><span style="font-size: 11pt;">正常</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 400;" width="28"><span style="font-size: 11pt;">47</span>
+                    </td>
+                    <td style="font-weight: 400;" width="207"><span style="font-size: 11pt;"><a href="http://learn.bit.edu.cn/station/071/index.jsp">齐齐哈尔职业学院(071)</a></span>
+                    </td>
+                    <td style="font-weight: 400;" width="265"><span style="font-size: 11pt;">齐齐哈尔市龙沙区民意路174号齐齐哈尔职业学院成教部</span>
+                    </td>
+                    <td style="font-weight: 400;" width="113"><span style="font-size: 11pt;">4522414527</span>
+                    </td>
+                    <td style="font-weight: 400;" width="66"><span style="font-size: 11pt;">王成国</span>
+                    </td>
+                    <td style="font-weight: 400; width: 80px;" width="118"><span style="font-size: 11pt;">70</span>
+                    </td>
+                    <td style="font-weight: 400;" width="36"><span style="font-size: 11pt;">正常</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 400;" width="28"><span style="font-size: 11pt;">48</span>
+                    </td>
+                    <td style="font-weight: 400;" width="207"><span style="font-size: 11pt;"><a href="http://learn.bit.edu.cn/station/072/index.jsp">江西广播电视大学九江市分校(072)</a></span>
+                    </td>
+                    <td style="font-weight: 400;" width="265"><span style="font-size: 11pt;">九江市长虹大道&nbsp;310号九江电大三楼教务处</span>
+                    </td>
+                    <td style="font-weight: 400;" width="113"><span style="font-size: 11pt;">0792-8170557</span>
+                    </td>
+                    <td style="font-weight: 400;" width="66"><span style="font-size: 11pt;">刘明</span>
+                    </td>
+                    <td style="font-weight: 400; width: 80px;" width="118"><span style="font-size: 11pt;">70</span>
+                    </td>
+                    <td style="font-weight: 400;" width="36"><span style="font-size: 11pt;">正常</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 400;" width="28"><span style="font-size: 11pt;">49</span>
+                    </td>
+                    <td style="font-weight: 400;" width="207"><span style="font-size: 11pt;"><a href="http://learn.bit.edu.cn/station/073/index.jsp">校本部良乡校区(073)</a></span>
+                    </td>
+                    <td style="font-weight: 400;" width="265"><span style="font-size: 11pt;">北京市房山区良乡高教园区北京理工大学新校区</span>
+                    </td>
+                    <td style="font-weight: 400;" width="113"><span style="font-size: 11pt;">010-68914963</span>
+                    </td>
+                    <td style="font-weight: 400;" width="66"><span style="font-size: 11pt;">谭洁</span>
+                    </td>
+                    <td style="font-weight: 400; width: 80px;" width="118"><span style="font-size: 11pt;">130</span>
+                    </td>
+                    <td style="font-weight: 400;" width="36"><span style="font-size: 11pt;">正常</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 400;" width="28"><span style="font-size: 11pt;">50</span>
+                    </td>
+                    <td style="font-weight: 400;" width="207"><span style="font-size: 11pt;"><a href="http://learn.bit.edu.cn/station/074/index.jsp">八一学院&nbsp;B-BJ06B-397093(074)</a></span>
+                    </td>
+                    <td style="font-weight: 400;" width="265"><span style="font-size: 11pt;">北京市海淀区中关村南大街5号继续教育楼416室</span>
+                    </td>
+                    <td style="font-weight: 400;" width="113"><span style="font-size: 11pt;">68918939</span>
+                    </td>
+                    <td style="font-weight: 400;" width="66"><span style="font-size: 11pt;">总参八一学院</span>
+                    </td>
+                    <td style="font-weight: 400; width: 80px;" width="118"><span style="font-size: 11pt;">0</span>
+                    </td>
+                    <td style="font-weight: 400;" width="36"><span style="font-size: 11pt;">正常</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 400;" width="28"><span style="font-size: 11pt;">51</span>
+                    </td>
+                    <td style="font-weight: 400;" width="207"><span style="font-size: 11pt;"><a href="http://learn.bit.edu.cn/station/075/index.jsp">八一学院&nbsp;B-BJ06B-055016(075)</a></span>
+                    </td>
+                    <td style="font-weight: 400;" width="265"><span style="font-size: 11pt;">北京市海淀区中关村南大街5号继续教育楼416室</span>
+                    </td>
+                    <td style="font-weight: 400;" width="113"><span style="font-size: 11pt;">68918939</span>
+                    </td>
+                    <td style="font-weight: 400;" width="66"><span style="font-size: 11pt;">总参八一学院</span>
+                    </td>
+                    <td style="font-weight: 400; width: 80px;" width="118"><span style="font-size: 11pt;">0</span>
+                    </td>
+                    <td style="font-weight: 400;" width="36"><span style="font-size: 11pt;">正常</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 400;" width="28"><span style="font-size: 11pt;">52</span>
+                    </td>
+                    <td style="font-weight: 400;" width="207"><span style="font-size: 11pt;"><a href="http://learn.bit.edu.cn/station/076/index.jsp">八一学院&nbsp;B-BJ06B-329098(076)</a></span>
+                    </td>
+                    <td style="font-weight: 400;" width="265"><span style="font-size: 11pt;">北京市海淀区中关村南大街5号继续教育楼416室</span>
+                    </td>
+                    <td style="font-weight: 400;" width="113"><span style="font-size: 11pt;">68918939</span>
+                    </td>
+                    <td style="font-weight: 400;" width="66"><span style="font-size: 11pt;">总参八一学院</span>
+                    </td>
+                    <td style="font-weight: 400; width: 80px;" width="118"><span style="font-size: 11pt;">0</span>
+                    </td>
+                    <td style="font-weight: 400;" width="36"><span style="font-size: 11pt;">正常</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 400;" width="28"><span style="font-size: 11pt;">53</span>
+                    </td>
+                    <td style="font-weight: 400;" width="207"><span style="font-size: 11pt;"><a href="http://learn.bit.edu.cn/station/077/index.jsp">八一学院&nbsp;B-BJ13B-282165(077)</a></span>
+                    </td>
+                    <td style="font-weight: 400;" width="265"><span style="font-size: 11pt;">北京市海淀区中关村南大街5号继续教育楼416室</span>
+                    </td>
+                    <td style="font-weight: 400;" width="113"><span style="font-size: 11pt;">68918939</span>
+                    </td>
+                    <td style="font-weight: 400;" width="66"><span style="font-size: 11pt;">总参八一学院</span>
+                    </td>
+                    <td style="font-weight: 400; width: 80px;" width="118"><span style="font-size: 11pt;">0</span>
+                    </td>
+                    <td style="font-weight: 400;" width="36"><span style="font-size: 11pt;">正常</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 400;" width="28"><span style="font-size: 11pt;">54</span>
+                    </td>
+                    <td style="font-weight: 400;" width="207"><span style="font-size: 11pt;"><a href="http://learn.bit.edu.cn/station/078/index.jsp">八一学院&nbsp;B-BJ11B-446145(078)</a></span>
+                    </td>
+                    <td style="font-weight: 400;" width="265"><span style="font-size: 11pt;">北京市海淀区中关村南大街5号继续教育楼416室</span>
+                    </td>
+                    <td style="font-weight: 400;" width="113"><span style="font-size: 11pt;">68918939</span>
+                    </td>
+                    <td style="font-weight: 400;" width="66"><span style="font-size: 11pt;">总参八一学院</span>
+                    </td>
+                    <td style="font-weight: 400; width: 80px;" width="118"><span style="font-size: 11pt;">0</span>
+                    </td>
+                    <td style="font-weight: 400;" width="36"><span style="font-size: 11pt;">正常</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 400;" width="28"><span style="font-size: 11pt;">55</span>
+                    </td>
+                    <td style="font-weight: 400;" width="207"><span style="font-size: 11pt;"><a href="http://learn.bit.edu.cn/station/079/index.jsp">八一学院&nbsp;B-HJ01B-SLB001(079)</a></span>
+                    </td>
+                    <td style="font-weight: 400;" width="265"><span style="font-size: 11pt;">北京市海淀区中关村南大街5号继续教育学院416室</span>
+                    </td>
+                    <td style="font-weight: 400;" width="113"><span style="font-size: 11pt;">68918939</span>
+                    </td>
+                    <td style="font-weight: 400;" width="66"><span style="font-size: 11pt;">总参八一学院</span>
+                    </td>
+                    <td style="font-weight: 400; width: 80px;" width="118"><span style="font-size: 11pt;">0</span>
+                    </td>
+                    <td style="font-weight: 400;" width="36"><span style="font-size: 11pt;">正常</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 400;" width="28"><span style="font-size: 11pt;">56</span>
+                    </td>
+                    <td style="font-weight: 400;" width="207"><span style="font-size: 11pt;"><a href="http://learn.bit.edu.cn/station/080/index.jsp">八一学院&nbsp;B-GZ02B-JXX016(080)</a></span>
+                    </td>
+                    <td style="font-weight: 400;" width="265"><span style="font-size: 11pt;">北京市海淀区中关村南大街5号继续教育楼416室</span>
+                    </td>
+                    <td style="font-weight: 400;" width="113"><span style="font-size: 11pt;">68918939</span>
+                    </td>
+                    <td style="font-weight: 400;" width="66"><span style="font-size: 11pt;">总参八一学院</span>
+                    </td>
+                    <td style="font-weight: 400; width: 80px;" width="118"><span style="font-size: 11pt;">0</span>
+                    </td>
+                    <td style="font-weight: 400;" width="36"><span style="font-size: 11pt;">正常</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 400;" width="28"><span style="font-size: 11pt;">57</span>
+                    </td>
+                    <td style="font-weight: 400;" width="207"><span style="font-size: 11pt;"><a href="http://learn.bit.edu.cn/station/083/index.jsp">八一学院(083)</a></span>
+                    </td>
+                    <td style="font-weight: 400;" width="265"><span style="font-size: 11pt;">中关村南大街5号继续教育楼416室</span>
+                    </td>
+                    <td style="font-weight: 400;" width="113"><span style="font-size: 11pt;">68918939</span>
+                    </td>
+                    <td style="font-weight: 400;" width="66"><span style="font-size: 11pt;">总参八一学院</span>
+                    </td>
+                    <td style="font-weight: 400; width: 80px;" width="118"><span style="font-size: 11pt;">0</span>
+                    </td>
+                    <td style="font-weight: 400;" width="36"><span style="font-size: 11pt;">正常</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 400;" width="28"><span style="font-size: 11pt;">58</span>
+                    </td>
+                    <td style="font-weight: 400;" width="207"><span style="font-size: 11pt;"><a href="http://learn.bit.edu.cn/station/084/index.jsp">江西凤凰高级技工学校(084)</a></span>
+                    </td>
+                    <td style="font-weight: 400;" width="265"><span style="font-size: 11pt;">江西省上饶市信州区光学路1号江西凤凰高级技工学校</span>
+                    </td>
+                    <td style="font-weight: 400;" width="113"><span style="font-size: 11pt;">13970354394</span>
+                    </td>
+                    <td style="font-weight: 400;" width="66"><span style="font-size: 11pt;">宋杉</span>
+                    </td>
+                    <td style="font-weight: 400; width: 80px;" width="118"><span style="font-size: 11pt;">70</span>
+                    </td>
+                    <td style="font-weight: 400;" width="36"><span style="font-size: 11pt;">正常</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 400;" width="28"><span style="font-size: 11pt;">59</span>
+                    </td>
+                    <td style="font-weight: 400;" width="207"><span style="font-size: 11pt;"><a href="http://learn.bit.edu.cn/station/085/index.jsp">浙江越秀外国语学院(085)</a></span>
+                    </td>
+                    <td style="font-weight: 400;" width="265"><span style="font-size: 11pt;">绍兴市会稽路428号浙江越秀外国语学院成人教育学院</span>
+                    </td>
+                    <td style="font-weight: 400;" width="113"><span style="font-size: 11pt;">0575-88067781</span>
+                    </td>
+                    <td style="font-weight: 400;" width="66"><span style="font-size: 11pt;">吴伟英</span>
+                    </td>
+                    <td style="font-weight: 400; width: 80px;" width="118"><span style="font-size: 11pt;">100</span>
+                    </td>
+                    <td style="font-weight: 400;" width="36"><span style="font-size: 11pt;">正常</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 400;" width="28"><span style="font-size: 11pt;">60</span>
+                    </td>
+                    <td style="font-weight: 400;" width="207"><span style="font-size: 11pt;"><a href="http://learn.bit.edu.cn/station/086/index.jsp">陕西省电子工业学校(086)</a></span>
+                    </td>
+                    <td style="font-weight: 400;" width="265"><span style="font-size: 11pt;">宝鸡市宝福路56号</span>
+                    </td>
+                    <td style="font-weight: 400;" width="113"><span style="font-size: 11pt;">0917-2887929</span>
+                    </td>
+                    <td style="font-weight: 400;" width="66"><span style="font-size: 11pt;">何蒙辉</span>
+                    </td>
+                    <td style="font-weight: 400; width: 80px;" width="118"><span style="font-size: 11pt;">75</span>
+                    </td>
+                    <td style="font-weight: 400;" width="36"><span style="font-size: 11pt;">正常</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 400;" width="28"><span style="font-size: 11pt;">61</span>
+                    </td>
+                    <td style="font-weight: 400;" width="207"><span style="font-size: 11pt;"><a href="http://learn.bit.edu.cn/station/087/index.jsp">常州机电职业技术学院(087)</a></span>
+                    </td>
+                    <td style="font-weight: 400;" width="265"><span style="font-size: 11pt;">常州机电职业技术学院大学城鸣新东路6号</span>
+                    </td>
+                    <td style="font-weight: 400;" width="113"><span style="font-size: 11pt;">0519&mdash;86331065</span>
+                    </td>
+                    <td style="font-weight: 400;" width="66"><span style="font-size: 11pt;">杨红旻</span>
+                    </td>
+                    <td style="font-weight: 400; width: 80px;" width="118"><span style="font-size: 11pt;">90</span>
+                    </td>
+                    <td style="font-weight: 400;" width="36"><span style="font-size: 11pt;">正常</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 400;" width="28"><span style="font-size: 11pt;">62</span>
+                    </td>
+                    <td style="font-weight: 400;" width="207"><span style="font-size: 11pt;"><a href="http://learn.bit.edu.cn/station/088/index.jsp">知金教育中山数字化学习中心(088)</a></span>
+                    </td>
+                    <td style="font-weight: 400;" width="265"><span style="font-size: 11pt;">广东省中山市石岐区宏基路39号&nbsp;石岐购书中心二楼</span>
+                    </td>
+                    <td style="font-weight: 400;" width="113"><span style="font-size: 11pt;">13600254721</span>
+                    </td>
+                    <td style="font-weight: 400;" width="66"><span style="font-size: 11pt;">何忠洪</span>
+                    </td>
+                    <td style="font-weight: 400; width: 80px;" width="118"><span style="font-size: 11pt;">110</span>
+                    </td>
+                    <td style="font-weight: 400;" width="36"><span style="font-size: 11pt;">正常</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 400;" width="28"><span style="font-size: 11pt;">63</span>
+                    </td>
+                    <td style="font-weight: 400;" width="207"><span style="font-size: 11pt;"><a href="http://learn.bit.edu.cn/station/089/index.jsp">知金上海数字化学习中心(089)</a></span>
+                    </td>
+                    <td style="font-weight: 400;" width="265"><span style="font-size: 11pt;">上海市徐汇区中山西路2025号永升大厦1212室</span>
+                    </td>
+                    <td style="font-weight: 400;" width="113"><span style="font-size: 11pt;">021-65100581</span>
+                    </td>
+                    <td style="font-weight: 400;" width="66"><span style="font-size: 11pt;">周老师</span>
+                    </td>
+                    <td style="font-weight: 400; width: 80px;" width="118"><span style="font-size: 11pt;">110</span>
+                    </td>
+                    <td style="font-weight: 400;" width="36"><span style="font-size: 11pt;">正常</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 400;" width="28"><span style="font-size: 11pt;">64</span>
+                    </td>
+                    <td style="font-weight: 400;" width="207"><span style="font-size: 11pt;"><a href="http://learn.bit.edu.cn/station/091/index.jsp">知金教育北京数字化学习中心(091)</a></span>
+                    </td>
+                    <td style="font-weight: 400;" width="265"><span style="font-size: 11pt;">朝阳区朝阳门外大街19号华普国际大厦5层525室</span>
+                    </td>
+                    <td style="font-weight: 400;" width="113"><span style="font-size: 11pt;">13810056883</span>
+                    </td>
+                    <td style="font-weight: 400;" width="66"><span style="font-size: 11pt;">王建</span>
+                    </td>
+                    <td style="font-weight: 400; width: 80px;" width="118"><span style="font-size: 11pt;">130</span>
+                    </td>
+                    <td style="font-weight: 400;" width="36"><span style="font-size: 11pt;">正常</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 400;" width="28"><span style="font-size: 11pt;">65</span>
+                    </td>
+                    <td style="font-weight: 400;" width="207"><span style="font-size: 11pt;"><a href="http://learn.bit.edu.cn/station/092/index.jsp">知金教育济南数字化学习中心(092)</a></span>
+                    </td>
+                    <td style="font-weight: 400;" width="265"><span style="font-size: 11pt;">山东省济南市历下区二环东路7506号山东省本级公共实训基地综合实训楼503室</span>
+                    </td>
+                    <td style="font-weight: 400;" width="113"><span style="font-size: 11pt;">0531-88153113</span>
+                    </td>
+                    <td style="font-weight: 400;" width="66"><span style="font-size: 11pt;">弭欣</span>
+                    </td>
+                    <td style="font-weight: 400; width: 80px;" width="118"><span style="font-size: 11pt;">70</span>
+                    </td>
+                    <td style="font-weight: 400;" width="36"><span style="font-size: 11pt;">正常</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 400;" width="28"><span style="font-size: 11pt;">66</span>
+                    </td>
+                    <td style="font-weight: 400;" width="207"><span style="font-size: 11pt;"><a href="http://learn.bit.edu.cn/station/094/index.jsp">知金教育青岛数字化学习中心(094)</a></span>
+                    </td>
+                    <td style="font-weight: 400;" width="265"><span style="font-size: 11pt;">山东省青岛市市南区香港中路6号世贸中心B座423-5</span>
+                    </td>
+                    <td style="font-weight: 400;" width="113"><span style="font-size: 11pt;">0532-83877088</span>
+                    </td>
+                    <td style="font-weight: 400;" width="66"><span style="font-size: 11pt;">张海滨</span>
+                    </td>
+                    <td style="font-weight: 400; width: 80px;" width="118"><span style="font-size: 11pt;">70</span>
+                    </td>
+                    <td style="font-weight: 400;" width="36"><span style="font-size: 11pt;">正常</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 400;" width="28"><span style="font-size: 11pt;">67</span>
+                    </td>
+                    <td style="font-weight: 400;" width="207"><span style="font-size: 11pt;"><a href="http://learn.bit.edu.cn/station/095/index.jsp">知金教育潍坊数字化学习中心(095)</a></span>
+                    </td>
+                    <td style="font-weight: 400;" width="265"><span style="font-size: 11pt;">山东省潍坊市鸢飞路360号潍坊市卫生学校三号楼二楼</span>
+                    </td>
+                    <td style="font-weight: 400;" width="113"><span style="font-size: 11pt;">0536-8203011</span>
+                    </td>
+                    <td style="font-weight: 400;" width="66"><span style="font-size: 11pt;">张海滨</span>
+                    </td>
+                    <td style="font-weight: 400; width: 80px;" width="118"><span style="font-size: 11pt;">70</span>
+                    </td>
+                    <td style="font-weight: 400;" width="36"><span style="font-size: 11pt;">正常</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 400;" width="28"><span style="font-size: 11pt;">68</span>
+                    </td>
+                    <td style="font-weight: 400;" width="207"><span style="font-size: 11pt;"><a href="http://learn.bit.edu.cn/station/096/index.jsp">知金教育临沂数字化学习中心(096)</a></span>
+                    </td>
+                    <td style="font-weight: 400;" width="265"><span style="font-size: 11pt;">山东省临沂市沂蒙路北段临沂市委党校办公大楼802室</span>
+                    </td>
+                    <td style="font-weight: 400;" width="113"><span style="font-size: 11pt;">15863956137</span>
+                    </td>
+                    <td style="font-weight: 400;" width="66"><span style="font-size: 11pt;">庞方艳</span>
+                    </td>
+                    <td style="font-weight: 400; width: 80px;" width="118"><span style="font-size: 11pt;">70</span>
+                    </td>
+                    <td style="font-weight: 400;" width="36"><span style="font-size: 11pt;">正常</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 400;" width="28"><span style="font-size: 11pt;">69</span>
+                    </td>
+                    <td style="font-weight: 400;" width="207"><span style="font-size: 11pt;"><a href="http://learn.bit.edu.cn/station/097/index.jsp">知金教育济宁数字化学习中心(097)</a></span>
+                    </td>
+                    <td style="font-weight: 400;" width="265"><span style="font-size: 11pt;">山东省济宁市任城路51号北方技校院内</span>
+                    </td>
+                    <td style="font-weight: 400;" width="113"><span style="font-size: 11pt;">0537-2381550</span>
+                    </td>
+                    <td style="font-weight: 400;" width="66"><span style="font-size: 11pt;">陶红</span>
+                    </td>
+                    <td style="font-weight: 400; width: 80px;" width="118"><span style="font-size: 11pt;">70</span>
+                    </td>
+                    <td style="font-weight: 400;" width="36"><span style="font-size: 11pt;">正常</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 400;" width="28"><span style="font-size: 11pt;">70</span>
+                    </td>
+                    <td style="font-weight: 400;" width="207"><span style="font-size: 11pt;"><a href="http://learn.bit.edu.cn/station/099/index.jsp">知金教育淄博数字化学习中心(099)</a></span>
+                    </td>
+                    <td style="font-weight: 400;" width="265"><span style="font-size: 11pt;">淄博市张店区人民西路16号（原环保局）院内北2楼</span>
+                    </td>
+                    <td style="font-weight: 400;" width="113"><span style="font-size: 11pt;">0533-2156633</span>
+                    </td>
+                    <td style="font-weight: 400;" width="66"><span style="font-size: 11pt;">周力维</span>
+                    </td>
+                    <td style="font-weight: 400; width: 80px;" width="118"><span style="font-size: 11pt;">70</span>
+                    </td>
+                    <td style="font-weight: 400;" width="36"><span style="font-size: 11pt;">正常</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 400;" width="28"><span style="font-size: 11pt;">71</span>
+                    </td>
+                    <td style="font-weight: 400;" width="207"><span style="font-size: 11pt;"><a href="http://learn.bit.edu.cn/station/100/index.jsp">浙江万里学院(100)</a></span>
+                    </td>
+                    <td style="font-weight: 400;" width="265"><span style="font-size: 11pt;">宁波市高教园区南区钱湖南路8号浙江万里学院9号楼103室</span>
+                    </td>
+                    <td style="font-weight: 400;" width="113"><span style="font-size: 11pt;">57488222476</span>
+                    </td>
+                    <td style="font-weight: 400;" width="66"><span style="font-size: 11pt;">闻建华</span>
+                    </td>
+                    <td style="font-weight: 400; width: 80px;" width="118"><span style="font-size: 11pt;">80</span>
+                    </td>
+                    <td style="font-weight: 400;" width="36"><span style="font-size: 11pt;">正常</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 400;" width="28"><span style="font-size: 11pt;">72</span>
+                    </td>
+                    <td style="font-weight: 400;" width="207"><span style="font-size: 11pt;"><a href="http://learn.bit.edu.cn/station/101/index.jsp">北京理工大学珠海学院(101)</a></span>
+                    </td>
+                    <td style="font-weight: 400;" width="265"><span style="font-size: 11pt;">广东省珠海市唐家湾金凤路6号</span>
+                    </td>
+                    <td style="font-weight: 400;" width="113"><span style="font-size: 11pt;">0756-3622999</span>
+                    </td>
+                    <td style="font-weight: 400;" width="66"><span style="font-size: 11pt;">刘淑艳</span>
+                    </td>
+                    <td style="font-weight: 400; width: 80px;" width="118"><span style="font-size: 11pt;">110</span>
+                    </td>
+                    <td style="font-weight: 400;" width="36"><span style="font-size: 11pt;">正常</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div ng-controller="MainController">
+        Choose:
+        <a href="Book/Moby">Moby</a> |
+        <a href="Book/Moby/ch/1">Moby: Ch1</a> |
+        <a href="Book/Gatsby">Gatsby</a> |
+        <a href="Book/Gatsby/ch/4?key=value">Gatsby: Ch4</a> |
+        <a href="Book/Scarlet">Scarlet Letter</a>
+        <br/>
+        <div>
+            <button ng-click="func('/Book/123')">to Book/123</button>
+            <button ng-click="func('/Book/Mobi/ch/2')">Book/Mobi/ch/2</button>
+            <a href="#/Book/Scarlet">Scarlet Letter</a>
+            <br/>
+        </div>
+        <div ng-view></div>
+
+        <hr />
+
+        <pre>$location.path() = {{$location.path()}}</pre>
+        <pre>$route.current.templateUrl = {{$route.current.templateUrl}}</pre>
+        <pre>$route.current.params = {{$route.current.params}}</pre>
+        <pre>$route.current.scope.name = {{$route.current.scope.name}}</pre>
+        <pre>$routeParams = {{$routeParams}}</pre>
+    </div>
+</body>
+
+</html>

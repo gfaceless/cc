@@ -315,13 +315,13 @@ a.major .name:hover {
 .form-inline .form-group {
   margin-top: 10px;
 }
-.table-responsive {
+.ca-results .table-responsive {
   overflow-y: hidden;
   overflow-x: auto;
   width: 100%;
 }
-th,
-td {
+.ca-results th,
+.ca-results td {
   vertical-align: middle !IMPORTANT;
   white-space: nowrap;
 }
@@ -339,5 +339,10 @@ td {
   color: black;
 }
 .centers-label {
+  font-size: 14px;
+}
+.mce-content-body td,
+.mce-content-body th {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
 }

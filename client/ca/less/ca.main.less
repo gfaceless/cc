@@ -3,121 +3,113 @@ body {
     width: 850px;
     margin: 0 auto;
 }
-.app-title{
-	.bg-primary;
-	text-align: center;
-	padding: 10px 80px;
+.app-title {
+    .bg-primary;
+    text-align: center;
+    padding: 10px 80px;
 }
-
 @step-w: 195px;
 @step-h: 107px;
-.step-indicator{
-	position: relative;
-	.spinner{
-		position: absolute;
-		top: 50px;
-	}
-	&:extend(.clearfix all);
-	padding: 25px 0 25px 65px;
-	.step {
-		float: left;
-		width: @step-w;
-		height: @step-h;
-		background-image: url('../img/steps.jpg');
-	}
-	.step.current-step{
-		background-image: url('../img/steps-highlight.jpg');
-	}
-	.step2 {
-		background-position: -@step-w 0;
-	}
-	.step3 {
-		background-position: -@step-w * 2 0;
-	}
-	.arrow{
-		float:left;
-		.size(69px, @step-h);
-		background: url("../img/arrow.jpg") 0 center no-repeat;
-		float: left;
-	}
+.step-indicator {
+    position: relative;
+    .spinner {
+        position: absolute;
+        top: 50px;
+    }
+    &:extend(.clearfix all);
+    padding: 25px 0 25px 65px;
+    .step {
+        float: left;
+        width: @step-w;
+        height: @step-h;
+        background-image: url('../img/steps.jpg');
+    }
+    .step.current-step {
+        background-image: url('../img/steps-highlight.jpg');
+    }
+    .step2 {
+        background-position: -@step-w 0;
+    }
+    .step3 {
+        background-position: -@step-w * 2 0;
+    }
+    .arrow {
+        float: left;
+        .size(69px, @step-h);
+        background: url("../img/arrow.jpg") 0 center no-repeat;
+        float: left;
+    }
 }
 .app-main {
-	margin-top: 5px;
-	position:relative;
-
-
-	.ca-btn-help {
-		position: absolute;
-		right: 50px;
-	}
-	.intro, .appl-result{
-		&:extend(.well all);
-		background: white;
-		margin: 0 auto 30px;
-		width: 650px;
-		padding: 25px 40px 15px;
-		text-align: left;
-		@media print {
-			width: 100%;
-		}
-	}
-	.intro {
-		font-size: 18px;
-	}
-	.link-extra-info{
-		margin-bottom: 20px;
-		.btn {
-			margin: 5px;
-		}
-	}
-	text-align: center;
-	&:extend(.well all, .well-lg all);
+    margin-top: 5px;
+    position: relative;
+    .ca-btn-help {
+        position: absolute;
+        right: 50px;
+    }
+    .intro, .appl-result {
+        &:extend(.well all);
+        background: white;
+        margin: 0 auto 30px;
+        width: 650px;
+        padding: 25px 40px 15px;
+        text-align: left;
+        @media print {
+            width: 100%;
+        }
+    }
+    .intro {
+        font-size: 18px;
+    }
+    .link-extra-info {
+        margin-bottom: 20px;
+        .btn {
+            margin: 5px;
+        }
+    }
+    text-align: center;
+    &:extend(.well all, .well-lg all);
 }
-
 .credit-apply {
-	width: 500px;
-	margin: 0 auto;
-	.btn-container{
-		text-align: right;
-	}
+    width: 500px;
+    margin: 0 auto;
+    .btn-container {
+        text-align: right;
+    }
 }
-
 .report {
-	table {
-		margin: 20px auto;
-		width: 400px;
-		@media print{
-			width: 100%;
-		}
-	}
-	text-align: center;
-	margin-bottom: 40px;
-	padding-bottom: 20px;
+    table {
+        margin: 20px auto;
+        width: 400px;
+        @media print {
+            width: 100%;
+        }
+    }
+    text-align: center;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
 }
-
-
-.test-tmp, .rechoose{
-	// even if we don't give its parent position:relatvie,
-	// as long as we don't specify left:w/e; its position is fine
-	position: absolute;
-	margin-left: 30px;
-	&:extend(.alert all, .alert-info all);
+.test-tmp, .rechoose {
+    // even if we don't give its parent position:relatvie,
+    // as long as we don't specify left:w/e; its position is fine
+    position: absolute;
+    margin-left: 30px;
+    &:extend(.alert all, .alert-info all);
 }
-
 // ca.admin.less also has the following
-.modal-readme{
-	padding: 0 50px;
-	height: 650px;
-	overflow-y: scroll;
-	.kaiti {
-		font-size: 18px;
-		font-family: KaiTi_GB2312, KaiTi, "Microsoft YaHei", "Helvetica Neue",Helvetica,Arial,sans-serif;
-		color: black;
-	}	
-	.zhou-ugly{
-		margin-top: 0;
-	}
-/*
+.modal-readme {
+    padding: 0 50px;
+    height: 650px;
+    overflow-y: scroll;
+    .kaiti {
+        font-size: 18px;
+        font-family: KaiTi_GB2312, KaiTi, "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        color: black;
+    }
+    .zhou-ugly {
+        margin-top: 0;
+    }
+    /*
 	h1, h2{
 		font-weight: bold;
 		font-size: 25px;
@@ -147,30 +139,25 @@ body {
 		}
 
 	}*/
-	
 }
-
-.ca-btn-print, .success-info, .change-major{
-	.hidden-print;
+.ca-btn-print, .success-info, .change-major {
+    .hidden-print;
 }
-
-
-.app-main, .appl-result{
-	@media print {
-		border: none !important;		
-	}
+.app-main, .appl-result {
+    @media print {
+        border: none !important;
+    }
 }
-
-.link-centers{
-	@media print {
-		padding: 0;
-		border: 0;
-		vertical-align: inherit;
-		margin: 0;
-	}
+.link-centers {
+    @media print {
+        padding: 0;
+        border: 0;
+        vertical-align: inherit;
+        margin: 0;
+    }
 }
-
 // fix strange behavior:
-.no-wrap{
-	white-space: nowrap;
+.no-wrap {
+    white-space: nowrap;
 }
+

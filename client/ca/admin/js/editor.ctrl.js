@@ -68,7 +68,7 @@ app.controller('editorCtrl', function($scope, $http, MessageApi, angularLoad, $t
 				selector: "#" + id,
 				height: 400,
 				theme: "modern",
-				content_css: "../../vendors/bootstrap-3.2.0-dist/css/bootstrap.min.css",
+				content_css: ["../../vendors/bootstrap-3.2.0-dist/css/bootstrap.min.css","css/ca.admin.css"],
 				plugins: [
 					"advlist autolink lists link image hr",
 					"code",
@@ -80,7 +80,10 @@ app.controller('editorCtrl', function($scope, $http, MessageApi, angularLoad, $t
 				toolbar2: "fontselect fontsizeselect bold italic | forecolor backcolor | table link image hr",
 
 				table_default_styles: {
-					// border: '1px solid #ddd'
+					// overwrite what tinycme provides, to congrute with bootstrap body default
+					// does not work because it only add style to table
+					/*fontFamily: '"Helvetica Neue",Helvetica,Arial,sans-serif',
+					fontSize: '14px'*/
 				},
 				contextmenu: "link image inserttable | tableprops cell row column deletetable",
 				// image_advtab: true,

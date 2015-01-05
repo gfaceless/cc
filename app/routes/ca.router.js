@@ -78,3 +78,7 @@ adminRouter.get('/articles/:slug', articleCtrl.read);
 
 
 
+// tmp:
+adminRouter.get('/test/try2', function(req, res, next) {
+		res.redirect('test5.html');
+})

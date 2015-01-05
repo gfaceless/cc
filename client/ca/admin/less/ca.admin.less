@@ -213,14 +213,16 @@
 	margin-top: 10px;
 }
 
-.table-responsive{
-    overflow-y: hidden;
-    overflow-x: auto;
-    width: 100%;
-}
-th, td {
-    vertical-align: middle !IMPORTANT;
-    white-space: nowrap;
+.ca-results {
+	.table-responsive{
+	    overflow-y: hidden;
+	    overflow-x: auto;
+	    width: 100%;
+	}
+	th, td {
+	    vertical-align: middle !IMPORTANT;
+	    white-space: nowrap;
+	}	
 }
 
 
@@ -245,4 +247,13 @@ th, td {
 
 .centers-label{
 	font-size: 14px;
+}
+
+// for tinymce iframe
+.mce-content-body {
+	// overwrite what tinycme provides, to congrute with bootstrap default body style
+	td, th {
+    	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    	font-size: 14px;		
+	}
 }
