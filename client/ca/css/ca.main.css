@@ -152,21 +152,52 @@
   clear: both;
 }
 body {
-  width: 850px;
+  width: 950px;
   margin: 0 auto;
 }
 .app-title {
   color: #fff;
   background-color: #428bca;
+  background-image: url(../img/header-fade2.jpg);
   text-align: center;
-  padding: 10px 80px;
+  padding: 0;
+  height: 248px;
+  position: relative;
 }
 a.app-title:hover {
   background-color: #3071a9;
 }
+.app-title h2 {
+  margin: 0;
+  font-family: SimSun, "FangSong_GB2312", SimHei, "Microsoft YaHei";
+  top: 107px;
+  left: 35px;
+  font-size: 37px;
+  font-weight: bold;
+  line-height: 50px;
+}
+.app-title h2,
+.app-title h4,
+.app-title h5 {
+  position: absolute;
+}
+.app-title h4 {
+  font-size: 26px;
+  left: 20px;
+  top: 3px;
+  font-family: SimHei, "Microsoft YaHei";
+  color: #323232;
+}
+.app-title h5 {
+  top: 33px;
+  left: 20px;
+  font-size: 10px;
+  font-weight: bold;
+  color: #7E7E7E;
+}
 .step-indicator {
   position: relative;
-  padding: 25px 0 25px 65px;
+  padding: 20px 0 20px 105px;
 }
 .step-indicator .spinner {
   position: absolute;
@@ -325,4 +356,11 @@ a.app-title:hover {
 .mce-table-style-center th,
 .mce-table-style-center td {
   text-align: center;
+}
+.lines {
+  width: 950px;
+  margin-top: 8px;
+  height: 6px;
+  border-top: 1px solid #adb2c6;
+  border-bottom: 1px solid #adb2c6;
 }

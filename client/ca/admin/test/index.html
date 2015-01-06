@@ -9,6 +9,7 @@
 
     <script src="../../../js/angular-1.2.js"></script>
     <script src="../../../js/angular-route-1.2.js"></script>
+    <script src="../../../js/ui-bootstrap-tpls-0.12.0.min.js"></script>
     <!-- <script src="../../../js/angular-route.js"></script> -->
     <script src="script.js"></script>
     <base href="/ca/admin/test/index.html" />
@@ -19,15 +20,19 @@
 </head>
 
 <body ng-app="ngRouteExample">
-    
-
     <div ng-controller="MainController">
         Choose:
-        <a href="Book/Moby">Moby</a> |
-        <a href="Book/Moby/ch/1">Moby: Ch1</a> |
-        <a href="Book/Gatsby">Gatsby</a> |
-        <a href="Book/Gatsby/ch/4?key=value">Gatsby: Ch4</a> |
-        <a href="Book/Scarlet">Scarlet Letter</a>
+        <a href="#!/Book/Moby">Moby</a> |
+        <div href="#!/Book/Moby/ch/1" class="shit">Moby: Ch1</div> |
+        <a href="#!/Book/Gatsby">Gatsby</a> |
+        <a href="#!/Book/Gatsby/ch/4?key=value">Gatsby: Ch4</a> |
+
+        <a href="#!/Book/Scarlet">Scarlet Letter</a>
+        <hr>
+        <a href="#!/test/1">test1</a>
+        <a href="#!/test/2">test2</a>
+        <a href="#!/test/2?hey=girl">test3</a>
+        <a href="#!/test/2?hey=girl#oops">test4</a>
         <br/>
         <div>
             <button ng-click="func('/Book/123')">to Book/123</button>
