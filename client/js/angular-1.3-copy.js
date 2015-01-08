@@ -11181,7 +11181,6 @@ function $LocationProvider() {
         baseHref = $browser.baseHref(), // if base[href] is undefined, it defaults to ''
         initialUrl = $browser.url(),
         appBase;
-    console.log('here', baseHref);
     
     if (html5Mode.enabled) {
       if (!baseHref && html5Mode.requireBase) {

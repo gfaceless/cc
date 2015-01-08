@@ -3,7 +3,7 @@ angular.module('myApp')
         var lastCriteria;
         // note: it is ok to remove the following code, angularjs would dynamically create an entire object
         // even ng-model is a named string like "criteria.date"
-        
+
         /*$scope.criteria = {};*/
 
         $scope.pagination = {
@@ -49,15 +49,20 @@ angular.module('myApp')
                     delete this[key]
                 }
             }, ret)
+            // we add some timestamp, here for now
+            // consider adding some header to prevent IE from caching ( not cache by default)
+            // it is so-called back-end, everything can be un-cached
+            ret.ts = +new Date;
+
             return ret;
         }
 
         $scope.download = function(e) {
-            
+
             var urlPart = buildUrl(makeParams(lastCriteria));
 
             $scope.dlUrl = "ca-results/to-excel" + urlPart;
-            
+
             // TODO: we should have MessageApi.info()
             MessageApi.success('即将开始下载..');
 
@@ -80,7 +85,7 @@ angular.module('myApp')
             // it may desync,
             // so we make a copy of criteria
             criteria = angular.copy(criteria);
-            
+
             $http.get('ca-results', {
                     params: makeParams(criteria, {
                         page: page
@@ -102,15 +107,47 @@ angular.module('myApp')
 
         }
         $scope.remove = function(item, index) {
-            
-            var confirmed = confirm('确定要删除么');
+
+
+            var selectedIds = getSelectedIds($scope.results)
+
+            var confirmed = confirm('确定要删除这' + selectedIds.length + '项么');
             if (!confirmed) return;
-            $http["delete"]('ca-results/' + item._id)
+
+            // just not confident enough, may never run this
+            if(!$scope.selectedIds.length) return;
+
+            // copy it for future removal (it could changed during http request)
+            var copy = angular.copy(selectedIds);
+
+            // seems DELETE cannot send data with it (except using url)
+            $http["post"]('ca-results', {ids: $scope.selectedIds}, {
+                    headers: {
+                        "X-HTTP-Method-Override": "DELETE"
+                    }
+                })
                 .success(function(data) {
 
                     if (data.success) {
                         MessageApi.success('删除成功');
-                        $scope.results.splice(index, 1);
+                        // forEach will succeed but I doubt if it is cross-browser,
+                        // angular is most likely to implement it using native forEach delegation
+
+                        /*angular.forEach($scope.results, function(r, i) {
+                            if( ~copy.indexOf(r._id) ){
+                                $scope.results.splice(i, 1);
+                            }
+                        })*/
+
+                        // so I do it like this:
+                        // #http://stackoverflow.com/questions/9882284/looping-through-array-and-removing-items-without-breaking-for-loop
+                        var i = $scope.results.length;
+                        while(i--){
+                            if (~copy.indexOf($scope.results[i]._id)){
+                                $scope.results.splice(i, 1);
+                            }
+                        }
+
                     }
                 })
         }
@@ -119,20 +156,57 @@ angular.module('myApp')
             $scope.find(lastCriteria, $scope.pagination.currentPage);
         };
 
-        $scope.datepicker = {        
-            formats : ['yyyy-MM-dd'],
+        $scope.datepicker = {
+            formats: ['yyyy-MM-dd'],
             options: {
-                startingDay: 1,            
+                startingDay: 1,
                 showWeeks: false
             }
         }
-        $scope.openDatepicker = function($event, dir) {        
+        $scope.openDatepicker = function($event, dir) {
             $event.preventDefault();
             $event.stopPropagation();
             $scope.datepicker[dir] = $scope.datepicker[dir] || {};
             $scope.datepicker[dir].opened = true;
         }
 
+
+        $scope.$watch("allSelected", function(newVal, oldVal) {
+            if (newVal === oldVal) return;
+
+            angular.forEach($scope.results, function(r) {
+                r.selected = newVal;
+            })
+
+        });
+
+        $scope.$watch(function() {
+            return getSelectedIds($scope.results).length
+        }, function(newVal, oldVal) {
+            if (newVal === oldVal) return;
+            if (newVal === 0) {
+                $scope.allSelected = false;
+                return;
+            }
+            if (newVal === $scope.results.length) {
+                $scope.allSelected = true;
+            }
+        })
+
+
+        function getSelectedIds(items) {
+            getSelectedIds._count = (getSelectedIds._count || 0) + 1;
+            
+            
+            var arr = [];
+            angular.forEach(items, function(item) {
+                if (item.selected) arr.push(item._id);
+            })
+
+            // the following is important, mainly for improving perfermance.
+            $scope.selectedIds = arr;
+            return arr;
+        }
 
         function init() {
             $http

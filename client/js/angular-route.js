@@ -223,6 +223,8 @@ function $RouteProvider() {
       .replace(/([\/$\*])/g, '\\$1');
 
     ret.regexp = new RegExp('^' + path + '$', insensitive ? 'i' : '');
+    
+
     return ret;
   }
 

@@ -1,49 +1,61 @@
-(function(angular) {
-  'use strict';
-  angular.module('ngRouteExample', ['ngRoute'])
+"dude, what the fuck. you should watch the fucking child".replace(/w(\w*)\st(.)e/g, function(a,b,c,d,e) {
+  /*console.log(a,b,c,d,e);*/
+})
 
-  .controller('MainController', function($scope, $route, $routeParams, $location) {
-    $scope.func = function(path) {
-      $location.path(path);
-    }
-    $scope.$route = $route;
-    $scope.$location = $location;
-    $scope.$routeParams = $routeParams;
 
-    
+/*'use strict';*/
+angular.module('ngRouteExample', ['ngRoute'])
 
-  })
+.controller('MainController', function($scope, $route, $routeParams, $location) {
+  console.log('in main ctrl')
+  $scope.func = function(path) {
+    $location.path(path);
+  }
+  $scope.$route = $route;
+  $scope.$location = $location;
+  $scope.$routeParams = $routeParams;
 
-  .controller('BookController', function($scope, $routeParams) {
-    $scope.name = "BookController";
-    $scope.params = $routeParams;
-  })
+  
 
-  .controller('ChapterController', function($scope, $routeParams) {
-    $scope.name = "ChapterController";
-    $scope.params = $routeParams;
-  })
+})
 
-  .config(function($routeProvider, $locationProvider) {
-    $routeProvider
-      .when('/Book/:bookId', {
-        templateUrl: 'book.html',
-        controller: 'BookController',
-        resolve: {
-          // I will cause a 1 second delay
-          delay: function($q, $timeout) {
-            var delay = $q.defer();
-            $timeout(delay.resolve, 1000);
-            return delay.promise;
-          }
+.controller('BookController', function($scope, $routeParams) {
+  $scope.name = "BookController";
+  $scope.params = $routeParams;
+})
+
+.controller('ChapterController', function($scope, $routeParams) {
+  $scope.name = "ChapterController";
+  $scope.params = $routeParams;
+})
+
+.config(function($routeProvider, $locationProvider) {
+  $routeProvider
+    .when('/Book/:bookId', {
+      templateUrl: 'book.html',
+      controller: 'BookController',
+      resolve: {
+        // I will cause a 1 second delay
+        delay: function($q, $timeout) {
+          var delay = $q.defer();
+          $timeout(delay.resolve, 1000);
+          return delay.promise;
         }
-      })
-      .when('/Book/:bookId/ch/:chapterId', {
-        templateUrl: 'chapter.html',
-        controller: 'ChapterController'
-      });
+      }
+    })
+    .when('/Book/:bookId/ch/:chapterId', {
+      templateUrl: 'chapter.html',
+      controller: 'ChapterController'
+    })
+    .when('nopre/bla', {
+      templateUrl: 'chapter.html',
+      controller: function() {console.log('successs!')}
+    })
+    .otherwise({
+      templateUrl: 'chapter.html',
+      controller: function() {console.log('in otherwise!')}
+    })
 
-    // configure html5 to get links working on jsfiddle
-    $locationProvider.html5Mode(true);
-  });
-})(window.angular);
+  // configure html5 to get links working on jsfiddle
+  // $locationProvider.html5Mode(true);
+});

@@ -5,6 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('cookie-session')
+var methodOverride = require('method-override')
 
 var util = require('util')
 var fs = require('fs');
@@ -46,6 +47,9 @@ app.use(favicon());
 app.use(express.static(path.join(__dirname, 'client')));
 
 app.use(logger('dev'));
+
+app.use(methodOverride());
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 // app.use(cookieParser());

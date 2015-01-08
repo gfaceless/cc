@@ -173,7 +173,7 @@ var defDateRange = [new Date('2014-12-01'), new Date()];
 function toFuzzySearch(criteria) {
 	return _.mapValues(criteria, function(v, k) {
 		// it may be dangerous, see to it.
-		
+
 		return new RegExp(v);
 	})
 }
@@ -204,7 +204,7 @@ function search(req, res, next) {
 	// 3rd param true means if any prop in fields is found, the result is true
 	if (_.hasKeys(req.query, fields, true)) {
 		// first we check Certificates dbcollection:
-		
+
 		Certificate
 			.find(certCriteria)
 			.select("_id")
@@ -291,18 +291,20 @@ function search(req, res, next) {
 
 
 exports.remove = function(req, res, next) {
-	var id = req.params.id;
-	if (id === undefined) return next("wrong")
-	CA.findOneAndRemove({
-			_id: id
+
+	var ids = req.body.ids;
+
+	if (!ids || !ids.length) return next("wrong")
+	CA.find()
+	.where("_id")
+	.in(ids)
+	.remove(function(err, data) {
+		if (err) return next(err);		
+		res.send({
+			success: true,
+			result: data
 		})
-		.exec(function(err, data) {
-			if (err) return next(err, data);
-			res.send({
-				success: true,
-				result: data
-			})
-		})
+	})
 
 }
 
