@@ -1,196 +1,281 @@
-var app = angular.module('myApp', ['message', 'ui.bootstrap', 'ngSanitize', 'gfForm'])
-    .factory("ArticleMgr", function($cacheFactory) {
-        var cache = $cacheFactory("articles");
-        cache.put("readme", {
-            slug: "readme"
-        });
-        cache.put('help', {
-            slug: "help"
-        })
-        cache.put('center', {
-            slug: "center"
-        })
-        return cache;
-    })
-    .controller('appCtrl', function($scope, $http, $modal, $log, $window, $timeout, ArticleMgr, $sce) {
-        var urlCA = '/ca/credit-apply';
+var app = angular.module('myApp', ['message', 'ui.bootstrap', 'ngSanitize', 'gfForm', 'ngRoute'])
+	.config(['$routeProvider', '$locationProvider',
+		function($routeProvider, $locationProvider) {
+			var routeStep1 = {
+				templateUrl: 'views/step1.html',
+				controller: 'Step1Ctrl',
+				reloadOnSearch: false
+			};
 
-        var templates = [{
-            url: 'views/step1.html'
-        }, {
-            url: 'views/step2.html'
-        }, {
-            url: 'views/success.html'
-        }, {
-            url: 'views/failure.html'
-        }];
+			$routeProvider
+			// .when('/', routeStep1)
+				.when('/step1', routeStep1)
+				.when('/step2', {
+					templateUrl: 'views/step2.html',
+					controller: 'Step2Ctrl'
+				})
+				.when('/step3', {
+					templateUrl: 'views/step3.html',
+					controller: 'Step3Ctrl'
+				})
+				.otherwise(routeStep1)
 
-        var currentTemplate = 0;
-        $scope.template = templates[currentTemplate];
-        $scope.ca = {};
-        $scope.step = 1;
-        // tmp:
-        test = $window.test = function() {
-            $timeout(function() {
-                $scope.ca = {
-                    cert: {
-                        name: "张志伟",
-                        idnumber: "654324199104120035",
-                        certnumber: "1449003012300160"
-                    }
-                };
-            })
-        }
-        $http.get("articles-meta")
-            .success(function(data) {
-                $scope.articlesMetaData = data.results;
-            })
+		}
+	])
+	.factory("CrapService", function() {
+		var _step;
+		return {
+			step: function(step) {
+				// setter + getter
+				if (!step) return _step;
+				_step = step;
+				return this;
+			},
+			rechoose: function() {
+				this.crapInfo.updating = true;
+			}
+		}
+	})
+	.controller('Step1Ctrl', function($scope, $http, $location, $routeParams, $modal, CrapService, $timeout, $route) {
+		
+		CrapService.step(1);
+		init();
+		$scope.$on('$routeUpdate', function() {
+			init();
+		})
 
-        $http
-            .get('major')
-            .success(function(data) {
-                $scope.majors = data.majors;
-            });
+		function init(arguments) {
+			renderArticle($location.hash())
+		}
 
-        $scope.$watch("updating", function(val, oldVal) {
-            if (val === true) {
-                $scope.hasApplied = false;
-            }
-        })
+		function renderArticle(slug) {
+			if (!slug) return;
 
-        $scope.submit = function() {            
-            
-            
+			$http.get('articles/' + slug + '?ts=' + (+new Date))
+				.success(function(data) {
+					var article = data.article;
 
-            // form creates a new scope
-            // here 'this' is the new scope, its $parent is $scope
-            // I can remove this logic if I put some stopPropagation in my custom form directive            
-            if(this.caForm.$invalid){
-                return;
-            }
+					$modal.open({
+						templateUrl: 'views/article.modal.html',
+						controller: 'ModalInstanceCtrl',
+						size: article.size || "lg",
+						resolve: {
+							article: function() {
+								return article
+							}
+						}
+					})
 
-            var data = angular.extend({}, $scope.ca, {
-                updating: $scope.updating
-            })
+				})
 
-            // disable button to prevent double submit
-            // consider making it a directive
-            $scope.submitting = true;
-
-            $http.post(urlCA, data)
-                .success(function(data) {
-
-                    if (data.success) {
-                        $scope.template = templates[2];
-                    } else {
-                        $scope.template = templates[3];
-                    }
-                    $scope.step = 3;
-                    angular.extend($scope, data);
-                })
-                .error(function(data) {
-                    $scope.template = templates[3];
-                    // network failure
-                    $scope.reason = 0
-                })
-                ["finally"](function() {                    
-                    $scope.submitting = false;
-                })
-        }
-
-        $scope.back = function() {
-            $scope.step = 1;
-            $scope.template = templates[0];
-        }
-
-        $scope.restart = $scope.start = function(updating) {
-            // updating only happens when an already-applied student wants to change his choice of major
-            $scope.updating = updating;
-
-            $scope.template = templates[1];
-            $scope.step = 2;
-        }
-
-        $scope.getError = function(error) {
-
-            if (angular.isDefined(error)) {
-                if (error.required) {
-                    return "必填";
-                } else if (error.email) {
-                    return "Please enter a valid email address";
-                } else if (error.studNumber) {
-                    return "学号无效";
-                }
-            }
-        }
-
-        $scope.open = function(id) {
-            var article = ArticleMgr.get(id);
-
-            var modalInstance = $modal.open({
-                templateUrl: 'views/article.modal.html',
-                controller: 'ModalInstanceCtrl',
-                size: article.size || "lg",
-                resolve: {
-                    article: function() {
-                        return article
-                    }
-                }
-            });
-
-            modalInstance.result.then(function(param) {
-                $log.info(param);
-            }, function() {
-                $log.info('Modal dismissed at: ' + new Date());
-            });
-        };
-        $scope.alert = function(msg) {
-            alert(msg);
-        }
-
-        $scope.print = function() {
-            $window.print();
-        }
+		}
 
 
-    })
-    .controller('ModalInstanceCtrl', function($scope, $modalInstance, $http, $sce, article) {
+		$http.get("articles-meta")
+			.success(function(data) {
+				$scope.articlesMetaData = data.results;
+			})
+		$scope.open = function(slug) {
+			$location.path('/step1')
+			.hash(slug);
+		}
+		$scope.start = function() {
+			$location.path('/step2');
+		}
 
-        $http.get('articles/' + article.slug + '?ts=' + (+new Date))
-            .success(function(data) {
-                $scope.article = data.article;
-                if(data.article && data.article.content) {
-                    $scope.article.content = $sce.trustAsHtml(data.article.content);
-                }
-            })
-        $scope.ok = function() {
-            $modalInstance.close('has read');
-        };
+	})
+	.controller('ModalInstanceCtrl', function($scope, $modalInstance, article, $sce, $location) {
+		if (article && article.content) {
+			article.content = $sce.trustAsHtml(article.content);
+		}
+		$scope.article = article;
 
-        $scope.cancel = function() {
-            $modalInstance.dismiss('cancel');
-        };
-    })
-// for validation
-.directive('studNumber', function(FormError) {
-    FormError.put("studNumber", "学号无效", 1);
-    return {
-        require: "ngModel",
-        link: function(scope, el, attrs, ctrl) {
-            
-            
-            ctrl.$parsers.push(function(value) {
-                
-                var re = /^20\d{2}\d{3}[1-3]\d{7}$/;
-                if (ctrl.$isEmpty(value) || re.test(value)) {
-                    ctrl.$setValidity('studNumber', true);
-                    return value;
-                }
-                ctrl.$setValidity('studNumber', false);
-                return undefined;
+		$modalInstance.result.then(onClose, onClose)
 
-            })
-        }
-    }
-})
+		// maybe there is memory leak.
+		var deregistration = $scope.$on('$locationChangeStart', function() {
+			
+			$scope.$close();
+		})
 
+		function onClose(reason) {
+			
+			// if no reason is supplied, it is a navigation (locationChangeStart) trigger, we do nothing
+			if (reason) {
+				// if reason is provided, the close is mannually triggered, we first deregistrate $locationChangeStart
+				// and then navigate, to avoid double modal-close (modal itself cannot handle multiple close)
+				// it would be cleanner if I forked angular-bootstrap-modal making it idempotent
+				// (I could have also wrapped $close in try/catch)
+				deregistration();
+				$location.hash('');
+			}
+		}
+
+	})
+	.controller('Step2Ctrl', function($rootScope, $scope, $http, $location, CrapService, $window, $timeout) {
+		
+		CrapService.step(2);
+		$scope.ca = CrapService.crapInfo || {};
+		
+
+		$http
+			.get('major')
+			.success(function(data) {
+				$scope.majors = data.majors;
+			});
+
+		$scope.submit = function() {
+			// form creates a new scope
+			// here 'this' is the new scope, its $parent is $scope
+			// I can remove this logic if I put some stopPropagation in my custom form directive            
+			if (this.caForm.$invalid) {
+				return;
+			}
+
+
+			// disable button to prevent double submit
+			// consider making it a directive
+			$scope.submitting = true;
+
+			// for later use by other controller
+			CrapService.crapInfo = $scope.ca;
+
+			$http.post('/ca/credit-apply', $scope.ca)
+				.success(function(data) {
+					// step3 can know if we've attemped submitting or not by checking crapResult
+					// it can also know if succeed or not
+					$rootScope.crapResult = data;
+				})
+				.error(function(data) {
+					// TODO: try to make it more iso
+					$rootScope.crapResult = {
+						success: false,
+						reason: 0
+					};
+				})['finally'](function() {
+					$location.path('/step3')
+					$scope.submitting = false;
+				})
+
+		}
+
+		$scope.back = function() {
+			CrapService.crapInfo = $scope.ca;
+			$location.path('/step1');
+		}
+
+		// tmp:
+		test = $window.test = function() {
+			$timeout(function() {
+				$scope.ca = {
+					cert: {
+						name: "张志伟",
+						idnumber: "654324199104120035",
+						certnumber: "1449003012300160"
+					},
+					studNumber: "201299919911111"
+				};
+			})
+		}
+	})
+	.controller('Step3Ctrl', function($scope, $rootScope, $location, CrapService, $window) {
+		
+		CrapService.step(3);
+		if (!$rootScope.crapResult) {
+			// maybe we should also override history
+			// $location.replace();
+			$scope.redirect = function() {
+				$location.path('/step1')
+			}
+
+		}
+		// I didn't use service to handle ctrl communication
+		// instead I used $rootScope
+		angular.extend($scope, $rootScope.crapResult);
+		// yes, there is a word 'reapply', you should not use 'reApply'
+		$scope.reapply = function() {
+			$location.path('/step2');
+		}
+		$scope.print = function() {
+			$window.print();
+		}
+		$scope.rechooseMajor = function() {
+			// 
+			CrapService.rechoose();
+			$location.path('/step2');
+		}
+
+	})
+	.controller('appCtrl', function($scope, $http, $modal, $log, $window, $timeout, CrapService) {
+
+		
+
+		$scope.$watch(function() {
+			return CrapService.step();
+		}, function(newVal, oldVal) {
+			$scope.step = newVal || 1;
+		})
+
+
+
+		return;
+
+		$scope.$watch("updating", function(val, oldVal) {
+			if (val === true) {
+				$scope.hasApplied = false;
+			}
+		})
+
+
+
+	})
+
+
+.directive('countdown', function($timeout) {
+		return {
+			// TODO: find adding class BCP
+			template: '<span ng-bind="count"></span>',
+			scope: {
+				countEnd: "&"
+			},
+			link: function(scope, el, attrs) {
+
+				scope.count = +attrs['countdown'];
+				if (isNaN(scope.count)) throw new Error('countdown should be a number or string that can be transformed into a number')
+				countdown();
+
+				function countdown(arguments) {
+					$timeout(function() {
+						scope.count--;
+						if (scope.count) {
+							countdown();
+						} else {
+							scope.countEnd && scope.countEnd();
+						}
+					}, 1000)
+				}
+			}
+		}
+	})
+	// for validation
+	.directive('studNumber', function(FormError) {
+		FormError.put("studNumber", "学号无效", 1);
+		return {
+			require: "ngModel",
+			link: function(scope, el, attrs, ctrl) {
+
+
+				ctrl.$parsers.push(function(value) {
+
+					var re = /^20\d{2}\d{3}[1-3]\d{7}$/;
+					if (ctrl.$isEmpty(value) || re.test(value)) {
+						ctrl.$setValidity('studNumber', true);
+						return value;
+					}
+					ctrl.$setValidity('studNumber', false);
+					return undefined;
+
+				})
+			}
+		}
+	})

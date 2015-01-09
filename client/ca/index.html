@@ -31,6 +31,8 @@
       <script src="../js/ie-polyfill.js"></script>
     <![endif]-->
     <script src="../js/angular-1.2.min.js"></script>
+    
+    <script src="../js/angular-route-1.2.js"></script>
     <script src="../js/angular-sanitize.min.js"></script>
     <script src="../js/ui-bootstrap-tpls-0.11.0.min.js"></script>
     <script src="../js/modules/message.module.js"></script>
@@ -62,7 +64,7 @@
         <div class="step3 step" ng-class="{'current-step':step==3}"></div>
     </div>
     <div class="app-main">
-        <div ng-include="template.url"></div>
+        <div ng-view></div>
     </div>
 </body>
 

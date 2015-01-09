@@ -1,0 +1,48 @@
+<div ng-if="redirect">
+	<span>无法显示结果，请先进行申请</span>
+	<br/>
+	<span countdown="3" count-end="redirect()" class="countdown"></span>
+	<span>秒后为您跳转</span>
+</div>
+
+
+<div ng-if="!redirect && success">
+    <div class="appl-result">
+        <div class="success-info">
+            <div class="alert alert-success" ng-show="!hasApplied">申请成功</div>
+
+            <div ng-show="hasApplied" class="alert alert-warning">您已于{{appliedTime}}申请成功，请不要再次申请。您之前的申请记录为：
+            </div>
+        </div>
+
+        <p>
+            您已通过机械工业职业技能鉴定指导中心针对机械行业职业资格证书置换北理工远程教育专业学分资质认证审核，请打印认证书并携带至北京理工大学远程教育各学习中心报名。
+        </p>
+
+        <div ng-include="'views/report.html'"></div>
+
+        <p class="change-major">如果您申报错了专业，请
+            <button class="btn btn-sm btn-default" ng-click="rechooseMajor()">重新选择专业</button>
+        </p>
+    </div>
+
+</div>
+
+
+<div ng-if="!redirect&&!success">
+    <div class="appl-result">
+        <div class="alert alert-danger">对不起，审核未通过。未通过原因：</div>
+
+        <div ng-show="reason=='0'">请检查你的填写信息以及网络，若不是您的问题，请联系我们</div>
+
+        <div ng-show="reason=='1'">您未取得机械行业职业资格证书，请获取证书后再进行申报</div>
+
+        <div ng-show="reason=='2'">您申报的职业工种与所置换的远程教育专业不匹配，请仔细阅读步骤一中的学分置换范围及置换办法后再申报</div>
+        <div ng-show="reason=='3'">您的职业资格证书级别暂不符合置换范围，请取得三级（高级）及以上级别再申请。详见步骤一中的学分置换范围及置换办法</div>
+
+
+    </div>
+
+
+    <button ng-click="reapply()" class="btn btn-lg btn-primary">重新申请</button>
+</div>

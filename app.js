@@ -44,6 +44,18 @@ app.set('views', path.join(__dirname, 'app/views'));
 app.set('view engine', 'jade');
 
 app.use(favicon());
+
+//temp:
+app.use(function(req, res, next) {
+	if(req.originalUrl == '/ca/ca.html'){
+		return res.redirect('/ca/');
+	}
+	if(req.originalUrl == '/ca/admin/ca.admin.html'){
+		return res.redirect('/ca/admin/');
+	}
+	next();
+})
+
 app.use(express.static(path.join(__dirname, 'client')));
 
 app.use(logger('dev'));
