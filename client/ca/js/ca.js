@@ -1,4 +1,4 @@
-var app = angular.module('myApp', ['message', 'ui.bootstrap', 'ngSanitize', 'gfForm', 'ngRoute'])
+var app = angular.module('myApp', ['message', 'ui.bootstrap', 'ngSanitize', 'gfForm', 'ngRoute', 'ngAnimate'])
 	.config(['$routeProvider', '$locationProvider',
 		function($routeProvider, $locationProvider) {
 			var routeStep1 = {

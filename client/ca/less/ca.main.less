@@ -58,6 +58,17 @@ body {
     .step.current-step {
         background-image: url('../img/steps-highlight.jpg');
     }
+    .current-step.current-step-add{
+        -webkit-transition:all  1.2s;
+            -moz-transition:all  1.2s;
+            -o-transition:all  1.2s;
+            transition:all  1.2s;
+        opacity: 0.3;
+    }
+    .current-step-add.current-step-add-active{
+        opacity: 1;
+    }
+
     .step2 {
         background-position: -@step-w 0;
     }

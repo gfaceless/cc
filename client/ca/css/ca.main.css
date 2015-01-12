@@ -212,6 +212,16 @@ a.app-title:hover {
 .step-indicator .step.current-step {
   background-image: url('../img/steps-highlight.jpg');
 }
+.step-indicator .current-step.current-step-add {
+  -webkit-transition: all  1.2s;
+  -moz-transition: all  1.2s;
+  -o-transition: all  1.2s;
+  transition: all  1.2s;
+  opacity: 0.3;
+}
+.step-indicator .current-step-add.current-step-add-active {
+  opacity: 1;
+}
 .step-indicator .step2 {
   background-position: -195px 0;
 }
