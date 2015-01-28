@@ -1,0 +1,50 @@
+/*this less file should be auto-prefixed, and then maybe injected into message.module.js
+    (use gulp-autoprefix and gulp-inject)
+    for now, I'm doing this process manually
+*/
+.gmessage-hide{display:none!important;}
+.gmessage-hide-remove, .gmessage-hide-add-active{display: inline !important;}
+.gmessage-hide-remove{
+    animation: expand 0.7s ease-out;
+}
+
+.gmessage-hide-remove.gmessage-hide-remove-active{
+    /*-webkit-animation: fadeIn 10s;*/
+
+}
+.gmessage-hide.gmessage-hide-add{
+    animation: fadeOut 1s;
+}
+.gmessage-hide.gmessage-hide-add-active{
+
+}
+
+
+
+@keyframes fadeOut {
+    from{
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes expand{
+
+    50% {
+        transform: scale(1.08);
+    }
+    to {
+        transform: scale(1);
+    }
+}

@@ -14,7 +14,7 @@ angular.element.prototype.pureText = function() {
 
 angular.module('app', [])
     .factory('ExampleService', function() {
-        
+
         this.f1 = function(world) {
             return 'Hello ' + world;
         }
@@ -46,13 +46,13 @@ angular.module('app', [])
             },
             // if the following does not exists, then console.error
             // Illegal use of ngTransclude directive in the template! No parent directive that requires a transclusion found. Element: <span ng-transclude="">
-            transclude: true, 
+            transclude: true,
 
             template: '<span ng-bind="$model" ng-show="!editing"></span><button ng-hide="editing" class="btn btn-primary" ng-click="edit()">编辑</button><div we></div>',
 
             compile: function(tEl, tAttrs) {
 
-                // the biggest issue using this method 
+                // the biggest issue using this method
                 // is that it results different scopes between parent and live-created children
                 // (children use controller's scope)
                 // TODO: use template (saving lots of trouble!)
@@ -71,8 +71,8 @@ angular.module('app', [])
                     transcludeFn(function(clone, iScope) {
                         // currently only support plain text,
                         // but we can also do some dom->text transformation here
-                        var fn = $interpolate(clone.text())                        
-                        
+                        var fn = $interpolate(clone.text())
+
 
                         scope.$model = scope.$model || fn(iScope);
                     });
@@ -85,7 +85,7 @@ angular.module('app', [])
 
                         el.append(input);
 
-                        $compile(input)(scope);                        
+                        $compile(input)(scope);
 
                         scope.confirm = function() {
                             var params = {
@@ -104,7 +104,7 @@ angular.module('app', [])
                         createInput();
                         $timeout(function() {
                             el.find('input')[0].focus();
-                            
+
                         })
                     }
 

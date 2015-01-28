@@ -56,6 +56,16 @@ app.use(function(req, res, next) {
 	next();
 })
 
+
+/*app.use(function(req, res, next) {
+	if(req.path != '/ca/admin/ca-results'){
+		return next();
+	}
+	setTimeout(function() {
+		next();
+	}, 5000);
+})*/
+
 app.use(express.static(path.join(__dirname, 'client')));
 
 app.use(logger('dev'));

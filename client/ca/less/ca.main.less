@@ -1,157 +1,164 @@
 @import (reference)"bootstrap.less";
 body {
-    width: 950px;
-    margin: 0 auto;
+	width: 950px;
+	margin: 0 auto;
 }
+
 .app-title {
-    .bg-primary;
-    background-image: url(../img/header-fade2.jpg);
-    text-align: center;
-    padding: 0;
-    height: 248px;
-    position: relative;
+	.bg-primary;
+	background-image: url(../img/header-fade2.jpg);
+	text-align: center;
+	padding: 0;
+	height: 248px;
+	position: relative;
 
-    h2 {
-        margin: 0;
-        font-family: SimSun, "FangSong_GB2312", SimHei, "Microsoft YaHei";        
-        top: 107px;
-        left: 35px;
-        font-size: 37px;
-        font-weight: bold;
-        line-height: 50px;
-    }
+	h2 {
+		margin: 0;
+		font-family: SimSun, "FangSong_GB2312", SimHei, "Microsoft YaHei";
+		top: 107px;
+		left: 35px;
+		font-size: 37px;
+		font-weight: bold;
+		line-height: 50px;
+	}
 
-    h2, h4, h5 {
-        position: absolute;
-    }
-    h4{
-        font-size: 26px;
-        left: 20px;
-        top: 3px;        
-        font-family: SimHei, "Microsoft YaHei";
-        color: #323232;
-    }
-    h5{
-        top: 33px;
-        left: 20px;
-        font-size: 10px;
-        font-weight: bold;
-        color: #7E7E7E;
-    }
+	h2, h4, h5 {
+		position: absolute;
+	}
+	h4{
+		font-size: 26px;
+		left: 20px;
+		top: 3px;
+		font-family: SimHei, "Microsoft YaHei";
+		color: #323232;
+	}
+	h5{
+		top: 33px;
+		left: 20px;
+		font-size: 10px;
+		font-weight: bold;
+		color: #7E7E7E;
+	}
 }
 @step-w: 195px;
-@step-h: 107px;
+@step-h: 120px;
 .step-indicator {
-    position: relative;
-    .spinner {
-        position: absolute;
-        top: 50px;
-    }
-    &:extend(.clearfix all);
-    padding: 20px 0 20px 105px;
-    .step {
-        float: left;
-        width: @step-w;
-        height: @step-h;
-        background-image: url('../img/steps.jpg');
-    }
-    .step.current-step {
-        background-image: url('../img/steps-highlight.jpg');
-    }
-    .current-step.current-step-add{
-        -webkit-transition:all  1.2s;
-            -moz-transition:all  1.2s;
-            -o-transition:all  1.2s;
-            transition:all  1.2s;
-        opacity: 0.3;
-    }
-    .current-step-add.current-step-add-active{
-        opacity: 1;
-    }
+	position: relative;
+	.spinner {
+		position: absolute;
+		top: 50px;
+	}
+	&:extend(.clearfix all);
+	padding: 5px 0 5px 105px;
+	.step {
+		font-family: "algerianregular";
+		opacity: .3;
+		/* IE 8 */
+		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
+		float: left;
+		width: @step-w;
+		height: @step-h;
+		line-height: @step-h;
+		font-size: @step-h;
+		text-align: center;
+		/*background-image: url('../img/steps.jpg');*/
+	}
+	.step.current-step {
+		opacity: 1;
+		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+		animation: explode 0.7s ease-out;
+		/*background-image: url('../img/steps-highlight.jpg');*/
+	}
+	/*.current-step.current-step-add{
+	}
+	.current-step-add.current-step-add-active{
+	}*/
 
-    .step2 {
-        background-position: -@step-w 0;
-    }
-    .step3 {
-        background-position: -@step-w * 2 0;
-    }
-    .arrow {
-        float: left;
-        .size(69px, @step-h);
-        background: url("../img/arrow.jpg") 0 center no-repeat;
-        float: left;
-    }
+
+	.step2 {
+		background-position: -@step-w 0;
+	}
+	.step3 {
+		background-position: -@step-w * 2 0;
+	}
+	.arrow {
+		float: left;
+		.size(69px, @step-h);
+		background: url("../img/arrow.jpg") 0 center no-repeat;
+		float: left;
+	}
 }
 .app-main {
-    margin-top: 5px;
-    position: relative;
-    .ca-btn-help {
-        position: absolute;
-        right: 50px;
-    }
-    .intro, .appl-result {
-        &:extend(.well all);
-        background: white;
-        margin: 0 auto 30px;
-        width: 650px;
-        padding: 25px 40px 15px;
-        text-align: left;
-        @media print {
-            width: 100%;
-        }
-    }
-    .intro {
-        font-size: 18px;
-    }
-    .link-extra-info {
-        margin-bottom: 20px;
-        .btn {
-            margin: 5px;
-        }
-    }
-    text-align: center;
-    &:extend(.well all, .well-lg all);
+	position: relative;
+	.ca-btn-help {
+		position: absolute;
+		right: 50px;
+	}
+	.intro, .appl-result {
+		&:extend(.well all);
+		background: white;
+		margin: 0 auto 30px;
+		width: 650px;
+		padding: 25px 40px 15px;
+		text-align: left;
+		@media print {
+			width: 100%;
+		}
+	}
+	.intro {
+		font-size: 18px;
+	}
+	.link-extra-info {
+		margin-bottom: 20px;
+		.btn {
+			margin: 5px;
+		}
+	}
+	text-align: center;
+	&:extend(.well all, .well-lg all);
 }
 .credit-apply {
-    width: 500px;
-    margin: 0 auto;
-    .btn-container {
-        text-align: right;
-    }
+	width: 500px;
+	margin: 0 auto;
+	.btn-container {
+		text-align: right;
+	}
 }
 .report {
-    table {
-        margin: 20px auto;
-        width: 400px;
-        @media print {
-            width: 100%;
-        }
-    }
-    text-align: center;
-    margin-bottom: 40px;
-    padding-bottom: 20px;
+	table {
+		margin: 20px auto;
+		width: 400px;
+		@media print {
+			width: 100%;
+		}
+	}
+	text-align: center;
+	margin-bottom: 40px;
+	padding-bottom: 20px;
+
+
 }
 .test-tmp, .rechoose {
-    // even if we don't give its parent position:relatvie,
-    // as long as we don't specify left:w/e; its position is fine
-    position: absolute;
-    margin-left: 30px;
-    &:extend(.alert all, .alert-info all);
+	// even if we don't give its parent position:relatvie,
+	// as long as we don't specify left:w/e; its position is fine
+	position: absolute;
+	margin-left: 30px;
+	&:extend(.alert all, .alert-info all);
 }
 // ca.admin.less also has the following
 .modal-readme {
-    padding: 0 50px;
-    height: 650px;
-    overflow-y: scroll;
-    .kaiti {
-        font-size: 18px;
-        font-family: KaiTi_GB2312, KaiTi, "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
-        color: black;
-    }
-    .zhou-ugly {
-        margin-top: 0;
-    }
-    /*
+	padding: 0 50px;
+	height: 650px;
+	overflow-y: scroll;
+	.kaiti {
+		font-size: 18px;
+		font-family: KaiTi_GB2312, KaiTi, "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+		color: black;
+	}
+	.zhou-ugly {
+		margin-top: 0;
+	}
+	/*
 	h1, h2{
 		font-weight: bold;
 		font-size: 25px;
@@ -183,49 +190,84 @@ body {
 	}*/
 }
 .ca-btn-print, .success-info, .change-major {
-    .hidden-print;
+	.hidden-print;
 }
 .app-main, .appl-result {
-    @media print {
-        border: none !important;
-    }
+	@media print {
+		border: none !important;
+	}
 }
 .link-centers {
-    @media print {
-        padding: 0;
-        border: 0;
-        vertical-align: inherit;
-        margin: 0;
-    }
+	@media print {
+		padding: 0;
+		border: 0;
+		vertical-align: inherit;
+		margin: 0;
+	}
 }
 // fix strange behavior:
 .no-wrap {
-    white-space: nowrap;
+	white-space: nowrap;
 }
 
 
 // mce styles. should be the same as admin.less
 .mce-table-style-padding {
-    td, th {
-        padding: 2px;
-    }
+	td, th {
+		padding: 2px;
+	}
 }
 
 .mce-table-style-center {
-    th, td {
-        text-align: center;
-    }
+	th, td {
+		text-align: center;
+	}
 }
 
 .lines {
-    width: 950px;
-    margin-top: 8px;
-    height: 6px;
-    border-top: 1px solid #adb2c6;
-    border-bottom: 1px solid #adb2c6;
+	width: 950px;
+	margin-top: 8px;
+	height: 6px;
+	border-top: 1px solid #adb2c6;
+	border-bottom: 1px solid #adb2c6;
 }
 
 .countdown {
-    margin: 0 5px;
-    color: red;
+	margin: 0 5px;
+	color: red;
+}
+
+
+@font-face {
+	font-family: 'algerianregular';
+	src: url('../fonts/alger-webfont.eot');
+	src: url('../fonts/alger-webfont.eot?#iefix') format('embedded-opentype'),
+		 url('../fonts/alger-webfont.woff2') format('woff2'),
+		 url('../fonts/alger-webfont.woff') format('woff'),
+		 url('../fonts/alger-webfont.ttf') format('truetype'),
+		 url('../fonts/alger-webfont.svg#algerianregular') format('svg');
+	font-weight: normal;
+	font-style: normal;
+
+}
+
+/*.ng-enter {
+	transition: 2s;
+}
+.ng-enter-active{
+	transform: translateX(100px);
+}*/
+
+
+@keyframes explode {
+	from {
+		opacity: .3;
+	}
+	50% {
+		transform: scale(1.08);
+		opacity: 1;
+	}
+	to {
+		opacity: 1;
+	}
 }

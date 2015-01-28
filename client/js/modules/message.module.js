@@ -9,94 +9,120 @@ MessageModule.factory('MessageApi', function($timeout, $rootScope) {
     // move timetoClear logic to directive for possible DOM handling (and for animation-CSS add and removal)
     var DISPLAY_TIME = 2000;
 
+
     return {
         status: null,
         message: null,
-        progress: function(msg, timetoShow) {
+        show: false,
+        hasChanged: function() {
+            var tmp = this._changed;
+            this._changed = false;
+            return tmp;
+        },
 
-            var api = this;
+        progress: function(msg) {
 
-            api.status = 'info';
-            api.message = msg || '操作中，请稍候';
+            this._clearPrevTimeout();
 
-            this.clear(false);
+            this.status = 'info';
+            this.message = msg || '操作中，请稍候';
+            this.show = true;
+            this._changed = true;
 
         },
         success: function(msg) {
+            this._clearPrevTimeout();
+            this._timeout();
+
             this.status = 'success';
             this.message = msg || '操作成功';
-
-            this.clear();
+            this.show = true;
+            this._changed = true;
 
         },
+
+        // for now, when error, we force the "ugly alert"
+        // and hide previous message
+
         error: function(msg) {
+            // this._clearPrevTimeout();
+            // this._timeout();
+
+            this.show = false;
+            this._changed = true;
 
             // TODO: make a popup
             var defaultMsg = '操作失败';
-            /*var defaultException = '若不是网络问题，此为bug，请联系王希';
-            var exception = !/^2/.test(status);*/
+
             alert(msg || defaultMsg);
 
         },
-        clear: function(timetoClear) {
+
+        // to think of a better name
+        finish: function() {
             var api = this;
-            api.clearPrevTimeout();
 
-            // if first param if false, then just clear previous $timeout
-            if (timetoClear === false) {
-                return;
-            }
-
-            // if undefined, default time is:
-            if (timetoClear === undefined) {
-                timetoClear = DISPLAY_TIME;
-            }
-
-
-            api.timeoutPromise = $timeout(function() {
-                api.status = null;
-                api.message = null;
-            }, timetoClear);
+            api.show = false;
+            this._changed = true;
 
         },
-        // if the next call is before $timeout finished, then cancel previous $timeout
-        clearPrevTimeout: function() {
+        _timeout: function(duration) {
+            duration = duration || DISPLAY_TIME;
+
+            var api = this;
+            this.timeoutPromise = $timeout(function() {
+                api.finish();
+            }, duration);
+
+        },
+
+        // if next call starts before previous call's timeout, we cancel that timeout.
+        _clearPrevTimeout: function() {
             if (this.timeoutPromise) {
                 $timeout.cancel(this.timeoutPromise);
+                this.timeoutPromise = null;
             }
         }
     }
 });
 
-MessageModule.directive('message', function() {
+MessageModule.directive('message', function(MessageApi, $timeout, $animate) {
+
+    /* from https://github.com/angular/angular.js/blob/v1.2.28/src/ng/directive/ngShowHide.js#L237
+    * Keep in mind that, as of AngularJS version 1.2.17 (and 1.3.0-beta.11), there is no need to change the display
+    * property to block during animation states--ngAnimate will handle the style toggling automatically for you.
+    */
+
+    !window.angular.$$csp() &&
+    window.angular.element(document).find('head').prepend(
+        '<style type="text/css">@charset "UTF-8";.gmessage-hide{display:none!important}.gmessage-hide-add-active,.gmessage-hide-remove{display:inline!important}.gmessage-hide-remove{-webkit-animation:expand .7s ease-out;animation:expand .7s ease-out}.gmessage-hide.gmessage-hide-add{-webkit-animation:fadeOut 1s;animation:fadeOut 1s}@-webkit-keyframes fadeOut{from{opacity:1}to{opacity:0}}@keyframes fadeOut{from{opacity:1}to{opacity:0}}@-webkit-keyframes fadeIn{from{opacity:0}to{opacity:1}}@keyframes fadeIn{from{opacity:0}to{opacity:1}}@-webkit-keyframes expand{50%{-webkit-transform:scale(1.08);transform:scale(1.08)}to{-webkit-transform:scale(1);transform:scale(1)}}@keyframes expand{50%{-webkit-transform:scale(1.08);transform:scale(1.08)}to{-webkit-transform:scale(1);transform:scale(1)}}</style>');
+
+
     return {
         restrict: 'AE',
         scope: {},
         replace: true,
-        controller: function($scope, MessageApi, $timeout) {
-            $scope.show = false;
-            $scope.api = MessageApi;
+        link: function(scope, el, attrs) {
+            scope.api = MessageApi;
 
-            $scope.$watch('api.status', toggledisplay)
-            $scope.$watch('api.message', toggledisplay)
+            scope.$watch(function() {
+                return MessageApi.hasChanged()
+            }, function(changed, oldVal) {
+                if(changed || changed === oldVal/*first time run*/){
+                    $animate.addClass(el, 'gmessage-hide');
+                    if(MessageApi.show){
+                        $animate.removeClass(el, 'gmessage-hide');
+                    }
+                }
+            })
 
-            /*$scope.hide = function() {
-                $scope.show = false;
-                $scope.api.clear();
-            };*/
-
-            function toggledisplay() {
-
-                $scope.show = !!($scope.api.status && $scope.api.message);
-
-            }
         },
-        template: '<span class="label label-{{api.status}}" ng-show="show">' +
-            '{{api.message}}' +
+        // todo: remove bootstrap class
+        template: '<span class="label label-{{api.status}} gf-message">' +
+            "{{api.message}}" +
             '</span>'
     }
 })
-
 .directive('spinner', function($http) {
     return {
         restrict: 'EA',
@@ -121,3 +147,4 @@ MessageModule.directive('message', function() {
         }
     }
 })
+

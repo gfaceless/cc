@@ -17,8 +17,8 @@ angular.module('myApp')
             if (val) {
                 MessageApi.progress('查找中..');
             } else {
-                // pass 0 to clear progress info right away 
-                MessageApi.clear(0);
+                // pass 0 to clear progress info right away
+                MessageApi.finish();
             }
         });
 
@@ -33,7 +33,7 @@ angular.module('myApp')
          *                           it here too)
          */
         function makeParams(criteria, pagin) {
-            // we don't want pagination info get into criteria obj, 
+            // we don't want pagination info get into criteria obj,
             // so copy it
             var ret = angular.extend({}, criteria);
 
@@ -196,8 +196,8 @@ angular.module('myApp')
 
         function getSelectedIds(items) {
             getSelectedIds._count = (getSelectedIds._count || 0) + 1;
-            
-            
+
+
             var arr = [];
             angular.forEach(items, function(item) {
                 if (item.selected) arr.push(item._id);
@@ -223,5 +223,4 @@ angular.module('myApp')
             $scope.find($scope.criteria, 1, true);
         }
         init();
-
     })

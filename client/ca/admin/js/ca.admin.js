@@ -1,7 +1,6 @@
-var app = angular.module('myApp', ['taiPlaceholder', 'message', 'misc', 'liveCreate', 'ui.bootstrap', 'angularLoad', 'ngSanitize'])
+var app = angular.module('myApp', ['taiPlaceholder', 'message', 'misc', 'liveCreate', 'ui.bootstrap', 'angularLoad', 'ngSanitize','ngAnimate'])
     .config(function($httpProvider) {
         // $httpProvider.interceptors.push(b);
-        
         $httpProvider.interceptors.push(function($q, MessageApi) {
             function getMessage(res) {
                 var msg = res && res.data && res.data.message
@@ -13,7 +12,7 @@ var app = angular.module('myApp', ['taiPlaceholder', 'message', 'misc', 'liveCre
 
             return {
                 /*'request': function(config) {
-                    
+
                     return config;
                 },*/
                 'response': function(res) {
@@ -32,7 +31,7 @@ var app = angular.module('myApp', ['taiPlaceholder', 'message', 'misc', 'liveCre
                     return res;
                 },
                 responseError: function(res) {
-                    
+
                     var msg = getMessage(res);
                     // if no msg, we suppress notification.
                     if (msg) {
@@ -47,12 +46,16 @@ var app = angular.module('myApp', ['taiPlaceholder', 'message', 'misc', 'liveCre
     })
     .controller('appCtrl', function($scope, $http, $modal, MessageApi, $timeout) {
 
+        $scope.testMessage= function() {
+            MessageApi.success('hey!');
+        }
+
         $scope.$on('freeze', function(e, freezed) {
             $scope.freezed = freezed;
         })
 
-        $scope.onClickTab = function(tab) {            
-            
+        $scope.onClickTab = function(tab) {
+
             $scope.currentTab = tab;
         }
 
@@ -131,7 +134,7 @@ var app = angular.module('myApp', ['taiPlaceholder', 'message', 'misc', 'liveCre
         }
 
         $scope.$watch('logged', function(val) {
-            if (val) {                
+            if (val) {
                 startApp();
             }
         });

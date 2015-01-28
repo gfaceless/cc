@@ -1,11 +1,12 @@
-var app = angular.module('myApp', ['message', 'ui.bootstrap', 'ngSanitize', 'gfForm', 'ngRoute', 'ngAnimate'])
+var app = angular.module('myApp', ['message', 'ui.bootstrap', 'ngSanitize', 'gfForm', 'ngRoute'/*, 'ngAnimate'*/])
 	.config(['$routeProvider', '$locationProvider',
 		function($routeProvider, $locationProvider) {
 			var routeStep1 = {
 				templateUrl: 'views/step1.html',
 				controller: 'Step1Ctrl',
 				reloadOnSearch: false
-			};
+			}
+
 
 			$routeProvider
 			// .when('/', routeStep1)
@@ -18,6 +19,7 @@ var app = angular.module('myApp', ['message', 'ui.bootstrap', 'ngSanitize', 'gfF
 					templateUrl: 'views/step3.html',
 					controller: 'Step3Ctrl'
 				})
+
 				.otherwise(routeStep1)
 
 		}
@@ -36,8 +38,29 @@ var app = angular.module('myApp', ['message', 'ui.bootstrap', 'ngSanitize', 'gfF
 			}
 		}
 	})
+	.controller('appCtrl', function($scope, $http, $modal, $log, $window, $timeout, CrapService, $animate) {
+
+
+
+		$scope.$watch(function() {
+			return CrapService.step();
+		}, function(newVal, oldVal) {
+			if(newVal === oldVal) return;
+			// step could be undefined, which is expected
+			$scope.step = newVal || 1;
+		})
+
+
+		return;
+
+		$scope.$watch("updating", function(val, oldVal) {
+			if (val === true) {
+				$scope.hasApplied = false;
+			}
+		})
+
+	})
 	.controller('Step1Ctrl', function($scope, $http, $location, $routeParams, $modal, CrapService, $timeout, $route) {
-		
 		CrapService.step(1);
 		init();
 		$scope.$on('$routeUpdate', function() {
@@ -94,12 +117,12 @@ var app = angular.module('myApp', ['message', 'ui.bootstrap', 'ngSanitize', 'gfF
 
 		// maybe there is memory leak.
 		var deregistration = $scope.$on('$locationChangeStart', function() {
-			
+
 			$scope.$close();
 		})
 
 		function onClose(reason) {
-			
+
 			// if no reason is supplied, it is a navigation (locationChangeStart) trigger, we do nothing
 			if (reason) {
 				// if reason is provided, the close is mannually triggered, we first deregistrate $locationChangeStart
@@ -113,10 +136,10 @@ var app = angular.module('myApp', ['message', 'ui.bootstrap', 'ngSanitize', 'gfF
 
 	})
 	.controller('Step2Ctrl', function($rootScope, $scope, $http, $location, CrapService, $window, $timeout) {
-		
+
 		CrapService.step(2);
 		$scope.ca = CrapService.crapInfo || {};
-		
+
 
 		$http
 			.get('major')
@@ -127,7 +150,7 @@ var app = angular.module('myApp', ['message', 'ui.bootstrap', 'ngSanitize', 'gfF
 		$scope.submit = function() {
 			// form creates a new scope
 			// here 'this' is the new scope, its $parent is $scope
-			// I can remove this logic if I put some stopPropagation in my custom form directive            
+			// I can remove this logic if I put some stopPropagation in my custom form directive
 			if (this.caForm.$invalid) {
 				return;
 			}
@@ -179,7 +202,7 @@ var app = angular.module('myApp', ['message', 'ui.bootstrap', 'ngSanitize', 'gfF
 		}
 	})
 	.controller('Step3Ctrl', function($scope, $rootScope, $location, CrapService, $window) {
-		
+
 		CrapService.step(3);
 		if (!$rootScope.crapResult) {
 			// maybe we should also override history
@@ -200,35 +223,13 @@ var app = angular.module('myApp', ['message', 'ui.bootstrap', 'ngSanitize', 'gfF
 			$window.print();
 		}
 		$scope.rechooseMajor = function() {
-			// 
+			//
 			CrapService.rechoose();
 			$location.path('/step2');
 		}
 
 	})
-	.controller('appCtrl', function($scope, $http, $modal, $log, $window, $timeout, CrapService) {
 
-		
-
-		$scope.$watch(function() {
-			return CrapService.step();
-		}, function(newVal, oldVal) {
-			$scope.step = newVal || 1;
-		})
-
-
-
-		return;
-
-		$scope.$watch("updating", function(val, oldVal) {
-			if (val === true) {
-				$scope.hasApplied = false;
-			}
-		})
-
-
-
-	})
 
 
 .directive('countdown', function($timeout) {
@@ -274,8 +275,34 @@ var app = angular.module('myApp', ['message', 'ui.bootstrap', 'ngSanitize', 'gfF
 					}
 					ctrl.$setValidity('studNumber', false);
 					return undefined;
-
 				})
 			}
 		}
-	})
+	})/*
+	.animation('.current-step', function() {
+	  return {
+	    enter: function(element, done) {
+	    	console.log('in js animation enter');
+	      //run the animation here and call done when the animation is complete
+	      return function(cancelled) {
+	        //this (optional) function will be called when the animation
+	        //completes or when the animation is cancelled (the cancelled
+	        //flag will be set to true if cancelled).
+	      };
+	    },
+	    leave: function(element, done) {console.log('in js animation leave'); },
+	    move: function(element, done) {console.log('in js animation move'); },
+
+	    //animation that can be triggered before the class is added
+	    // beforeAddClass: function(element, className, done) {console.log('in js animation beforeAddClass'); },
+
+	    //animation that can be triggered after the class is added
+	    addClass: function(element, className, done) {console.log('in js animation addClass'); done();},
+
+	    //animation that can be triggered before the class is removed
+	    beforeRemoveClass: function(element, className, done) {console.log('in js animation beforeRemoveClass'); done();},
+
+	    //animation that can be triggered after the class is removed
+	    removeClass: function(element, className, done) {console.log('in js animation removeClass'); done(); }
+	  };
+	});*/

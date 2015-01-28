@@ -118,6 +118,9 @@
         <div class="form-group">
             <label class="col-sm-2 control-label">颁证日期:</label>
             <div class="col-sm-8">
+            <!-- TODO: we need convert raw data, from GMT to my timezone -->
+            <!-- or else here we cannot display it properly -->
+            <!-- and we don't want to do it at server end for now -->
                 <input class="form-control" ng-model="cert.certdate" name="certdate" />
             </div>
             <div class="text-danger col-sm-2 form-control-static" ng-show="certForm.certdate.$invalid && certForm.certdate.$dirty">

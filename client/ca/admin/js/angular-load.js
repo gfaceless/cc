@@ -1,6 +1,5 @@
 /* angular-load.js / v0.2.0 / (c) 2014 Uri Shaked / MIT Licence */
-
-(function () {
+;(function () {
 	'use strict';
 
 	angular.module('angularLoad', [])
@@ -11,14 +10,14 @@
 			 * @param src The url of the script to load dynamically
 			 * @returns {*} Promise that will be resolved once the script has been loaded.
 			 */
-			
+
 			var cache = $cacheFactory('angularLoad');
 
 			this.loadScript = function (src) {
 
 				var deferred = $q.defer();
 				var p = cache.get(src);
-				
+
 				if(p){
 					return p;
 				}
@@ -72,4 +71,5 @@
 				return deferred.promise;
 			};
 		}]);
+
 })();

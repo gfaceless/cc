@@ -67,3 +67,7 @@ th, td {
 span.to {
     margin-left: -30px;
 }
+
+.gf-message {
+    font-size: 15px;
+}

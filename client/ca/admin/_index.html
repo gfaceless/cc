@@ -31,9 +31,29 @@
       <script src="../../js/ie-polyfill.js"></script>
     <![endif]-->
 
-    <script src="tmp/vendor-a53d622a.js"></script>
+    <!-- build:vendorJS tmp/vendor.js -->
+    <script src="../../js/angular-1.2.25.min.js"></script>
+    <script src="../../js/angular-animate-1.2.js"></script>
+    <script src="../../js/angular-sanitize.min.js"></script>
+    <script src="../../js/ui-bootstrap-tpls-0.12.0.min.js"></script>
+    <script src="../../js/angular-locale_zh-cn.js"></script>
+    <script src="../../js/tai-placeholder.js"></script>
+    <!-- endbuild -->
 
-    <script src="tmp/app-build-b6304eeb.js"></script>
+    <!-- build:js tmp/app-build.js -->
+    <script src="../../js/modules/message.module.js"></script>
+    <script src="../../js/modules/misc.module.js"></script>
+    <script src="js/live-create.module.js"></script>
+    <script src="js/ca.admin.js"></script>
+    <script src="js/mw.ctrl.js"></script>
+    <script src="js/user.ctrl.js"></script>
+    <script src="js/result.ctrl.js"></script>
+    <script src="js/angular-load.js"></script>
+    <script src="js/editor.ctrl.js"></script>
+
+    <!-- this one is gulp generated, app can function the same without it -->
+    <script src="js/templates.js"></script>
+    <!-- endbuild -->
 </head>
 
 <body ng-controller="appCtrl">

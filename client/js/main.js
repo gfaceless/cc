@@ -1,4 +1,4 @@
-var app = angular.module('myApp', ['ui.bootstrap', 'angularFileUpload', "customFilters", 'taiPlaceholder', 'message'])
+var app = angular.module('myApp', ['ui.bootstrap', 'angularFileUpload', "customFilters", 'taiPlaceholder', 'message', 'ngAnimate'])
     .config(function($httpProvider, datepickerPopupConfig) {
         // see #http://stackoverflow.com/questions/16098430/angular-ie-caching-issue-for-http
         //initialize get if not there
@@ -22,14 +22,19 @@ var app = angular.module('myApp', ['ui.bootstrap', 'angularFileUpload', "customF
                 request: function(config) {
                     return config;
                 },
-                response: function(response) {                    
+                response: function(response) {
                     return response;
                 }
             }
         });
     })*/
     .controller('appCtrl', function($scope, $modal, $http, $log, $timeout, $q, $upload, $filter, MessageApi) {
-
+        $scope.testProgress = function() {
+            MessageApi.progress('uploading')
+        };
+        $scope.testMessage = function() {
+            showInfo('hey');
+        };
 
 
         var url = 'certs';
@@ -115,13 +120,14 @@ var app = angular.module('myApp', ['ui.bootstrap', 'angularFileUpload', "customF
 
                     file: file, // or list of files ($files) for html5 only
                     //fileName: 'doc.jpg' or ['1.jpg', '2.jpg', ...] // to modify the name of the file(s)
-                    // customize file formData name ('Content-Desposition'), server side file variable name. 
-                    //fileFormDataName: myFile, //or a list of names for multiple files (html5). Default is 'file' 
+                    // customize file formData name ('Content-Desposition'), server side file variable name.
+                    //fileFormDataName: myFile, //or a list of names for multiple files (html5). Default is 'file'
                     // customize how data is added to formData. See #40#issuecomment-28612000 for sample code
                     //formDataAppender: function(formData, key, val){}
                 })
 
                 .success(function(data, status, headers, config) {
+                    MessageApi.finish();
                     $scope.find(lastCriteria);
                     showInfo();
 
@@ -140,16 +146,16 @@ var app = angular.module('myApp', ['ui.bootstrap', 'angularFileUpload', "customF
                     });
 
                 })
-                    .error(handleFailure)
+                .error(handleFailure)
 
                 MessageApi.progress("上传处理中...");
 
-                //.then(success, error, progress); 
+                //.then(success, error, progress);
                 // access or attach event listeners to the underlying XMLHttpRequest.
                 //.xhr(function(xhr){xhr.upload.addEventListener(...)})
             }
             /* alternative way of uploading, send the file binary with the file's content-type.
-               Could be used to upload files to CouchDB, imgur, etc... html5 FileReader is needed. 
+               Could be used to upload files to CouchDB, imgur, etc... html5 FileReader is needed.
                It could also be used to monitor the progress of a normal http post/put request with large data*/
             // $scope.upload = $upload.http({...})  see 88#issuecomment-31366487 for sample code.
         };
@@ -220,7 +226,7 @@ var app = angular.module('myApp', ['ui.bootstrap', 'angularFileUpload', "customF
                 }
             });
             modalInstance.result.then(function(scope) {
-                
+
                 $scope.find(scope.criteria);
                 lastScope = scope;
             }, function() {
@@ -338,7 +344,7 @@ app.directive('rangeToggler', function($compile) {
                     scope.$watch(name, function(newValue, oldValue) {
                         if (angular.isUndefined(scope.modelName)) return;
 
-                        // maybe init: 
+                        // maybe init:
                         if (newValue === oldValue) return;
                         if (!angular.isArray(scope.modelName)) return; // we ensured it would be an array in `checked` watch
                         scope.modelName[i] = newValue;

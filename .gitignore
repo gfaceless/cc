@@ -28,7 +28,7 @@ node_modules
 .lock-wscript
 
 bower_components
-
+test
 .idea
 
 *.sublime-project
