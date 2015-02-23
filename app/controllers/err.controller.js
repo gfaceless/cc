@@ -2,6 +2,9 @@ var _ = require('lodash');
 
 var util = require('util');
 
+var env = process.env.NODE_ENV;
+var prod = env == 'production';
+
 exports.getErrorMsg = getErrorMsg;
 
 
@@ -19,11 +22,12 @@ exports.record = function (req, res, next) {
 exports.handleError = function(app) {
 
 
-    /// error handlers
+    // currently we never reach further,
+    // this is the endpoint
     app.use(function(err, req, res, next) {
-        
+
         console.log('in error controller..error is: ', util.inspect(err, {showHidden: true, depth: null, colors: true}));
-        
+
         if(err.status !== 404) {
 
             // see #http://stackoverflow.com/questions/2923858/how-to-print-a-stack-trace-in-nodejs
@@ -38,29 +42,24 @@ exports.handleError = function(app) {
         }
 
         var msg = getErrorMsg(err);
-        
-        
+
+
+
         return res
             .status(err.status || 500)
             .send({
                 success: false,
-                message: msg
+                message: prod ? "not found..." : msg
             })
-        
-        
+
     });
 
-
-
+    // app would never reach here
     // development error handler
     // will print stacktrace
     if (app.get('env') === 'development') {
         app.use(function(err, req, res, next) {
 
-            console.log('why here?')
-            console.log(err);
-
-            
             res.status(err.status || 500);
             // seems angularJS does not have X-Requested-With: XMLHttpRequest header
             // so we should judge by Accept header
@@ -68,7 +67,7 @@ exports.handleError = function(app) {
             if (req.is('application/json')) {
                 return res.send({
                     success: false,
-                    message: "若出现未知错误，请与王希联系: " + err.message
+                    message: "若出现未知错误，请与我联系: " + err.message
                 });
             }
             res.render('error', {
@@ -78,6 +77,7 @@ exports.handleError = function(app) {
         });
     }
 
+    // app would never reach here
     // production error handler
     // no stacktraces leaked to user
     app.use(function(err, req, res, next) {
@@ -91,7 +91,7 @@ exports.handleError = function(app) {
 
 exports.attack = function(msg) {
     var err =  new CustomError(msg || 'yah, we\'are under attack!', 'attack');
-    console.log('attck err is: ', err);    
+    console.log('attck err is: ', err);
     return  err;
 
 }
@@ -114,7 +114,7 @@ function CustomError(msg, type) {
         }
     })
 
-    this.stack = (new Error()).stack;    
+    this.stack = (new Error()).stack;
 }
 util.inherits(CustomError, Error);
 
@@ -136,11 +136,15 @@ function getErrorMsg(err) {
 
     }else if(err.name == "CastError") {
         // we should not show this in production env
-        msg = "cast err: " + err.message
+        if(prod) {
+            msg = '出现错误，错误代码:9527'
+        } else {
+            msg = "cast err: " + err.message
+        }
     }
     // 11001 happens when editing an existing one
     else if (err.name === "MongoError" && (err.code === 11000 || err.code === 11001) ) {
-        msg = '有重复数据';        
+        msg = '有重复数据';
     }
 
     return msg || '未知错误';
