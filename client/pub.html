@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="vendors/bootstrap-3.2.0-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="vendors/bootstrap-3.2.0-dist/css/bootstrap-theme.min.css">
 
-    
+
     <link rel="stylesheet" href="css/pub-search.css">
-    <script src="js/angular-1.2.min.js"></script>
+    <script src="js/angular-1.2.25.min.js"></script>
     <script src="js/lodash.compat.min.js"></script>
     <script src="js/angular-file-upload.min.js"></script>
     <script src="js/ui-bootstrap-tpls-0.11.0.min.js"></script>
@@ -20,13 +20,16 @@
 </head>
 
 <body ng-controller="appCtrl" ng-cloak>
+<!--[if lt IE 8]>
+    <script src="js/ie6-alert.js"></script>
+<![endif]-->
     <div class="header">
 
     </div>
     <div class="main">
         <div ng-hide="certs.length" class="no-results" ng-class="isQueried ? 's' : 'hidden'">查无结果</div>
         <div class="table-wrapper" ng-repeat="cert in certs | range: pagination.currentPage: pagination.itemsPerPage">
-            <table class="table table-bordered table-hover text-center my-table"  >                
+            <table class="table table-bordered table-hover text-center my-table"  >
 
                 <tr ng-repeat="k in dbKeys" >
                     <td>{{toChineseKey(k)}}</td>
