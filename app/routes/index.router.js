@@ -1,3 +1,7 @@
+/*
+ *  remember that we had put static resources in later order of the middleware stack,
+ *  so take caution when specify routers like /:thing/:id, would overwrite static res
+*/
 var express = require('express');
 var router = express.Router();
 
@@ -29,11 +33,11 @@ router.post('/admin9', /*urlParser,*/ function(req, res, next) {
 })
 
 router.post('/admin9/isLogged', function(req, res,next) {
-    
+
     res.send({
         isLogged: req.session.isAdmin || false
     })
-    
+
 })
 
 router.post('/admin9/logout', function(req, res, next) {

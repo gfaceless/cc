@@ -91,31 +91,9 @@ var publicFolder = path.join(__dirname, 'client');
 // #https://github.com/pillarjs/send/blob/master/index.js
 // for now, a makeshift:
 
-app.use(function(req, res, next) {
-        var options = {
-            maxAge: 0, // it is default
-        }
 
-        var hasTrailingSlash = /\/$/.test(req.path);
 
-        if(/\.html$/.test(req.path) || hasTrailingSlash){
-            var p  = path.join(publicFolder, req.path);
-            if(hasTrailingSlash) {
-                p += "index.html";
-            }
-            return res.sendFile(p, options)
-        }
-
-        next();
-    })
-
-// as I have added footprint to my static file, cache-control should be set at a large number
-// remember that some pages' footprint remains to be set
-app.use(express.static(publicFolder, {
-    maxAge: "365d"
-}));
-
-app.use(logger('dev'));
+app.use(logger('dev', {skip: function (req, res) { return res.statusCode < 400 }}) );
 
 app.use(methodOverride());
 
@@ -133,6 +111,33 @@ app.use('/config', require('./app/routes/config.router.js'));
 
 // ca means `credit application`
 app.use('/ca', require('./app/routes/ca.router.js'));
+
+
+
+app.use(function(req, res, next) {
+        var options = {
+            maxAge: 0, // it is default
+        }
+
+        var hasTrailingSlash = /\/$/.test(req.path);
+
+        // /\.html[^\/]*$/
+        if(/\.html$/.test(req.path) || hasTrailingSlash){
+            var p  = path.join(publicFolder, req.path);
+            if(hasTrailingSlash) {
+                p += "index.html";
+            }
+            return res.sendFile(p, options)
+        }
+
+        next();
+    })
+// as I have added footprint to my static file, cache-control should be set at a large number
+// remember that some pages' footprint remains to be set
+app.use(express.static(publicFolder, {
+    maxAge: "365d"
+}));
+
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
