@@ -9,46 +9,36 @@ var fs = require('fs')
 var urlParser = require('../middlewares/url-parser.js');
 var _ = require('lodash');
 
-router.get('/', function(req, res, next) {
+var userCtrl = require('../controllers/user.controller.js');
+var perm = require('../permissions.js');
 
+
+router.get('/', function(req, res, next) {
 
     res.redirect('app.html');
 });
 
 
 // temp:
-router.post('/admin9', /*urlParser,*/ function(req, res, next) {
-    var user = req.body.user;
-    if (!_.isObject(user)) return next('登录错误'); // actually it maybe a possible attack
-    if (user.name === 'admin' && user.password === '123456') {
-    	req.session.isAdmin = true;
-        return res.send({
-            success: true,
-            logged: true
-        })
-    }
-    res.send({
-    	success: false
-    })
-})
+router.post('/admin9', /*urlParser,*/ userCtrl.login)
+router.post('/admin9/logout', userCtrl.logout)
 
 router.post('/admin9/isLogged', function(req, res,next) {
 
     res.send({
-        isLogged: req.session.isAdmin || false
+        isLogged: req.session.role == 'admin'
     })
 
 })
 
-router.post('/admin9/logout', function(req, res, next) {
-    if(req.session.isAdmin){
-        delete req.session.isAdmin;
-        res.send({
-            success: true
-        })
-    } else {
-        res.send({success: false});
-    }
-})
+
+var onlyAdmin = perm.allow('admin');
+
+router.post('/admin-root', userCtrl.noAdmin, userCtrl.create("admin"))
+router.post('/admin10', onlyAdmin, userCtrl.create('admin'));
+
+// NOTE: onlyAdmin should be `onlySelf`, this is a hole
+router.put('/admin10/', onlyAdmin, userCtrl.updateSelf);
+// adminRouter.delete('/users/:id', noSub, userCtrl.remove);
 
 module.exports = router;

@@ -63,7 +63,8 @@ adminRouter.post('/isLogged', userCtrl.isLogged);
 
 // user:
 adminRouter.get('/users', noSub, userCtrl.list);
-adminRouter.post('/users', noSub, userCtrl.create);
+// NOTE: `create()` will return a middleware
+adminRouter.post('/users', noSub, userCtrl.create());
 adminRouter.put('/users/:id', noSub, userCtrl.update);
 adminRouter.delete('/users/:id', noSub, userCtrl.remove);
 

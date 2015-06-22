@@ -71,3 +71,17 @@ span.to {
 .gf-message {
     font-size: 15px;
 }
+
+.more{
+    margin-left: 10px;
+
+}
+
+.more span {
+    color:#333;
+}
+
+/*override bootstrap default*/
+.dropdown-menu {
+    min-width: inherit;
+}

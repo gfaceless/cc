@@ -69,7 +69,7 @@ app.controller('editCtrl', function($scope, $modalInstance, cert, $http, Message
 
 
 
-.controller('searchCtrl', function($scope, $modalInstance, $http, lastScope) {       
+.controller('searchCtrl', function($scope, $modalInstance, $http, lastScope) {
 
     $scope.criteria = $scope.criteria || {
         certdate : [], tscore: [], pscore: []
@@ -78,10 +78,10 @@ app.controller('editCtrl', function($scope, $modalInstance, cert, $http, Message
 
     $scope.datepicker = $scope.datepicker || {}
 
-    $scope.datepicker = angular.extend($scope.datepicker, {        
+    $scope.datepicker = angular.extend($scope.datepicker, {
         formats : ['yyyy-MM-dd', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'],
         options: {
-            startingDay: 1,            
+            startingDay: 1,
             showWeeks: false
         }
     });
@@ -92,13 +92,13 @@ app.controller('editCtrl', function($scope, $modalInstance, cert, $http, Message
     $scope.cancel = function() {
         $modalInstance.dismiss();
     };
-    $scope.openDatepicker = function($event, dir) {        
+    $scope.openDatepicker = function($event, dir) {
         $event.preventDefault();
         $event.stopPropagation();
         $scope.datepicker[dir] = $scope.datepicker[dir] || {};
         $scope.datepicker[dir].opened = true;
     }
-     
+
 
 })
 .controller('infoCtrl',  function($scope, $modalInstance, data, DOWNLOAD_URL) {
@@ -128,6 +128,36 @@ app.controller('editCtrl', function($scope, $modalInstance, cert, $http, Message
             })
 
     };
+    $scope.cancel = function() {
+        $modalInstance.dismiss();
+    };
+})
+.controller( 'passCtrl', function($scope, $modalInstance, $http) {
+    var url = "admin10"
+    $scope.user = {};
+
+    $scope.$watch("user.re", function(newVal) {
+        console.log('user.re:', newVal);
+        var pass = $scope.user.password;
+        if(!pass || !newVal) return;
+        if(newVal.length >= pass.length) $scope.hasIntention = true;
+    })
+
+    $scope.ok = function() {
+        $http.put(url, {
+            user: $scope.user
+        })
+        .success(function(data) {
+
+            if (data.success) $modalInstance.close();
+            else alert('操作失败')
+        })
+        .error(function(data) {
+            // $modalInstance.dismiss();
+            alert('操作失败')
+        })
+    };
+
     $scope.cancel = function() {
         $modalInstance.dismiss();
     };

@@ -34,27 +34,44 @@
     <script src="js/tai-placeholder.js"></script>
 
     <script src="js/angular-file-upload.min.js"></script>
-    <script src="js/ui-bootstrap-tpls-0.11.0.min.js"></script>
+    <script src="js/ui-bootstrap-tpls-0.12.0.js"></script>
 
     <script src="js/filters/filters.js"></script>
     <script src="js/modules/message.module.js"></script>
+    <script src="js/modules/misc.module.js"></script>
     <script src="js/main.js"></script>
     <script src="js/controllers/popup.controller.js"></script>
 
 </head>
 
-<body ng-controller="appCtrl">
+<body ng-controller="appCtrl" ng-cloak>
     <div class="meta">
         <span ng-show="isLogged">已登录</span>
         <a href="#" class="btn btn-default" ng-hide="isLogged" ng-click="openLogin()">登录</a>
-        <a href="#" class="btn btn-default" ng-show="isLogged" ng-click="logout()">退出</a>
+
+        <!-- Single button -->
+        <div class="btn-group more" dropdown ng-show="isLogged" >
+          <button type="button" class="btn btn-default dropdown-toggle" dropdown-toggle>
+            更多 <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#" ng-click="openPass()">修改密码</a></li>
+            <li><a href="#" ng-click="logout()">退出</a></li>
+
+            <!-- <li class="divider"></li>
+            <li><a href="#">Separated link</a></li> -->
+          </ul>
+        </div>
+
     </div>
     <div class="panel panel-primary">
         <h3 class="panel-heading">鉴定中心证书管理系统
+        <div message></div>
         </h3>
 
 
-        <div class="panel-body">
+
+        <div class="panel-body" ng-show="isLogged">
             <button class="btn btn-primary" ng-click="open()">新建</button>
             <span class="btn btn-primary btn-file">
                 导入
@@ -65,10 +82,9 @@
             <!-- <button class="btn btn-primary" ng-click="testMessage()">test</button> -->
             <!-- <button class="btn btn-primary" ng-click="testProgress()">testProgress</button> -->
             <div spinner></div>
-            <div message></div>
         </div>
-        <ng-include src="'view/findView.html'"></ng-include>
-        <ng-include src="'view/tableView.html'"></ng-include>
+        <ng-include src="'view/findView.html'" ng-show="isLogged"></ng-include>
+        <ng-include src="'view/tableView.html'" ng-show="isLogged"></ng-include>
     </div>
 
 

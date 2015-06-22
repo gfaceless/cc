@@ -1,4 +1,4 @@
-var app = angular.module('myApp', ['ui.bootstrap', 'angularFileUpload', "customFilters", 'taiPlaceholder', 'message', 'ngAnimate'])
+var app = angular.module('myApp', ['ui.bootstrap', 'angularFileUpload', "customFilters", 'taiPlaceholder', 'message', 'ngAnimate', 'misc'])
     .config(function($httpProvider, datepickerPopupConfig) {
         // see #http://stackoverflow.com/questions/16098430/angular-ie-caching-issue-for-http
         //initialize get if not there
@@ -236,6 +236,24 @@ var app = angular.module('myApp', ['ui.bootstrap', 'angularFileUpload', "customF
 
         }
 
+        $scope.openPass = function() {
+            var modalInstance = $modal.open({
+                templateUrl: 'view/pass.html',
+                controller: 'passCtrl',
+                size: 'sm',
+
+                resolve: {
+
+                }
+            });
+            modalInstance.result.then(function() {
+                console.log('in modalPromise', arguments);
+                showInfo('修改成功');
+            }, function() {
+
+            })
+        }
+
         $scope.openLogin = function() {
             var modalInstance = $modal.open({
                 templateUrl: 'view/login.html',
@@ -273,6 +291,7 @@ var app = angular.module('myApp', ['ui.bootstrap', 'angularFileUpload', "customF
             $http.post('admin9/isLogged')
                 .success(function(data) {
                     if (data.isLogged) $scope.isLogged = true;
+                    else $scope.openLogin();
                 })
         }
 
