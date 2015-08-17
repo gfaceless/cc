@@ -3,7 +3,7 @@ var mongoose = require('mongoose'),
     ObjectId = Schema.Types.ObjectId,
     _ = require('lodash'),
     moment = require('moment')
-  
+
 
 var validator = require('validator');
 validator.extend('isCNID', function (str) {
@@ -28,13 +28,18 @@ var certificateSchema = new Schema({
 
     worktype: _.defaults({index: true}, opt),
 
-    certlevel: _.defaults({enum: "初级 中级 高级 技师 高级技师".split(' '), index: true}, opt),
+    // I dont have energy to re-delve into mongoose doc
+    // so I dirty fixed.
+    // NOTE: `require: false` does not work
+    // add empty string to `enum` is a dirty fix
+    certlevel: _.defaults({enum: "初级 中级 高级 技师 高级技师".split(' ').concat([""]), index: true}, opt),
 
     certnumber: _.defaults({unique: true}, required),
 
     birth: {},
 
-    sex: _.defaults({enum: ['男', '女']}, opt),
+    // DIRTY FIX, see comments above
+    sex: _.defaults({enum: ['男', '女', ""]}, opt),
 
     edu: _.defaults({index: true}, opt),
     tscore: {type: Number, min: 0, max: 100, index: true},
@@ -61,7 +66,7 @@ function dateGetter(val) {
 }
 
 function dateSetter(val) {
-        
+
     if(!val) {
         return ;
         /*return this.invalidate('certdate', '颁证日期必填项');*/
@@ -85,15 +90,18 @@ function nameSetter(name) {
 
 
 certificateSchema.path('sex').set(function (val) {
+
     if(val=='1') return '男';
     if(val=='2') return '女';
 
+    // I dont find this useful (imo there should be some enum validation)
+    // maybe unnecessary
     var sex = val.match(/[男|女]/);
-    return sex || val;
+    return (sex&&sex[0]) || val;
 });
 
 //TODO: remove the following code after report is done.
-function scoreSetter(val) {    
+function scoreSetter(val) {
     if(typeof val == "string" && val.length ===3 && val.slice(-1) === '0') return val.slice(0, -1);
     return val;
 }
